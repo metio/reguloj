@@ -1,0 +1,52 @@
+h1. viadee Business Rules Engine (vBRE)
+
+p. The viadee business rules engine (vBRE) is a small and lightweight rule engine for mobile applications running "Android":http://www.android.com/ and/or other restricted environments such as "GWT":http://code.google.com/webtoolkit/.
+
+p. This engine is intended to be extended and customized for a specific domain (your projects field of expertise) and therefore only provides barebone functionality of a business rules engine. To use it in your project you'll have to provide your domain specific predicates and commands so they can be used by business rules. The "Predicates":http://guava-libraries.googlecode.com/svn/trunk/javadoc/com/google/common/base/Predicate.html definition is taken from the "Guava libraries":http://code.google.com/p/guava-libraries/ and you'll either have to implement the specified interface directly or implement a subclass of it. @Command@ implementations are most likely single-method objects which perform some sort of action. The interface only defines one method and does not restrict you in any way. To create a new rule use the previously created predicate and your new command.
+
+p. Additionally there are some factories defined which help in creating rules (using static imports):
+
+bc. 
+final Rule rule = rule().called("example")
+                        .when(and(alwaysTrue(), alwaysFalse()))
+                        .then(conclude(noOpCommand))
+                        .get();
+
+p. To evaluate your business rules you'll have to create three objects:
+
+# An instance of @RuleEngine@.
+# An instance of @InferenceContext@.
+# A @Set@ of @Rule@ objects.
+
+p. 1 and 3 are easy to do since the vBRE project already includes a simple implementation of the @RuleEngine@ interface called @SimpleRuleEngine@ and a set of rules can be simply created with the standard Java library. The @InferenceContext@ (point 2) however may need some more work.
+
+p. It may be necessary that you need some sort of contextual information inside both your predicates and commands. The @InferenceContext@ is your way to make those informations available. In the simple case that your predicate and/or command just needs the _gist_ of the context you can call the available interface method directly. However it is more likely that you'll end up writing and extending your own context beyond that of the generic context provided by this project. During our internal development, we created a Android specific context which was tailored to our domain and thus provides methods to e.g. get the current GPS coordinates. Since those methods won't work in any environment which does not have access to a GPS sensor (or any other domain specific functionality) we decided to leave those out.
+
+p. Note that you'll have to cast the provided context to your own implementation it to make use of its methods.
+
+h2. License
+
+p. The vBRE project is licensed under the "Apache Software License, Version 2.0":http://www.apache.org/licenses/LICENSE-2.0/.
+
+h2. Integration
+
+p. To use the business rules engine inside your own projects just declare the following dependency inside your _POM_ :
+
+bc. 
+<dependency>
+  <groupId>de.viadee.rules</groupId>
+  <artifactId>viadee-rules</artifactId>
+  <version>1.0.0</version>
+</dependency>
+
+p. Alternatively copy the latest _JAR_  from our "download archive":https://github.com/viadee/rules/downloads to your projects library folder and/or put it in your classpath. 
+
+h1. Development
+
+h2. Setup
+
+p. The vBRE project is using "Maven":http://maven.apache.org/, "Eclipse":http://eclipse.org/ and "Git":http://git-scm.com/ as the main development tools. To build the project yourself just download & install at least Maven 3.0 and call *mvn install* inside the project folder. Maven should then proceed to clean, test, build, package and install the business rules engine.
+
+h2. Versioning
+
+p. The vBRE project follows the "semantic versioning":http://semver.org/ guidelines.

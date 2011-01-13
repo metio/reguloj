@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ * Copyright 2010 viadee IT Unternehmensberatung GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<project 
+  xmlns                 =   "http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi             =   "http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation    =   "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                               INFORMATIONS                              -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <groupId>de.viadee.rules</groupId>
+  <artifactId>viadee-rules</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <url>https://github.com/viadee/rules</url>
+  <inceptionYear>2010</inceptionYear>
+  <name>viadee Business Rules Engine</name>
+  <description>Lightweight business rule engine for mobile (Android) and embedded (GWT) applications</description>
+  
+  
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                               ORGANIZATION                              -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <organization>
+    <name>viadee IT Unternehmensberatung GmbH</name>
+    <url>http://www.viadee.de/</url>
+  </organization>
+  
+  
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                                DEVELOPERS                               -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <developers>
+    <developer>
+      <id>HoS</id>
+      <name>Sebastian Hoß</name>
+      <email>sebastian.hoss@viadee.de</email>
+      <url>http://shoss.de/</url>
+      <organization>${project.organization.name}</organization>
+      <organizationUrl>${project.organization.url}</organizationUrl>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>1</timezone>
+    </developer>
+  </developers>
+  
+  
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                                 LICENSE                                 -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                                  SOURCE                                 -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <scm>
+    <connection>scm:git:git://github.com/viadee/rules.git</connection>
+    <developerConnection>scm:git:git@github.com:viadee/rules.git</developerConnection>
+    <tag>master</tag>
+    <url>${project.url}</url>
+  </scm>
+
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                                  ISSUES                                 -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/viadee/rules/issues</url>
+  </issueManagement>
+
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                               DEPENDENCIES                              -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.2</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-library</artifactId>
+        <version>1.2.1</version>
+        <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-all</artifactId>
+        <version>1.8.5</version>
+        <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>r07</version>
+    </dependency>
+  </dependencies>
+  
+  
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                                PROPERTIES                               -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <properties>
+    <global.encoding>UTF-8</global.encoding>
+    <target.JDK>1.6</target.JDK>
+    <test.coverage>100</test.coverage>
+    
+    <project.build.sourceEncoding>${global.encoding}</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>${global.encoding}</project.reporting.outputEncoding>
+  </properties>
+  
+  
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                                  BUILD                                  -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <build>
+    <plugins>
+    
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!--                         ENFORCER                          -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>1.0</version>
+        <configuration>
+          <failFast>true</failFast>
+          <rules>
+            <requireMavenVersion>
+              <version>3.0.0</version>
+            </requireMavenVersion>
+            <requireJavaVersion>
+              <version>${target.JDK}</version>
+            </requireJavaVersion>
+            <requireProperty>
+              <property>project.build.sourceEncoding</property>
+              <message>"Build source encoding must be specified."</message>
+              <regex>UTF-8</regex>
+              <regexMessage>"Source encoding must be UTF-8"</regexMessage>
+            </requireProperty>
+            <requireProperty>
+              <property>project.reporting.outputEncoding</property>
+              <message>"Report output encoding must be specified."</message>
+              <regex>UTF-8</regex>
+              <regexMessage>"Report output encoding must be UTF-8"</regexMessage>
+            </requireProperty>
+            <DependencyConvergence/>
+          </rules>
+        </configuration>
+        <executions>
+          <execution>
+            <id>enforce-versions</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!--                         COMPILER                          -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>${target.JDK}</source>
+          <target>${target.JDK}</target>
+        </configuration>
+      </plugin>
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!--                            JAR                            -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.3.1</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!--                          JAVADOC                          -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.7</version>
+        <configuration>
+          <outputDirectory>${project.build.directory}/api</outputDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!--                          SOURCE                           -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.1.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!--                          SUREFIRE                         -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.7.1</version>
+        <configuration>
+		  <failIfNoTests>true</failIfNoTests>
+          <parallel>methods</parallel>
+		  <useUnlimitedThreads>true</useUnlimitedThreads>
+        </configuration>
+      </plugin>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!--                            GPG                            -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!--                           DOAP                            -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-doap-plugin</artifactId>
+        <version>1.0</version>
+        <configuration>
+          <doapFile>${project.reporting.outputDirectory}/doap.rdf</doapFile>
+          <doapOptions>
+            <programmingLanguage>Java</programmingLanguage>
+            <category>library</category>
+            <wiki>https://github.com/viadee/rules/wiki</wiki>
+            <downloadPage>https://github.com/viadee/rules/downloads</downloadPage>
+          </doapOptions>
+          <asfExtOptions>
+            <included>false</included>
+          </asfExtOptions>
+        </configuration>
+        <executions>
+          <execution>
+            <id>site</id>
+            <phase>site</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!--                          ECLIPSE                          -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-eclipse-plugin</artifactId>
+        <version>2.8</version>
+        <configuration>
+          <downloadSources>true</downloadSources>
+          <downloadJavadocs>true</downloadJavadocs>
+        </configuration>
+      </plugin>
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!--                         FINDBUGS                          -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <version>2.3.1</version>
+        <configuration>
+          <effort>Max</effort>
+          <threshold>Low</threshold>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      -->
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!--                           PMD                             -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>2.5</version>
+        <configuration>
+          <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+          <targetJdk>${target.JDK}</targetJdk>
+          <minimumTokens>35</minimumTokens>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+              <goal>cpd-check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!--                        COBERTURA                          -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <check>
+            <haltOnFailure>true</haltOnFailure>
+            <branchRate>${test.coverage}</branchRate>
+            <lineRate>${test.coverage}</lineRate>
+            <totalBranchRate>${test.coverage}</totalBranchRate>
+            <totalLineRate>${test.coverage}</totalLineRate>
+            <packageLineRate>${test.coverage}</packageLineRate>
+            <packageBranchRate>${test.coverage}</packageBranchRate>
+          </check>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>clean</goal>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!--                           SITE                            -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.0-beta-3</version>
+        <configuration>
+          <reportPlugins>
+          
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-project-info-reports-plugin</artifactId>
+              <version>2.3.1</version>
+              <configuration>
+                <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+                <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+              </configuration>
+              <reports>
+                <report>dependencies</report>
+                <report>project-team</report>
+                <report>issue-tracking</report>
+                <report>license</report>
+                <report>scm</report>
+                <report>plugins</report>
+                <report>summary</report>
+              </reports>
+            </plugin>
+            
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-javadoc-plugin</artifactId>
+              <version>2.7</version>
+              <reportSets>
+                <reportSet>
+                  <id>main-html</id>
+                  <configuration>
+                    <destDir>api</destDir>
+                    <docencoding>${global.encoding}</docencoding>
+                    <encoding>${global.encoding}</encoding>
+                    <show>public</show>
+                    <version>true</version>
+                    <excludePackageNames>*.implementation</excludePackageNames>
+                  </configuration>
+                  <reports>
+                    <report>javadoc</report>
+                  </reports>
+                </reportSet>
+                <reportSet>
+                  <id>test-html</id>
+                  <configuration>
+                    <destDir>testapi</destDir>
+                    <docencoding>${global.encoding}</docencoding>
+                    <encoding>${global.encoding}</encoding>
+                    <version>true</version>
+                  </configuration>
+                  <reports>
+                    <report>test-javadoc</report>
+                  </reports>
+                </reportSet>
+              </reportSets>
+            </plugin>
+            
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-report-plugin</artifactId>
+              <version>2.7.1</version>
+            </plugin>
+            
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-jxr-plugin</artifactId>
+              <version>2.2</version>
+              <configuration>
+                <linkJavadoc>true</linkJavadoc>
+                <javadocDir>api</javadocDir>
+                <inputEncoding>${global.encoding}</inputEncoding>
+                <outputEncoding>${global.encoding}</outputEncoding>
+              </configuration>
+            </plugin>
+            
+            <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>cobertura-maven-plugin</artifactId>
+              <version>2.4</version>
+              <configuration>
+                <formats>
+                  <format>html</format>
+                </formats>
+              </configuration>
+            </plugin>
+            
+            <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>taglist-maven-plugin</artifactId>
+              <version>2.4</version>
+              <configuration>
+                <tagListOptions>
+                    <tagClasses>
+                    <tagClass>
+                      <displayName>Work to do</displayName>
+                      <tags>
+                        <tag>
+                          <matchString>TODO</matchString>
+                          <matchType>exact</matchType>
+                        </tag>
+                      </tags>
+                    </tagClass>
+                    
+                    <tagClass>
+                      <displayName>Documentation</displayName>
+                      <tags>
+                        <tag>
+                          <matchString>DOC</matchString>
+                          <matchType>exact</matchType>
+                        </tag>
+                      </tags>
+                    </tagClass>
+                    
+                    <tagClass>
+                      <displayName>Outstanding Bugs</displayName>
+                      <tags>
+                        <tag>
+                          <matchString>FIXME</matchString>
+                          <matchType>exact</matchType>
+                        </tag>
+                        <tag>
+                          <matchString>XXX</matchString>
+                          <matchType>exact</matchType>
+                        </tag>
+                      </tags>
+                    </tagClass>
+                  </tagClasses>
+                </tagListOptions>
+              </configuration>
+            </plugin>
+            
+            <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>javancss-maven-plugin</artifactId>
+              <version>2.0</version>
+            </plugin>
+            
+          </reportPlugins>
+        </configuration>
+      </plugin>
+      
+    </plugins>
+  </build>
+
+</project>

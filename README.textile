@@ -39,7 +39,7 @@ bc.
   <version>1.0.0</version>
 </dependency>
 
-p. Alternatively copy the latest _JAR_  from our "download archive":https://github.com/viadee/rules/downloads to your projects library folder and/or put it in your classpath. 
+p. Alternatively copy the latest _JAR_  from our "download archive":https://github.com/viadee/rules/downloads to your projects library folder and/or put it in your classpath.
 
 h1. Development
 

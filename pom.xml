@@ -15,7 +15,7 @@
  * limitations under the License.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <project 
-  xmlns                 =   "http://maven.apache.org/POM/4.0.0" 
+  xmlns                 =   "http://maven.apache.org/POM/4.0.0"
   xmlns:xsi             =   "http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation    =   "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
@@ -32,8 +32,8 @@
   <inceptionYear>2010</inceptionYear>
   <name>viadee Business Rules Engine</name>
   <description>Lightweight business rule engine for mobile (Android) and embedded (GWT) applications</description>
-  
-  
+
+
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                               ORGANIZATION                              -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -41,8 +41,8 @@
     <name>viadee IT Unternehmensberatung GmbH</name>
     <url>http://www.viadee.de/</url>
   </organization>
-  
-  
+
+
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                                DEVELOPERS                               -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -60,8 +60,8 @@
       <timezone>1</timezone>
     </developer>
   </developers>
-  
-  
+
+
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                                 LICENSE                                 -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -111,22 +111,22 @@
         <version>1.2.1</version>
         <scope>test</scope>
     </dependency>
-    
+
     <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-all</artifactId>
         <version>1.8.5</version>
         <scope>test</scope>
     </dependency>
-    
+
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>r07</version>
     </dependency>
   </dependencies>
-  
-  
+
+
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                                PROPERTIES                               -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -134,18 +134,18 @@
     <global.encoding>UTF-8</global.encoding>
     <target.JDK>1.6</target.JDK>
     <test.coverage>100</test.coverage>
-    
+
     <project.build.sourceEncoding>${global.encoding}</project.build.sourceEncoding>
     <project.reporting.outputEncoding>${global.encoding}</project.reporting.outputEncoding>
   </properties>
-  
-  
+
+
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                                  BUILD                                  -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <build>
     <plugins>
-    
+
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                         ENFORCER                          -->
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -187,7 +187,7 @@
           </execution>
         </executions>
       </plugin>
-    
+
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                         COMPILER                          -->
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -200,7 +200,7 @@
           <target>${target.JDK}</target>
         </configuration>
       </plugin>
-      
+
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                            JAR                            -->
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -217,7 +217,7 @@
           </archive>
         </configuration>
       </plugin>
-      
+
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                          JAVADOC                          -->
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -237,7 +237,7 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                          SOURCE                           -->
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -262,7 +262,7 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                          SUREFIRE                         -->
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -271,9 +271,9 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.7.1</version>
         <configuration>
-		  <failIfNoTests>true</failIfNoTests>
+          <failIfNoTests>true</failIfNoTests>
           <parallel>methods</parallel>
-		  <useUnlimitedThreads>true</useUnlimitedThreads>
+          <useUnlimitedThreads>true</useUnlimitedThreads>
         </configuration>
       </plugin>
 
@@ -294,7 +294,7 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                           DOAP                            -->
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -324,7 +324,7 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                          ECLIPSE                          -->
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -337,7 +337,7 @@
           <downloadJavadocs>true</downloadJavadocs>
         </configuration>
       </plugin>
-      
+
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                         FINDBUGS                          -->
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -358,7 +358,7 @@
         </executions>
       </plugin>
       -->
-      
+
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                           PMD                             -->
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -380,7 +380,7 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                        COBERTURA                          -->
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -408,7 +408,7 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                           SITE                            -->
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -418,7 +418,7 @@
         <version>3.0-beta-3</version>
         <configuration>
           <reportPlugins>
-          
+
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -437,7 +437,7 @@
                 <report>summary</report>
               </reports>
             </plugin>
-            
+
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-javadoc-plugin</artifactId>
@@ -471,13 +471,13 @@
                 </reportSet>
               </reportSets>
             </plugin>
-            
+
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-surefire-report-plugin</artifactId>
               <version>2.7.1</version>
             </plugin>
-            
+
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-jxr-plugin</artifactId>
@@ -489,7 +489,7 @@
                 <outputEncoding>${global.encoding}</outputEncoding>
               </configuration>
             </plugin>
-            
+
             <plugin>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>cobertura-maven-plugin</artifactId>
@@ -500,7 +500,7 @@
                 </formats>
               </configuration>
             </plugin>
-            
+
             <plugin>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>taglist-maven-plugin</artifactId>
@@ -517,7 +517,7 @@
                         </tag>
                       </tags>
                     </tagClass>
-                    
+
                     <tagClass>
                       <displayName>Documentation</displayName>
                       <tags>
@@ -527,7 +527,7 @@
                         </tag>
                       </tags>
                     </tagClass>
-                    
+
                     <tagClass>
                       <displayName>Outstanding Bugs</displayName>
                       <tags>
@@ -545,17 +545,17 @@
                 </tagListOptions>
               </configuration>
             </plugin>
-            
+
             <plugin>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>javancss-maven-plugin</artifactId>
               <version>2.0</version>
             </plugin>
-            
+
           </reportPlugins>
         </configuration>
       </plugin>
-      
+
     </plugins>
   </build>
 

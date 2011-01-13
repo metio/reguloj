@@ -57,6 +57,6 @@ public interface Command<T> {
      * @param target    The target to use (<b>may not be <code>null</code></b>).
      * @return          <code>true</code> if the command had any effect on the target, <code>false</code> otherwise.
      */
-    public boolean execute(T target);
+    boolean execute(T target);
 
 }

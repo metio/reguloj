@@ -56,6 +56,6 @@ public interface Conclusion<T> {
      * @return          <code>true</code> if the conclusion did change the state of the target,
      *                  <code>false</code> otherwise.
      */
-    public boolean apply(T target);
+    boolean apply(T target);
 
 }

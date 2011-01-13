@@ -93,7 +93,7 @@ public interface RuleEngine<T> {
      * @param rules     The rule set to use (<b>may not be <code>null</code></b>).
      * @return          <code>true</code> if any rule would fire, <code>false</code> otherwise.
      */
-    public boolean analyze(InferenceContext<T> context, Set<Rule<T>> rules);
+    boolean analyze(InferenceContext<T> context, Set<Rule<T>> rules);
 
     /**
      * <p>Launches this engine and lets it analyze and execute a set of rules on a given context.</p>
@@ -101,6 +101,6 @@ public interface RuleEngine<T> {
      * @param context   The context to analyze (<b>may not be <code>null</code></b>).
      * @param rules     The rules to use (<b>may not be <code>null</code></b>).
      */
-    public void infer(InferenceContext<T> context, Set<Rule<T>> rules);
+    void infer(InferenceContext<T> context, Set<Rule<T>> rules);
 
 }

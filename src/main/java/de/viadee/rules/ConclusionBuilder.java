@@ -31,7 +31,7 @@ import com.google.common.base.Supplier;
  * one additional methods:</p>
  *
  * <ul>
- * 	<li>{@link #and(Command) and}: Use this method to add more {@link Command commands} to the new conclusion.</li>
+ *  <li>{@link #and(Command) and}: Use this method to add more {@link Command commands} to the new conclusion.</li>
  * </ul>
  *
  * <h1>Caveats</h1>
@@ -95,6 +95,6 @@ public interface ConclusionBuilder<T> extends Supplier<Conclusion<T>> {
      * @param command   The other conclusion (<b>may not be <code>null</code></b>).
      * @return          The current conclusion builder.
      */
-    public ConclusionBuilder<T> and(Command<T> command);
+    ConclusionBuilder<T> and(Command<T> command);
 
 }

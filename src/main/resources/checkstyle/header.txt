@@ -1,7 +1,7 @@
 /*
  * Project: rules
  * Package: de.viadee.rules
- * File   : package-info.java
+ * File   : Command.java
  * Created: Nov 10, 2010 - 5:55:55 PM
  *
  *
@@ -20,12 +20,3 @@
  * limitations under the License.
  *
  */
-/**
- * This package holds all business rules related definitions.
- *
- * @author  Sebastian Hoß (sebastian.hoss@viadee.de)
- * @see     <a href="https://github.com/viadee/rules">https://github.com/viadee/rules</a>
- * @since   1.0.0
- */
-package de.viadee.rules;
-

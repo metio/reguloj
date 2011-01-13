@@ -60,8 +60,8 @@ public interface InferenceContext<T> {
     /**
      * Gets the gist of this inference context.
      * 
-     * @return	The gist of this context.
+     * @return  The gist of this context.
      */
-    public T getGist();
+    T getGist();
 
 }

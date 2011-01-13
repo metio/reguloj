@@ -32,7 +32,7 @@ import com.google.common.base.Supplier;
  * 3 additional methods:</p>
  *
  * <ul>
- * 	<li>{@link #called(String) called}: Use this method to name your new rule.</li>
+ *  <li>{@link #called(String) called}: Use this method to name your new rule.</li>
  *  <li>{@link #when(Predicate) when}: Use this method to specify the premise for your new rule.</li>
  *  <li>{@link #then(Conclusion) then}: Use this method to specify the conclusion for your new rule.</li>
  * </ul>
@@ -89,7 +89,7 @@ public interface RuleBuilder<T> extends Supplier<Rule<T>> {
      * @param premise       The premise to set (<b>may no be <code>null</code></b>).
      * @return              The current rule builder.
      */
-    public RuleBuilder<T> when(Predicate<InferenceContext<T>> premise);
+    RuleBuilder<T> when(Predicate<InferenceContext<T>> premise);
 
     /**
      * Sets the conclusion for the new rule.
@@ -97,7 +97,7 @@ public interface RuleBuilder<T> extends Supplier<Rule<T>> {
      * @param conclusion    The conclusion to set (<b>may no be <code>null</code></b>).
      * @return              The current rule builder.
      */
-    public RuleBuilder<T> then(Conclusion<InferenceContext<T>> conclusion);
+    RuleBuilder<T> then(Conclusion<InferenceContext<T>> conclusion);
 
     /**
      * Sets the name of the new rule.
@@ -105,6 +105,6 @@ public interface RuleBuilder<T> extends Supplier<Rule<T>> {
      * @param name  The name to set (<b>may not be <code>null</code></b>).
      * @return      The current rule builder.
      */
-    public RuleBuilder<T> called(String name);
+    RuleBuilder<T> called(String name);
 
 }

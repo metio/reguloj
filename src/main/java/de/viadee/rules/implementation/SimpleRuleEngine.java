@@ -37,7 +37,18 @@ import de.viadee.rules.RuleEngine;
  * @param <T>   The topic of the rule engine.
  * @since       1.0.0
  */
-public class SimpleRuleEngine<T> implements RuleEngine<T> {
+public final class SimpleRuleEngine<T> implements RuleEngine<T> {
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    CONSTRUCTORS                                                   *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    /**
+     * Default constructor for this class to make checkstyle happy.
+     */
+    public SimpleRuleEngine() {
+        super();
+    }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                      METHODS                                                      *

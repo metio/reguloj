@@ -340,7 +340,7 @@
 
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                         FINDBUGS                          -->
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
@@ -357,7 +357,7 @@
           </execution>
         </executions>
       </plugin>
-      -->
+      
 
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                           PMD                             -->
@@ -408,7 +408,7 @@
           </execution>
         </executions>
       </plugin>
-
+      
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                           SITE                            -->
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -476,6 +476,38 @@
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-surefire-report-plugin</artifactId>
               <version>2.7.1</version>
+            </plugin>
+            
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-pmd-plugin</artifactId>
+              <version>2.5</version>
+              <configuration>
+                <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+                <targetJdk>${target.JDK}</targetJdk>
+                <minimumTokens>35</minimumTokens>
+              </configuration>
+            </plugin>
+            
+            <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>findbugs-maven-plugin</artifactId>
+              <version>2.3.1</version>
+              <configuration>
+                <effort>Max</effort>
+                <threshold>Low</threshold>
+              </configuration>
+            </plugin>
+            
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-checkstyle-plugin</artifactId>
+              <version>2.6</version>
+              <configuration>
+                <encoding>${global.encoding}</encoding>
+                <failsOnError>true</failsOnError>
+                <configLocation>src/main/resources/checkstyle/viadee_checks.xml</configLocation>
+              </configuration>
             </plugin>
 
             <plugin>
@@ -550,6 +582,12 @@
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>javancss-maven-plugin</artifactId>
               <version>2.0</version>
+            </plugin>
+            
+            <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>jdepend-maven-plugin</artifactId>
+              <version>2.0-beta-2</version>
             </plugin>
 
           </reportPlugins>

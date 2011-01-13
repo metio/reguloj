@@ -22,15 +22,13 @@
  */
 package de.viadee.rules;
 
-import java.util.Set;
-
 /**
  * <h1>Overview</h1>
  * <p>A {@link Rule} is composed of a name, a premise and a conclusion. Is the premise of a rule fulfilled the
  * conclusion will get implied.</p>
  *
  * <p>Each <code>Rule</code> is required to be {@link Comparable comparable} to other rules so that users of this
- * API can easily create {@link Set sets} of rules without any duplicate entries.</p>
+ * API can easily create {@link java.util.Set sets} of rules without any duplicate entries.</p>
  *
  * <h1>Caveats</h1>
  * <ul>
@@ -84,7 +82,7 @@ public interface Rule<T> extends Comparable<Rule<T>> {
      * @return          <code>true</code> if this rule did change the state of the given context,
      *                  <code>false</code> otherwise.
      */
-    public boolean run(InferenceContext<T> context);
+    boolean run(InferenceContext<T> context);
 
     /**
      * <p>Checks whether this rule would fire for a given context.</p>
@@ -92,13 +90,13 @@ public interface Rule<T> extends Comparable<Rule<T>> {
      * @param context   The context to check (<b>may not be <code>null</code></b>).
      * @return          <code>true</code> if this rule would fire, <code>false</code> otherwise.
      */
-    public boolean fires(InferenceContext<T> context);
+    boolean fires(InferenceContext<T> context);
 
     /**
      * <p>Returns the human readable name of this rule.</p>
      * 
      * @return  The name of this rule.
      */
-    public String getName();
+    String getName();
 
 }

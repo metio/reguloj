@@ -53,6 +53,17 @@ public final class RuleBuilderImplementation<T> implements RuleBuilder<T> {
     private Conclusion<InferenceContext<T>> conclusion;
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    CONSTRUCTORS                                                   *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    /**
+     * Default constructor for this class to make checkstyle happy.
+     */
+    public RuleBuilderImplementation() {
+        super();
+    }
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                      METHODS                                                      *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 

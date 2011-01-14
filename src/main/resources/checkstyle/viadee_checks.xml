@@ -79,7 +79,7 @@
   </module>
   <module name="JavadocPackage"/>
   <module name="Header">
-    <property name="headerFile" value="src/main/resources/checkstyle/header.txt"/>
+    <property name="headerFile" value="${project_loc}/src/main/resources/checkstyle/header.txt"/>
     <property name="charset" value="UTF-8"/>
     <property name="ignoreLines" value="2,3,4,5,8"/>
     <property name="fileExtensions" value=".java"/>

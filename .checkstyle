@@ -4,7 +4,7 @@
   <local-check-config 
         name="viadee Checkstyle Checks" 
         location="src/main/resources/checkstyle/viadee_checks.xml" 
-        type="external" 
+        type="project" 
         description="">
     <additional-data name="protect-config-file" value="true"/>
   </local-check-config>

@@ -7,9 +7,17 @@ p. This engine is intended to be extended and customized for a specific domain (
 p. Additionally there are some factories defined which help in creating rules (using static imports):
 
 bc. 
-final Rule rule = rule().called("example")
-                        .when(and(alwaysTrue(), alwaysFalse()))
-                        .then(conclude(noOpCommand))
+final Rule rule = rule().called(_name_)
+                        .when(and(_predicate_1_, _predicate_2_))
+                        .then(conclude(_command_ ))
+                        .get();
+                        
+p. Or if you have a pre-built @Conclusion@:
+
+bc. 
+final Rule rule = rule().called(_name_)
+                        .when(_premise_)
+                        .then(_conclusion_ )
                         .get();
 
 p. To evaluate your business rules you'll have to create three objects:
@@ -20,9 +28,7 @@ p. To evaluate your business rules you'll have to create three objects:
 
 p. 1 and 3 are easy to do since the vBRE project already includes a simple implementation of the @RuleEngine@ interface called @SimpleRuleEngine@ and a set of rules can be simply created with the standard Java library. The @InferenceContext@ (point 2) however may need some more work.
 
-p. It may be necessary that you need some sort of contextual information inside both your predicates and commands. The @InferenceContext@ is your way to make those informations available. In the simple case that your predicate and/or command just needs the _gist_ of the context you can call the available interface method directly. However it is more likely that you'll end up writing and extending your own context beyond that of the generic context provided by this project. During our internal development, we created a Android specific context which was tailored to our domain and thus provides methods to e.g. get the current GPS coordinates. Since those methods won't work in any environment which does not have access to a GPS sensor (or any other domain specific functionality) we decided to leave those out.
-
-p. Note that you'll have to cast the provided context to your own implementation it to make use of its methods.
+p. It may be necessary that you need some sort of contextual information inside both your predicates and commands. The @InferenceContext@ is your way to make those informations available. In the simple case that your predicate and/or command just needs the _gist_ of the context you can call the available interface method directly. However it is more likely that you'll end up writing and extending your own context beyond that of the generic context provided by this project. During our internal development, we created an Android specific context which was tailored to our domain and thus provides methods to e.g. get the current GPS coordinates. Since those methods won't work in any environment which does not have access to a GPS sensor (or any other domain specific functionality) we decided to leave those out. The API further acknowledges this by using @<C extends InferenceContext<?>>@ as type parameter for all methods which expect an @InferenceContext@.
 
 h2. License
 

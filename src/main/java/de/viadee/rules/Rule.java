@@ -65,10 +65,11 @@ package de.viadee.rules;
  * </ul>
  * 
  * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
+ * @param <C>   The context type.
  * @param <T>   The topic of the enclosing rule engine.
  * @since       1.0.0
  */
-public interface Rule<T> extends Comparable<Rule<T>> {
+public interface Rule<C extends InferenceContext<T>, T> extends Comparable<Rule<C, T>> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                      METHODS                                                      *
@@ -82,7 +83,7 @@ public interface Rule<T> extends Comparable<Rule<T>> {
      * @return          <code>true</code> if this rule did change the state of the given context,
      *                  <code>false</code> otherwise.
      */
-    boolean run(InferenceContext<T> context);
+    boolean run(C context);
 
     /**
      * <p>Checks whether this rule would fire for a given context.</p>
@@ -90,7 +91,7 @@ public interface Rule<T> extends Comparable<Rule<T>> {
      * @param context   The context to check (<b>may not be <code>null</code></b>).
      * @return          <code>true</code> if this rule would fire, <code>false</code> otherwise.
      */
-    boolean fires(InferenceContext<T> context);
+    boolean fires(C context);
 
     /**
      * <p>Returns the human readable name of this rule.</p>

@@ -80,7 +80,8 @@ public final class RuleImplementationTest {
         this.thrown.expect(NullPointerException.class);
 
         // when
-        final Rule<Object> rule = new RuleImplementation<Object>(null, null, null);
+        final Rule<InferenceContext<Object>, Object> rule =
+                new RuleImplementation<InferenceContext<Object>, Object>(null, null, null);
 
         // then
         assertThat(rule, is(nullValue()));
@@ -100,7 +101,8 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         assertThat(rule, is(notNullValue()));
@@ -122,7 +124,8 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         assertFalse(rule.run(context));
@@ -145,7 +148,8 @@ public final class RuleImplementationTest {
         given(conclusion.apply(context)).willReturn(false);
 
         // when
-        final Rule<Object> rule = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         assertFalse(rule.run(context));
@@ -168,7 +172,8 @@ public final class RuleImplementationTest {
         given(conclusion.apply(context)).willReturn(true);
 
         // when
-        final Rule<Object> rule = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         assertTrue(rule.run(context));
@@ -190,7 +195,8 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         assertTrue(rule.fires(context));
@@ -212,7 +218,8 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         assertFalse(rule.fires(context));
@@ -231,7 +238,8 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         assertThat(rule.getName(), is(NAME));
@@ -250,7 +258,8 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         assertThat(rule.equals(rule), is(true));
@@ -269,8 +278,10 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule1 = new RuleImplementation<Object>(NAME, premise, conclusion);
-        final Rule<Object> rule2 = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule1 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule2 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         assertThat(rule1.equals(rule2), is(true));
@@ -290,9 +301,12 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule1 = new RuleImplementation<Object>(NAME, premise, conclusion);
-        final Rule<Object> rule2 = new RuleImplementation<Object>(NAME, premise, conclusion);
-        final Rule<Object> rule3 = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule1 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule2 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule3 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         assertThat(rule1.equals(rule2) && rule2.equals(rule3), is(true));
@@ -312,8 +326,10 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule1 = new RuleImplementation<Object>(NAME, premise, conclusion);
-        final Rule<Object> rule2 = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule1 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule2 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         final boolean alwaysTheSame = rule1.equals(rule2);
@@ -336,7 +352,8 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         assertThat(rule.equals(null), is(false));
@@ -355,7 +372,8 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         assertThat(rule.equals(""), is(false)); //$NON-NLS-1$
@@ -374,8 +392,9 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule1 = new RuleImplementation<Object>(NAME, premise, conclusion);
-        final Rule<Object> rule2 = rule1;
+        final Rule<InferenceContext<Object>, Object> rule1 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule2 = rule1;
 
         // then
         assertThat(rule1.equals(rule2), is(true));
@@ -394,8 +413,10 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule1 = new RuleImplementation<Object>(NAME, premise, conclusion);
-        final Rule<Object> rule2 = new RuleImplementation<Object>("rule2", premise, conclusion); //$NON-NLS-1$
+        final Rule<InferenceContext<Object>, Object> rule1 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule2 =
+                new RuleImplementation<InferenceContext<Object>, Object>("rule2", premise, conclusion); //$NON-NLS-1$
 
         // then
         assertThat(rule1.equals(rule2), is(false));
@@ -415,8 +436,10 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule1 = new RuleImplementation<Object>(NAME, premise1, conclusion);
-        final Rule<Object> rule2 = new RuleImplementation<Object>(NAME, premise2, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule1 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise1, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule2 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise2, conclusion);
 
         // then
         assertThat(rule1.equals(rule2), is(false));
@@ -436,8 +459,10 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion2 = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule1 = new RuleImplementation<Object>(NAME, premise, conclusion1);
-        final Rule<Object> rule2 = new RuleImplementation<Object>(NAME, premise, conclusion2);
+        final Rule<InferenceContext<Object>, Object> rule1 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion1);
+        final Rule<InferenceContext<Object>, Object> rule2 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion2);
 
         // then
         assertThat(rule1.equals(rule2), is(false));
@@ -456,7 +481,8 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         final int alwaysTheSame = rule.hashCode();
@@ -479,8 +505,10 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule1 = new RuleImplementation<Object>(NAME, premise, conclusion);
-        final Rule<Object> rule2 = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule1 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule2 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         assertThat(rule1.equals(rule2), is(true));
@@ -500,8 +528,10 @@ public final class RuleImplementationTest {
         final Conclusion<InferenceContext<Object>> conclusion = mock(Conclusion.class);
 
         // when
-        final Rule<Object> rule1 = new RuleImplementation<Object>(NAME, premise, conclusion);
-        final Rule<Object> rule2 = new RuleImplementation<Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule1 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
+        final Rule<InferenceContext<Object>, Object> rule2 =
+                new RuleImplementation<InferenceContext<Object>, Object>(NAME, premise, conclusion);
 
         // then
         assertThat(rule1.compareTo(rule2), is(0));

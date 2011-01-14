@@ -34,23 +34,24 @@ import de.viadee.rules.RuleBuilder;
  * <p>Standard implementation of the {@link RuleBuilder} interface.</p>
  *
  * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
+ * @param <C>   The context type.
  * @param <T>   The topic of the new rule.
  * @since       1.0.0
  */
-public final class RuleBuilderImplementation<T> implements RuleBuilder<T> {
+public final class RuleBuilderImplementation<C extends InferenceContext<T>, T> implements RuleBuilder<C, T> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                     ATTRIBUTES                                                    *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /** The name for the new rule. */
-    private String                          name;
+    private String        name;
 
     /** The premise for the new rule. */
-    private Predicate<InferenceContext<T>>  premise;
+    private Predicate<C>  premise;
 
     /** The conclusion for the new rule. */
-    private Conclusion<InferenceContext<T>> conclusion;
+    private Conclusion<C> conclusion;
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                    CONSTRUCTORS                                                   *
@@ -71,19 +72,19 @@ public final class RuleBuilderImplementation<T> implements RuleBuilder<T> {
      * {@inheritDoc}
      */
     @Override
-    public Rule<T> get() {
+    public Rule<C, T> get() {
         Preconditions.checkState(this.name != null);
         Preconditions.checkState(this.premise != null);
         Preconditions.checkState(this.conclusion != null);
 
-        return new RuleImplementation<T>(this.name, this.premise, this.conclusion);
+        return new RuleImplementation<C, T>(this.name, this.premise, this.conclusion);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public RuleBuilder<T> when(final Predicate<InferenceContext<T>> newPremise) {
+    public RuleBuilder<C, T> when(final Predicate<C> newPremise) {
         this.premise = Preconditions.checkNotNull(newPremise);
 
         return this;
@@ -93,7 +94,7 @@ public final class RuleBuilderImplementation<T> implements RuleBuilder<T> {
      * {@inheritDoc}
      */
     @Override
-    public RuleBuilder<T> then(final Conclusion<InferenceContext<T>> newConclusion) {
+    public RuleBuilder<C, T> then(final Conclusion<C> newConclusion) {
         this.conclusion = Preconditions.checkNotNull(newConclusion);
 
         return this;
@@ -103,7 +104,7 @@ public final class RuleBuilderImplementation<T> implements RuleBuilder<T> {
      * {@inheritDoc}
      */
     @Override
-    public RuleBuilder<T> called(final String newName) {
+    public RuleBuilder<C, T> called(final String newName) {
         this.name = Preconditions.checkNotNull(newName);
 
         return this;

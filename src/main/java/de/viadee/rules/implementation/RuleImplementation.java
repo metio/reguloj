@@ -34,23 +34,24 @@ import de.viadee.rules.Rule;
  * <p>Standard implementation of the {@link Rule} interface.</p>
  * 
  * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
+ * @param <C>   The context type.
  * @param <T>   The topic of the enclosing rule engine.
  * @since       1.0.0
  */
-final class RuleImplementation<T> implements Rule<T> {
+final class RuleImplementation<C extends InferenceContext<T>, T> implements Rule<C, T> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                     ATTRIBUTES                                                    *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /** The name of this rule. */
-    private final String                          name;
+    private final String        name;
 
     /** The premise of this rule. */
-    private final Predicate<InferenceContext<T>>  premise;
+    private final Predicate<C>  premise;
 
     /** The conclusion of this rule. */
-    private final Conclusion<InferenceContext<T>> conclusion;
+    private final Conclusion<C> conclusion;
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                    CONSTRUCTORS                                                   *
@@ -63,8 +64,7 @@ final class RuleImplementation<T> implements Rule<T> {
      * @param premise       The premise of the new rule (<b>may not be <code>null</code></b>).
      * @param conclusion    The conclusion of the new rule (<b>may not be <code>null</code></b>).
      */
-    RuleImplementation(final String name, final Predicate<InferenceContext<T>> premise,
-            final Conclusion<InferenceContext<T>> conclusion) {
+    RuleImplementation(final String name, final Predicate<C> premise, final Conclusion<C> conclusion) {
         this.name = Preconditions.checkNotNull(name);
         this.premise = Preconditions.checkNotNull(premise);
         this.conclusion = Preconditions.checkNotNull(conclusion);
@@ -78,9 +78,9 @@ final class RuleImplementation<T> implements Rule<T> {
      * {@inheritDoc}
      */
     @Override
-    public boolean run(final InferenceContext<T> target) {
-        if (this.premise.apply(Preconditions.checkNotNull(target))) {
-            return this.conclusion.apply(target);
+    public boolean run(final C context) {
+        if (this.premise.apply(Preconditions.checkNotNull(context))) {
+            return this.conclusion.apply(context);
         }
 
         return false;
@@ -90,8 +90,8 @@ final class RuleImplementation<T> implements Rule<T> {
      * {@inheritDoc}
      */
     @Override
-    public boolean fires(final InferenceContext<T> target) {
-        return this.premise.apply(Preconditions.checkNotNull(target));
+    public boolean fires(final C context) {
+        return this.premise.apply(Preconditions.checkNotNull(context));
     }
 
     /**
@@ -116,7 +116,7 @@ final class RuleImplementation<T> implements Rule<T> {
     @Override
     public boolean equals(final Object object) {
         if ((object != null) && (object instanceof RuleImplementation)) {
-            final RuleImplementation<?> other = (RuleImplementation<?>) object;
+            final RuleImplementation<?, ?> other = (RuleImplementation<?, ?>) object;
 
             return (Objects.equal(this.name, other.name)
                     && Objects.equal(this.premise, other.premise) && Objects.equal(this.conclusion, other.conclusion));
@@ -129,7 +129,7 @@ final class RuleImplementation<T> implements Rule<T> {
      * {@inheritDoc}
      */
     @Override
-    public int compareTo(final Rule<T> object) {
+    public int compareTo(final Rule<C, T> object) {
         return this.name.compareTo(object.getName());
     }
 

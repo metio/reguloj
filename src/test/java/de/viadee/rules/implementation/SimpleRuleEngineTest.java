@@ -67,8 +67,8 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldNotAnalyzeNullContext() {
         // given
-        final RuleEngine<Object> engine = new SimpleRuleEngine<Object>();
-        final Set<Rule<Object>> rules = mock(Set.class);
+        final RuleEngine<InferenceContext<Object>, Object> engine = new SimpleRuleEngine<InferenceContext<Object>, Object>();
+        final Set<Rule<InferenceContext<Object>, Object>> rules = mock(Set.class);
 
         // when
         this.thrown.expect(NullPointerException.class);
@@ -87,7 +87,7 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldNotAnalyzeNullRuleSet() {
         // given
-        final RuleEngine<Object> engine = new SimpleRuleEngine<Object>();
+        final RuleEngine<InferenceContext<Object>, Object> engine = new SimpleRuleEngine<InferenceContext<Object>, Object>();
         final InferenceContext<Object> context = mock(InferenceContext.class);
 
         // when
@@ -107,9 +107,9 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldReturnFalseForEmptyRuleSet() {
         // given
-        final RuleEngine<Object> engine = new SimpleRuleEngine<Object>();
+        final RuleEngine<InferenceContext<Object>, Object> engine = new SimpleRuleEngine<InferenceContext<Object>, Object>();
         final InferenceContext<Object> context = mock(InferenceContext.class);
-        final Set<Rule<Object>> rules = new TreeSet<Rule<Object>>();
+        final Set<Rule<InferenceContext<Object>, Object>> rules = new TreeSet<Rule<InferenceContext<Object>, Object>>();
 
         // when
         final boolean fired = engine.analyze(context, rules);
@@ -127,13 +127,13 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldReturnTrueIfRuleFired() {
         // given
-        final RuleEngine<Object> engine = new SimpleRuleEngine<Object>();
+        final RuleEngine<InferenceContext<Object>, Object> engine = new SimpleRuleEngine<InferenceContext<Object>, Object>();
         final InferenceContext<Object> context = mock(InferenceContext.class);
 
-        final Rule<Object> rule = mock(Rule.class);
+        final Rule<InferenceContext<Object>, Object> rule = mock(Rule.class);
         given(rule.fires(context)).willReturn(true);
 
-        final Set<Rule<Object>> rules = new TreeSet<Rule<Object>>();
+        final Set<Rule<InferenceContext<Object>, Object>> rules = new TreeSet<Rule<InferenceContext<Object>, Object>>();
         rules.add(rule);
 
         // when
@@ -152,13 +152,13 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldReturnFalseIfNoRuleFires() {
         // given
-        final RuleEngine<Object> engine = new SimpleRuleEngine<Object>();
+        final RuleEngine<InferenceContext<Object>, Object> engine = new SimpleRuleEngine<InferenceContext<Object>, Object>();
         final InferenceContext<Object> context = mock(InferenceContext.class);
 
-        final Rule<Object> rule = mock(Rule.class);
+        final Rule<InferenceContext<Object>, Object> rule = mock(Rule.class);
         given(rule.fires(context)).willReturn(false);
 
-        final Set<Rule<Object>> rules = new TreeSet<Rule<Object>>();
+        final Set<Rule<InferenceContext<Object>, Object>> rules = new TreeSet<Rule<InferenceContext<Object>, Object>>();
         rules.add(rule);
 
         // when
@@ -177,8 +177,8 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldNotInferWithNullContext() {
         // given
-        final RuleEngine<Object> engine = new SimpleRuleEngine<Object>();
-        final Set<Rule<Object>> rules = mock(Set.class);
+        final RuleEngine<InferenceContext<Object>, Object> engine = new SimpleRuleEngine<InferenceContext<Object>, Object>();
+        final Set<Rule<InferenceContext<Object>, Object>> rules = mock(Set.class);
 
         // when
         this.thrown.expect(NullPointerException.class);
@@ -196,7 +196,7 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldNotInferWithNullRuleSet() {
         // given
-        final RuleEngine<Object> engine = new SimpleRuleEngine<Object>();
+        final RuleEngine<InferenceContext<Object>, Object> engine = new SimpleRuleEngine<InferenceContext<Object>, Object>();
         final InferenceContext<Object> context = mock(InferenceContext.class);
 
         // when
@@ -215,9 +215,9 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldRunWithEmptyRuleSet() {
         // given
-        final RuleEngine<Object> engine = new SimpleRuleEngine<Object>();
+        final RuleEngine<InferenceContext<Object>, Object> engine = new SimpleRuleEngine<InferenceContext<Object>, Object>();
         final InferenceContext<Object> context = mock(InferenceContext.class);
-        final Set<Rule<Object>> rules = new TreeSet<Rule<Object>>();
+        final Set<Rule<InferenceContext<Object>, Object>> rules = new TreeSet<Rule<InferenceContext<Object>, Object>>();
 
         // when
 
@@ -234,13 +234,13 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldLoopWithFiringRule() {
         // given
-        final RuleEngine<Object> engine = new SimpleRuleEngine<Object>();
+        final RuleEngine<InferenceContext<Object>, Object> engine = new SimpleRuleEngine<InferenceContext<Object>, Object>();
         final InferenceContext<Object> context = mock(InferenceContext.class);
 
-        final Rule<Object> rule = mock(Rule.class);
+        final Rule<InferenceContext<Object>, Object> rule = mock(Rule.class);
         given(rule.run(context)).willReturn(true).willReturn(false);
 
-        final Set<Rule<Object>> rules = new TreeSet<Rule<Object>>();
+        final Set<Rule<InferenceContext<Object>, Object>> rules = new TreeSet<Rule<InferenceContext<Object>, Object>>();
         rules.add(rule);
 
         // when
@@ -258,13 +258,13 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldNotLoopWithNotFiringRule() {
         // given
-        final RuleEngine<Object> engine = new SimpleRuleEngine<Object>();
+        final RuleEngine<InferenceContext<Object>, Object> engine = new SimpleRuleEngine<InferenceContext<Object>, Object>();
         final InferenceContext<Object> context = mock(InferenceContext.class);
 
-        final Rule<Object> rule = mock(Rule.class);
+        final Rule<InferenceContext<Object>, Object> rule = mock(Rule.class);
         given(rule.run(context)).willReturn(false);
 
-        final Set<Rule<Object>> rules = new TreeSet<Rule<Object>>();
+        final Set<Rule<InferenceContext<Object>, Object>> rules = new TreeSet<Rule<InferenceContext<Object>, Object>>();
         rules.add(rule);
 
         // when

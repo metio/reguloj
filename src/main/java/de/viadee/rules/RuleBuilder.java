@@ -74,10 +74,11 @@ import com.google.common.base.Supplier;
  * </ul>
  * 
  * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
+ * @param <C>   The context type.
  * @param <T>   The topic of the new rule.
  * @since       1.0.0
  */
-public interface RuleBuilder<T> extends Supplier<Rule<T>> {
+public interface RuleBuilder<C extends InferenceContext<T>, T> extends Supplier<Rule<C, T>> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                      METHODS                                                      *
@@ -89,7 +90,7 @@ public interface RuleBuilder<T> extends Supplier<Rule<T>> {
      * @param premise       The premise to set (<b>may no be <code>null</code></b>).
      * @return              The current rule builder.
      */
-    RuleBuilder<T> when(Predicate<InferenceContext<T>> premise);
+    RuleBuilder<C, T> when(Predicate<C> premise);
 
     /**
      * Sets the conclusion for the new rule.
@@ -97,7 +98,7 @@ public interface RuleBuilder<T> extends Supplier<Rule<T>> {
      * @param conclusion    The conclusion to set (<b>may no be <code>null</code></b>).
      * @return              The current rule builder.
      */
-    RuleBuilder<T> then(Conclusion<InferenceContext<T>> conclusion);
+    RuleBuilder<C, T> then(Conclusion<C> conclusion);
 
     /**
      * Sets the name of the new rule.
@@ -105,6 +106,6 @@ public interface RuleBuilder<T> extends Supplier<Rule<T>> {
      * @param name  The name to set (<b>may not be <code>null</code></b>).
      * @return      The current rule builder.
      */
-    RuleBuilder<T> called(String name);
+    RuleBuilder<C, T> called(String name);
 
 }

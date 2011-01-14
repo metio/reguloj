@@ -34,10 +34,11 @@ import de.viadee.rules.RuleEngine;
  * <p>Simple implementation of the {@link RuleEngine} interface which supports rule-chaining.</p>
  * 
  * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
+ * @param <C>   The context type.
  * @param <T>   The topic of the rule engine.
  * @since       1.0.0
  */
-public final class SimpleRuleEngine<T> implements RuleEngine<T> {
+public final class SimpleRuleEngine<C extends InferenceContext<T>, T> implements RuleEngine<C, T> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                    CONSTRUCTORS                                                   *
@@ -58,13 +59,13 @@ public final class SimpleRuleEngine<T> implements RuleEngine<T> {
      * {@inheritDoc}
      */
     @Override
-    public boolean analyze(final InferenceContext<T> context, final Set<Rule<T>> rules) {
+    public boolean analyze(final C context, final Set<Rule<C, T>> rules) {
         // Check inputs
         Preconditions.checkNotNull(context);
         Preconditions.checkNotNull(rules);
 
         // Check whether any rule fires
-        for (final Rule<T> rule : rules) {
+        for (final Rule<C, T> rule : rules) {
             if (rule.fires(context)) {
                 // A rule fired..
 
@@ -82,7 +83,7 @@ public final class SimpleRuleEngine<T> implements RuleEngine<T> {
      * {@inheritDoc}
      */
     @Override
-    public void infer(final InferenceContext<T> context, final Set<Rule<T>> rules) {
+    public void infer(final C context, final Set<Rule<C, T>> rules) {
         // Check inputs
         Preconditions.checkNotNull(context);
         Preconditions.checkNotNull(rules);
@@ -96,7 +97,7 @@ public final class SimpleRuleEngine<T> implements RuleEngine<T> {
             ruleFired = false;
 
             // Check whether any rule fires
-            for (final Rule<T> rule : rules) {
+            for (final Rule<C, T> rule : rules) {
                 if (rule.run(context)) {
                     // A rule fired..
 

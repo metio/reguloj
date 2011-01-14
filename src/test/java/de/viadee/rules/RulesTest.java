@@ -52,10 +52,10 @@ public final class RulesTest {
     @Test
     public void testRule() {
         // given
-        RuleBuilder<?> builder;
+        RuleBuilder<InferenceContext<Object>, Object> builder;
 
         // when
-        builder = Rules.rule();
+        builder = Rules.<InferenceContext<Object>, Object> rule();
 
         // then
         assertThat(builder, is(notNullValue()));

@@ -50,12 +50,13 @@ public final class Rules {
 
     /**
      * <p>Creates a new {@link RuleBuilder} which offers an easy to use DSL for creating new {@link Rule rules}.</p>
-     * 
+     *
+     * @param <C>   The context type.
      * @param <T>   The type of the new rule.
      * @return      A new rule builder.
      */
-    public static <T> RuleBuilder<T> rule() {
-        return new RuleBuilderImplementation<T>();
+    public static <C extends InferenceContext<T>, T> RuleBuilder<C, T> rule() {
+        return new RuleBuilderImplementation<C, T>();
     }
 
 }

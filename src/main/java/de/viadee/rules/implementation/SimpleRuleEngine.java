@@ -35,10 +35,9 @@ import de.viadee.rules.RuleEngine;
  * 
  * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
  * @param <C>   The context type.
- * @param <T>   The topic of the rule engine.
  * @since       1.0.0
  */
-public final class SimpleRuleEngine<C extends InferenceContext<T>, T> implements RuleEngine<C, T> {
+public final class SimpleRuleEngine<C extends InferenceContext<?>> implements RuleEngine<C> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                    CONSTRUCTORS                                                   *
@@ -59,13 +58,13 @@ public final class SimpleRuleEngine<C extends InferenceContext<T>, T> implements
      * {@inheritDoc}
      */
     @Override
-    public boolean analyze(final C context, final Set<Rule<C, T>> rules) {
+    public boolean analyze(final C context, final Set<Rule<C>> rules) {
         // Check inputs
         Preconditions.checkNotNull(context);
         Preconditions.checkNotNull(rules);
 
         // Check whether any rule fires
-        for (final Rule<C, T> rule : rules) {
+        for (final Rule<C> rule : rules) {
             if (rule.fires(context)) {
                 // A rule fired..
 
@@ -83,7 +82,7 @@ public final class SimpleRuleEngine<C extends InferenceContext<T>, T> implements
      * {@inheritDoc}
      */
     @Override
-    public void infer(final C context, final Set<Rule<C, T>> rules) {
+    public void infer(final C context, final Set<Rule<C>> rules) {
         // Check inputs
         Preconditions.checkNotNull(context);
         Preconditions.checkNotNull(rules);
@@ -97,7 +96,7 @@ public final class SimpleRuleEngine<C extends InferenceContext<T>, T> implements
             ruleFired = false;
 
             // Check whether any rule fires
-            for (final Rule<C, T> rule : rules) {
+            for (final Rule<C> rule : rules) {
                 if (rule.run(context)) {
                     // A rule fired..
 

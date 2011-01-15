@@ -35,10 +35,9 @@ import de.viadee.rules.Rule;
  * 
  * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
  * @param <C>   The context type.
- * @param <T>   The topic of the enclosing rule engine.
  * @since       1.0.0
  */
-final class RuleImplementation<C extends InferenceContext<T>, T> implements Rule<C, T> {
+final class RuleImplementation<C extends InferenceContext<?>> implements Rule<C> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                     ATTRIBUTES                                                    *
@@ -116,7 +115,7 @@ final class RuleImplementation<C extends InferenceContext<T>, T> implements Rule
     @Override
     public boolean equals(final Object object) {
         if ((object != null) && (object instanceof RuleImplementation)) {
-            final RuleImplementation<?, ?> other = (RuleImplementation<?, ?>) object;
+            final RuleImplementation<?> other = (RuleImplementation<?>) object;
 
             return (Objects.equal(this.name, other.name)
                     && Objects.equal(this.premise, other.premise) && Objects.equal(this.conclusion, other.conclusion));
@@ -129,7 +128,7 @@ final class RuleImplementation<C extends InferenceContext<T>, T> implements Rule
      * {@inheritDoc}
      */
     @Override
-    public int compareTo(final Rule<C, T> object) {
+    public int compareTo(final Rule<C> object) {
         return this.name.compareTo(object.getName());
     }
 

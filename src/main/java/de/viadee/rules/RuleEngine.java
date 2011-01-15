@@ -76,10 +76,9 @@ import java.util.Set;
  *
  * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
  * @param <C>   The context type.
- * @param <T>   The topic of the rule engine.
  * @since       1.0.0
  */
-public interface RuleEngine<C extends InferenceContext<T>, T> {
+public interface RuleEngine<C extends InferenceContext<?>> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                      METHODS                                                      *
@@ -94,7 +93,7 @@ public interface RuleEngine<C extends InferenceContext<T>, T> {
      * @param rules     The rule set to use (<b>may not be <code>null</code></b>).
      * @return          <code>true</code> if any rule would fire, <code>false</code> otherwise.
      */
-    boolean analyze(C context, Set<Rule<C, T>> rules);
+    boolean analyze(C context, Set<Rule<C>> rules);
 
     /**
      * <p>Launches this engine and lets it analyze and execute a set of rules on a given context.</p>
@@ -102,6 +101,6 @@ public interface RuleEngine<C extends InferenceContext<T>, T> {
      * @param context   The context to analyze (<b>may not be <code>null</code></b>).
      * @param rules     The rules to use (<b>may not be <code>null</code></b>).
      */
-    void infer(C context, Set<Rule<C, T>> rules);
+    void infer(C context, Set<Rule<C>> rules);
 
 }

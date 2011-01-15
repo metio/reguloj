@@ -26,10 +26,13 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
 
 import java.lang.reflect.Constructor;
 
 import org.junit.Test;
+
+import com.google.common.base.Predicate;
 
 /**
  * <p>Test cases for the {@link Rules} utility class.</p>
@@ -41,6 +44,13 @@ import org.junit.Test;
 public final class RulesTest {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                     CONSTANTS                                                     *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    /** Constant name for all rules inside this test. */
+    private static final String NAME = "test rule"; //$NON-NLS-1$
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                       TESTS                                                       *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -50,15 +60,34 @@ public final class RulesTest {
      * <p>Ensures that the returned object is not <code>null</code>.</p>
      */
     @Test
-    public void testRule() {
+    public void shouldCreateBuilder() {
         // given
-        RuleBuilder<InferenceContext<Object>, Object> builder;
+        RuleBuilder<InferenceContext<Object>> builder;
 
         // when
-        builder = Rules.<InferenceContext<Object>, Object> rule();
+        builder = Rules.<InferenceContext<Object>> rule();
 
         // then
         assertThat(builder, is(notNullValue()));
+    }
+
+    /**
+     * <p>Test method for {@link Rules#rule()}</p>
+     * 
+     * <p>Ensures that the returned object is not <code>null</code>.</p>
+     */
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldCreateRule() {
+        // given
+        final RuleBuilder<InferenceContext<Object>> builder = Rules.<InferenceContext<Object>> rule();
+        builder.called(NAME).when(mock(Predicate.class)).then(mock(Conclusion.class));
+
+        // when
+        final Rule<InferenceContext<Object>> rule = builder.get();
+
+        // then
+        assertThat(rule, is(notNullValue()));
     }
 
     /**

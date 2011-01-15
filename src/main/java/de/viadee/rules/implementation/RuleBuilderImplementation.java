@@ -35,10 +35,9 @@ import de.viadee.rules.RuleBuilder;
  *
  * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
  * @param <C>   The context type.
- * @param <T>   The topic of the new rule.
  * @since       1.0.0
  */
-public final class RuleBuilderImplementation<C extends InferenceContext<T>, T> implements RuleBuilder<C, T> {
+public final class RuleBuilderImplementation<C extends InferenceContext<?>> implements RuleBuilder<C> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                     ATTRIBUTES                                                    *
@@ -72,19 +71,19 @@ public final class RuleBuilderImplementation<C extends InferenceContext<T>, T> i
      * {@inheritDoc}
      */
     @Override
-    public Rule<C, T> get() {
+    public Rule<C> get() {
         Preconditions.checkState(this.name != null);
         Preconditions.checkState(this.premise != null);
         Preconditions.checkState(this.conclusion != null);
 
-        return new RuleImplementation<C, T>(this.name, this.premise, this.conclusion);
+        return new RuleImplementation<C>(this.name, this.premise, this.conclusion);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public RuleBuilder<C, T> when(final Predicate<C> newPremise) {
+    public RuleBuilder<C> when(final Predicate<C> newPremise) {
         this.premise = Preconditions.checkNotNull(newPremise);
 
         return this;
@@ -94,7 +93,7 @@ public final class RuleBuilderImplementation<C extends InferenceContext<T>, T> i
      * {@inheritDoc}
      */
     @Override
-    public RuleBuilder<C, T> then(final Conclusion<C> newConclusion) {
+    public RuleBuilder<C> then(final Conclusion<C> newConclusion) {
         this.conclusion = Preconditions.checkNotNull(newConclusion);
 
         return this;
@@ -104,7 +103,7 @@ public final class RuleBuilderImplementation<C extends InferenceContext<T>, T> i
      * {@inheritDoc}
      */
     @Override
-    public RuleBuilder<C, T> called(final String newName) {
+    public RuleBuilder<C> called(final String newName) {
         this.name = Preconditions.checkNotNull(newName);
 
         return this;

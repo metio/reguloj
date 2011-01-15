@@ -66,10 +66,9 @@ package de.viadee.rules;
  * 
  * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
  * @param <C>   The context type.
- * @param <T>   The topic of the enclosing rule engine.
  * @since       1.0.0
  */
-public interface Rule<C extends InferenceContext<T>, T> extends Comparable<Rule<C, T>> {
+public interface Rule<C extends InferenceContext<?>> extends Comparable<Rule<C>> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                      METHODS                                                      *

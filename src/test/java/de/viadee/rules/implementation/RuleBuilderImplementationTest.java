@@ -76,8 +76,8 @@ public final class RuleBuilderImplementationTest {
         this.thrown.expect(IllegalStateException.class);
 
         // when
-        final RuleBuilder<InferenceContext<Object>, Object> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>, Object>();
+        final RuleBuilder<InferenceContext<Object>> builder =
+                new RuleBuilderImplementation<InferenceContext<Object>>();
 
         // then
         builder.get();
@@ -92,12 +92,12 @@ public final class RuleBuilderImplementationTest {
     @Test
     public void shouldCreateRuleIfAllValuesAreSet() {
         // given
-        final RuleBuilder<InferenceContext<Object>, Object> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>, Object>();
+        final RuleBuilder<InferenceContext<Object>> builder =
+                new RuleBuilderImplementation<InferenceContext<Object>>();
         builder.called(NAME).when(mock(Predicate.class)).then(mock(Conclusion.class));
 
         // when
-        final Rule<InferenceContext<Object>, Object> rule = builder.get();
+        final Rule<InferenceContext<Object>> rule = builder.get();
 
         // then
         assertThat(rule, is(notNullValue()));
@@ -114,8 +114,8 @@ public final class RuleBuilderImplementationTest {
         this.thrown.expect(IllegalStateException.class);
 
         // when
-        final RuleBuilder<InferenceContext<Object>, Object> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>, Object>();
+        final RuleBuilder<InferenceContext<Object>> builder =
+                new RuleBuilderImplementation<InferenceContext<Object>>();
         builder.called(NAME);
 
         // then
@@ -134,8 +134,8 @@ public final class RuleBuilderImplementationTest {
         this.thrown.expect(IllegalStateException.class);
 
         // when
-        final RuleBuilder<InferenceContext<Object>, Object> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>, Object>();
+        final RuleBuilder<InferenceContext<Object>> builder =
+                new RuleBuilderImplementation<InferenceContext<Object>>();
         builder.called(NAME);
         builder.when(mock(Predicate.class));
 
@@ -155,8 +155,8 @@ public final class RuleBuilderImplementationTest {
         this.thrown.expect(IllegalStateException.class);
 
         // when
-        final RuleBuilder<InferenceContext<Object>, Object> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>, Object>();
+        final RuleBuilder<InferenceContext<Object>> builder =
+                new RuleBuilderImplementation<InferenceContext<Object>>();
         builder.called(NAME);
         builder.then(mock(Conclusion.class));
 
@@ -176,8 +176,8 @@ public final class RuleBuilderImplementationTest {
         this.thrown.expect(IllegalStateException.class);
 
         // when
-        final RuleBuilder<InferenceContext<Object>, Object> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>, Object>();
+        final RuleBuilder<InferenceContext<Object>> builder =
+                new RuleBuilderImplementation<InferenceContext<Object>>();
         builder.when(mock(Predicate.class));
         builder.then(mock(Conclusion.class));
 
@@ -196,8 +196,8 @@ public final class RuleBuilderImplementationTest {
         this.thrown.expect(NullPointerException.class);
 
         // when
-        final RuleBuilder<InferenceContext<Object>, Object> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>, Object>();
+        final RuleBuilder<InferenceContext<Object>> builder =
+                new RuleBuilderImplementation<InferenceContext<Object>>();
 
         // then
         builder.when(null);
@@ -214,8 +214,8 @@ public final class RuleBuilderImplementationTest {
         this.thrown.expect(NullPointerException.class);
 
         // when
-        final RuleBuilder<InferenceContext<Object>, Object> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>, Object>();
+        final RuleBuilder<InferenceContext<Object>> builder =
+                new RuleBuilderImplementation<InferenceContext<Object>>();
 
         // then
         builder.then(null);
@@ -232,7 +232,7 @@ public final class RuleBuilderImplementationTest {
         this.thrown.expect(NullPointerException.class);
 
         // when
-        final RuleBuilder<InferenceContext<Object>, Object> builder = new RuleBuilderImplementation<InferenceContext<Object>, Object>();
+        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<InferenceContext<Object>>();
 
         // then
         builder.called(null);

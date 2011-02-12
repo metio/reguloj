@@ -41,7 +41,7 @@ p. To use the business rules engine inside your own projects just declare the fo
 bc. 
 <dependency>
   <groupId>de.viadee.rules</groupId>
-  <artifactId>viaRules</artifactId>
+  <artifactId>viaRules-core</artifactId>
   <version>1.0.0</version>
 </dependency>
 

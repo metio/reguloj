@@ -61,7 +61,7 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/viadee/viaRules-core/issues</url>
+    <url>${project.url}/issues</url>
   </issueManagement>
 
 

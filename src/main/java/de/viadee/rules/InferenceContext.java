@@ -1,5 +1,5 @@
 /*
- * Project: rules
+ * Project: viaRules-core
  * Package: de.viadee.rules
  * File   : InferenceContext.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -23,7 +23,6 @@
 package de.viadee.rules;
 
 /**
- * <h1>Overview</h1>
  * <p>An {@link InferenceContext} is used every time a set of rules shall be evaluated. Currently you'll most
  * likely cast the context instance to your specific implementation and use that instead of the generic
  * interface defined here. The only available method in the generic version is {@link #getGist()} which returns

@@ -1,5 +1,5 @@
 /*
- * Project: rules
+ * Project: viaRules-core
  * Package: de.viadee.rules
  * File   : Command.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -23,7 +23,6 @@
 package de.viadee.rules;
 
 /**
- * <h1>Overview</h1>
  * <p>A {@link Command} is a single piece of action which can be performed by calling its {@link #execute(Object)
  * execute} method. The target (the given parameter) of this call and the <code>Command</code> itself are parameterized
  * with the generic type <code>T</code> which must match the type of the enclosing rules and the enclosing rule engine.</p>

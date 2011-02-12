@@ -1,5 +1,5 @@
 /*
- * Project: rules
+ * Project: viaRules-core
  * Package: de.viadee.rules
  * File   : RuleEngine.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -25,7 +25,6 @@ package de.viadee.rules;
 import java.util.Set;
 
 /**
- * <h1>Overview</h1>
  * <p>The {@link RuleEngine} is responsible for logical reasoning. For that it analyzes a given {@link InferenceContext 
  * context} based upon a set of {@link Rule rules}.</p>
  *

@@ -1,5 +1,5 @@
 /*
- * Project: rules
+ * Project: viaRules-core
  * Package: de.viadee.rules
  * File   : ConclusionBuilder.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -25,7 +25,6 @@ package de.viadee.rules;
 import com.google.common.base.Supplier;
 
 /**
- * <h1>Overview</h1>
  * <p>Offers an easy to use fluent interface for building {@link Conclusion conclusions}. It follows the builder-pattern 
  * described by Joshua Bloch (see <a href="http://java.sun.com/docs/books/effective/">Effective Java, Item 2</a>) and offers
  * one additional methods:</p>

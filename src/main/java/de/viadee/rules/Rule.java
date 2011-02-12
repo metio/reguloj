@@ -1,5 +1,5 @@
 /*
- * Project: rules
+ * Project: viaRules-core
  * Package: de.viadee.rules
  * File   : Rule.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -23,7 +23,6 @@
 package de.viadee.rules;
 
 /**
- * <h1>Overview</h1>
  * <p>A {@link Rule} is composed of a name, a premise and a conclusion. Is the premise of a rule fulfilled the
  * conclusion will get implied.</p>
  *

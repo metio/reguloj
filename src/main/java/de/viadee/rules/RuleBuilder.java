@@ -1,5 +1,5 @@
 /*
- * Project: rules
+ * Project: viaRules-core
  * Package: de.viadee.rules
  * File   : RuleBuilder.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -26,7 +26,6 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Supplier;
 
 /**
- * <h1>Overview</h1>
  * <p>Offers an easy to use fluent interface for building new {@link Rule rules}. It follows the builder-pattern described
  * by Joshua Bloch (see <a href="http://java.sun.com/docs/books/effective/">Effective Java, Item 2</a>) and offers
  * 3 additional methods:</p>

@@ -1,5 +1,5 @@
 /*
- * Project: rules
+ * Project: viaRules-core
  * Package: de.viadee.rules
  * File   : Conclusion.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -23,7 +23,6 @@
 package de.viadee.rules;
 
 /**
- * <h1>Overview</h1>
  * <p>A {@link Conclusion} encapsulates the final action(s) a {@link Rule} will trigger once its premise is fulfilled.</p>
  *
  * <h1>Caveats</h1>

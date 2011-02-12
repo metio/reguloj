@@ -1,5 +1,5 @@
 /*
- * Project: rules
+ * Project: viaRules-core
  * Package: de.viadee.rules.implementation
  * File   : ConclusionBuilderImplementation.java
  * Created: Nov 10, 2010 - 5:55:55 PM

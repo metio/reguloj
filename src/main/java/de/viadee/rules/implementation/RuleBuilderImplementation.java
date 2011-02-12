@@ -68,10 +68,13 @@ public final class RuleBuilderImplementation<C extends InferenceContext<?>> impl
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
-     * {@inheritDoc}
+     * <p>
+     * Constructs a new {@link Rule} with the previously given parameters.
+     * </p>
+     * 
+     * @return A newly created rule.
      */
-    @Override
-    public Rule<C> get() {
+    private Rule<C> get() {
         Preconditions.checkState(this.name != null);
         Preconditions.checkState(this.premise != null);
         Preconditions.checkState(this.conclusion != null);
@@ -93,10 +96,10 @@ public final class RuleBuilderImplementation<C extends InferenceContext<?>> impl
      * {@inheritDoc}
      */
     @Override
-    public RuleBuilder<C> then(final Conclusion<C> newConclusion) {
+    public Rule<C> then(final Conclusion<C> newConclusion) {
         this.conclusion = Preconditions.checkNotNull(newConclusion);
 
-        return this;
+        return this.get();
     }
 
     /**

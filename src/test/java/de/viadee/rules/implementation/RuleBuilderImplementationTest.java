@@ -1,5 +1,5 @@
 /*
- * Project: rules
+ * Project: viaRules-core
  * Package: de.viadee.rules.implementation
  * File   : RuleBuilderImplementationTest.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -66,27 +66,9 @@ public final class RuleBuilderImplementationTest {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
-     * <p>Test method for {@link RuleBuilderImplementation#get()}</p>
+     * <p>Test method for {@link RuleBuilderImplementation#then(Conclusion)}</p>
      * 
-     * <p>Ensures that no rules can be created with an empty RuleBuilderImplementation.</p>
-     */
-    @Test
-    public void shouldNotReturnRulesAfterCreation() {
-        // given
-        this.thrown.expect(IllegalStateException.class);
-
-        // when
-        final RuleBuilder<InferenceContext<Object>> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>>();
-
-        // then
-        builder.get();
-    }
-
-    /**
-     * <p>Test method for {@link RuleBuilderImplementation#get()}</p>
-     * 
-     * <p>Ensures that no rules can be created with an empty RuleBuilderImplementation.</p>
+     * <p>Ensures that rules can be created with a valid RuleBuilderImplementation.</p>
      */
     @SuppressWarnings("unchecked")
     @Test
@@ -94,95 +76,13 @@ public final class RuleBuilderImplementationTest {
         // given
         final RuleBuilder<InferenceContext<Object>> builder =
                 new RuleBuilderImplementation<InferenceContext<Object>>();
-        builder.called(NAME).when(mock(Predicate.class)).then(mock(Conclusion.class));
+        builder.called(NAME).when(mock(Predicate.class));
 
         // when
-        final Rule<InferenceContext<Object>> rule = builder.get();
+        final Rule<InferenceContext<Object>> rule = builder.then(mock(Conclusion.class));
 
         // then
         assertThat(rule, is(notNullValue()));
-    }
-
-    /**
-     * <p>Test method for {@link RuleBuilderImplementation#get()}</p>
-     * 
-     * <p>Ensures that no rules can be created with only the name set.</p>
-     */
-    @Test
-    public void shouldNotReturnRulesWithOnlyName() {
-        // given
-        this.thrown.expect(IllegalStateException.class);
-
-        // when
-        final RuleBuilder<InferenceContext<Object>> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>>();
-        builder.called(NAME);
-
-        // then
-        builder.get();
-    }
-
-    /**
-     * <p>Test method for {@link RuleBuilderImplementation#get()}</p>
-     * 
-     * <p>Ensures that no rules can be created with only the name and the premise set.</p>
-     */
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotReturnRulesWithOnlyNameAndPremise() {
-        // given
-        this.thrown.expect(IllegalStateException.class);
-
-        // when
-        final RuleBuilder<InferenceContext<Object>> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>>();
-        builder.called(NAME);
-        builder.when(mock(Predicate.class));
-
-        // then
-        builder.get();
-    }
-
-    /**
-     * <p>Test method for {@link RuleBuilderImplementation#get()}</p>
-     * 
-     * <p>Ensures that no rules can be created with only the name and the conclusion set.</p>
-     */
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotReturnRulesWithOnlyNameAndConclusion() {
-        // given
-        this.thrown.expect(IllegalStateException.class);
-
-        // when
-        final RuleBuilder<InferenceContext<Object>> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>>();
-        builder.called(NAME);
-        builder.then(mock(Conclusion.class));
-
-        // then
-        builder.get();
-    }
-
-    /**
-     * <p>Test method for {@link RuleBuilderImplementation#get()}</p>
-     * 
-     * <p>Ensures that no rules can be created with only the premise and the conclusion set.</p>
-     */
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldNotReturnRulesWithOnlyPremiseAndConclusion() {
-        // given
-        this.thrown.expect(IllegalStateException.class);
-
-        // when
-        final RuleBuilder<InferenceContext<Object>> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>>();
-        builder.when(mock(Predicate.class));
-        builder.then(mock(Conclusion.class));
-
-        // then
-        builder.get();
     }
 
     /**
@@ -193,11 +93,11 @@ public final class RuleBuilderImplementationTest {
     @Test
     public void shouldNotAcceptNullPredicate() {
         // given
-        this.thrown.expect(NullPointerException.class);
-
-        // when
         final RuleBuilder<InferenceContext<Object>> builder =
                 new RuleBuilderImplementation<InferenceContext<Object>>();
+
+        // when
+        this.thrown.expect(NullPointerException.class);
 
         // then
         builder.when(null);
@@ -211,11 +111,11 @@ public final class RuleBuilderImplementationTest {
     @Test
     public void shouldNotAcceptNullConclusion() {
         // given
-        this.thrown.expect(NullPointerException.class);
-
-        // when
         final RuleBuilder<InferenceContext<Object>> builder =
                 new RuleBuilderImplementation<InferenceContext<Object>>();
+
+        // when
+        this.thrown.expect(NullPointerException.class);
 
         // then
         builder.then(null);
@@ -229,10 +129,10 @@ public final class RuleBuilderImplementationTest {
     @Test
     public void shouldNotAcceptNullName() {
         // given
-        this.thrown.expect(NullPointerException.class);
+        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<InferenceContext<Object>>();
 
         // when
-        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<InferenceContext<Object>>();
+        this.thrown.expect(NullPointerException.class);
 
         // then
         builder.called(null);

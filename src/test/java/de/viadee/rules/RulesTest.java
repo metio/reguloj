@@ -1,5 +1,5 @@
 /*
- * Project: rules
+ * Project: viaRules-core
  * Package: de.viadee.rules.implementation
  * File   : RulesTest.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -81,10 +81,10 @@ public final class RulesTest {
     public void shouldCreateRule() {
         // given
         final RuleBuilder<InferenceContext<Object>> builder = Rules.<InferenceContext<Object>> rule();
-        builder.called(NAME).when(mock(Predicate.class)).then(mock(Conclusion.class));
+        builder.called(NAME).when(mock(Predicate.class));
 
         // when
-        final Rule<InferenceContext<Object>> rule = builder.get();
+        final Rule<InferenceContext<Object>> rule = builder.then(mock(Conclusion.class));
 
         // then
         assertThat(rule, is(notNullValue()));

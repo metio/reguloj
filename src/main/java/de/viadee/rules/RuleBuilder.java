@@ -23,7 +23,6 @@
 package de.viadee.rules;
 
 import com.google.common.base.Predicate;
-import com.google.common.base.Supplier;
 
 /**
  * <p>Offers an easy to use fluent interface for building new {@link Rule rules}. It follows the builder-pattern described
@@ -61,7 +60,6 @@ import com.google.common.base.Supplier;
  *               .called(<em>name</em>)
  *               .when(<em>premise</em>)
  *               .then(<em>conclusion</em>)
- *               .get();
  * </pre>
  *
  *  </li>
@@ -76,7 +74,7 @@ import com.google.common.base.Supplier;
  * @param <C>   The context type.
  * @since       1.0.0
  */
-public interface RuleBuilder<C extends InferenceContext<?>> extends Supplier<Rule<C>> {
+public interface RuleBuilder<C extends InferenceContext<?>> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                      METHODS                                                      *
@@ -96,7 +94,7 @@ public interface RuleBuilder<C extends InferenceContext<?>> extends Supplier<Rul
      * @param conclusion    The conclusion to set (<b>may no be <code>null</code></b>).
      * @return              The current rule builder.
      */
-    RuleBuilder<C> then(Conclusion<C> conclusion);
+    Rule<C> then(Conclusion<C> conclusion);
 
     /**
      * Sets the name of the new rule.

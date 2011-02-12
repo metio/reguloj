@@ -10,7 +10,6 @@ bc.
 final Rule rule = rule().called(_name_)
                         .when(and(_predicate_1_, _predicate_2_))
                         .then(conclude(_command_1_ ).and(_command_2).get())
-                        .get();
                         
 p. Or if you have a pre-built @Premise@ and @Conclusion@:
 
@@ -18,7 +17,6 @@ bc.
 final Rule rule = rule().called(_name_)
                         .when(_premise_)
                         .then(_conclusion_ )
-                        .get();
 
 p. To evaluate your business rules you'll have to create three objects:
 

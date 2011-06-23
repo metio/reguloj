@@ -43,7 +43,6 @@ import de.viadee.rules.Rule;
  * @see     RuleImplementation
  * @since   1.0.0
  */
-@SuppressWarnings("boxing")
 public final class RuleImplementationTest {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -108,6 +107,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that <code>false</code> is returned if the predicate does not apply.</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void shouldReturnFalseWhenPremiseDoesNotApply() {
         // given
@@ -130,6 +130,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that <code>false</code> is returned if the conclusion does not apply.</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void shouldReturnFalseWhenConclusionDoesNotApply() {
         // given
@@ -153,6 +154,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that <code>false</code> is returned if the conclusion does not apply.</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void shouldReturnTrueWhenPremiseAndConclusionApply() {
         // given
@@ -176,6 +178,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that <code>true</code> is returned if the predicate does apply.</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void shouldFireWhenPremiseApplies() {
         // given
@@ -198,6 +201,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that <code>false</code> is returned if the predicate does not apply.</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void shouldNotFireWhenPremiseDoesNotApply() {
         // given
@@ -239,6 +243,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that equals is reflexive</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void equalsIsReflexive() {
         // given
@@ -258,6 +263,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that equals is symmetric</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void equalsIsSymmetric() {
         // given
@@ -280,6 +286,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that equals is transitive</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void equalsIsTransitive() {
         // given
@@ -304,6 +311,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that equals is consistent</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void equalsIsConsistent() {
         // given
@@ -329,6 +337,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that equals is returns <code>false</code> on <code>null</code> values.</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void equalsReturnFalseOnNull() {
         // given
@@ -348,6 +357,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that equals is returns <code>false</code> on <code>null</code> values.</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void equalsReturnFalseOnWrongClass() {
         // given
@@ -367,6 +377,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that equals works with identical instances.</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void equalsWorks() {
         // given
@@ -387,6 +398,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that equals works with different names</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void equalsWorksWithDifferentNames() {
         // given
@@ -408,6 +420,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that equals works with different predicates.</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void equalsWorksWithDifferentPremises() {
         // given
@@ -430,6 +443,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that equals works with different conclusions.</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void equalsWorksWithDifferentConclusions() {
         // given
@@ -452,6 +466,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that hashCode() always returns the same value for a same instance.</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void hashCodeIsSelfConsistent() {
         // given
@@ -475,6 +490,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that hashCode() is consistent with equals().</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void hashCodeIsConsistentWithEquals() {
         // given
@@ -497,6 +513,7 @@ public final class RuleImplementationTest {
      * 
      * <p>Ensures that compareTo() is consistent with equals().</p>
      */
+    @SuppressWarnings("boxing")
     @Test
     public void shoudCompareToOtherRules() {
         // given

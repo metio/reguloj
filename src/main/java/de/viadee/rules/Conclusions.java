@@ -28,7 +28,6 @@ import java.util.Iterator;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Iterators;
 
 import de.viadee.rules.implementation.CompositeConclusion;
 
@@ -98,35 +97,13 @@ public final class Conclusions {
      * </p>
      * 
      * @param <T>           The topic of the inference process.
-     * @param conclusion1   The first conclusion to use (<b>may not be <code>null</code></b>).
-     * @param conclusion2   The second conclusion to use (<b>may not be <code>null</code></b>).
-     * @param conclusion3   The third conclusion to use (<b>may not be <code>null</code></b>).
-     * @return              A new conclusion builder.
-     */
-    public static <T> Conclusion<T> conclude(final Conclusion<T> conclusion1, final Conclusion<T> conclusion2,
-            final Conclusion<T> conclusion3) {
-        // Check inputs
-        Preconditions.checkNotNull(conclusion1);
-        Preconditions.checkNotNull(conclusion2);
-        Preconditions.checkNotNull(conclusion3);
-
-        // Create composition
-        return new CompositeConclusion<T>(ImmutableList.of(conclusion1, conclusion2, conclusion3));
-    }
-
-    /**
-     * <p>
-     * Creates a new {@link Conclusion} which encapsulates all given conclusions.
-     * </p>
-     * 
-     * @param <T>           The topic of the inference process.
      * @param conclusions   The conclusions to group (<b>may not be <code>null</code> nor empty</b>).
      * @return              A new conclusion builder.
      */
     public static <T> Conclusion<T> conclude(final Iterable<Conclusion<T>> conclusions) {
         // Check inputs
         Preconditions.checkNotNull(conclusions);
-        Preconditions.checkArgument(Iterables.size(conclusions) > 0);
+        Preconditions.checkArgument(!Iterables.isEmpty(conclusions));
 
         // Create composition
         return new CompositeConclusion<T>(ImmutableList.copyOf(conclusions));
@@ -144,7 +121,7 @@ public final class Conclusions {
     public static <T> Conclusion<T> conclude(final Iterator<Conclusion<T>> conclusions) {
         // Check inputs
         Preconditions.checkNotNull(conclusions);
-        Preconditions.checkArgument(Iterators.size(conclusions) > 0);
+        Preconditions.checkArgument(conclusions.hasNext());
 
         // Create composition
         return new CompositeConclusion<T>(ImmutableList.copyOf(conclusions));

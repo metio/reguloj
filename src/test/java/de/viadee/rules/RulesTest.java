@@ -106,4 +106,25 @@ public final class RulesTest {
         }
     }
 
+    /**
+     * <p>Test method for {@link Rules Rules()}</p>
+     * 
+     * <p>Ensures that the constructor is accessible via reflection.</p>
+     * 
+     * @throws Exception    When no new instance can be created.
+     */
+    @Test
+    public void shouldBeInvocableViaReflection() throws Exception {
+        // given
+        final Class<?> clazz = Rules.class;
+        final Constructor<?> constructor = clazz.getDeclaredConstructors()[0];
+
+        // when
+        constructor.setAccessible(true);
+        final Object instance = constructor.newInstance((Object[]) null);
+
+        // then
+        Assert.assertThat(instance, Is.is(IsNull.notNullValue()));
+    }
+
 }

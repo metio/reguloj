@@ -55,7 +55,7 @@ public final class RuleBuilderImplementation<C extends InferenceContext<?>> impl
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                 CONSTRUCTORS                                                *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    
+
     /**
      * Default constructor for this class to make checkstyle happy.
      */
@@ -66,21 +66,6 @@ public final class RuleBuilderImplementation<C extends InferenceContext<?>> impl
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                    METHODS                                                  *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-    /**
-     * <p>
-     * Constructs a new {@link Rule} with the previously given parameters.
-     * </p>
-     * 
-     * @return A newly created rule.
-     */
-    private Rule<C> get() {
-        Preconditions.checkState(this.name != null);
-        Preconditions.checkState(this.premise != null);
-        Preconditions.checkState(this.command != null);
-
-        return new RuleImplementation<C>(this.name, this.premise, this.command);
-    }
 
     /**
      * {@inheritDoc}
@@ -99,7 +84,7 @@ public final class RuleBuilderImplementation<C extends InferenceContext<?>> impl
     public Rule<C> then(final Conclusion<C> newConclusion) {
         this.command = Preconditions.checkNotNull(newConclusion);
 
-        return this.get();
+        return new RuleImplementation<C>(this.name, this.premise, this.command);
     }
 
     /**

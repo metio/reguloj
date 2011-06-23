@@ -27,39 +27,40 @@ import com.google.common.base.Predicate;
 /**
  * <p>Offers an easy to use fluent interface for building new {@link Rule rules}. It follows the builder-pattern described
  * by Joshua Bloch (see <a href="http://java.sun.com/docs/books/effective/">Effective Java, Item 2</a>) and offers
- * 3 additional methods:</p>
+ * 3 methods:</p>
  *
  * <ul>
  *  <li>{@link #called(String) called}: Use this method to name your new rule.</li>
- *  <li>{@link #when(Predicate) when}: Use this method to specify the premise for your new rule.</li>
- *  <li>{@link #then(Conclusion) then}: Use this method to specify the conclusion for your new rule.</li>
+ *  <li>{@link #when(Predicate) when}: Use this method to specify the predicate for your new rule.</li>
+ *  <li>{@link #then(Conclusion) then}: Use this method to specify the command for your new rule.</li>
  * </ul>
  *
  * <h1>Caveats</h1>
  * <ul>
  *  <li>Methods like {@link RuleBuilder#when(Predicate) when} or {@link RuleBuilder#then(Conclusion) then} can
  *  be called multiple times but implementations of this API should only honor the last call. All previous calls
- *  (and their parameters) should be dismissed. If you want to create complex premises you'll have to construct
- *  them beforehand and use your newly created complex premise as an input for the <em>when</em>-clause.</li>
+ *  (and their parameters) should be dismissed. If you want to create complex predicates and/or commands you'll have
+ *  to construct them beforehand and use the newly created complex predicate/command as an input for the
+ *  <em>when</em>- or <em>then</em>-clause.</li>
  *  <li>As noted in the {@link RuleBuilder#then(Conclusion) then}-method documentation, you are not allowed to use
- *  <code>null</code> as an valid input. So in the rare case that you want to have a rule without any conclusion
- *  you have to create and supply some sort of <em>no-action</em> conclusion which does nothing except not being
+ *  <code>null</code> as an valid input. So in the rare case that you want to have a rule without any command
+ *  you have to create and supply some sort of <em>no-action</em> command which does nothing except not being
  *  <code>null</code></li>
  * </ul>
  *
  * <h1>Examples</h1>
  * <ol>
  *  <li>
- *      <p>Rule creation with name, premise and conclusion:</p>
+ *      <p>Rule creation with name, predicate and command:</p>
  *
  * <pre>
  * String name = "...";
- * Predicate premise = ...;
- * Conclusion conclusion = ...;
+ * Predicate predicate = ...;
+ * Conclusion command = ...;
  * Rule rule = Rules.rule()
  *               .called(<em>name</em>)
- *               .when(<em>premise</em>)
- *               .then(<em>conclusion</em>)
+ *               .when(<em>predicate</em>)
+ *               .then(<em>command</em>)
  * </pre>
  *
  *  </li>
@@ -76,25 +77,25 @@ import com.google.common.base.Predicate;
  */
 public interface RuleBuilder<C extends InferenceContext<?>> {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                      METHODS                                                      *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    METHODS                                                  *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
-     * Sets the premise for the new rule.
+     * Sets the predicate for the new rule.
      * 
-     * @param premise       The premise to set (<b>may no be <code>null</code></b>).
+     * @param predicate     The predicate to set (<b>may no be <code>null</code></b>).
      * @return              The current rule builder.
      */
-    RuleBuilder<C> when(Predicate<C> premise);
+    RuleBuilder<C> when(Predicate<C> predicate);
 
     /**
-     * Sets the conclusion for the new rule.
+     * Sets the command for the new rule.
      *
-     * @param conclusion    The conclusion to set (<b>may no be <code>null</code></b>).
-     * @return              The current rule builder.
+     * @param command   The command to set (<b>may no be <code>null</code></b>).
+     * @return          The current rule builder.
      */
-    Rule<C> then(Conclusion<C> conclusion);
+    Rule<C> then(Conclusion<C> command);
 
     /**
      * Sets the name of the new rule.

@@ -39,9 +39,9 @@ import de.viadee.rules.RuleBuilder;
  */
 public final class RuleBuilderImplementation<C extends InferenceContext<?>> implements RuleBuilder<C> {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                     ATTRIBUTES                                                    *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                  ATTRIBUTES                                                 *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /** The name for the new rule. */
     private String        name;
@@ -50,12 +50,12 @@ public final class RuleBuilderImplementation<C extends InferenceContext<?>> impl
     private Predicate<C>  premise;
 
     /** The conclusion for the new rule. */
-    private Conclusion<C> conclusion;
+    private Conclusion<C> command;
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                    CONSTRUCTORS                                                   *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                 CONSTRUCTORS                                                *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
     /**
      * Default constructor for this class to make checkstyle happy.
      */
@@ -63,9 +63,9 @@ public final class RuleBuilderImplementation<C extends InferenceContext<?>> impl
         super();
     }
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                      METHODS                                                      *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    METHODS                                                  *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
      * <p>
@@ -77,9 +77,9 @@ public final class RuleBuilderImplementation<C extends InferenceContext<?>> impl
     private Rule<C> get() {
         Preconditions.checkState(this.name != null);
         Preconditions.checkState(this.premise != null);
-        Preconditions.checkState(this.conclusion != null);
+        Preconditions.checkState(this.command != null);
 
-        return new RuleImplementation<C>(this.name, this.premise, this.conclusion);
+        return new RuleImplementation<C>(this.name, this.premise, this.command);
     }
 
     /**
@@ -97,7 +97,7 @@ public final class RuleBuilderImplementation<C extends InferenceContext<?>> impl
      */
     @Override
     public Rule<C> then(final Conclusion<C> newConclusion) {
-        this.conclusion = Preconditions.checkNotNull(newConclusion);
+        this.command = Preconditions.checkNotNull(newConclusion);
 
         return this.get();
     }

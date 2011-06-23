@@ -22,15 +22,13 @@
  */
 package de.viadee.rules;
 
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-
 import java.lang.reflect.Constructor;
 
+import org.hamcrest.core.Is;
+import org.hamcrest.core.IsNull;
+import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import com.google.common.base.Predicate;
 
@@ -43,16 +41,16 @@ import com.google.common.base.Predicate;
  */
 public final class RulesTest {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                     CONSTANTS                                                     *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                  CONSTANTS                                                  *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /** Constant name for all rules inside this test. */
     private static final String NAME = "test rule"; //$NON-NLS-1$
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                       TESTS                                                       *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    TESTS                                                    *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
      * <p>Test method for {@link Rules#rule()}</p>
@@ -68,7 +66,7 @@ public final class RulesTest {
         builder = Rules.<InferenceContext<Object>> rule();
 
         // then
-        assertThat(builder, is(notNullValue()));
+        Assert.assertThat(builder, Is.is(IsNull.notNullValue()));
     }
 
     /**
@@ -76,18 +74,17 @@ public final class RulesTest {
      * 
      * <p>Ensures that the returned object is not <code>null</code>.</p>
      */
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldCreateRule() {
         // given
         final RuleBuilder<InferenceContext<Object>> builder = Rules.<InferenceContext<Object>> rule();
-        builder.called(NAME).when(mock(Predicate.class));
+        builder.called(RulesTest.NAME).when(Mockito.mock(Predicate.class));
 
         // when
-        final Rule<InferenceContext<Object>> rule = builder.then(mock(Conclusion.class));
+        final Rule<InferenceContext<Object>> rule = builder.then(Mockito.mock(Conclusion.class));
 
         // then
-        assertThat(rule, is(notNullValue()));
+        Assert.assertThat(rule, Is.is(IsNull.notNullValue()));
     }
 
     /**
@@ -105,29 +102,8 @@ public final class RulesTest {
 
         // then
         for (final Constructor<?> constructor : constructors) {
-            assertFalse(constructor.isAccessible());
+            Assert.assertFalse(constructor.isAccessible());
         }
-    }
-
-    /**
-     * <p>Test method for {@link Rules Rules()}</p>
-     * 
-     * <p>Ensures that the constructor is accessible via reflection.</p>
-     * 
-     * @throws Exception 	When no new instance can be created.
-     */
-    @Test
-    public void shouldBeInvocableViaReflection() throws Exception {
-        // given
-        final Class<?> clazz = Rules.class;
-        final Constructor<?> constructor = clazz.getDeclaredConstructors()[0];
-
-        // when
-        constructor.setAccessible(true);
-        final Object instance = constructor.newInstance((Object[]) null);
-
-        // then
-        assertThat(instance, is(notNullValue()));
     }
 
 }

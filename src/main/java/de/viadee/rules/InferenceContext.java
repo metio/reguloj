@@ -23,10 +23,8 @@
 package de.viadee.rules;
 
 /**
- * <p>An {@link InferenceContext} is used every time a set of rules shall be evaluated. Currently you'll most
- * likely cast the context instance to your specific implementation and use that instead of the generic
- * interface defined here. The only available method in the generic version is {@link #getGist()} which returns
- * the main or focal point of your rules (if any).</p>
+ * <p>An {@link InferenceContext} is used every time a set of rules shall be evaluated. The only available method in 
+ * the generic version is {@link #getTopic()} which returns the main or focal point of your rules (if any).</p>
  *
  * <p>Note that no factory or builder is defined for the <code>InferenceContext</code> so you will have to implement
  * the concrete implementation and create an instance out of it yourself.</p>
@@ -52,15 +50,15 @@ package de.viadee.rules;
  */
 public interface InferenceContext<T> {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                      METHODS                                                      *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    METHODS                                                  *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
-     * Gets the gist of this inference context.
+     * Gets the topic of this inference context.
      * 
-     * @return  The gist of this context.
+     * @return  The topic of this context.
      */
-    T getGist();
+    T getTopic();
 
 }

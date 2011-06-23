@@ -22,16 +22,15 @@
  */
 package de.viadee.rules.implementation;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
-
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.hamcrest.core.Is;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.mockito.BDDMockito;
+import org.mockito.Mockito;
 
 import de.viadee.rules.InferenceContext;
 import de.viadee.rules.Rule;
@@ -46,36 +45,36 @@ import de.viadee.rules.RuleEngine;
  */
 public class SimpleRuleEngineTest {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                     ATTRIBUTES                                                    *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                  ATTRIBUTES                                                 *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /** Checks expected exception inside single test cases. */
     @org.junit.Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                       TESTS                                                       *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    TESTS                                                    *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
      * <p>Test method for {@link SimpleRuleEngine#analyze(de.viadee.rules.InferenceContext, java.util.Set)}</p>
      * 
      * <p>Ensures that a <code>null</code> context ist not permitted.</p>
      */
-    @SuppressWarnings({ "boxing", "unchecked" })
+    @SuppressWarnings({ "boxing" })
     @Test
     public void shouldNotAnalyzeNullContext() {
         // given
         final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final Set<Rule<InferenceContext<Object>>> rules = mock(Set.class);
+        final Set<Rule<InferenceContext<Object>>> rules = Mockito.mock(Set.class);
 
         // when
         this.thrown.expect(NullPointerException.class);
         final boolean fired = engine.analyze(null, rules);
 
         // then
-        assertThat(fired, is(false));
+        Assert.assertThat(fired, Is.is(false));
     }
 
     /**
@@ -83,19 +82,19 @@ public class SimpleRuleEngineTest {
      * 
      * <p>Ensures that a <code>null</code> rule set ist not permitted.</p>
      */
-    @SuppressWarnings({ "boxing", "unchecked" })
+    @SuppressWarnings({ "boxing" })
     @Test
     public void shouldNotAnalyzeNullRuleSet() {
         // given
         final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = mock(InferenceContext.class);
+        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
 
         // when
         this.thrown.expect(NullPointerException.class);
         final boolean fired = engine.analyze(context, null);
 
         // then
-        assertThat(fired, is(false));
+        Assert.assertThat(fired, Is.is(false));
     }
 
     /**
@@ -103,19 +102,19 @@ public class SimpleRuleEngineTest {
      * 
      * <p>Ensures that <code>false</code> is returned when passing in an empty set.</p>
      */
-    @SuppressWarnings({ "boxing", "unchecked" })
+    @SuppressWarnings({ "boxing" })
     @Test
     public void shouldReturnFalseForEmptyRuleSet() {
         // given
         final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = mock(InferenceContext.class);
+        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
         final Set<Rule<InferenceContext<Object>>> rules = new TreeSet<Rule<InferenceContext<Object>>>();
 
         // when
         final boolean fired = engine.analyze(context, rules);
 
         // then
-        assertThat(fired, is(false));
+        Assert.assertThat(fired, Is.is(false));
     }
 
     /**
@@ -123,15 +122,15 @@ public class SimpleRuleEngineTest {
      * 
      * <p>Ensures that <code>true</code> is returned if any rule can fire.</p>
      */
-    @SuppressWarnings({ "boxing", "unchecked" })
+    @SuppressWarnings({ "boxing" })
     @Test
     public void shouldReturnTrueIfRuleFired() {
         // given
         final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = mock(InferenceContext.class);
+        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
 
-        final Rule<InferenceContext<Object>> rule = mock(Rule.class);
-        given(rule.fires(context)).willReturn(true);
+        final Rule<InferenceContext<Object>> rule = Mockito.mock(Rule.class);
+        BDDMockito.given(rule.fires(context)).willReturn(true);
 
         final Set<Rule<InferenceContext<Object>>> rules = new TreeSet<Rule<InferenceContext<Object>>>();
         rules.add(rule);
@@ -140,7 +139,7 @@ public class SimpleRuleEngineTest {
         final boolean fired = engine.analyze(context, rules);
 
         // then
-        assertThat(fired, is(true));
+        Assert.assertThat(fired, Is.is(true));
     }
 
     /**
@@ -148,15 +147,15 @@ public class SimpleRuleEngineTest {
      * 
      * <p>Ensures that <code>false</code> is returned if no rule can fire.</p>
      */
-    @SuppressWarnings({ "boxing", "unchecked" })
+    @SuppressWarnings({ "boxing" })
     @Test
     public void shouldReturnFalseIfNoRuleFires() {
         // given
         final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = mock(InferenceContext.class);
+        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
 
-        final Rule<InferenceContext<Object>> rule = mock(Rule.class);
-        given(rule.fires(context)).willReturn(false);
+        final Rule<InferenceContext<Object>> rule = Mockito.mock(Rule.class);
+        BDDMockito.given(rule.fires(context)).willReturn(false);
 
         final Set<Rule<InferenceContext<Object>>> rules = new TreeSet<Rule<InferenceContext<Object>>>();
         rules.add(rule);
@@ -165,7 +164,7 @@ public class SimpleRuleEngineTest {
         final boolean fired = engine.analyze(context, rules);
 
         // then
-        assertThat(fired, is(false));
+        Assert.assertThat(fired, Is.is(false));
     }
 
     /**
@@ -173,12 +172,11 @@ public class SimpleRuleEngineTest {
      * 
      * <p>Ensures that a <code>null</code> context is not permitted</p>
      */
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotInferWithNullContext() {
         // given
         final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final Set<Rule<InferenceContext<Object>>> rules = mock(Set.class);
+        final Set<Rule<InferenceContext<Object>>> rules = Mockito.mock(Set.class);
 
         // when
         this.thrown.expect(NullPointerException.class);
@@ -192,12 +190,11 @@ public class SimpleRuleEngineTest {
      * 
      * <p>Ensures that a <code>null</code> rule set is not permitted.</p>
      */
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldNotInferWithNullRuleSet() {
         // given
         final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = mock(InferenceContext.class);
+        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
 
         // when
         this.thrown.expect(NullPointerException.class);
@@ -211,12 +208,11 @@ public class SimpleRuleEngineTest {
      * 
      * <p>Ensures that the engine can handle an empty rule set.</p>
      */
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldRunWithEmptyRuleSet() {
         // given
         final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = mock(InferenceContext.class);
+        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
         final Set<Rule<InferenceContext<Object>>> rules = new TreeSet<Rule<InferenceContext<Object>>>();
 
         // when
@@ -230,15 +226,15 @@ public class SimpleRuleEngineTest {
      * 
      * <p>Ensures that the engine loops if any rule can fire.</p>
      */
-    @SuppressWarnings({ "unchecked", "boxing" })
+    @SuppressWarnings({ "boxing" })
     @Test
     public void shouldLoopWithFiringRule() {
         // given
         final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = mock(InferenceContext.class);
+        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
 
-        final Rule<InferenceContext<Object>> rule = mock(Rule.class);
-        given(rule.run(context)).willReturn(true).willReturn(false);
+        final Rule<InferenceContext<Object>> rule = Mockito.mock(Rule.class);
+        BDDMockito.given(rule.run(context)).willReturn(true).willReturn(false);
 
         final Set<Rule<InferenceContext<Object>>> rules = new TreeSet<Rule<InferenceContext<Object>>>();
         rules.add(rule);
@@ -254,15 +250,15 @@ public class SimpleRuleEngineTest {
      *
      * <p>Ensures that the engine does not loop if no rule can fire.</p>
      */
-    @SuppressWarnings({ "unchecked", "boxing" })
+    @SuppressWarnings({ "boxing" })
     @Test
     public void shouldNotLoopWithNotFiringRule() {
         // given
         final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = mock(InferenceContext.class);
+        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
 
-        final Rule<InferenceContext<Object>> rule = mock(Rule.class);
-        given(rule.run(context)).willReturn(false);
+        final Rule<InferenceContext<Object>> rule = Mockito.mock(Rule.class);
+        BDDMockito.given(rule.run(context)).willReturn(false);
 
         final Set<Rule<InferenceContext<Object>>> rules = new TreeSet<Rule<InferenceContext<Object>>>();
         rules.add(rule);

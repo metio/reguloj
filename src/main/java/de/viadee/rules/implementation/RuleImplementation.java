@@ -39,46 +39,46 @@ import de.viadee.rules.Rule;
  */
 final class RuleImplementation<C extends InferenceContext<?>> implements Rule<C> {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                     ATTRIBUTES                                                    *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                  ATTRIBUTES                                                 *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /** The name of this rule. */
     private final String        name;
 
-    /** The premise of this rule. */
-    private final Predicate<C>  premise;
+    /** The predicate of this rule. */
+    private final Predicate<C>  predicate;
 
     /** The conclusion of this rule. */
     private final Conclusion<C> conclusion;
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                    CONSTRUCTORS                                                   *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                 CONSTRUCTORS                                                *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
      * Constructor for a new {@link Rule} implementation.
      *
      * @param name          The name of the new rule (<b>may not be <code>null</code></b>).
-     * @param premise       The premise of the new rule (<b>may not be <code>null</code></b>).
+     * @param predicate     The predicate of the new rule (<b>may not be <code>null</code></b>).
      * @param conclusion    The conclusion of the new rule (<b>may not be <code>null</code></b>).
      */
-    RuleImplementation(final String name, final Predicate<C> premise, final Conclusion<C> conclusion) {
+    RuleImplementation(final String name, final Predicate<C> predicate, final Conclusion<C> conclusion) {
         this.name = Preconditions.checkNotNull(name);
-        this.premise = Preconditions.checkNotNull(premise);
+        this.predicate = Preconditions.checkNotNull(predicate);
         this.conclusion = Preconditions.checkNotNull(conclusion);
     }
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                      METHODS                                                      *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    METHODS                                                  *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean run(final C context) {
-        if (this.premise.apply(Preconditions.checkNotNull(context))) {
+        if (this.predicate.apply(Preconditions.checkNotNull(context))) {
             return this.conclusion.apply(context);
         }
 
@@ -90,7 +90,7 @@ final class RuleImplementation<C extends InferenceContext<?>> implements Rule<C>
      */
     @Override
     public boolean fires(final C context) {
-        return this.premise.apply(Preconditions.checkNotNull(context));
+        return this.predicate.apply(Preconditions.checkNotNull(context));
     }
 
     /**
@@ -106,7 +106,7 @@ final class RuleImplementation<C extends InferenceContext<?>> implements Rule<C>
      */
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.name, this.premise, this.conclusion);
+        return Objects.hashCode(this.name, this.predicate, this.conclusion);
     }
 
     /**
@@ -114,11 +114,12 @@ final class RuleImplementation<C extends InferenceContext<?>> implements Rule<C>
      */
     @Override
     public boolean equals(final Object object) {
-        if ((object != null) && (object instanceof RuleImplementation)) {
+        if (object != null && object instanceof RuleImplementation) {
             final RuleImplementation<?> other = (RuleImplementation<?>) object;
 
-            return (Objects.equal(this.name, other.name)
-                    && Objects.equal(this.premise, other.premise) && Objects.equal(this.conclusion, other.conclusion));
+            return Objects.equal(this.name, other.name)
+                    && Objects.equal(this.predicate, other.predicate)
+                    && Objects.equal(this.conclusion, other.conclusion);
         }
 
         return false;

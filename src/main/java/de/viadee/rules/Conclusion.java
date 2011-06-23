@@ -23,7 +23,8 @@
 package de.viadee.rules;
 
 /**
- * <p>A {@link Conclusion} encapsulates the final action(s) a {@link Rule} will trigger once its premise is fulfilled.</p>
+ * <p>A {@link Conclusion} encapsulates the final action a {@link Rule} will trigger once its predicate is
+ * fulfilled.</p>
  *
  * <h1>Caveats</h1>
  * <ul>
@@ -39,17 +40,17 @@ package de.viadee.rules;
  * </ul>
  * 
  * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
- * @param <T>   The target type.
+ * @param <T>   The topic of the inference process.
  * @since       1.0.0
  */
 public interface Conclusion<T> {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                      METHODS                                                      *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    METHODS                                                  *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
-     * Applies the encapsulated action(s) in this conclusion on a given target.
+     * Applies the encapsulated action on a given target.
      * 
      * @param target    The target itself (<b>may not be <code>null</code></b>).
      * @return          <code>true</code> if the conclusion did change the state of the target,

@@ -23,24 +23,26 @@
 package de.viadee.rules;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Iterators;
 
-import de.viadee.rules.implementation.ConclusionBuilderImplementation;
+import de.viadee.rules.implementation.CompositeConclusion;
 
 /**
  * <p>Utility class which helps creating new {@link Conclusion conclusions}.</p>
  * 
  * @author  Sebastian Hoß (sebastian.hoss@viadee.de)
- * @see     Conclusion
  * @since   1.0.0
  */
 public final class Conclusions {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                    CONSTRUCTORS                                                   *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                 CONSTRUCTORS                                                *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
      * Hidden constructor.
@@ -49,36 +51,103 @@ public final class Conclusions {
         // do nothing
     }
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                      METHODS                                                      *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    METHODS                                                  *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
-     * <p>Creates a new {@link ConclusionBuilder} which offers an easy to use fluent interface for creating new 
-     * {@link Conclusion conclusions}.</p>
+     * <p>
+     * Creates a new {@link Conclusion} which encapsulates all given conclusions.
+     * </p>
      * 
-     * @param <T>       The conclusions target type.
-     * @param commands  The initial commands to set (<b>may not be <code>null</code></b>).
-     * @return          A new conclusion builder.
+     * @param <T>           The topic of the inference process.
+     * @param conclusions   The conclusions to group (<b>may not be <code>null</code> nor empty</b>).
+     * @return              A new conclusion builder.
      */
-    public static <T> ConclusionBuilder<T> conclude(final Collection<Command<T>> commands) {
-        return new ConclusionBuilderImplementation<T>(Preconditions.checkNotNull(commands));
+    public static <T> Conclusion<T> conclude(final Collection<Conclusion<T>> conclusions) {
+        // Check inputs
+        Preconditions.checkNotNull(conclusions);
+        Preconditions.checkArgument(!conclusions.isEmpty());
+
+        // Create composition
+        return new CompositeConclusion<T>(ImmutableList.copyOf(conclusions));
     }
 
     /**
-     * <p>Creates a new {@link ConclusionBuilder} which offers an easy to use fluent interface for creating new 
-     * {@link Conclusion conclusions}.</p>
+     * <p>
+     * Creates a new {@link Conclusion} which encapsulates all given conclusions.
+     * </p>
      * 
-     * @param <T>       The conclusions target type.
-     * @param command   The initial command to set (<b>may not be <code>null</code></b>).
-     * @return          A new conclusion builder.
+     * @param <T>           The topic of the inference process.
+     * @param conclusion1   The first conclusion to use (<b>may not be <code>null</code></b>).
+     * @param conclusion2   The second conclusion to use (<b>may not be <code>null</code></b>).
+     * @return              A new conclusion builder.
      */
-    public static <T> ConclusionBuilder<T> conclude(final Command<T> command) {
-        final Collection<Command<T>> commands = Lists.newArrayList();
+    public static <T> Conclusion<T> conclude(final Conclusion<T> conclusion1, final Conclusion<T> conclusion2) {
+        // Check inputs
+        Preconditions.checkNotNull(conclusion1);
+        Preconditions.checkNotNull(conclusion2);
 
-        commands.add(Preconditions.checkNotNull(command));
+        // Create composition
+        return new CompositeConclusion<T>(ImmutableList.of(conclusion1, conclusion2));
+    }
 
-        return conclude(commands);
+    /**
+     * <p>
+     * Creates a new {@link Conclusion} which encapsulates all given conclusions.
+     * </p>
+     * 
+     * @param <T>           The topic of the inference process.
+     * @param conclusion1   The first conclusion to use (<b>may not be <code>null</code></b>).
+     * @param conclusion2   The second conclusion to use (<b>may not be <code>null</code></b>).
+     * @param conclusion3   The third conclusion to use (<b>may not be <code>null</code></b>).
+     * @return              A new conclusion builder.
+     */
+    public static <T> Conclusion<T> conclude(final Conclusion<T> conclusion1, final Conclusion<T> conclusion2,
+            final Conclusion<T> conclusion3) {
+        // Check inputs
+        Preconditions.checkNotNull(conclusion1);
+        Preconditions.checkNotNull(conclusion2);
+        Preconditions.checkNotNull(conclusion3);
+
+        // Create composition
+        return new CompositeConclusion<T>(ImmutableList.of(conclusion1, conclusion2, conclusion3));
+    }
+
+    /**
+     * <p>
+     * Creates a new {@link Conclusion} which encapsulates all given conclusions.
+     * </p>
+     * 
+     * @param <T>           The topic of the inference process.
+     * @param conclusions   The conclusions to group (<b>may not be <code>null</code> nor empty</b>).
+     * @return              A new conclusion builder.
+     */
+    public static <T> Conclusion<T> conclude(final Iterable<Conclusion<T>> conclusions) {
+        // Check inputs
+        Preconditions.checkNotNull(conclusions);
+        Preconditions.checkArgument(Iterables.size(conclusions) > 0);
+
+        // Create composition
+        return new CompositeConclusion<T>(ImmutableList.copyOf(conclusions));
+    }
+
+    /**
+     * <p>
+     * Creates a new {@link Conclusion} which encapsulates all given conclusions.
+     * </p>
+     * 
+     * @param <T>           The topic of the inference process.
+     * @param conclusions   The conclusions to group (<b>may not be <code>null</code> nor empty</b>).
+     * @return              A new conclusion builder.
+     */
+    public static <T> Conclusion<T> conclude(final Iterator<Conclusion<T>> conclusions) {
+        // Check inputs
+        Preconditions.checkNotNull(conclusions);
+        Preconditions.checkArgument(Iterators.size(conclusions) > 0);
+
+        // Create composition
+        return new CompositeConclusion<T>(ImmutableList.copyOf(conclusions));
     }
 
 }

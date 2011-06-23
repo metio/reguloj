@@ -40,8 +40,9 @@ package de.viadee.rules;
  *      <p>Check whether a rule would fire inside a given context:</p>
  *      
  * <pre>
- * InferenceContext context = ...;
- * Rule rule = ...;
+ * InferenceContext&lt;X&gt; context = ...;
+ * Rule&lt;InferenceContext&lt;X&gt;&gt; rule = ...;
+ * 
  * boolean canFire = rule.fires(context);     
  * </pre>
  *
@@ -50,8 +51,9 @@ package de.viadee.rules;
  *      <p>Check whether a rule inflicted any state change inside a given context:</p>
  *
  * <pre>
- * InferenceContext context = ...;
- * Rule rule = ...;
+ * InferenceContext&lt;X&gt; context = ...;
+ * Rule&lt;InferenceContext&lt;X&gt;&gt; rule = ...;
+ * 
  * boolean fired = rule.run(context);
  * </pre>
  *
@@ -69,9 +71,9 @@ package de.viadee.rules;
  */
 public interface Rule<C extends InferenceContext<?>> extends Comparable<Rule<C>> {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                      METHODS                                                      *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    METHODS                                                  *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
      * <p>Runs this rule inside a given context. For that it'll check its premises first and if those

@@ -28,17 +28,14 @@ import java.util.Set;
  * <p>The {@link RuleEngine} is responsible for logical reasoning. For that it analyzes a given {@link InferenceContext 
  * context} based upon a set of {@link Rule rules}.</p>
  *
- * <p>Both the context and the set of rules have to be supplied with each invocation of any of the available methods. This
- * means that users of this interface will have to hold on to their set of rules somewhere else. You can optimize this
- * set of rules by removing unnecessary elements or combining elements that are known to always fire together.</p>
+ * <p>Both the context and the set of rules have to be supplied with each invocation of any of the available methods.
+ * This means that users of this interface will have to hold on to their set of rules somewhere else. You can optimize
+ * this set of rules by removing unnecessary elements or combining elements that are known to always fire together.</p>
  *
  * <h1>Caveats</h1>
  * <ul>
  *  <li>The current API design forces every user to call an instance of this engine explicitly and supply both
- *  the context and a set of rules. This may be inefficient for large sets of rules
- *  or overly complex context types.</li>
- *  <li>Enhancements like the RETE-algorithm can't be applied because this instances of this interface have no
- *  knowledge</li>
+ *  the context and a set of rules. This may be inefficient for large sets of rules or overly complex context types.</li>
  * </ul>
  *
  * <h1>Examples</h1>
@@ -46,9 +43,9 @@ import java.util.Set;
  *  <li>
  *      <p>Test whether any rule would fire for a given context:</p>
  * <pre>
- * InferenceContext context = ...;
- * Set<Rule> rules = ...;
- * RuleEngine engine = ...;
+ * InferenceContext&lt;X&gt; context = ...;
+ * Set&lt;Rule&lt;InferenceContext&lt;X&gt;&gt;&gt; rules = ...;
+ * RuleEngine&lt;InferenceContext&lt;X&gt;&gt; engine = ...;
  *
  * boolean fired = engine.analyze(context, rules);
  * </pre>
@@ -57,9 +54,9 @@ import java.util.Set;
  *  <li>
  *      <p>Launch the engine and fire all valid rules:</p>
  * <pre>
- * InferenceContext context = ...;
- * Set<Rule> rules = ...;
- * RuleEngine engine = ...;
+ * InferenceContext&lt;X&gt; context = ...;
+ * Set&lt;Rule&lt;InferenceContext&lt;X&gt;&gt;&gt; rules = ...;
+ * RuleEngine&lt;InferenceContext&lt;X&gt;&gt; engine = ...;
  *
  * engine.infer(context, rules);
  * </pre>
@@ -79,13 +76,13 @@ import java.util.Set;
  */
 public interface RuleEngine<C extends InferenceContext<?>> {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                      METHODS                                                      *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    METHODS                                                  *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
      * <p>Performs a dry-run with this engine by analyzing a given context based upon a set of rules. It will only
-     * check whether any rule would fires inside the given context but does not apply any conclusions. For that call
+     * check whether any rule would fires inside the given context but does not apply any commands. For that call
      * the {@link RuleEngine#infer(InferenceContext, Set) infer}-method.</p>
      * 
      * @param context   The context to analyze (<b>may not be <code>null</code></b>).

@@ -22,13 +22,12 @@
  */
 package de.viadee.rules.implementation;
 
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-
+import org.hamcrest.core.Is;
+import org.hamcrest.core.IsNull;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.mockito.Mockito;
 
 import com.google.common.base.Predicate;
 
@@ -46,43 +45,42 @@ import de.viadee.rules.RuleBuilder;
  */
 public final class RuleBuilderImplementationTest {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                     CONSTANTS                                                     *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                  CONSTANTS                                                  *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /** Constant name for all rules inside this test. */
     private static final String NAME   = "test rule";             //$NON-NLS-1$
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                     ATTRIBUTES                                                    *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                  ATTRIBUTES                                                 *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /** Checks expected exception inside single test cases. */
     @org.junit.Rule
     public ExpectedException    thrown = ExpectedException.none();
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                       TESTS                                                       *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    TESTS                                                    *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
      * <p>Test method for {@link RuleBuilderImplementation#then(Conclusion)}</p>
      * 
      * <p>Ensures that rules can be created with a valid RuleBuilderImplementation.</p>
      */
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldCreateRuleIfAllValuesAreSet() {
         // given
         final RuleBuilder<InferenceContext<Object>> builder =
                 new RuleBuilderImplementation<InferenceContext<Object>>();
-        builder.called(NAME).when(mock(Predicate.class));
+        builder.called(RuleBuilderImplementationTest.NAME).when(Mockito.mock(Predicate.class));
 
         // when
-        final Rule<InferenceContext<Object>> rule = builder.then(mock(Conclusion.class));
+        final Rule<InferenceContext<Object>> rule = builder.then(Mockito.mock(Conclusion.class));
 
         // then
-        assertThat(rule, is(notNullValue()));
+        Assert.assertThat(rule, Is.is(IsNull.notNullValue()));
     }
 
     /**

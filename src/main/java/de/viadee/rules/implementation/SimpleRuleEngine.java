@@ -39,10 +39,10 @@ import de.viadee.rules.RuleEngine;
  */
 public final class SimpleRuleEngine<C extends InferenceContext<?>> implements RuleEngine<C> {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                    CONSTRUCTORS                                                   *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                 CONSTRUCTORS                                                *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
     /**
      * Default constructor for this class to make checkstyle happy.
      */
@@ -50,9 +50,9 @@ public final class SimpleRuleEngine<C extends InferenceContext<?>> implements Ru
         super();
     }
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                      METHODS                                                      *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    METHODS                                                  *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
      * {@inheritDoc}
@@ -104,7 +104,6 @@ public final class SimpleRuleEngine<C extends InferenceContext<?>> implements Ru
                     ruleFired = true;
                 }
             }
-
         } while (ruleFired);
     }
 

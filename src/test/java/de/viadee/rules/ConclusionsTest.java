@@ -22,16 +22,17 @@
  */
 package de.viadee.rules;
 
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-
 import java.lang.reflect.Constructor;
 import java.util.Collection;
 
+import org.hamcrest.core.Is;
+import org.hamcrest.core.IsNull;
+import org.junit.Assert;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.mockito.Mockito;
+
+import com.google.common.collect.Lists;
 
 /**
  * <p>Test cases for the {@link Conclusions} utility class.</p>
@@ -42,44 +43,68 @@ import org.junit.Test;
  */
 public final class ConclusionsTest {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                       TESTS                                                       *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                  ATTRIBUTES                                                 *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    /** Checks expected exception inside single test cases. */
+    @org.junit.Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // *                                                    TESTS                                                    *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
      * <p>Test method for {@link Conclusions#conclude(java.util.Collection)}</p>
      * 
-     * <p>Ensures that the returned object is not <code>null</code> when passing in an empty collection.</p>
+     * <p>Ensures that passing in a <code>null</code> collection is not allowed.</p>
      */
-    @SuppressWarnings("unchecked")
     @Test
-    public void shouldCreateNonNullResultWithEmptyCollection() {
+    public void shouldNotAllowNullCollection() {
         // given
-        final Collection<Command<String>> commands = mock(Collection.class);
+        final Collection<Conclusion<String>> conclusions = null;
 
         // when
-        final ConclusionBuilder<String> builder = Conclusions.conclude(commands);
+        this.thrown.expect(NullPointerException.class);
 
         // then
-        assertThat(builder, is(notNullValue()));
+        Conclusions.conclude(conclusions);
     }
 
     /**
-     * <p>Test method for {@link Conclusions#conclude(Command)}</p>
+     * <p>Test method for {@link Conclusions#conclude(java.util.Collection)}</p>
      * 
-     * <p>Ensures that the returned object is not <code>null</code> when passing in a single command instance.</p>
+     * <p>Ensures that passing in an empty collection is not allowed.</p>
      */
-    @SuppressWarnings("unchecked")
     @Test
-    public void shouldCreateNonNullResultWithSingleCommand() {
+    public void shouldNotAllowEmptyCollection() {
         // given
-        final Command<String> command = mock(Command.class);
+        final Collection<Conclusion<String>> conclusions = Lists.newArrayList();
 
         // when
-        final ConclusionBuilder<String> builder = Conclusions.conclude(command);
+        this.thrown.expect(IllegalArgumentException.class);
 
         // then
-        assertThat(builder, is(notNullValue()));
+        Conclusions.conclude(conclusions);
+    }
+
+    /**
+     * <p>Test method for {@link Conclusions#conclude(Conclusion, Conclusion)}</p>
+     * 
+     * <p>Ensures that the returned object is not <code>null</code> when passing in a multiple conclusions.</p>
+     */
+    @Test
+    public void shouldCreateCompositionFromMultipleConclusions() {
+        // given
+        final Conclusion<String> conclusion1 = Mockito.mock(Conclusion.class);
+        final Conclusion<String> conclusion2 = Mockito.mock(Conclusion.class);
+
+        // when
+        final Conclusion<String> composition = Conclusions.conclude(conclusion1, conclusion2);
+
+        // then
+        Assert.assertThat(composition, Is.is(IsNull.notNullValue()));
     }
 
     /**
@@ -97,29 +122,8 @@ public final class ConclusionsTest {
 
         // then
         for (final Constructor<?> constructor : constructors) {
-            assertFalse(constructor.isAccessible());
+            Assert.assertFalse(constructor.isAccessible());
         }
-    }
-
-    /**
-     * <p>Test method for {@link Conclusions Conclusions()}</p>
-     * 
-     * <p>Ensures that the constructor is accessible via reflection.</p>
-     * 
-     * @throws Exception 	When no new instance can be created.
-     */
-    @Test
-    public void shouldBeInvocableViaReflection() throws Exception {
-        // given
-        final Class<?> clazz = Conclusions.class;
-        final Constructor<?> constructor = clazz.getDeclaredConstructors()[0];
-
-        // when
-        constructor.setAccessible(true);
-        final Object instance = constructor.newInstance((Object[]) null);
-
-        // then
-        assertThat(instance, is(notNullValue()));
     }
 
 }

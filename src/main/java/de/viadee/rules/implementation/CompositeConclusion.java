@@ -25,7 +25,7 @@ public final class CompositeConclusion<T> implements Conclusion<T> {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
-     * @param conclusions   The encapsulated conclusions to call (<b>may not be <code>null</code> nor empty</b<).
+     * @param conclusions   The encapsulated conclusions to call (<b>may not be <code>null</code> nor empty</b>).
      */
     public CompositeConclusion(final Collection<Conclusion<T>> conclusions) {
         // Check inputs

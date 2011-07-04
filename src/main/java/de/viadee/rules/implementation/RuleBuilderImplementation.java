@@ -50,7 +50,7 @@ public final class RuleBuilderImplementation<C extends InferenceContext<?>> impl
     private Predicate<C>  premise;
 
     /** The conclusion for the new rule. */
-    private Conclusion<C> command;
+    private Conclusion<C> conclusion;
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                 CONSTRUCTORS                                                *
@@ -82,9 +82,9 @@ public final class RuleBuilderImplementation<C extends InferenceContext<?>> impl
      */
     @Override
     public Rule<C> then(final Conclusion<C> newConclusion) {
-        this.command = Preconditions.checkNotNull(newConclusion);
+        this.conclusion = Preconditions.checkNotNull(newConclusion);
 
-        return new RuleImplementation<C>(this.name, this.premise, this.command);
+        return new RuleImplementation<C>(this.name, this.premise, this.conclusion);
     }
 
     /**

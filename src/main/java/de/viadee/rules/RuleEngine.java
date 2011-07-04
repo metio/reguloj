@@ -82,7 +82,7 @@ public interface RuleEngine<C extends InferenceContext<?>> {
 
     /**
      * <p>Performs a dry-run with this engine by analyzing a given context based upon a set of rules. It will only
-     * check whether any rule would fires inside the given context but does not apply any commands. For that call
+     * check whether any rule would fires inside the given context but does not apply any conclusions. For that call
      * the {@link RuleEngine#infer(InferenceContext, Set) infer}-method.</p>
      * 
      * @param context   The context to analyze (<b>may not be <code>null</code></b>).

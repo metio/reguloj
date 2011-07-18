@@ -1,4 +1,4 @@
-h1. viadee Business Rules Engine (viaRules)
+h1. viadee Business Rules Engine
 
 p. The viadee business rules engine (viaRules) is a small and lightweight Java rule engine. It is suitable for mobile applications running "Android":http://www.android.com/ and/or other restricted environments such as "GWT":http://code.google.com/webtoolkit/.
 

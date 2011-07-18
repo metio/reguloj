@@ -36,7 +36,7 @@
   <!--                               INFORMATIONS                              -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <groupId>de.viadee.rules</groupId>
-  <artifactId>viaRules-core</artifactId>
+  <artifactId>viaRules</artifactId>
   <version>2.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <url>https://github.com/viadee/viaRules-core</url>
@@ -49,8 +49,8 @@
   <!--                                  SOURCE                                 -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <scm>
-    <connection>scm:git:git://github.com/viadee/viaRules-core.git</connection>
-    <developerConnection>scm:git:git@github.com:viadee/viaRules-core.git</developerConnection>
+    <connection>scm:git:git://github.com/viadee/viaRules.git</connection>
+    <developerConnection>scm:git:git@github.com:viadee/viaRules.git</developerConnection>
     <tag>master</tag>
     <url>${project.url}</url>
   </scm>
@@ -139,8 +139,8 @@
           <doapOptions>
             <programmingLanguage>Java</programmingLanguage>
             <category>library</category>
-            <wiki>https://github.com/viadee/rules/wiki</wiki>
-            <downloadPage>https://github.com/viadee/rules/downloads</downloadPage>
+            <wiki>https://github.com/viadee/viaRules/wiki</wiki>
+            <downloadPage>https://github.com/viadee/viaRules/downloads</downloadPage>
           </doapOptions>
         </configuration>
       </plugin>

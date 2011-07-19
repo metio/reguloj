@@ -2,9 +2,9 @@ h1. viadee Business Rules Engine
 
 p. The viadee business rules engine (viaRules) is a small and lightweight Java rule engine. It is suitable for mobile applications running "Android":http://www.android.com/ and/or other restricted environments such as "GWT":http://code.google.com/webtoolkit/.
 
-h1. Usage
+h2. Usage
 
-h2. Creating rules
+h3. Creating rules
 
 p. A rule is composed of a "predicate"::http://guava-libraries.googlecode.com/svn/trunk/javadoc/com/google/common/base/Predicate.html, "conclusion":https://github.com/viadee/viaRules-core/blob/master/src/main/java/de/viadee/rules/Conclusion.java and a name.
 
@@ -15,7 +15,7 @@ final Rule rule = rule().called(name)
                         .when(and(predicate1, predicate2))
                         .then(conclude(conclusion1, conclusion2))
 
-h2. Evaluating rules
+h3. Evaluating rules
 
 p. A @Set@ of @Rule@ objects are evaluated by a @RuleEngine@ in a specific @InferenceContext@. The following example shows how to do it:
 
@@ -31,7 +31,7 @@ This project provides a simple implementation of the @RuleEngine@ interface and 
 
 p. It may be necessary that you need some sort of contextual information inside both your predicates and conclusions. The @InferenceContext@ is your way to make those informations available. In the case that your predicate and/or conclusion just needs the _topic_ of the context, you can call the available interface method directly. However it is more likely that you'll end up writing and extending your own context beyond that of the generic context provided by this project. During our internal development, we created an Android specific context which was tailored to our domain and thus provides methods to e.g. get the current GPS coordinates. Since those methods won't work in an environment which does not have access to a GPS sensor (or any other domain specific functionality) we decided to leave those out. The API further acknowledges this by using @<C extends InferenceContext<?>>@ as type parameter for all methods which expect an @InferenceContext@.
 
-h2. Integration
+h3. Integration
 
 p. To use the business rules engine inside your own projects just declare the following dependency inside your _POM_:
 
@@ -44,16 +44,16 @@ bc.
 
 p. Alternatively copy the latest _JAR_  from our "download archive":https://github.com/viadee/viaRules/downloads to your projects library folder and put it in your classpath.
 
-h1. Development
+h2. Development
 
-h2. License
+h3. License
 
 p. The viaRules project is licensed under the "Apache Software License, Version 2.0":http://www.apache.org/licenses/LICENSE-2.0/.
 
-h2. Setup
+h3. Setup
 
 p. The viaRules project is using "Maven":http://maven.apache.org/, "Eclipse":http://eclipse.org/ and "Git":http://git-scm.com/ as the main development tools. To build the project yourself just download & install at least Maven 3.0 and call *mvn install* inside the project folder. Maven should then proceed to clean, test, build, package and install the business rules engine.
 
-h2. Versioning
+h3. Versioning
 
 p. The viaRules project follows the "semantic versioning":http://semver.org/ guidelines.

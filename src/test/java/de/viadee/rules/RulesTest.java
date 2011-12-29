@@ -1,5 +1,5 @@
 /*
- * Project: viaRules-core
+ * Project: viaRules
  * Package: de.viadee.rules.implementation
  * File   : RulesTest.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -39,6 +39,7 @@ import com.google.common.base.Predicate;
  * @see     Rules
  * @since   1.0.0
  */
+@SuppressWarnings("static-method")
 public final class RulesTest {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

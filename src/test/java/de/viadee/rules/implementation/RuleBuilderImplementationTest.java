@@ -1,5 +1,5 @@
 /*
- * Project: viaRules-core
+ * Project: viaRules
  * Package: de.viadee.rules.implementation
  * File   : RuleBuilderImplementationTest.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -43,6 +43,7 @@ import de.viadee.rules.RuleBuilder;
  * @see     RuleBuilderImplementation
  * @since   1.0.0
  */
+@SuppressWarnings("static-method")
 public final class RuleBuilderImplementationTest {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -72,8 +73,7 @@ public final class RuleBuilderImplementationTest {
     @Test
     public void shouldCreateRuleIfAllValuesAreSet() {
         // given
-        final RuleBuilder<InferenceContext<Object>> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>>();
+        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<>();
         builder.called(RuleBuilderImplementationTest.NAME).when(Mockito.mock(Predicate.class));
 
         // when
@@ -91,8 +91,7 @@ public final class RuleBuilderImplementationTest {
     @Test
     public void shouldNotAcceptNullPredicate() {
         // given
-        final RuleBuilder<InferenceContext<Object>> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>>();
+        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<>();
 
         // when
         this.thrown.expect(NullPointerException.class);
@@ -109,8 +108,7 @@ public final class RuleBuilderImplementationTest {
     @Test
     public void shouldNotAcceptNullConclusion() {
         // given
-        final RuleBuilder<InferenceContext<Object>> builder =
-                new RuleBuilderImplementation<InferenceContext<Object>>();
+        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<>();
 
         // when
         this.thrown.expect(NullPointerException.class);
@@ -127,7 +125,7 @@ public final class RuleBuilderImplementationTest {
     @Test
     public void shouldNotAcceptNullName() {
         // given
-        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<InferenceContext<Object>>();
+        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<>();
 
         // when
         this.thrown.expect(NullPointerException.class);

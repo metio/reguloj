@@ -1,5 +1,5 @@
 /*
- * Project: viaRules-core
+ * Project: viaRules
  * Package: de.viadee.rules.implementation
  * File   : RuleImplementation.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -129,7 +129,7 @@ final class RuleImplementation<C extends InferenceContext<?>> implements Rule<C>
      * {@inheritDoc}
      */
     @Override
-    public int compareTo(final Rule<C> object) {
+    public int compareTo(final Rule<? extends C> object) {
         return this.name.compareTo(object.getName());
     }
 

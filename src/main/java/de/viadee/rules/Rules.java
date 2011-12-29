@@ -1,5 +1,5 @@
 /*
- * Project: viaRules-core
+ * Project: viaRules
  * Package: de.viadee.rules
  * File   : Rules.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -55,7 +55,7 @@ public final class Rules {
      * @return      A new rule builder.
      */
     public static <C extends InferenceContext<?>> RuleBuilder<C> rule() {
-        return new RuleBuilderImplementation<C>();
+        return new RuleBuilderImplementation<>();
     }
 
 }

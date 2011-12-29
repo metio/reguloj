@@ -1,5 +1,5 @@
 /*
- * Project: viaRules-core
+ * Project: viaRules
  * Package: de.viadee.rules
  * File   : ConclusionsTest.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -43,6 +43,7 @@ import com.google.common.collect.Lists;
  * @see     Conclusions
  * @since   1.0.0
  */
+@SuppressWarnings("static-method")
 public final class ConclusionsTest {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

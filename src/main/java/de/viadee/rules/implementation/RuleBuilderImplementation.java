@@ -1,5 +1,5 @@
 /*
- * Project: viaRules-core
+ * Project: viaRules
  * Package: de.viadee.rules.implementation
  * File   : RuleBuilderImplementation.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -84,7 +84,7 @@ public final class RuleBuilderImplementation<C extends InferenceContext<?>> impl
     public Rule<C> then(final Conclusion<C> newConclusion) {
         this.conclusion = Preconditions.checkNotNull(newConclusion);
 
-        return new RuleImplementation<C>(this.name, this.premise, this.conclusion);
+        return new RuleImplementation<>(this.name, this.premise, this.conclusion);
     }
 
     /**

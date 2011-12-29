@@ -1,5 +1,5 @@
 /*
- * Project: viaRules-core
+ * Project: viaRules
  * Package: de.viadee.rules
  * File   : Rule.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -69,7 +69,7 @@ package de.viadee.rules;
  * @param <C>   The context type.
  * @since       1.0.0
  */
-public interface Rule<C extends InferenceContext<?>> extends Comparable<Rule<C>> {
+public interface Rule<C extends InferenceContext<?>> extends Comparable<Rule<? extends C>> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                    METHODS                                                  *

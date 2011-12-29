@@ -1,5 +1,5 @@
 /*
- * Project: viaRules-core
+ * Project: viaRules
  * Package: de.viadee.rules.implementation
  * File   : SimpleRuleEngine.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -42,7 +42,7 @@ public final class SimpleRuleEngine<C extends InferenceContext<?>> implements Ru
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                 CONSTRUCTORS                                                *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    
+
     /**
      * Default constructor for this class to make checkstyle happy.
      */

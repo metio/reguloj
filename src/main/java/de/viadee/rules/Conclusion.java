@@ -1,5 +1,5 @@
 /*
- * Project: viaRules-core
+ * Project: viaRules
  * Package: de.viadee.rules
  * File   : Conclusion.java
  * Created: Nov 10, 2010 - 5:55:55 PM

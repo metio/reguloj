@@ -1,5 +1,5 @@
 /*
- * Project: viaRules-core
+ * Project: viaRules
  * Package: de.viadee.rules
  * File   : Conclusions.java
  * Created: Nov 10, 2010 - 5:55:55 PM
@@ -63,13 +63,13 @@ public final class Conclusions {
      * @param conclusions   The conclusions to group (<b>may not be <code>null</code> nor empty</b>).
      * @return              A new conclusion builder.
      */
-    public static <T> Conclusion<T> conclude(final Collection<Conclusion<T>> conclusions) {
+    public static <T> Conclusion<T> conclude(final Collection<? extends Conclusion<T>> conclusions) {
         // Check inputs
         Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(!conclusions.isEmpty());
 
         // Create composition
-        return new CompositeConclusion<T>(ImmutableList.copyOf(conclusions));
+        return new CompositeConclusion<>(ImmutableList.copyOf(conclusions));
     }
 
     /**
@@ -88,7 +88,7 @@ public final class Conclusions {
         Preconditions.checkNotNull(conclusion2);
 
         // Create composition
-        return new CompositeConclusion<T>(ImmutableList.of(conclusion1, conclusion2));
+        return new CompositeConclusion<>(ImmutableList.of(conclusion1, conclusion2));
     }
 
     /**
@@ -100,13 +100,13 @@ public final class Conclusions {
      * @param conclusions   The conclusions to group (<b>may not be <code>null</code> nor empty</b>).
      * @return              A new conclusion builder.
      */
-    public static <T> Conclusion<T> conclude(final Iterable<Conclusion<T>> conclusions) {
+    public static <T> Conclusion<T> conclude(final Iterable<? extends Conclusion<T>> conclusions) {
         // Check inputs
         Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(!Iterables.isEmpty(conclusions));
 
         // Create composition
-        return new CompositeConclusion<T>(ImmutableList.copyOf(conclusions));
+        return new CompositeConclusion<>(ImmutableList.copyOf(conclusions));
     }
 
     /**
@@ -118,13 +118,13 @@ public final class Conclusions {
      * @param conclusions   The conclusions to group (<b>may not be <code>null</code> nor empty</b>).
      * @return              A new conclusion builder.
      */
-    public static <T> Conclusion<T> conclude(final Iterator<Conclusion<T>> conclusions) {
+    public static <T> Conclusion<T> conclude(final Iterator<? extends Conclusion<T>> conclusions) {
         // Check inputs
         Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(conclusions.hasNext());
 
         // Create composition
-        return new CompositeConclusion<T>(ImmutableList.copyOf(conclusions));
+        return new CompositeConclusion<>(ImmutableList.copyOf(conclusions));
     }
 
 }

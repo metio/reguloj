@@ -17,6 +17,7 @@ import de.viadee.rules.Conclusion;
  * @author  Sebastian Hoß (sebastian.hoss@viadee.de)
  * @since   2.0.0
  */
+@SuppressWarnings("static-method")
 public class CompositeConclusionTest {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -65,7 +66,7 @@ public class CompositeConclusionTest {
         conclusions.add(conclusion2);
 
         // when
-        final Conclusion<Object> composite = new CompositeConclusion<Object>(conclusions);
+        final Conclusion<Object> composite = new CompositeConclusion<>(conclusions);
 
         // then
         Assert.assertTrue(composite.apply(target));

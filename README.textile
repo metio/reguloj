@@ -6,9 +6,9 @@ h2. Usage
 
 h3. Creating rules
 
-p. A rule is composed of a "predicate"::http://guava-libraries.googlecode.com/svn/trunk/javadoc/com/google/common/base/Predicate.html, "conclusion":https://github.com/viadee/viaRules-core/blob/master/src/main/java/de/viadee/rules/Conclusion.java and a name.
+p. A rule is composed of a "predicate"::http://guava-libraries.googlecode.com/svn/trunk/javadoc/com/google/common/base/Predicate.html, "conclusion":https://github.com/viadee/viaRules/blob/master/src/main/java/de/viadee/rules/Conclusion.java and a name.
 
-p. Both interfaces require you to implement only a single method and do not restrict you in any way. To create complex rules you can group or chain several predicates/conclusions together with the help of several utility methods. The following example is using static imports and creates a rule composed of 2 predicates and 2 conclusions:
+p. Both interfaces require you to implement only a single method and do not restrict you in any way. Complex rules can be created by grouping or chaining predicates/conclusions together with the help of several utility methods. The following example creates a rule composed of 2 predicates and 2 conclusions while using static imports:
 
 bc. 
 final Rule rule = rule().called(name)
@@ -25,15 +25,18 @@ Set<Rule<InferenceContext<X>>> rules = ...;
 RuleEngine<InferenceContext<X>> engine = ...;
 
 bc. 
-engine.infer(context, rules);
+engine.analyze(context, rules); // true if any rule fired.
+
+bc. 
+engine.infer(context, rules); // perform conclusions of those rules that fired
 
 This project provides a simple implementation of the @RuleEngine@ interface and a set of rules can be created with the standard Java library. The @InferenceContext@ however may need some more work.
 
-p. It may be necessary that you need some sort of contextual information inside both your predicates and conclusions. The @InferenceContext@ is your way to make those informations available. In the case that your predicate and/or conclusion just needs the _topic_ of the context, you can call the available interface method directly. However it is more likely that you'll end up writing and extending your own context beyond that of the generic context provided by this project. During our internal development, we created an Android specific context which was tailored to our domain and thus provides methods to e.g. get the current GPS coordinates. Since those methods won't work in an environment which does not have access to a GPS sensor (or any other domain specific functionality) we decided to leave those out. The API further acknowledges this by using @<C extends InferenceContext<?>>@ as type parameter for all methods which expect an @InferenceContext@.
+p. In case only the _topic_ of the context is needed, you can call the available interface method directly. However it may be necessary that some sort of contextual information is needed inside predicates and conclusions. The @InferenceContext@ is the way to make those informations available. During our internal development, we created an Android specific context which was tailored to our domain and thus provides methods to e.g. get the current GPS coordinates. Since those methods won't work in an environment which does not have access to a GPS sensor (or any other domain specific functionality) we decided to leave those out. The API further acknowledges this by using @<C extends InferenceContext<?>>@ as type parameter for all methods which expect an @InferenceContext@. See item 28 in "Effective Java":http://java.sun.com/docs/books/effective/ for more details.
 
 h3. Integration
 
-p. To use the business rules engine inside your own projects just declare the following dependency inside your _POM_:
+p. To use the business rules engine just declare the following dependency inside your _POM_:
 
 bc. 
 <dependency>

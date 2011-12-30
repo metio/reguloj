@@ -84,7 +84,7 @@ public final class RuleBuilderImplementation<C extends InferenceContext<?>> impl
     public Rule<C> then(final Conclusion<C> newConclusion) {
         this.conclusion = Preconditions.checkNotNull(newConclusion);
 
-        return new RuleImplementation<>(this.name, this.premise, this.conclusion);
+        return new RuleImplementation<C>(this.name, this.premise, this.conclusion);
     }
 
     /**

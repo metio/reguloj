@@ -73,7 +73,7 @@ public final class RuleBuilderImplementationTest {
     @Test
     public void shouldCreateRuleIfAllValuesAreSet() {
         // given
-        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<>();
+        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<InferenceContext<Object>>();
         builder.called(RuleBuilderImplementationTest.NAME).when(Mockito.mock(Predicate.class));
 
         // when
@@ -91,7 +91,7 @@ public final class RuleBuilderImplementationTest {
     @Test
     public void shouldNotAcceptNullPredicate() {
         // given
-        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<>();
+        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<InferenceContext<Object>>();
 
         // when
         this.thrown.expect(NullPointerException.class);
@@ -108,7 +108,7 @@ public final class RuleBuilderImplementationTest {
     @Test
     public void shouldNotAcceptNullConclusion() {
         // given
-        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<>();
+        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<InferenceContext<Object>>();
 
         // when
         this.thrown.expect(NullPointerException.class);
@@ -125,7 +125,7 @@ public final class RuleBuilderImplementationTest {
     @Test
     public void shouldNotAcceptNullName() {
         // given
-        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<>();
+        final RuleBuilder<InferenceContext<Object>> builder = new RuleBuilderImplementation<InferenceContext<Object>>();
 
         // when
         this.thrown.expect(NullPointerException.class);
@@ -133,5 +133,4 @@ public final class RuleBuilderImplementationTest {
         // then
         builder.called(null);
     }
-
 }

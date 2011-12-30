@@ -55,7 +55,7 @@ public final class Rules {
      * @return      A new rule builder.
      */
     public static <C extends InferenceContext<?>> RuleBuilder<C> rule() {
-        return new RuleBuilderImplementation<>();
+        return new RuleBuilderImplementation<C>();
     }
 
 }

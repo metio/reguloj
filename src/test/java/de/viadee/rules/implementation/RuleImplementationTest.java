@@ -77,7 +77,7 @@ public final class RuleImplementationTest {
         this.thrown.expect(NullPointerException.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule = new RuleImplementation<>(null, null, null);
+        final Rule<InferenceContext<Object>> rule = new RuleImplementation<InferenceContext<Object>>(null, null, null);
 
         // then
         Assert.assertThat(rule, Is.is(IsNull.nullValue()));
@@ -97,7 +97,7 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule, Is.is(IsNull.notNullValue()));
@@ -120,7 +120,7 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertFalse(rule.run(context));
@@ -144,7 +144,7 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertFalse(rule.run(context));
@@ -168,7 +168,7 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertTrue(rule.run(context));
@@ -191,7 +191,7 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertTrue(rule.fires(context));
@@ -214,7 +214,7 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertFalse(rule.fires(context));
@@ -233,7 +233,7 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule.getName(), Is.is(RuleImplementationTest.NAME));
@@ -253,7 +253,7 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule.equals(rule), Is.is(true));
@@ -273,9 +273,9 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
         final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule1.equals(rule2), Is.is(true));
@@ -296,11 +296,11 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
         final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
         final Rule<InferenceContext<Object>> rule3 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule1.equals(rule2) && rule2.equals(rule3), Is.is(true));
@@ -321,9 +321,9 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
         final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         final boolean alwaysTheSame = rule1.equals(rule2);
@@ -347,7 +347,7 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule.equals(null), Is.is(false));
@@ -367,7 +367,7 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule.equals(""), Is.is(false)); //$NON-NLS-1$
@@ -387,7 +387,7 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
         final Rule<InferenceContext<Object>> rule2 = rule1;
 
         // then
@@ -408,9 +408,9 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
         final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<>("rule2", predicate, conclusion); //$NON-NLS-1$
+                new RuleImplementation<InferenceContext<Object>>("rule2", predicate, conclusion); //$NON-NLS-1$
 
         // then
         Assert.assertThat(rule1.equals(rule2), Is.is(false));
@@ -431,9 +431,9 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate1, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate1, conclusion);
         final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate2, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate2, conclusion);
 
         // then
         Assert.assertThat(rule1.equals(rule2), Is.is(false));
@@ -454,9 +454,9 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion1);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion1);
         final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion2);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion2);
 
         // then
         Assert.assertThat(rule1.equals(rule2), Is.is(false));
@@ -476,7 +476,7 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         final int alwaysTheSame = rule.hashCode();
@@ -500,9 +500,9 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
         final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule1.equals(rule2), Is.is(true));
@@ -523,12 +523,11 @@ public final class RuleImplementationTest {
 
         // when
         final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
         final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule1.compareTo(rule2), Is.is(0));
     }
-
 }

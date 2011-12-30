@@ -69,7 +69,7 @@ public final class Conclusions {
         Preconditions.checkArgument(!conclusions.isEmpty());
 
         // Create composition
-        return new CompositeConclusion<>(ImmutableList.copyOf(conclusions));
+        return new CompositeConclusion<T>(ImmutableList.copyOf(conclusions));
     }
 
     /**
@@ -88,7 +88,7 @@ public final class Conclusions {
         Preconditions.checkNotNull(conclusion2);
 
         // Create composition
-        return new CompositeConclusion<>(ImmutableList.of(conclusion1, conclusion2));
+        return new CompositeConclusion<T>(ImmutableList.of(conclusion1, conclusion2));
     }
 
     /**
@@ -106,7 +106,7 @@ public final class Conclusions {
         Preconditions.checkArgument(!Iterables.isEmpty(conclusions));
 
         // Create composition
-        return new CompositeConclusion<>(ImmutableList.copyOf(conclusions));
+        return new CompositeConclusion<T>(ImmutableList.copyOf(conclusions));
     }
 
     /**
@@ -124,7 +124,7 @@ public final class Conclusions {
         Preconditions.checkArgument(conclusions.hasNext());
 
         // Create composition
-        return new CompositeConclusion<>(ImmutableList.copyOf(conclusions));
+        return new CompositeConclusion<T>(ImmutableList.copyOf(conclusions));
     }
 
 }

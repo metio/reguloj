@@ -1,6 +1,6 @@
 /*
  * Project: viaRules
- * Package: de.viadee.rules.implementation
+ * Package: com.github.sebhoss.reguloj.implementation
  * File   : RuleImplementationTest.java
  * Created: Nov 10, 2010 - 5:55:55 PM
  *
@@ -20,7 +20,7 @@
  * limitations under the License.
  *
  */
-package de.viadee.rules.implementation;
+package com.github.sebhoss.reguloj.implementation;
 
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsNull;
@@ -30,11 +30,12 @@ import org.junit.rules.ExpectedException;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
+import com.github.sebhoss.reguloj.Conclusion;
+import com.github.sebhoss.reguloj.InferenceContext;
+import com.github.sebhoss.reguloj.Rule;
+import com.github.sebhoss.reguloj.implementation.RuleImplementation;
 import com.google.common.base.Predicate;
 
-import de.viadee.rules.Conclusion;
-import de.viadee.rules.InferenceContext;
-import de.viadee.rules.Rule;
 
 /**
  * <p>Test cases for the {@link RuleImplementation}.</p>
@@ -67,7 +68,7 @@ public final class RuleImplementationTest {
 
     /**
      * <p>Test method for {@link RuleImplementation#RuleImplementation(String, 
-     * com.google.common.base.Predicate, de.viadee.rules.Conclusion)}</p>
+     * com.google.common.base.Predicate, com.github.sebhoss.reguloj.Conclusion)}</p>
      * 
      * <p>Ensures that <code>null</code> values are not permitted.</p>
      */
@@ -85,7 +86,7 @@ public final class RuleImplementationTest {
 
     /**
      * <p>Test method for {@link RuleImplementation#RuleImplementation(String, 
-     * com.google.common.base.Predicate, de.viadee.rules.Conclusion)}</p>
+     * com.google.common.base.Predicate, com.github.sebhoss.reguloj.Conclusion)}</p>
      * 
      * <p>Ensures that a valid rule will be built once all values are given.</p>
      */
@@ -510,7 +511,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>Test method for {@link RuleImplementation#compareTo(de.viadee.rules.Rule)}</p>
+     * <p>Test method for {@link RuleImplementation#compareTo(com.github.sebhoss.reguloj.Rule)}</p>
      * 
      * <p>Ensures that compareTo() is consistent with equals().</p>
      */

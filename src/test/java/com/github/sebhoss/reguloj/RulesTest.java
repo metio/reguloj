@@ -1,6 +1,6 @@
 /*
  * Project: viaRules
- * Package: de.viadee.rules.implementation
+ * Package: com.github.sebhoss.reguloj.implementation
  * File   : RulesTest.java
  * Created: Nov 10, 2010 - 5:55:55 PM
  *
@@ -20,7 +20,7 @@
  * limitations under the License.
  *
  */
-package de.viadee.rules;
+package com.github.sebhoss.reguloj;
 
 import java.lang.reflect.Constructor;
 
@@ -30,6 +30,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.github.sebhoss.reguloj.Conclusion;
+import com.github.sebhoss.reguloj.InferenceContext;
+import com.github.sebhoss.reguloj.Rule;
+import com.github.sebhoss.reguloj.RuleBuilder;
+import com.github.sebhoss.reguloj.Rules;
 import com.google.common.base.Predicate;
 
 /**

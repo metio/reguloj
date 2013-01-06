@@ -1,6 +1,6 @@
 /*
  * Project: viaRules
- * Package: de.viadee.rules
+ * Package: com.github.sebhoss.reguloj
  * File   : RuleEngine.java
  * Created: Nov 10, 2010 - 5:55:55 PM
  *
@@ -20,7 +20,7 @@
  * limitations under the License.
  *
  */
-package de.viadee.rules;
+package com.github.sebhoss.reguloj;
 
 import java.util.Set;
 

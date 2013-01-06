@@ -1,6 +1,6 @@
 /*
  * Project: viaRules
- * Package: de.viadee.rules.implementation
+ * Package: com.github.sebhoss.reguloj
  * File   : package-info.java
  * Created: Nov 10, 2010 - 5:55:55 PM
  *
@@ -21,10 +21,11 @@
  *
  */
 /**
- * This package holds all business rules related implementations.
+ * This package holds all business rules related definitions.
  *
  * @author  Sebastian Hoß (sebastian.hoss@viadee.de)
+ * @see     <a href="https://github.com/viadee/rules">https://github.com/viadee/rules</a>
  * @since   1.0.0
  */
-package de.viadee.rules.implementation;
+package com.github.sebhoss.reguloj;
 

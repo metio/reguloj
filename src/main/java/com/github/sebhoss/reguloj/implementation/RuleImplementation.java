@@ -1,6 +1,6 @@
 /*
  * Project: viaRules
- * Package: de.viadee.rules.implementation
+ * Package: com.github.sebhoss.reguloj.implementation
  * File   : RuleImplementation.java
  * Created: Nov 10, 2010 - 5:55:55 PM
  *
@@ -20,15 +20,15 @@
  * limitations under the License.
  *
  */
-package de.viadee.rules.implementation;
+package com.github.sebhoss.reguloj.implementation;
 
+import com.github.sebhoss.reguloj.Conclusion;
+import com.github.sebhoss.reguloj.InferenceContext;
+import com.github.sebhoss.reguloj.Rule;
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 
-import de.viadee.rules.Conclusion;
-import de.viadee.rules.InferenceContext;
-import de.viadee.rules.Rule;
 
 /**
  * <p>Standard implementation of the {@link Rule} interface.</p>

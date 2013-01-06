@@ -1,6 +1,6 @@
 /*
  * Project: viaRules
- * Package: de.viadee.rules
+ * Package: com.github.sebhoss.reguloj
  * File   : Conclusions.java
  * Created: Nov 10, 2010 - 5:55:55 PM
  *
@@ -20,16 +20,16 @@
  * limitations under the License.
  *
  */
-package de.viadee.rules;
+package com.github.sebhoss.reguloj;
 
 import java.util.Collection;
 import java.util.Iterator;
 
+import com.github.sebhoss.reguloj.implementation.CompositeConclusion;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 
-import de.viadee.rules.implementation.CompositeConclusion;
 
 /**
  * <p>Utility class which helps creating new {@link Conclusion conclusions}.</p>

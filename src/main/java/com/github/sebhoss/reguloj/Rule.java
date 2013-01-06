@@ -1,6 +1,6 @@
 /*
  * Project: viaRules
- * Package: de.viadee.rules
+ * Package: com.github.sebhoss.reguloj
  * File   : Rule.java
  * Created: Nov 10, 2010 - 5:55:55 PM
  *
@@ -20,7 +20,7 @@
  * limitations under the License.
  *
  */
-package de.viadee.rules;
+package com.github.sebhoss.reguloj;
 
 /**
  * <p>A {@link Rule} is composed of a name, a premise and a conclusion. Is the premise of a rule fulfilled the

@@ -1,12 +1,12 @@
-h1. viadee Business Rules Engine
+h1. reguloj
 
-p. The viadee business rules engine (viaRules) is a small and lightweight Java rule engine. It is suitable for mobile applications running "Android":http://www.android.com/ and/or other restricted environments such as "GWT":http://code.google.com/webtoolkit/.
+p. *reguloj* is a small and lightweight Java rule engine. It is suitable for mobile applications running "Android":http://www.android.com/ and/or other restricted environments such as "GWT":http://code.google.com/webtoolkit/.
 
 h2. Usage
 
 h3. Creating rules
 
-p. A rule is composed of a "predicate"::http://guava-libraries.googlecode.com/svn/trunk/javadoc/com/google/common/base/Predicate.html, "conclusion":https://github.com/viadee/viaRules/blob/master/src/main/java/de/viadee/rules/Conclusion.java and a name.
+p. A rule is composed of a "predicate"::http://guava-libraries.googlecode.com/svn/trunk/javadoc/com/google/common/base/Predicate.html, "conclusion":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Conclusion.java and a name.
 
 p. Both interfaces require you to implement only a single method and do not restrict you in any way. Complex rules can be created by grouping or chaining predicates/conclusions together with the help of several utility methods. The following example creates a rule composed of 2 predicates and 2 conclusions while using static imports:
 
@@ -36,13 +36,13 @@ p. In case only the _topic_ of the context is needed, you can call the available
 
 h3. Integration
 
-p. To use the business rules engine just declare the following dependency inside your _POM_:
+p. To use reguloj just declare the following dependency inside your _POM_:
 
 bc. 
 <dependency>
-  <groupId>de.viadee.rules</groupId>
-  <artifactId>viaRules</artifactId>
-  <version>2.0.0</version>
+  <groupId>com.github.sebhoss.reguloj</groupId>
+  <artifactId>reguloj</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
 </dependency>
 
 p. Alternatively copy the latest _JAR_  from our "download archive":https://github.com/viadee/viaRules/downloads to your projects library folder and put it in your classpath.
@@ -51,12 +51,12 @@ h2. Development
 
 h3. License
 
-p. The viaRules project is licensed under the "Apache Software License, Version 2.0":http://www.apache.org/licenses/LICENSE-2.0/.
+p. reguloj is licensed under the "Apache Software License, Version 2.0":http://www.apache.org/licenses/LICENSE-2.0/.
 
 h3. Setup
 
-p. The viaRules project is using "Maven":http://maven.apache.org/, "Eclipse":http://eclipse.org/ and "Git":http://git-scm.com/ as the main development tools. To build the project yourself just download & install at least Maven 3.0 and call *mvn install* inside the project folder. Maven should then proceed to clean, test, build, package and install the business rules engine.
+p. reguloj is using "Maven":http://maven.apache.org/, "Eclipse":http://eclipse.org/ and "Git":http://git-scm.com/ as the main development tools. To build the project yourself just download & install at least Maven 3.0 and call *mvn install* inside the project folder. Maven should then proceed to clean, test, build, package and install the business rules engine.
 
 h3. Versioning
 
-p. The viaRules project follows the "semantic versioning":http://semver.org/ guidelines.
+p. reguloj follows the "semantic versioning":http://semver.org/ guidelines.

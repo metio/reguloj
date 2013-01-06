@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- * Copyright 2010 viadee IT Unternehmensberatung GmbH
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Do What The Fuck You Want
+ * To Public License, Version 2, as published by Sam Hocevar. See
+ * http://sam.zoy.org/wtfpl/COPYING for more details.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <project 
   xmlns                 =   "http://maven.apache.org/POM/4.0.0"
@@ -25,23 +17,22 @@
   <!--                                  PARENT                                 -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <parent>
-    <groupId>de.viadee.maven.pom</groupId>
-    <artifactId>java-parent-pom</artifactId>
+    <groupId>com.github.sebhoss</groupId>
+    <artifactId>java-project</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <relativePath>../parent/java/pom.xml</relativePath>
   </parent>
 
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                               INFORMATIONS                              -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <groupId>de.viadee.rules</groupId>
-  <artifactId>viaRules</artifactId>
-  <version>2.0.0-SNAPSHOT</version>
+  <groupId>com.github.sebhoss.reguloj</groupId>
+  <artifactId>reguloj</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <url>https://github.com/viadee/viaRules</url>
+  <url>https://github.com/sebhoss/reguloj</url>
   <inceptionYear>2010</inceptionYear>
-  <name>viadee Business Rules Engine</name>
+  <name>reguloj</name>
   <description>Lightweight business rule engine for mobile (Android) and embedded (GWT) applications</description>
 
 
@@ -49,8 +40,8 @@
   <!--                                  SOURCE                                 -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <scm>
-    <connection>scm:git:git://github.com/viadee/viaRules.git</connection>
-    <developerConnection>scm:git:git@github.com:viadee/viaRules.git</developerConnection>
+    <connection>scm:git:git://github.com/sebhoss/reguloj.git</connection>
+    <developerConnection>scm:git:git@github.com:sebhoss/reguloj.git</developerConnection>
     <tag>master</tag>
     <url>${project.url}</url>
   </scm>
@@ -61,23 +52,28 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-    </dependency>
-
-    <dependency>
-        <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-library</artifactId>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
     </dependency>
 
     <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-all</artifactId>
+        <version>${mockito.version}</version>
+        <scope>test</scope>
     </dependency>
-
     <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-library</artifactId>
+      <version>${hamcrest.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -88,37 +84,6 @@
   <build>
     <plugins>
 
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <!--                         COMPILER                          -->
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-      </plugin>
-
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <!--                            JAR                            -->
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-      </plugin>
-
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <!--                          JAVADOC                          -->
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-      </plugin>
-
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <!--                          SOURCE                           -->
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-      </plugin>
 
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!--                           DOAP                            -->
@@ -130,42 +95,10 @@
           <doapOptions>
             <programmingLanguage>Java</programmingLanguage>
             <category>library</category>
-            <wiki>https://github.com/viadee/viaRules/wiki</wiki>
-            <downloadPage>https://github.com/viadee/viaRules/downloads</downloadPage>
+            <wiki>https://github.com/sebhoss/reguloj/wiki</wiki>
+            <downloadPage>https://github.com/sebhoss/reguloj/downloads</downloadPage>
           </doapOptions>
         </configuration>
-      </plugin>
-
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <!--                          ECLIPSE                          -->
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-eclipse-plugin</artifactId>
-      </plugin>
-
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <!--                         FINDBUGS                          -->
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-      </plugin>
-
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <!--                           PMD                             -->
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-pmd-plugin</artifactId>
-      </plugin>
-      
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <!--                           SITE                            -->
-      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

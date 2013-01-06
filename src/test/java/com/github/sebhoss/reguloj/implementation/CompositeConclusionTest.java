@@ -1,4 +1,4 @@
-package de.viadee.rules.implementation;
+package com.github.sebhoss.reguloj.implementation;
 
 import java.util.Collection;
 
@@ -9,9 +9,10 @@ import org.junit.rules.ExpectedException;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
+import com.github.sebhoss.reguloj.Conclusion;
+import com.github.sebhoss.reguloj.implementation.CompositeConclusion;
 import com.google.common.collect.Lists;
 
-import de.viadee.rules.Conclusion;
 
 /**
  * @author  Sebastian Hoß (sebastian.hoss@viadee.de)

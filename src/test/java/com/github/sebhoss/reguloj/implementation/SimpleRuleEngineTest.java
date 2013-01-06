@@ -1,6 +1,6 @@
 /*
  * Project: viaRules
- * Package: de.viadee.rules.implementation
+ * Package: com.github.sebhoss.reguloj.implementation
  * File   : SimpleRuleEngineTest.java
  * Created: Nov 10, 2010 - 5:55:55 PM
  *
@@ -20,7 +20,7 @@
  * limitations under the License.
  *
  */
-package de.viadee.rules.implementation;
+package com.github.sebhoss.reguloj.implementation;
 
 import java.util.Set;
 import java.util.TreeSet;
@@ -32,9 +32,11 @@ import org.junit.rules.ExpectedException;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
-import de.viadee.rules.InferenceContext;
-import de.viadee.rules.Rule;
-import de.viadee.rules.RuleEngine;
+import com.github.sebhoss.reguloj.InferenceContext;
+import com.github.sebhoss.reguloj.Rule;
+import com.github.sebhoss.reguloj.RuleEngine;
+import com.github.sebhoss.reguloj.implementation.SimpleRuleEngine;
+
 
 /**
  * <p>Test cases for the {@link SimpleRuleEngine}.</p>
@@ -59,7 +61,7 @@ public class SimpleRuleEngineTest {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#analyze(de.viadee.rules.InferenceContext, java.util.Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.InferenceContext, java.util.Set)}</p>
      * 
      * <p>Ensures that a <code>null</code> context ist not permitted.</p>
      */
@@ -79,7 +81,7 @@ public class SimpleRuleEngineTest {
     }
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#analyze(de.viadee.rules.InferenceContext, java.util.Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.InferenceContext, java.util.Set)}</p>
      * 
      * <p>Ensures that a <code>null</code> rule set ist not permitted.</p>
      */
@@ -99,7 +101,7 @@ public class SimpleRuleEngineTest {
     }
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#analyze(de.viadee.rules.InferenceContext, java.util.Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.InferenceContext, java.util.Set)}</p>
      * 
      * <p>Ensures that <code>false</code> is returned when passing in an empty set.</p>
      */
@@ -119,7 +121,7 @@ public class SimpleRuleEngineTest {
     }
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#analyze(de.viadee.rules.InferenceContext, java.util.Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.InferenceContext, java.util.Set)}</p>
      * 
      * <p>Ensures that <code>true</code> is returned if any rule can fire.</p>
      */
@@ -144,7 +146,7 @@ public class SimpleRuleEngineTest {
     }
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#analyze(de.viadee.rules.InferenceContext, java.util.Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.InferenceContext, java.util.Set)}</p>
      * 
      * <p>Ensures that <code>false</code> is returned if no rule can fire.</p>
      */

@@ -1,6 +1,6 @@
 /*
  * Project: viaRules
- * Package: de.viadee.rules
+ * Package: com.github.sebhoss.reguloj
  * File   : ConclusionsTest.java
  * Created: Nov 10, 2010 - 5:55:55 PM
  *
@@ -20,7 +20,7 @@
  * limitations under the License.
  *
  */
-package de.viadee.rules;
+package com.github.sebhoss.reguloj;
 
 import java.lang.reflect.Constructor;
 import java.util.Collection;
@@ -33,6 +33,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 
+import com.github.sebhoss.reguloj.Conclusion;
+import com.github.sebhoss.reguloj.Conclusions;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 

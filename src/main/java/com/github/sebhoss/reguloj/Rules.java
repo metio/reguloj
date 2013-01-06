@@ -1,6 +1,6 @@
 /*
  * Project: viaRules
- * Package: de.viadee.rules
+ * Package: com.github.sebhoss.reguloj
  * File   : Rules.java
  * Created: Nov 10, 2010 - 5:55:55 PM
  *
@@ -20,9 +20,9 @@
  * limitations under the License.
  *
  */
-package de.viadee.rules;
+package com.github.sebhoss.reguloj;
 
-import de.viadee.rules.implementation.RuleBuilderImplementation;
+import com.github.sebhoss.reguloj.implementation.RuleBuilderImplementation;
 
 /**
  * <p>Utility class which helps creating new {@link Rule rules}.</p>

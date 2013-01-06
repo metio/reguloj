@@ -1,10 +1,10 @@
-package de.viadee.rules.implementation;
+package com.github.sebhoss.reguloj.implementation;
 
 import java.util.Collection;
 
+import com.github.sebhoss.reguloj.Conclusion;
 import com.google.common.base.Preconditions;
 
-import de.viadee.rules.Conclusion;
 
 /**
  * @author      Sebastian Hoß (sebastian.hoss@viadee.de)

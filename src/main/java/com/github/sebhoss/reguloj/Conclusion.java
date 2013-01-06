@@ -1,7 +1,7 @@
 /*
  * Project: viaRules
- * Package: de.viadee.rules
- * File   : InferenceContext.java
+ * Package: com.github.sebhoss.reguloj
+ * File   : Conclusion.java
  * Created: Nov 10, 2010 - 5:55:55 PM
  *
  *
@@ -20,14 +20,11 @@
  * limitations under the License.
  *
  */
-package de.viadee.rules;
+package com.github.sebhoss.reguloj;
 
 /**
- * <p>An {@link InferenceContext} is used every time a set of rules shall be evaluated. The only available method in 
- * the generic version is {@link #getTopic()} which returns the main or focal point of your rules (if any).</p>
- *
- * <p>Note that no factory or builder is defined for the <code>InferenceContext</code> so you will have to implement
- * the concrete implementation and create an instance out of it yourself.</p>
+ * <p>A {@link Conclusion} encapsulates the final action a {@link Rule} will trigger once its predicate is
+ * fulfilled.</p>
  *
  * <h1>Caveats</h1>
  * <ul>
@@ -40,25 +37,25 @@ package de.viadee.rules;
  * <h1>How to help</h1>
  * <ul>
  *  <li>Test the interface and write back about errors, bugs and wishes.</li>
- *  <li>Write an abstract implementation for this interface so others will have it easier to implement it themselves.</li>
- *  <li>Write an example of how to use an InferenceContext.</li>
  * </ul>
  * 
  * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
- * @param <T>   The topic of the context.
+ * @param <T>   The topic of the inference process.
  * @since       1.0.0
  */
-public interface InferenceContext<T> {
+public interface Conclusion<T> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                    METHODS                                                  *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
-     * Gets the topic of this inference context.
+     * Applies the encapsulated action on a given target.
      * 
-     * @return  The topic of this context.
+     * @param target    The target itself (<b>may not be <code>null</code></b>).
+     * @return          <code>true</code> if the conclusion did change the state of the target,
+     *                  <code>false</code> otherwise.
      */
-    T getTopic();
+    boolean apply(T target);
 
 }

@@ -1,6 +1,6 @@
 /*
  * Project: viaRules
- * Package: de.viadee.rules.implementation
+ * Package: com.github.sebhoss.reguloj.implementation
  * File   : SimpleRuleEngine.java
  * Created: Nov 10, 2010 - 5:55:55 PM
  *
@@ -20,15 +20,15 @@
  * limitations under the License.
  *
  */
-package de.viadee.rules.implementation;
+package com.github.sebhoss.reguloj.implementation;
 
 import java.util.Set;
 
+import com.github.sebhoss.reguloj.InferenceContext;
+import com.github.sebhoss.reguloj.Rule;
+import com.github.sebhoss.reguloj.RuleEngine;
 import com.google.common.base.Preconditions;
 
-import de.viadee.rules.InferenceContext;
-import de.viadee.rules.Rule;
-import de.viadee.rules.RuleEngine;
 
 /**
  * <p>Simple implementation of the {@link RuleEngine} interface which supports rule-chaining.</p>

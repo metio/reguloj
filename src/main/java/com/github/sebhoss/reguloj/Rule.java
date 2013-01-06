@@ -1,24 +1,8 @@
-/*
- * Project: viaRules
- * Package: com.github.sebhoss.reguloj
- * File   : Rule.java
- * Created: Nov 10, 2010 - 5:55:55 PM
- *
- *
- * Copyright 2010 viadee IT Unternehmensberatung GmbH
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
+/* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Do What The Fuck You Want
+ * To Public License, Version 2, as published by Sam Hocevar. See
+ * http://sam.zoy.org/wtfpl/COPYING for more details.
  */
 package com.github.sebhoss.reguloj;
 
@@ -40,8 +24,8 @@ package com.github.sebhoss.reguloj;
  *      <p>Check whether a rule would fire inside a given context:</p>
  *      
  * <pre>
- * InferenceContext&lt;X&gt; context = ...;
- * Rule&lt;InferenceContext&lt;X&gt;&gt; rule = ...;
+ * Context&lt;X&gt; context = ...;
+ * Rule&lt;Context&lt;X&gt;&gt; rule = ...;
  * 
  * boolean canFire = rule.fires(context);     
  * </pre>
@@ -51,8 +35,8 @@ package com.github.sebhoss.reguloj;
  *      <p>Check whether a rule inflicted any state change inside a given context:</p>
  *
  * <pre>
- * InferenceContext&lt;X&gt; context = ...;
- * Rule&lt;InferenceContext&lt;X&gt;&gt; rule = ...;
+ * Context&lt;X&gt; context = ...;
+ * Rule&lt;Context&lt;X&gt;&gt; rule = ...;
  * 
  * boolean fired = rule.run(context);
  * </pre>
@@ -66,10 +50,10 @@ package com.github.sebhoss.reguloj;
  * </ul>
  * 
  * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
- * @param <C>   The context type.
+ * @param <CONTEXT>   The context type.
  * @since       1.0.0
  */
-public interface Rule<C extends InferenceContext<?>> extends Comparable<Rule<? extends C>> {
+public interface Rule<CONTEXT extends Context<?>> extends Comparable<Rule<? extends CONTEXT>> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                    METHODS                                                  *
@@ -83,7 +67,7 @@ public interface Rule<C extends InferenceContext<?>> extends Comparable<Rule<? e
      * @return          <code>true</code> if this rule did change the state of the given context,
      *                  <code>false</code> otherwise.
      */
-    boolean run(C context);
+    boolean run(CONTEXT context);
 
     /**
      * <p>Checks whether this rule would fire for a given context.</p>
@@ -91,7 +75,7 @@ public interface Rule<C extends InferenceContext<?>> extends Comparable<Rule<? e
      * @param context   The context to check (<b>may not be <code>null</code></b>).
      * @return          <code>true</code> if this rule would fire, <code>false</code> otherwise.
      */
-    boolean fires(C context);
+    boolean fires(CONTEXT context);
 
     /**
      * <p>Returns the human readable name of this rule.</p>

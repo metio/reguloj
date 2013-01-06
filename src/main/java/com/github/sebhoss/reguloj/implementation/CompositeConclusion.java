@@ -1,3 +1,9 @@
+/* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Do What The Fuck You Want
+ * To Public License, Version 2, as published by Sam Hocevar. See
+ * http://sam.zoy.org/wtfpl/COPYING for more details.
+ */
 package com.github.sebhoss.reguloj.implementation;
 
 import java.util.Collection;
@@ -7,18 +13,16 @@ import com.google.common.base.Preconditions;
 
 
 /**
- * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
- * @param <T>   The topic of the inference process.
- * @since       2.0.0
+ * @param <TOPIC>   The topic of the inference process.
  */
-public final class CompositeConclusion<T> implements Conclusion<T> {
+public final class CompositeConclusion<TOPIC> implements Conclusion<TOPIC> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                  ATTRIBUTES                                                 *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /** The encapsulated conclusions to call. */
-    private final Collection<Conclusion<T>> conclusions;
+    private final Collection<Conclusion<TOPIC>> conclusions;
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                 CONSTRUCTORS                                                *
@@ -27,7 +31,7 @@ public final class CompositeConclusion<T> implements Conclusion<T> {
     /**
      * @param conclusions   The encapsulated conclusions to call (<b>may not be <code>null</code> nor empty</b>).
      */
-    public CompositeConclusion(final Collection<Conclusion<T>> conclusions) {
+    public CompositeConclusion(final Collection<Conclusion<TOPIC>> conclusions) {
         // Check inputs
         Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(!conclusions.isEmpty());
@@ -44,10 +48,10 @@ public final class CompositeConclusion<T> implements Conclusion<T> {
      * {@inheritDoc}
      */
     @Override
-    public boolean apply(final T target) {
+    public boolean apply(final TOPIC target) {
         boolean contextChanged = false;
 
-        for (final Conclusion<T> conclusion : this.conclusions) {
+        for (final Conclusion<TOPIC> conclusion : this.conclusions) {
             if (conclusion.apply(target)) {
                 contextChanged = true;
             }

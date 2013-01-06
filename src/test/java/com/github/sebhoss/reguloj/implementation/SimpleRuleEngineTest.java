@@ -1,24 +1,8 @@
-/*
- * Project: viaRules
- * Package: com.github.sebhoss.reguloj.implementation
- * File   : SimpleRuleEngineTest.java
- * Created: Nov 10, 2010 - 5:55:55 PM
- *
- *
- * Copyright 2010 viadee IT Unternehmensberatung GmbH
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
+/* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Do What The Fuck You Want
+ * To Public License, Version 2, as published by Sam Hocevar. See
+ * http://sam.zoy.org/wtfpl/COPYING for more details.
  */
 package com.github.sebhoss.reguloj.implementation;
 
@@ -32,7 +16,7 @@ import org.junit.rules.ExpectedException;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
-import com.github.sebhoss.reguloj.InferenceContext;
+import com.github.sebhoss.reguloj.Context;
 import com.github.sebhoss.reguloj.Rule;
 import com.github.sebhoss.reguloj.RuleEngine;
 import com.github.sebhoss.reguloj.implementation.SimpleRuleEngine;
@@ -41,9 +25,7 @@ import com.github.sebhoss.reguloj.implementation.SimpleRuleEngine;
 /**
  * <p>Test cases for the {@link SimpleRuleEngine}.</p>
  *
- * @author  Sebastian Hoß (sebastian.hoss@viadee.de)
  * @see     SimpleRuleEngine
- * @since   1.0.0
  */
 @SuppressWarnings("static-method")
 public class SimpleRuleEngineTest {
@@ -61,7 +43,7 @@ public class SimpleRuleEngineTest {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.InferenceContext, java.util.Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.Context, java.util.Set)}</p>
      * 
      * <p>Ensures that a <code>null</code> context ist not permitted.</p>
      */
@@ -69,8 +51,8 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldNotAnalyzeNullContext() {
         // given
-        final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final Set<Rule<InferenceContext<Object>>> rules = Mockito.mock(Set.class);
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final Set<Rule<Context<Object>>> rules = Mockito.mock(Set.class);
 
         // when
         this.thrown.expect(NullPointerException.class);
@@ -81,7 +63,7 @@ public class SimpleRuleEngineTest {
     }
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.InferenceContext, java.util.Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.Context, java.util.Set)}</p>
      * 
      * <p>Ensures that a <code>null</code> rule set ist not permitted.</p>
      */
@@ -89,8 +71,8 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldNotAnalyzeNullRuleSet() {
         // given
-        final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final Context<Object> context = Mockito.mock(Context.class);
 
         // when
         this.thrown.expect(NullPointerException.class);
@@ -101,7 +83,7 @@ public class SimpleRuleEngineTest {
     }
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.InferenceContext, java.util.Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.Context, java.util.Set)}</p>
      * 
      * <p>Ensures that <code>false</code> is returned when passing in an empty set.</p>
      */
@@ -109,9 +91,9 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldReturnFalseForEmptyRuleSet() {
         // given
-        final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
-        final Set<Rule<InferenceContext<Object>>> rules = new TreeSet<Rule<InferenceContext<Object>>>();
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final Context<Object> context = Mockito.mock(Context.class);
+        final Set<Rule<Context<Object>>> rules = new TreeSet<Rule<Context<Object>>>();
 
         // when
         final boolean fired = engine.analyze(context, rules);
@@ -121,7 +103,7 @@ public class SimpleRuleEngineTest {
     }
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.InferenceContext, java.util.Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.Context, java.util.Set)}</p>
      * 
      * <p>Ensures that <code>true</code> is returned if any rule can fire.</p>
      */
@@ -129,13 +111,13 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldReturnTrueIfRuleFired() {
         // given
-        final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final Context<Object> context = Mockito.mock(Context.class);
 
-        final Rule<InferenceContext<Object>> rule = Mockito.mock(Rule.class);
+        final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.fires(context)).willReturn(true);
 
-        final Set<Rule<InferenceContext<Object>>> rules = new TreeSet<Rule<InferenceContext<Object>>>();
+        final Set<Rule<Context<Object>>> rules = new TreeSet<Rule<Context<Object>>>();
         rules.add(rule);
 
         // when
@@ -146,7 +128,7 @@ public class SimpleRuleEngineTest {
     }
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.InferenceContext, java.util.Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.Context, java.util.Set)}</p>
      * 
      * <p>Ensures that <code>false</code> is returned if no rule can fire.</p>
      */
@@ -154,13 +136,13 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldReturnFalseIfNoRuleFires() {
         // given
-        final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final Context<Object> context = Mockito.mock(Context.class);
 
-        final Rule<InferenceContext<Object>> rule = Mockito.mock(Rule.class);
+        final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.fires(context)).willReturn(false);
 
-        final Set<Rule<InferenceContext<Object>>> rules = new TreeSet<Rule<InferenceContext<Object>>>();
+        final Set<Rule<Context<Object>>> rules = new TreeSet<Rule<Context<Object>>>();
         rules.add(rule);
 
         // when
@@ -171,15 +153,15 @@ public class SimpleRuleEngineTest {
     }
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#infer(InferenceContext, Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#infer(Context, Set)}</p>
      * 
      * <p>Ensures that a <code>null</code> context is not permitted</p>
      */
     @Test
     public void shouldNotInferWithNullContext() {
         // given
-        final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final Set<Rule<InferenceContext<Object>>> rules = Mockito.mock(Set.class);
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final Set<Rule<Context<Object>>> rules = Mockito.mock(Set.class);
 
         // when
         this.thrown.expect(NullPointerException.class);
@@ -189,15 +171,15 @@ public class SimpleRuleEngineTest {
     }
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#infer(InferenceContext, Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#infer(Context, Set)}</p>
      * 
      * <p>Ensures that a <code>null</code> rule set is not permitted.</p>
      */
     @Test
     public void shouldNotInferWithNullRuleSet() {
         // given
-        final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final Context<Object> context = Mockito.mock(Context.class);
 
         // when
         this.thrown.expect(NullPointerException.class);
@@ -207,7 +189,7 @@ public class SimpleRuleEngineTest {
     }
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#infer(InferenceContext, Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#infer(Context, Set)}</p>
      * 
      * <p>Ensures that the engine can handle an empty rule set.</p>
      */
@@ -215,9 +197,9 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldRunWithEmptyRuleSet() {
         // given
-        final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
-        final Set<Rule<InferenceContext<Object>>> rules = new TreeSet<Rule<InferenceContext<Object>>>();
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final Context<Object> context = Mockito.mock(Context.class);
+        final Set<Rule<Context<Object>>> rules = new TreeSet<Rule<Context<Object>>>();
 
         // when
 
@@ -226,7 +208,7 @@ public class SimpleRuleEngineTest {
     }
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#infer(InferenceContext, Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#infer(Context, Set)}</p>
      * 
      * <p>Ensures that the engine loops if any rule can fire.</p>
      */
@@ -234,13 +216,13 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldLoopWithFiringRule() {
         // given
-        final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final Context<Object> context = Mockito.mock(Context.class);
 
-        final Rule<InferenceContext<Object>> rule = Mockito.mock(Rule.class);
+        final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.run(context)).willReturn(true).willReturn(false);
 
-        final Set<Rule<InferenceContext<Object>>> rules = new TreeSet<Rule<InferenceContext<Object>>>();
+        final Set<Rule<Context<Object>>> rules = new TreeSet<Rule<Context<Object>>>();
         rules.add(rule);
 
         // when
@@ -250,7 +232,7 @@ public class SimpleRuleEngineTest {
     }
 
     /**
-     * <p>Test method for {@link SimpleRuleEngine#infer(InferenceContext, Set)}</p>
+     * <p>Test method for {@link SimpleRuleEngine#infer(Context, Set)}</p>
      *
      * <p>Ensures that the engine does not loop if no rule can fire.</p>
      */
@@ -258,13 +240,13 @@ public class SimpleRuleEngineTest {
     @Test
     public void shouldNotLoopWithNotFiringRule() {
         // given
-        final RuleEngine<InferenceContext<Object>> engine = new SimpleRuleEngine<InferenceContext<Object>>();
-        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final Context<Object> context = Mockito.mock(Context.class);
 
-        final Rule<InferenceContext<Object>> rule = Mockito.mock(Rule.class);
+        final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.run(context)).willReturn(false);
 
-        final Set<Rule<InferenceContext<Object>>> rules = new TreeSet<Rule<InferenceContext<Object>>>();
+        final Set<Rule<Context<Object>>> rules = new TreeSet<Rule<Context<Object>>>();
         rules.add(rule);
 
         // when

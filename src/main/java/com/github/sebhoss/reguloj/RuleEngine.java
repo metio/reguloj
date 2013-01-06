@@ -1,31 +1,15 @@
-/*
- * Project: viaRules
- * Package: com.github.sebhoss.reguloj
- * File   : RuleEngine.java
- * Created: Nov 10, 2010 - 5:55:55 PM
- *
- *
- * Copyright 2010 viadee IT Unternehmensberatung GmbH
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
+/* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Do What The Fuck You Want
+ * To Public License, Version 2, as published by Sam Hocevar. See
+ * http://sam.zoy.org/wtfpl/COPYING for more details.
  */
 package com.github.sebhoss.reguloj;
 
 import java.util.Set;
 
 /**
- * <p>The {@link RuleEngine} is responsible for logical reasoning. For that it analyzes a given {@link InferenceContext 
+ * <p>The {@link RuleEngine} is responsible for logical reasoning. For that it analyzes a given {@link Context 
  * context} based upon a set of {@link Rule rules}.</p>
  *
  * <p>Both the context and the set of rules have to be supplied with each invocation of any of the available methods.
@@ -43,9 +27,9 @@ import java.util.Set;
  *  <li>
  *      <p>Test whether any rule would fire for a given context:</p>
  * <pre>
- * InferenceContext&lt;X&gt; context = ...;
- * Set&lt;Rule&lt;InferenceContext&lt;X&gt;&gt;&gt; rules = ...;
- * RuleEngine&lt;InferenceContext&lt;X&gt;&gt; engine = ...;
+ * Context&lt;X&gt; context = ...;
+ * Set&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
+ * RuleEngine&lt;Context&lt;X&gt;&gt; engine = ...;
  *
  * boolean fired = engine.analyze(context, rules);
  * </pre>
@@ -54,9 +38,9 @@ import java.util.Set;
  *  <li>
  *      <p>Launch the engine and fire all valid rules:</p>
  * <pre>
- * InferenceContext&lt;X&gt; context = ...;
- * Set&lt;Rule&lt;InferenceContext&lt;X&gt;&gt;&gt; rules = ...;
- * RuleEngine&lt;InferenceContext&lt;X&gt;&gt; engine = ...;
+ * Context&lt;X&gt; context = ...;
+ * Set&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
+ * RuleEngine&lt;Context&lt;X&gt;&gt; engine = ...;
  *
  * engine.infer(context, rules);
  * </pre>
@@ -74,7 +58,7 @@ import java.util.Set;
  * @param <C>   The context type.
  * @since       1.0.0
  */
-public interface RuleEngine<C extends InferenceContext<?>> {
+public interface RuleEngine<C extends Context<?>> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                    METHODS                                                  *
@@ -83,7 +67,7 @@ public interface RuleEngine<C extends InferenceContext<?>> {
     /**
      * <p>Performs a dry-run with this engine by analyzing a given context based upon a set of rules. It will only
      * check whether any rule would fires inside the given context but does not apply any conclusions. For that call
-     * the {@link RuleEngine#infer(InferenceContext, Set) infer}-method.</p>
+     * the {@link RuleEngine#infer(Context, Set) infer}-method.</p>
      * 
      * @param context   The context to analyze (<b>may not be <code>null</code></b>).
      * @param rules     The rule set to use (<b>may not be <code>null</code></b>).

@@ -1,24 +1,8 @@
-/*
- * Project: viaRules
- * Package: com.github.sebhoss.reguloj.implementation
- * File   : RuleImplementationTest.java
- * Created: Nov 10, 2010 - 5:55:55 PM
- *
- *
- * Copyright 2010 viadee IT Unternehmensberatung GmbH
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
+/* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Do What The Fuck You Want
+ * To Public License, Version 2, as published by Sam Hocevar. See
+ * http://sam.zoy.org/wtfpl/COPYING for more details.
  */
 package com.github.sebhoss.reguloj.implementation;
 
@@ -31,7 +15,7 @@ import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
 import com.github.sebhoss.reguloj.Conclusion;
-import com.github.sebhoss.reguloj.InferenceContext;
+import com.github.sebhoss.reguloj.Context;
 import com.github.sebhoss.reguloj.Rule;
 import com.github.sebhoss.reguloj.implementation.RuleImplementation;
 import com.google.common.base.Predicate;
@@ -40,9 +24,7 @@ import com.google.common.base.Predicate;
 /**
  * <p>Test cases for the {@link RuleImplementation}.</p>
  *
- * @author  Sebastian Hoß (sebastian.hoss@viadee.de)
  * @see     RuleImplementation
- * @since   1.0.0
  */
 @SuppressWarnings("static-method")
 public final class RuleImplementationTest {
@@ -78,7 +60,7 @@ public final class RuleImplementationTest {
         this.thrown.expect(NullPointerException.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule = new RuleImplementation<InferenceContext<Object>>(null, null, null);
+        final Rule<Context<Object>> rule = new RuleImplementation<Context<Object>>(null, null, null);
 
         // then
         Assert.assertThat(rule, Is.is(IsNull.nullValue()));
@@ -93,19 +75,19 @@ public final class RuleImplementationTest {
     @Test
     public void shouldCreateRuleIfAllValuesAreSet() {
         // given
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule, Is.is(IsNull.notNullValue()));
     }
 
     /**
-     * <p>Test method for {@link RuleImplementation#run(InferenceContext)}</p>
+     * <p>Test method for {@link RuleImplementation#run(Context)}</p>
      * 
      * <p>Ensures that <code>false</code> is returned if the predicate does not apply.</p>
      */
@@ -113,22 +95,22 @@ public final class RuleImplementationTest {
     @Test
     public void shouldReturnFalseWhenPremiseDoesNotApply() {
         // given
-        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
+        final Context<Object> context = Mockito.mock(Context.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         BDDMockito.given(predicate.apply(context)).willReturn(Boolean.FALSE);
 
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertFalse(rule.run(context));
     }
 
     /**
-     * <p>Test method for {@link RuleImplementation#run(InferenceContext)}</p>
+     * <p>Test method for {@link RuleImplementation#run(Context)}</p>
      * 
      * <p>Ensures that <code>false</code> is returned if the conclusion does not apply.</p>
      */
@@ -136,23 +118,23 @@ public final class RuleImplementationTest {
     @Test
     public void shouldReturnFalseWhenConclusionDoesNotApply() {
         // given
-        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
+        final Context<Object> context = Mockito.mock(Context.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         BDDMockito.given(predicate.apply(context)).willReturn(Boolean.TRUE);
 
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
         BDDMockito.given(conclusion.apply(context)).willReturn(Boolean.FALSE);
 
         // when
-        final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertFalse(rule.run(context));
     }
 
     /**
-     * <p>Test method for {@link RuleImplementation#run(InferenceContext)}</p>
+     * <p>Test method for {@link RuleImplementation#run(Context)}</p>
      * 
      * <p>Ensures that <code>false</code> is returned if the conclusion does not apply.</p>
      */
@@ -160,23 +142,23 @@ public final class RuleImplementationTest {
     @Test
     public void shouldReturnTrueWhenPremiseAndConclusionApply() {
         // given
-        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
+        final Context<Object> context = Mockito.mock(Context.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         BDDMockito.given(predicate.apply(context)).willReturn(Boolean.TRUE);
 
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
         BDDMockito.given(conclusion.apply(context)).willReturn(Boolean.TRUE);
 
         // when
-        final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertTrue(rule.run(context));
     }
 
     /**
-     * <p>Test method for {@link RuleImplementation#fires(InferenceContext)}</p>
+     * <p>Test method for {@link RuleImplementation#fires(Context)}</p>
      * 
      * <p>Ensures that <code>true</code> is returned if the predicate does apply.</p>
      */
@@ -184,22 +166,22 @@ public final class RuleImplementationTest {
     @Test
     public void shouldFireWhenPremiseApplies() {
         // given
-        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
+        final Context<Object> context = Mockito.mock(Context.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         BDDMockito.given(predicate.apply(context)).willReturn(true);
 
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertTrue(rule.fires(context));
     }
 
     /**
-     * <p>Test method for {@link RuleImplementation#fires(InferenceContext)}</p>
+     * <p>Test method for {@link RuleImplementation#fires(Context)}</p>
      * 
      * <p>Ensures that <code>false</code> is returned if the predicate does not apply.</p>
      */
@@ -207,15 +189,15 @@ public final class RuleImplementationTest {
     @Test
     public void shouldNotFireWhenPremiseDoesNotApply() {
         // given
-        final InferenceContext<Object> context = Mockito.mock(InferenceContext.class);
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
+        final Context<Object> context = Mockito.mock(Context.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         BDDMockito.given(predicate.apply(context)).willReturn(false);
 
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertFalse(rule.fires(context));
@@ -229,12 +211,12 @@ public final class RuleImplementationTest {
     @Test
     public void shouldReturnTheSetName() {
         // given
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule.getName(), Is.is(RuleImplementationTest.NAME));
@@ -249,12 +231,12 @@ public final class RuleImplementationTest {
     @Test
     public void equalsIsReflexive() {
         // given
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule.equals(rule), Is.is(true));
@@ -269,14 +251,14 @@ public final class RuleImplementationTest {
     @Test
     public void equalsIsSymmetric() {
         // given
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule1 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule2 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule1.equals(rule2), Is.is(true));
@@ -292,16 +274,16 @@ public final class RuleImplementationTest {
     @Test
     public void equalsIsTransitive() {
         // given
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<InferenceContext<Object>> rule3 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule1 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule2 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule3 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule1.equals(rule2) && rule2.equals(rule3), Is.is(true));
@@ -317,14 +299,14 @@ public final class RuleImplementationTest {
     @Test
     public void equalsIsConsistent() {
         // given
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule1 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule2 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         final boolean alwaysTheSame = rule1.equals(rule2);
@@ -343,12 +325,12 @@ public final class RuleImplementationTest {
     @Test
     public void equalsReturnFalseOnNull() {
         // given
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule.equals(null), Is.is(false));
@@ -363,12 +345,12 @@ public final class RuleImplementationTest {
     @Test
     public void equalsReturnFalseOnWrongClass() {
         // given
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule.equals(""), Is.is(false)); //$NON-NLS-1$
@@ -383,13 +365,13 @@ public final class RuleImplementationTest {
     @Test
     public void equalsWorks() {
         // given
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<InferenceContext<Object>> rule2 = rule1;
+        final Rule<Context<Object>> rule1 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule2 = rule1;
 
         // then
         Assert.assertThat(rule1.equals(rule2), Is.is(true));
@@ -404,14 +386,14 @@ public final class RuleImplementationTest {
     @Test
     public void equalsWorksWithDifferentNames() {
         // given
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<InferenceContext<Object>>("rule2", predicate, conclusion); //$NON-NLS-1$
+        final Rule<Context<Object>> rule1 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule2 =
+                new RuleImplementation<Context<Object>>("rule2", predicate, conclusion); //$NON-NLS-1$
 
         // then
         Assert.assertThat(rule1.equals(rule2), Is.is(false));
@@ -426,15 +408,15 @@ public final class RuleImplementationTest {
     @Test
     public void equalsWorksWithDifferentPremises() {
         // given
-        final Predicate<InferenceContext<Object>> predicate1 = Mockito.mock(Predicate.class);
-        final Predicate<InferenceContext<Object>> predicate2 = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate1 = Mockito.mock(Predicate.class);
+        final Predicate<Context<Object>> predicate2 = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate1, conclusion);
-        final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate2, conclusion);
+        final Rule<Context<Object>> rule1 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate1, conclusion);
+        final Rule<Context<Object>> rule2 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate2, conclusion);
 
         // then
         Assert.assertThat(rule1.equals(rule2), Is.is(false));
@@ -449,15 +431,15 @@ public final class RuleImplementationTest {
     @Test
     public void equalsWorksWithDifferentConclusions() {
         // given
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion1 = Mockito.mock(Conclusion.class);
-        final Conclusion<InferenceContext<Object>> conclusion2 = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion1 = Mockito.mock(Conclusion.class);
+        final Conclusion<Context<Object>> conclusion2 = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion1);
-        final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion2);
+        final Rule<Context<Object>> rule1 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion1);
+        final Rule<Context<Object>> rule2 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion2);
 
         // then
         Assert.assertThat(rule1.equals(rule2), Is.is(false));
@@ -472,12 +454,12 @@ public final class RuleImplementationTest {
     @Test
     public void hashCodeIsSelfConsistent() {
         // given
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         final int alwaysTheSame = rule.hashCode();
@@ -496,14 +478,14 @@ public final class RuleImplementationTest {
     @Test
     public void hashCodeIsConsistentWithEquals() {
         // given
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule1 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule2 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule1.equals(rule2), Is.is(true));
@@ -519,14 +501,14 @@ public final class RuleImplementationTest {
     @Test
     public void shoudCompareToOtherRules() {
         // given
-        final Predicate<InferenceContext<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<InferenceContext<Object>> conclusion = Mockito.mock(Conclusion.class);
+        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
+        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
         // when
-        final Rule<InferenceContext<Object>> rule1 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<InferenceContext<Object>> rule2 =
-                new RuleImplementation<InferenceContext<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule1 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule2 =
+                new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME, predicate, conclusion);
 
         // then
         Assert.assertThat(rule1.compareTo(rule2), Is.is(0));

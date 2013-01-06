@@ -21,7 +21,6 @@ public final class CompositeConclusion<TOPIC> implements Conclusion<TOPIC> {
     // *                                                  ATTRIBUTES                                                 *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-    /** The encapsulated conclusions to call. */
     private final Collection<Conclusion<TOPIC>> conclusions;
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -44,9 +43,6 @@ public final class CompositeConclusion<TOPIC> implements Conclusion<TOPIC> {
     // *                                                    METHODS                                                  *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean apply(final TOPIC target) {
         boolean contextChanged = false;

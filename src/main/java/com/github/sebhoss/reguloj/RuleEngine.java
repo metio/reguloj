@@ -54,11 +54,9 @@ import java.util.Set;
  *  <li>Evaluate whether something like RETE can be applied to this interface and how it can be done.</li>
  * </ul>
  *
- * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
- * @param <C>   The context type.
- * @since       1.0.0
+ * @param <CONTEXT>   The context type.
  */
-public interface RuleEngine<C extends Context<?>> {
+public interface RuleEngine<CONTEXT extends Context<?>> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                    METHODS                                                  *
@@ -73,7 +71,7 @@ public interface RuleEngine<C extends Context<?>> {
      * @param rules     The rule set to use (<b>may not be <code>null</code></b>).
      * @return          <code>true</code> if any rule would fire, <code>false</code> otherwise.
      */
-    boolean analyze(C context, Set<Rule<C>> rules);
+    boolean analyze(CONTEXT context, Set<Rule<CONTEXT>> rules);
 
     /**
      * <p>Launches this engine and lets it analyze and execute a set of rules on a given context.</p>
@@ -81,6 +79,6 @@ public interface RuleEngine<C extends Context<?>> {
      * @param context   The context to analyze (<b>may not be <code>null</code></b>).
      * @param rules     The rules to use (<b>may not be <code>null</code></b>).
      */
-    void infer(C context, Set<Rule<C>> rules);
+    void infer(CONTEXT context, Set<Rule<CONTEXT>> rules);
 
 }

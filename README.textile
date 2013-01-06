@@ -17,22 +17,22 @@ final Rule rule = rule().called(name)
 
 h3. Evaluating rules
 
-p. A @Set@ of @Rule@ objects are evaluated by a @RuleEngine@ in a specific @InferenceContext@. The following example shows how to do it:
+p. A @Set@ of @Rule@ objects are evaluated by a @RuleEngine@ in a specific @Context@. The following example shows how to do it:
 
 bc. 
-InferenceContext<X> context = ...;
-Set<Rule<InferenceContext<X>>> rules = ...;
-RuleEngine<InferenceContext<X>> engine = ...;
+Context<X> context = ...;
+Set<Rule<Context<X>>> rules = ...;
+RuleEngine<Context<X>> engine = ...;
 
 bc. 
-engine.analyze(context, rules); // true if any rule fired.
+engine.analyze(context, rules); // true if at least one rule can fired.
 
 bc. 
 engine.infer(context, rules); // perform conclusions of those rules that fired
 
-This project provides a simple implementation of the @RuleEngine@ interface and a set of rules can be created with the standard Java library. The @InferenceContext@ however may need some more work.
+This project provides a simple implementation of the @RuleEngine@ interface and a set of rules can be created with the standard Java library. The @Context@ however may need some more work.
 
-p. In case only the _topic_ of the context is needed, you can call the available interface method directly. However it may be necessary that some sort of contextual information is needed inside predicates and conclusions. The @InferenceContext@ is the way to make those informations available. During our internal development, we created an Android specific context which was tailored to our domain and thus provides methods to e.g. get the current GPS coordinates. Since those methods won't work in an environment which does not have access to a GPS sensor (or any other domain specific functionality) we decided to leave those out. The API further acknowledges this by using @<C extends InferenceContext<?>>@ as type parameter for all methods which expect an @InferenceContext@. See item 28 in "Effective Java":http://java.sun.com/docs/books/effective/ for more details.
+p. In case only the _topic_ of the context is needed, you can call the available interface method directly. However it may be necessary that some sort of contextual information is needed inside predicates and conclusions. The @Context@ is the way to make those informations available. During our internal development, we created an Android specific context which was tailored to our domain and thus provides methods to e.g. get the current GPS coordinates. Since those methods won't work in an environment which does not have access to a GPS sensor (or any other domain specific functionality) we decided to leave those out. The API further acknowledges this by using @<C extends Context<?>>@ as type parameter for all methods which expect an @Context@. See item 28 in "Effective Java":http://java.sun.com/docs/books/effective/ for more details.
 
 h3. Integration
 

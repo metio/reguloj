@@ -49,9 +49,7 @@ package com.github.sebhoss.reguloj;
  *  <li>Test the interface and write back about errors, bugs and wishes.</li>
  * </ul>
  * 
- * @author      Sebastian Hoß (sebastian.hoss@viadee.de)
  * @param <CONTEXT>   The context type.
- * @since       1.0.0
  */
 public interface Rule<CONTEXT extends Context<?>> extends Comparable<Rule<? extends CONTEXT>> {
 

@@ -17,22 +17,17 @@ import com.google.common.base.Predicate;
 /**
  * <p>Standard implementation of the {@link Rule} interface.</p>
  * 
- * @param <C>   The context type.
+ * @param <CONTEXT>   The context type.
  */
-final class RuleImplementation<C extends Context<?>> implements Rule<C> {
+final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTEXT> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                  ATTRIBUTES                                                 *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-    /** The name of this rule. */
     private final String        name;
-
-    /** The predicate of this rule. */
-    private final Predicate<C>  predicate;
-
-    /** The conclusion of this rule. */
-    private final Conclusion<C> conclusion;
+    private final Predicate<CONTEXT>  predicate;
+    private final Conclusion<CONTEXT> conclusion;
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                 CONSTRUCTORS                                                *
@@ -45,7 +40,7 @@ final class RuleImplementation<C extends Context<?>> implements Rule<C> {
      * @param predicate     The predicate of the new rule (<b>may not be <code>null</code></b>).
      * @param conclusion    The conclusion of the new rule (<b>may not be <code>null</code></b>).
      */
-    RuleImplementation(final String name, final Predicate<C> predicate, final Conclusion<C> conclusion) {
+    RuleImplementation(final String name, final Predicate<CONTEXT> predicate, final Conclusion<CONTEXT> conclusion) {
         this.name = Preconditions.checkNotNull(name);
         this.predicate = Preconditions.checkNotNull(predicate);
         this.conclusion = Preconditions.checkNotNull(conclusion);
@@ -55,11 +50,8 @@ final class RuleImplementation<C extends Context<?>> implements Rule<C> {
     // *                                                    METHODS                                                  *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public boolean run(final C context) {
+    public boolean run(final CONTEXT context) {
         if (this.predicate.apply(Preconditions.checkNotNull(context))) {
             return this.conclusion.apply(context);
         }
@@ -67,51 +59,36 @@ final class RuleImplementation<C extends Context<?>> implements Rule<C> {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public boolean fires(final C context) {
+    public boolean fires(final CONTEXT context) {
         return this.predicate.apply(Preconditions.checkNotNull(context));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String getName() {
         return this.name;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int hashCode() {
         return Objects.hashCode(this.name, this.predicate, this.conclusion);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean equals(final Object object) {
         if (object != null && object instanceof RuleImplementation) {
-            final RuleImplementation<?> other = (RuleImplementation<?>) object;
+            final RuleImplementation<?> that = (RuleImplementation<?>) object;
 
-            return Objects.equal(this.name, other.name)
-                    && Objects.equal(this.predicate, other.predicate)
-                    && Objects.equal(this.conclusion, other.conclusion);
+            return Objects.equal(this.name, that.name)
+                    && Objects.equal(this.predicate, that.predicate)
+                    && Objects.equal(this.conclusion, that.conclusion);
         }
 
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public int compareTo(final Rule<? extends C> object) {
+    public int compareTo(final Rule<? extends CONTEXT> object) {
         return this.name.compareTo(object.getName());
     }
 

@@ -17,36 +17,16 @@ import com.google.common.base.Preconditions;
 /**
  * <p>Simple implementation of the {@link RuleEngine} interface which supports rule-chaining.</p>
  * 
- * @param <C>   The context type.
+ * @param <CONTEXT>   The context type.
  */
-public final class SimpleRuleEngine<C extends Context<?>> implements RuleEngine<C> {
+public final class SimpleRuleEngine<CONTEXT extends Context<?>> implements RuleEngine<CONTEXT> {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                 CONSTRUCTORS                                                *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-    /**
-     * Default constructor for this class to make checkstyle happy.
-     */
-    public SimpleRuleEngine() {
-        super();
-    }
-
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                    METHODS                                                  *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public boolean analyze(final C context, final Set<Rule<C>> rules) {
-        // Check inputs
-        Preconditions.checkNotNull(context);
-        Preconditions.checkNotNull(rules);
+    public boolean analyze(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
+        checkInputs(context, rules);
 
         // Check whether any rule fires
-        for (final Rule<C> rule : rules) {
+        for (final Rule<CONTEXT> rule : rules) {
             if (rule.fires(context)) {
                 // A rule fired..
 
@@ -54,20 +34,13 @@ public final class SimpleRuleEngine<C extends Context<?>> implements RuleEngine<
                 return true;
             }
         }
-        // No rule fired..
 
-        // .. so we are returning false
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void infer(final C context, final Set<Rule<C>> rules) {
-        // Check inputs
-        Preconditions.checkNotNull(context);
-        Preconditions.checkNotNull(rules);
+    public void infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
+        checkInputs(context, rules);
 
         // Setup
         boolean ruleFired;
@@ -78,7 +51,7 @@ public final class SimpleRuleEngine<C extends Context<?>> implements RuleEngine<
             ruleFired = false;
 
             // Check whether any rule fires
-            for (final Rule<C> rule : rules) {
+            for (final Rule<CONTEXT> rule : rules) {
                 if (rule.run(context)) {
                     // A rule fired..
 
@@ -88,5 +61,10 @@ public final class SimpleRuleEngine<C extends Context<?>> implements RuleEngine<
             }
         } while (ruleFired);
     }
+    
+    private void checkInputs(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
+		Preconditions.checkNotNull(context);
+        Preconditions.checkNotNull(rules);
+	}
 
 }

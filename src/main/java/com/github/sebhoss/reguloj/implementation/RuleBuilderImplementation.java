@@ -17,22 +17,19 @@ import com.google.common.base.Predicate;
 /**
  * <p>Standard implementation of the {@link RuleBuilder} interface.</p>
  *
- * @param <C>   The context type.
+ * @param <CONTEXT>   The context type.
  */
-public final class RuleBuilderImplementation<C extends Context<?>> implements RuleBuilder<C> {
+public final class RuleBuilderImplementation<CONTEXT extends Context<?>> implements RuleBuilder<CONTEXT> {
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                  ATTRIBUTES                                                 *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-    /** The name for the new rule. */
     private String        name;
 
-    /** The premise for the new rule. */
-    private Predicate<C>  premise;
+    private Predicate<CONTEXT>  predicate;
 
-    /** The conclusion for the new rule. */
-    private Conclusion<C> conclusion;
+    private Conclusion<CONTEXT> conclusion;
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // *                                                 CONSTRUCTORS                                                *
@@ -49,31 +46,22 @@ public final class RuleBuilderImplementation<C extends Context<?>> implements Ru
     // *                                                    METHODS                                                  *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public RuleBuilder<C> when(final Predicate<C> newPremise) {
-        this.premise = Preconditions.checkNotNull(newPremise);
+    public RuleBuilder<CONTEXT> when(final Predicate<CONTEXT> newPredicate) {
+        this.predicate = Preconditions.checkNotNull(newPredicate);
 
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Rule<C> then(final Conclusion<C> newConclusion) {
+    public Rule<CONTEXT> then(final Conclusion<CONTEXT> newConclusion) {
         this.conclusion = Preconditions.checkNotNull(newConclusion);
 
-        return new RuleImplementation<C>(this.name, this.premise, this.conclusion);
+        return new RuleImplementation<CONTEXT>(this.name, this.predicate, this.conclusion);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public RuleBuilder<C> called(final String newName) {
+    public RuleBuilder<CONTEXT> called(final String newName) {
         this.name = Preconditions.checkNotNull(newName);
 
         return this;

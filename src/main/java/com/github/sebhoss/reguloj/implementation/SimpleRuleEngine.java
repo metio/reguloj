@@ -39,7 +39,6 @@ public final class SimpleRuleEngine<CONTEXT extends Context<?>> implements RuleE
         checkInputs(context, rules);
 
         boolean ruleFired;
-
         do {
             ruleFired = false;
 

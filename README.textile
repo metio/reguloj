@@ -34,6 +34,8 @@ p. This project provides a simple implementation of the @RuleEngine@ interface a
 
 p. In case only the _topic_ of the context is needed, you can call the available interface method directly. However it may be necessary that some sort of contextual information is needed inside predicates and conclusions. The @Context@ is the way to make those informations available. During our internal development, we created an Android specific context which was tailored to our domain and thus provides methods to e.g. get the current GPS coordinates. Since those methods won't work in an environment which does not have access to a GPS sensor (or any other domain specific functionality) we decided to leave those out. The API further acknowledges this by using @<C extends Context<?>>@ as type parameter for all methods which expect an @Context@. See item 28 in "Effective Java":http://java.sun.com/docs/books/effective/ for more details.
 
+p. This project supplies a simple implementation for the @RuleEngine@ interface, called @SimpleRuleEngine@, which supports rule chaining and a simple implementation of the @Context@ interface called @SimpleContext@.
+
 h3. Integration
 
 p. To use reguloj just declare the following dependency inside your _POM_:

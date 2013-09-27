@@ -42,7 +42,7 @@ bc.
 <dependency>
   <groupId>com.github.sebhoss</groupId>
   <artifactId>reguloj</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>${version.reguloj}</version>
 </dependency>
 
 h2. Development

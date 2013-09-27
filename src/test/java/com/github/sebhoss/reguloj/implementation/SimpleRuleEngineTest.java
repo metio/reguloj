@@ -41,8 +41,8 @@ public class SimpleRuleEngineTest {
      * Ensures that a <code>null</code> context ist not permitted.
      * </p>
      */
-    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldNotAnalyzeNullContext() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Set<Rule<Context<Object>>> rules = Mockito.mock(Set.class);
@@ -61,8 +61,8 @@ public class SimpleRuleEngineTest {
      * Ensures that a <code>null</code> rule set ist not permitted.
      * </p>
      */
-    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldNotAnalyzeNullRuleSet() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
@@ -81,8 +81,8 @@ public class SimpleRuleEngineTest {
      * Ensures that <code>false</code> is returned when passing in an empty set.
      * </p>
      */
-    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnFalseForEmptyRuleSet() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
@@ -101,8 +101,8 @@ public class SimpleRuleEngineTest {
      * Ensures that <code>true</code> is returned if any rule can fire.
      * </p>
      */
-    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnTrueIfRuleFired() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
@@ -124,8 +124,8 @@ public class SimpleRuleEngineTest {
      * Ensures that <code>false</code> is returned if no rule can fire.
      * </p>
      */
-    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnFalseIfNoRuleFires() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
@@ -201,8 +201,8 @@ public class SimpleRuleEngineTest {
      * Ensures that the engine loops if any rule can fire.
      * </p>
      */
-    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldLoopWithFiringRule() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
@@ -222,8 +222,8 @@ public class SimpleRuleEngineTest {
      * Ensures that the engine does not loop if no rule can fire.
      * </p>
      */
-    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldNotLoopWithNotFiringRule() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);

@@ -16,7 +16,6 @@ import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
 import com.github.sebhoss.reguloj.Conclusion;
-import com.github.sebhoss.reguloj.implementation.CompositeConclusion;
 import com.google.common.collect.Lists;
 
 /**
@@ -25,17 +24,9 @@ import com.google.common.collect.Lists;
 @SuppressWarnings("static-method")
 public class CompositeConclusionTest {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                  ATTRIBUTES                                                 *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
     /** Checks expected exception inside single test cases. */
     @org.junit.Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                    TESTS                                                    *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
      * 
@@ -43,13 +34,10 @@ public class CompositeConclusionTest {
     @SuppressWarnings("unused")
     @Test
     public void shouldNotAllowEmptyCollection() {
-        // given
         final Collection<Conclusion<Object>> conclusions = Lists.newArrayList();
 
-        // when
-        this.thrown.expect(IllegalArgumentException.class);
+        thrown.expect(IllegalArgumentException.class);
 
-        // then
         new CompositeConclusion<Object>(conclusions);
     }
 

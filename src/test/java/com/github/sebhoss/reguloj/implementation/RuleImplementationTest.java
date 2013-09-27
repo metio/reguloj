@@ -61,8 +61,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that <code>false</code> is returned if the predicate does not apply.
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnFalseWhenPremiseDoesNotApply() {
         final Context<Object> context = Mockito.mock(Context.class);
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
@@ -77,8 +77,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that <code>false</code> is returned if the conclusion does not apply.
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnFalseWhenConclusionDoesNotApply() {
         final Context<Object> context = Mockito.mock(Context.class);
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
@@ -94,8 +94,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that <code>false</code> is returned if the conclusion does not apply.
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnTrueWhenPremiseAndConclusionApply() {
         final Context<Object> context = Mockito.mock(Context.class);
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
@@ -111,8 +111,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that <code>true</code> is returned if the predicate does apply.
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldFireWhenPremiseApplies() {
         final Context<Object> context = Mockito.mock(Context.class);
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
@@ -127,8 +127,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that <code>false</code> is returned if the predicate does not apply.
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldNotFireWhenPremiseDoesNotApply() {
         final Context<Object> context = Mockito.mock(Context.class);
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
@@ -156,8 +156,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that equals is reflexive
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void equalsIsReflexive() {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
@@ -170,8 +170,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that equals is symmetric
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void equalsIsSymmetric() {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
@@ -186,8 +186,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that equals is transitive
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void equalsIsTransitive() {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
@@ -203,8 +203,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that equals is consistent
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void equalsIsConsistent() {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
@@ -222,8 +222,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that equals is returns <code>false</code> on <code>null</code> values.
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void equalsReturnFalseOnNull() {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
@@ -236,8 +236,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that equals is returns <code>false</code> on <code>null</code> values.
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void equalsReturnFalseOnWrongClass() {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
@@ -250,8 +250,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that equals works with identical instances.
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void equalsWorks() {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
@@ -265,8 +265,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that equals works with different names
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void equalsWorksWithDifferentNames() {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
@@ -280,8 +280,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that equals works with different predicates.
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void equalsWorksWithDifferentPremises() {
         final Predicate<Context<Object>> predicate1 = Mockito.mock(Predicate.class);
         final Predicate<Context<Object>> predicate2 = Mockito.mock(Predicate.class);
@@ -298,8 +298,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that equals works with different conclusions.
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void equalsWorksWithDifferentConclusions() {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion1 = Mockito.mock(Conclusion.class);
@@ -316,8 +316,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that hashCode() always returns the same value for a same instance.
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void hashCodeIsSelfConsistent() {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
@@ -334,8 +334,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that hashCode() is consistent with equals().
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void hashCodeIsConsistentWithEquals() {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
@@ -350,8 +350,8 @@ public final class RuleImplementationTest {
     /**
      * Ensures that compareTo() is consistent with equals().
      */
-    @SuppressWarnings("boxing")
     @Test
+    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shoudCompareToOtherRules() {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);

@@ -6,19 +6,19 @@
  */
 package com.github.sebhoss.reguloj.implementation;
 
-import org.hamcrest.core.Is;
-import org.hamcrest.core.IsNull;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.mockito.Mockito;
-
 import com.github.sebhoss.common.annotation.CompilerWarnings;
 import com.github.sebhoss.reguloj.Conclusion;
 import com.github.sebhoss.reguloj.Context;
 import com.github.sebhoss.reguloj.Rule;
 import com.github.sebhoss.reguloj.RuleBuilder;
 import com.google.common.base.Predicate;
+
+import org.hamcrest.core.Is;
+import org.hamcrest.core.IsNull;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.mockito.Mockito;
 
 /**
  * Test cases for the {@link RuleBuilderImplementation}.
@@ -44,6 +44,7 @@ public final class RuleBuilderImplementationTest {
      * </p>
      */
     @Test
+    @SuppressWarnings(CompilerWarnings.UNCHECKED)
     public void shouldCreateRuleIfAllValuesAreSet() {
         final RuleBuilder<Context<Object>> builder = new RuleBuilderImplementation<>();
         builder.called(RuleBuilderImplementationTest.NAME).when(Mockito.mock(Predicate.class));

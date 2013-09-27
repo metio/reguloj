@@ -9,6 +9,11 @@ package com.github.sebhoss.reguloj.implementation;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.github.sebhoss.common.annotation.CompilerWarnings;
+import com.github.sebhoss.reguloj.Context;
+import com.github.sebhoss.reguloj.Rule;
+import com.github.sebhoss.reguloj.RuleEngine;
+
 import org.hamcrest.core.Is;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,17 +21,12 @@ import org.junit.rules.ExpectedException;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
-import com.github.sebhoss.common.annotation.CompilerWarnings;
-import com.github.sebhoss.reguloj.Context;
-import com.github.sebhoss.reguloj.Rule;
-import com.github.sebhoss.reguloj.RuleEngine;
-
 /**
  * Test cases for the {@link SimpleRuleEngine}.
  * 
  * @see SimpleRuleEngine
  */
-@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
+@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD, CompilerWarnings.UNCHECKED })
 public class SimpleRuleEngineTest {
 
     /** Checks expected exception inside single test cases. */

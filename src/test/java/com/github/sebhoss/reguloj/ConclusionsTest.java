@@ -10,16 +10,16 @@ import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.Iterator;
 
+import com.github.sebhoss.common.annotation.CompilerWarnings;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsNull;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
-
-import com.github.sebhoss.common.annotation.CompilerWarnings;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 
 /**
  * Test cases for the {@link Conclusions} utility class.
@@ -75,6 +75,7 @@ public final class ConclusionsTest {
      * Ensures that a filled collection is accepted.
      * </p>
      */
+    @SuppressWarnings(CompilerWarnings.UNCHECKED)
     @Test
     public void shouldAcceptCollection() {
         final Collection<Conclusion<String>> conclusions = Lists.newArrayList();
@@ -128,6 +129,7 @@ public final class ConclusionsTest {
      * </p>
      */
     @Test
+    @SuppressWarnings(CompilerWarnings.UNCHECKED)
     public void shouldAcceptIterable() {
         final Collection<Conclusion<String>> conclusions = Lists.newArrayList();
         conclusions.add(Mockito.mock(Conclusion.class));
@@ -180,6 +182,7 @@ public final class ConclusionsTest {
      * </p>
      */
     @Test
+    @SuppressWarnings(CompilerWarnings.UNCHECKED)
     public void shouldAcceptIterator() {
         final Collection<Conclusion<String>> conclusions = Lists.newArrayList();
         final Conclusion<String> conclusion1 = Mockito.mock(Conclusion.class);
@@ -201,6 +204,7 @@ public final class ConclusionsTest {
      * </p>
      */
     @Test
+    @SuppressWarnings(CompilerWarnings.UNCHECKED)
     public void shouldCreateCompositionFromMultipleConclusions() {
         final Conclusion<String> conclusion1 = Mockito.mock(Conclusion.class);
         final Conclusion<String> conclusion2 = Mockito.mock(Conclusion.class);
@@ -219,6 +223,7 @@ public final class ConclusionsTest {
      * </p>
      */
     @Test
+    @SuppressWarnings(CompilerWarnings.UNCHECKED)
     public void shouldNotAllowNullFirstConclusions() {
         final Conclusion<String> conclusion = Mockito.mock(Conclusion.class);
 
@@ -236,6 +241,7 @@ public final class ConclusionsTest {
      * </p>
      */
     @Test
+    @SuppressWarnings(CompilerWarnings.UNCHECKED)
     public void shouldNotAllowNullSecondConclusions() {
         final Conclusion<String> conclusion = Mockito.mock(Conclusion.class);
 

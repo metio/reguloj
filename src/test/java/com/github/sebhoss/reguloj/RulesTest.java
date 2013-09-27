@@ -8,14 +8,14 @@ package com.github.sebhoss.reguloj;
 
 import java.lang.reflect.Constructor;
 
+import com.github.sebhoss.common.annotation.CompilerWarnings;
+import com.google.common.base.Predicate;
+
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsNull;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import com.github.sebhoss.common.annotation.CompilerWarnings;
-import com.google.common.base.Predicate;
 
 /**
  * Test cases for the {@link Rules} utility class.
@@ -54,6 +54,7 @@ public final class RulesTest {
      * </p>
      */
     @Test
+    @SuppressWarnings(CompilerWarnings.UNCHECKED)
     public void shouldCreateRule() {
         final RuleBuilder<Context<Object>> builder = Rules.<Context<Object>> rule();
         builder.called(RulesTest.NAME).when(Mockito.mock(Predicate.class));

@@ -36,9 +36,7 @@ package com.github.sebhoss.reguloj;
 public interface Context<TOPIC> {
 
     /**
-     * Gets the topic of this inference context.
-     * 
-     * @return The topic of this context.
+     * @return The topic of this inference context.
      */
     TOPIC getTopic();
 

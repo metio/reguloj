@@ -63,7 +63,7 @@ public interface Rule<CONTEXT extends Context<?>> extends Comparable<Rule<? exte
      * will run its enclosing conclusion.
      * 
      * @param context
-     *            The context to use (<b>may not be <code>null</code></b>).
+     *            The context to use.
      * @return <code>true</code> if this rule did change the state of the given context, <code>false</code> otherwise.
      */
     boolean run(CONTEXT context);
@@ -72,7 +72,7 @@ public interface Rule<CONTEXT extends Context<?>> extends Comparable<Rule<? exte
      * Checks whether this rule would fire for a given context.
      * 
      * @param context
-     *            The context to check (<b>may not be <code>null</code></b>).
+     *            The context to check.
      * @return <code>true</code> if this rule would fire, <code>false</code> otherwise.
      */
     boolean fires(CONTEXT context);

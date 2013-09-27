@@ -26,7 +26,7 @@ public final class Conclusions {
      * @param <T>
      *            The topic of the inference process.
      * @param conclusions
-     *            The conclusions to group (<b>may not be <code>null</code> nor empty</b>).
+     *            The conclusions to group (<b>may not be empty</b>).
      * @return A new conclusion builder.
      */
     public static <T> Conclusion<T> conclude(final Collection<? extends Conclusion<T>> conclusions) {
@@ -42,9 +42,9 @@ public final class Conclusions {
      * @param <T>
      *            The topic of the inference process.
      * @param conclusion1
-     *            The first conclusion to use (<b>may not be <code>null</code></b>).
+     *            The first conclusion to use.
      * @param conclusion2
-     *            The second conclusion to use (<b>may not be <code>null</code></b>).
+     *            The second conclusion to use.
      * @return A new conclusion builder.
      */
     public static <T> Conclusion<T> conclude(final Conclusion<T> conclusion1, final Conclusion<T> conclusion2) {
@@ -60,7 +60,7 @@ public final class Conclusions {
      * @param <T>
      *            The topic of the inference process.
      * @param conclusions
-     *            The conclusions to group (<b>may not be <code>null</code> nor empty</b>).
+     *            The conclusions to group (<b>may not be empty</b>).
      * @return A new conclusion builder.
      */
     public static <T> Conclusion<T> conclude(final Iterable<? extends Conclusion<T>> conclusions) {
@@ -76,7 +76,7 @@ public final class Conclusions {
      * @param <T>
      *            The topic of the inference process.
      * @param conclusions
-     *            The conclusions to group (<b>may not be <code>null</code> nor empty</b>).
+     *            The conclusions to group (<b>may not be empty</b>).
      * @return A new conclusion builder.
      */
     public static <T> Conclusion<T> conclude(final Iterator<? extends Conclusion<T>> conclusions) {

@@ -21,7 +21,7 @@ public final class CompositeConclusion<TOPIC> implements Conclusion<TOPIC> {
 
     /**
      * @param conclusions
-     *            The encapsulated conclusions to call (<b>may not be <code>null</code> nor empty</b>).
+     *            The encapsulated conclusions to call (<b>may not be empty</b>).
      */
     public CompositeConclusion(final Collection<Conclusion<TOPIC>> conclusions) {
         Preconditions.checkNotNull(conclusions);

@@ -32,7 +32,7 @@ public interface Conclusion<TOPIC> {
      * Applies the encapsulated action on a given target.
      * 
      * @param target
-     *            The target itself (<b>may not be <code>null</code></b>).
+     *            The target itself.
      * @return <code>true</code> if the conclusion did change the state of the target, <code>false</code> otherwise.
      */
     boolean apply(TOPIC target);

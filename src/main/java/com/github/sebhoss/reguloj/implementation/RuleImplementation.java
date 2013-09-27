@@ -32,11 +32,11 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
      * Constructor for a new {@link Rule} implementation.
      * 
      * @param name
-     *            The name of the new rule (<b>may not be <code>null</code></b>).
+     *            The name of the new rule.
      * @param predicate
-     *            The predicate of the new rule (<b>may not be <code>null</code></b>).
+     *            The predicate of the new rule.
      * @param conclusion
-     *            The conclusion of the new rule (<b>may not be <code>null</code></b>).
+     *            The conclusion of the new rule.
      */
     RuleImplementation(final String name, final Predicate<CONTEXT> predicate, final Conclusion<CONTEXT> conclusion) {
         this.name = Nullsafe.nullsafe(Preconditions.checkNotNull(name));

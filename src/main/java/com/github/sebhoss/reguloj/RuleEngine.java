@@ -71,9 +71,9 @@ public interface RuleEngine<CONTEXT extends Context<?>> {
      * {@link RuleEngine#infer(Context, Set) infer}-method.
      * 
      * @param context
-     *            The context to analyze (<b>may not be <code>null</code></b>).
+     *            The context to analyze.
      * @param rules
-     *            The rule set to use (<b>may not be <code>null</code></b>).
+     *            The rule set to use.
      * @return <code>true</code> if any rule would fire, <code>false</code> otherwise.
      */
     boolean analyze(CONTEXT context, Set<Rule<CONTEXT>> rules);
@@ -82,9 +82,9 @@ public interface RuleEngine<CONTEXT extends Context<?>> {
      * Launches this engine and lets it analyze and execute a set of rules on a given context.
      * 
      * @param context
-     *            The context to analyze (<b>may not be <code>null</code></b>).
+     *            The context to analyze.
      * @param rules
-     *            The rules to use (<b>may not be <code>null</code></b>).
+     *            The rules to use.
      */
     void infer(CONTEXT context, Set<Rule<CONTEXT>> rules);
 

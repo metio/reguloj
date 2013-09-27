@@ -64,7 +64,7 @@ public interface RuleBuilder<CONTEXT extends Context<?>> {
      * Sets the predicate for the new rule.
      * 
      * @param predicate
-     *            The predicate to set (<b>may no be <code>null</code></b>).
+     *            The predicate to set.
      * @return The current rule builder.
      */
     RuleBuilder<CONTEXT> when(Predicate<CONTEXT> predicate);
@@ -73,7 +73,7 @@ public interface RuleBuilder<CONTEXT extends Context<?>> {
      * Sets the conclusion for the new rule.
      * 
      * @param conclusion
-     *            The conclusion to set (<b>may no be <code>null</code></b>).
+     *            The conclusion to set.
      * @return The current rule builder.
      */
     Rule<CONTEXT> then(Conclusion<CONTEXT> conclusion);
@@ -82,7 +82,7 @@ public interface RuleBuilder<CONTEXT extends Context<?>> {
      * Sets the name of the new rule.
      * 
      * @param name
-     *            The name to set (<b>may not be <code>null</code></b>).
+     *            The name to set.
      * @return The current rule builder.
      */
     RuleBuilder<CONTEXT> called(String name);

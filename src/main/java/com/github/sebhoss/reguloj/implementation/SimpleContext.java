@@ -14,7 +14,7 @@ import com.github.sebhoss.reguloj.Context;
  * @param <TOPIC>
  *            The topic of the context.
  */
-public final class SimpleContext<TOPIC> implements Context<TOPIC> {
+public class SimpleContext<TOPIC> implements Context<TOPIC> {
 
     private final TOPIC topic;
 
@@ -27,7 +27,7 @@ public final class SimpleContext<TOPIC> implements Context<TOPIC> {
     }
 
     @Override
-    public TOPIC getTopic() {
+    public final TOPIC getTopic() {
         return topic;
     }
 

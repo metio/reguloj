@@ -16,6 +16,7 @@ import org.junit.rules.ExpectedException;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
+import com.github.sebhoss.common.annotation.CompilerWarnings;
 import com.github.sebhoss.reguloj.Context;
 import com.github.sebhoss.reguloj.Rule;
 import com.github.sebhoss.reguloj.RuleEngine;
@@ -25,7 +26,7 @@ import com.github.sebhoss.reguloj.RuleEngine;
  * 
  * @see SimpleRuleEngine
  */
-@SuppressWarnings("static-method")
+@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
 public class SimpleRuleEngineTest {
 
     /** Checks expected exception inside single test cases. */

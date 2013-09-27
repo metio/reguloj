@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 
+import com.github.sebhoss.common.annotation.CompilerWarnings;
 import com.github.sebhoss.reguloj.Conclusion;
 import com.github.sebhoss.reguloj.Context;
 import com.github.sebhoss.reguloj.Rule;
@@ -24,7 +25,7 @@ import com.google.common.base.Predicate;
  * 
  * @see RuleBuilderImplementation
  */
-@SuppressWarnings("static-method")
+@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
 public final class RuleBuilderImplementationTest {
 
     /** Constant name for all rules inside this test. */

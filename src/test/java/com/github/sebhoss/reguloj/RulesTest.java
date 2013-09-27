@@ -14,6 +14,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.github.sebhoss.common.annotation.CompilerWarnings;
 import com.google.common.base.Predicate;
 
 /**
@@ -21,7 +22,7 @@ import com.google.common.base.Predicate;
  * 
  * @see Rules
  */
-@SuppressWarnings("static-method")
+@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
 public final class RulesTest {
 
     /** Constant name for all rules inside this test. */

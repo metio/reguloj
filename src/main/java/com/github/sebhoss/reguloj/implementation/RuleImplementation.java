@@ -46,8 +46,8 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
 
     @Override
     public boolean run(final CONTEXT context) {
-        if (this.predicate.apply(Preconditions.checkNotNull(context))) {
-            return this.conclusion.apply(context);
+        if (predicate.apply(Preconditions.checkNotNull(context))) {
+            return conclusion.apply(context);
         }
 
         return false;
@@ -55,17 +55,17 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
 
     @Override
     public boolean fires(final CONTEXT context) {
-        return this.predicate.apply(Preconditions.checkNotNull(context));
+        return predicate.apply(Preconditions.checkNotNull(context));
     }
 
     @Override
     public String getName() {
-        return this.name;
+        return name;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.name, this.predicate, this.conclusion);
+        return Objects.hashCode(name, predicate, conclusion);
     }
 
     @Override
@@ -73,8 +73,8 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
         if (object != null && object instanceof RuleImplementation) {
             final RuleImplementation<?> that = (RuleImplementation<?>) object;
 
-            return Objects.equal(this.name, that.name) && Objects.equal(this.predicate, that.predicate)
-                    && Objects.equal(this.conclusion, that.conclusion);
+            return Objects.equal(name, that.name) && Objects.equal(predicate, that.predicate)
+                    && Objects.equal(conclusion, that.conclusion);
         }
 
         return false;
@@ -82,7 +82,7 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
 
     @Override
     public int compareTo(final Rule<? extends CONTEXT> object) {
-        return this.name.compareTo(object.getName());
+        return name.compareTo(object.getName());
     }
 
 }

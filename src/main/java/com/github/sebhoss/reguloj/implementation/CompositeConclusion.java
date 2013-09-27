@@ -34,7 +34,7 @@ public final class CompositeConclusion<TOPIC> implements Conclusion<TOPIC> {
     public boolean apply(final TOPIC target) {
         boolean contextChanged = false;
 
-        for (final Conclusion<TOPIC> conclusion : this.conclusions) {
+        for (final Conclusion<TOPIC> conclusion : conclusions) {
             if (conclusion.apply(target)) {
                 contextChanged = true;
             }

@@ -45,8 +45,6 @@ bc.
   <version>1.0.0-SNAPSHOT</version>
 </dependency>
 
-p. Alternatively copy the latest _JAR_  from our "download archive":https://github.com/viadee/viaRules/downloads to your projects library folder and put it in your classpath.
-
 h2. Development
 
 h3. License

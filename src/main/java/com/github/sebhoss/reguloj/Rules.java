@@ -23,7 +23,7 @@ public final class Rules {
      * @return A new rule builder.
      */
     public static <C extends Context<?>> RuleBuilder<C> rule() {
-        return new RuleBuilderImplementation<C>();
+        return new RuleBuilderImplementation<>();
     }
 
     private Rules() {

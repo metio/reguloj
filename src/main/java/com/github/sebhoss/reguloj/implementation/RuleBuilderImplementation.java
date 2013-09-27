@@ -47,7 +47,7 @@ public final class RuleBuilderImplementation<CONTEXT extends Context<?>> impleme
     public Rule<CONTEXT> then(final Conclusion<CONTEXT> newConclusion) {
         this.conclusion = Preconditions.checkNotNull(newConclusion);
 
-        return new RuleImplementation<CONTEXT>(this.name, this.predicate, this.conclusion);
+        return new RuleImplementation<>(this.name, this.predicate, this.conclusion);
     }
 
     @Override

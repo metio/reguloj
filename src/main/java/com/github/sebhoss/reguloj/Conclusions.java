@@ -32,7 +32,7 @@ public final class Conclusions {
         Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(!conclusions.isEmpty());
 
-        return new CompositeConclusion<T>(ImmutableList.copyOf(conclusions));
+        return new CompositeConclusion<>(ImmutableList.copyOf(conclusions));
     }
 
     /**
@@ -50,7 +50,7 @@ public final class Conclusions {
         Preconditions.checkNotNull(conclusion1);
         Preconditions.checkNotNull(conclusion2);
 
-        return new CompositeConclusion<T>(ImmutableList.of(conclusion1, conclusion2));
+        return new CompositeConclusion<>(ImmutableList.of(conclusion1, conclusion2));
     }
 
     /**
@@ -66,7 +66,7 @@ public final class Conclusions {
         Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(!Iterables.isEmpty(conclusions));
 
-        return new CompositeConclusion<T>(ImmutableList.copyOf(conclusions));
+        return new CompositeConclusion<>(ImmutableList.copyOf(conclusions));
     }
 
     /**
@@ -82,7 +82,7 @@ public final class Conclusions {
         Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(conclusions.hasNext());
 
-        return new CompositeConclusion<T>(ImmutableList.copyOf(conclusions));
+        return new CompositeConclusion<>(ImmutableList.copyOf(conclusions));
     }
 
     private Conclusions() {

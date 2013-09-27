@@ -21,9 +21,7 @@ import com.github.sebhoss.reguloj.Rule;
 import com.google.common.base.Predicate;
 
 /**
- * Test cases for the {@link RuleImplementation}.
- * 
- * @see RuleImplementation
+ * Test cases for the RuleImplementation.
  */
 @SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
 public final class RuleImplementationTest {
@@ -36,13 +34,7 @@ public final class RuleImplementationTest {
     public ExpectedException    thrown = ExpectedException.none();
 
     /**
-     * <p>
-     * Test method for
-     * {@link RuleImplementation#RuleImplementation(String, com.google.common.base.Predicate, com.github.sebhoss.reguloj.Conclusion)}
-     * </p>
-     * <p>
      * Ensures that <code>null</code> values are not permitted.
-     * </p>
      */
     @Test
     public void shouldNotAcceptNullValues() {
@@ -54,13 +46,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for
-     * {@link RuleImplementation#RuleImplementation(String, com.google.common.base.Predicate, com.github.sebhoss.reguloj.Conclusion)}
-     * </p>
-     * <p>
      * Ensures that a valid rule will be built once all values are given.
-     * </p>
      */
     @Test
     public void shouldCreateRuleIfAllValuesAreSet() {
@@ -73,12 +59,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#run(Context)}
-     * </p>
-     * <p>
      * Ensures that <code>false</code> is returned if the predicate does not apply.
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -94,12 +75,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#run(Context)}
-     * </p>
-     * <p>
      * Ensures that <code>false</code> is returned if the conclusion does not apply.
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -116,12 +92,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#run(Context)}
-     * </p>
-     * <p>
      * Ensures that <code>false</code> is returned if the conclusion does not apply.
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -138,12 +109,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#fires(Context)}
-     * </p>
-     * <p>
      * Ensures that <code>true</code> is returned if the predicate does apply.
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -159,12 +125,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#fires(Context)}
-     * </p>
-     * <p>
      * Ensures that <code>false</code> is returned if the predicate does not apply.
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -180,12 +141,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#getName()}
-     * </p>
-     * <p>
      * Ensures that the previously set name is returned.
-     * </p>
      */
     @Test
     public void shouldReturnTheSetName() {
@@ -198,12 +154,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#equals(Object)}
-     * </p>
-     * <p>
      * Ensures that equals is reflexive
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -217,12 +168,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#equals(Object)}
-     * </p>
-     * <p>
      * Ensures that equals is symmetric
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -238,12 +184,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#equals(Object)}
-     * </p>
-     * <p>
      * Ensures that equals is transitive
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -260,12 +201,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#equals(Object)}
-     * </p>
-     * <p>
      * Ensures that equals is consistent
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -284,12 +220,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#equals(Object)}
-     * </p>
-     * <p>
      * Ensures that equals is returns <code>false</code> on <code>null</code> values.
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -303,12 +234,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#equals(Object)}
-     * </p>
-     * <p>
      * Ensures that equals is returns <code>false</code> on <code>null</code> values.
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -322,12 +248,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#equals(Object)}
-     * </p>
-     * <p>
      * Ensures that equals works with identical instances.
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -342,12 +263,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#equals(Object)}
-     * </p>
-     * <p>
      * Ensures that equals works with different names
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -362,12 +278,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#equals(Object)}
-     * </p>
-     * <p>
      * Ensures that equals works with different predicates.
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -385,12 +296,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#equals(Object)}
-     * </p>
-     * <p>
      * Ensures that equals works with different conclusions.
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -408,12 +314,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#hashCode()}
-     * </p>
-     * <p>
      * Ensures that hashCode() always returns the same value for a same instance.
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -431,12 +332,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#hashCode()}
-     * </p>
-     * <p>
      * Ensures that hashCode() is consistent with equals().
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test
@@ -452,12 +348,7 @@ public final class RuleImplementationTest {
     }
 
     /**
-     * <p>
-     * Test method for {@link RuleImplementation#compareTo(com.github.sebhoss.reguloj.Rule)}
-     * </p>
-     * <p>
      * Ensures that compareTo() is consistent with equals().
-     * </p>
      */
     @SuppressWarnings("boxing")
     @Test

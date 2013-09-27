@@ -25,12 +25,8 @@ public final class SimpleRuleEngine<CONTEXT extends Context<?>> implements RuleE
     public boolean analyze(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
         checkInputs(context, rules);
 
-        // Check whether any rule fires
         for (final Rule<CONTEXT> rule : rules) {
             if (rule.fires(context)) {
-                // A rule fired..
-
-                // .. so we are returning true
                 return true;
             }
         }
@@ -42,20 +38,13 @@ public final class SimpleRuleEngine<CONTEXT extends Context<?>> implements RuleE
     public void infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
         checkInputs(context, rules);
 
-        // Setup
         boolean ruleFired;
 
-        // Loop at least once through all rules
         do {
-            // Deactive looping after this iteration
             ruleFired = false;
 
-            // Check whether any rule fires
             for (final Rule<CONTEXT> rule : rules) {
                 if (rule.run(context)) {
-                    // A rule fired..
-
-                    // .. so we re-activate looping
                     ruleFired = true;
                 }
             }

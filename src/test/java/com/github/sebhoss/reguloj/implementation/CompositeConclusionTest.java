@@ -8,8 +8,7 @@ package com.github.sebhoss.reguloj.implementation;
 
 import java.util.Collection;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.BDDMockito;
@@ -20,7 +19,7 @@ import com.github.sebhoss.reguloj.Conclusion;
 import com.google.common.collect.Lists;
 
 /**
- * TODO: Write documentation!
+ * Test cases for {@link CompositeConclusion}.
  */
 @SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
 public class CompositeConclusionTest {
@@ -30,9 +29,9 @@ public class CompositeConclusionTest {
     public ExpectedException thrown = ExpectedException.none();
 
     /**
-     * 
+     * Ensures that an empty list of conclusions won't be accepted by a CompositeConclusion.
      */
-    @SuppressWarnings("unused")
+    @SuppressWarnings(CompilerWarnings.UNUSED)
     @Test
     public void shouldNotAllowEmptyCollection() {
         final Collection<Conclusion<Object>> conclusions = Lists.newArrayList();
@@ -43,9 +42,9 @@ public class CompositeConclusionTest {
     }
 
     /**
-     * 
+     * Ensures that all given conclusions are called.
      */
-    @SuppressWarnings("boxing")
+    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
     public void shouldCallAllGivenConclusions() {
         // given

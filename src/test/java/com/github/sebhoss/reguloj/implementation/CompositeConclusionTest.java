@@ -60,7 +60,7 @@ public class CompositeConclusionTest {
         conclusions.add(conclusion2);
 
         // when
-        final Conclusion<Object> composite = new CompositeConclusion<Object>(conclusions);
+        final Conclusion<Object> composite = new CompositeConclusion<>(conclusions);
 
         // then
         Assert.assertTrue(composite.apply(target));

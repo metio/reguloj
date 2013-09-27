@@ -48,7 +48,7 @@ public final class RuleImplementationTest {
     public void shouldNotAcceptNullValues() {
         thrown.expect(NullPointerException.class);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<Context<Object>>(null, null, null);
+        final Rule<Context<Object>> rule = new RuleImplementation<>(null, null, null);
 
         Assert.assertThat(rule, Is.is(IsNull.nullValue()));
     }
@@ -67,8 +67,7 @@ public final class RuleImplementationTest {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         Assert.assertThat(rule, Is.is(IsNull.notNullValue()));
     }
@@ -89,8 +88,7 @@ public final class RuleImplementationTest {
         BDDMockito.given(predicate.apply(context)).willReturn(Boolean.FALSE);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         Assert.assertFalse(rule.run(context));
     }
@@ -112,8 +110,7 @@ public final class RuleImplementationTest {
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
         BDDMockito.given(conclusion.apply(context)).willReturn(Boolean.FALSE);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         Assert.assertFalse(rule.run(context));
     }
@@ -132,12 +129,10 @@ public final class RuleImplementationTest {
         final Context<Object> context = Mockito.mock(Context.class);
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         BDDMockito.given(predicate.apply(context)).willReturn(Boolean.TRUE);
-
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
         BDDMockito.given(conclusion.apply(context)).willReturn(Boolean.TRUE);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         Assert.assertTrue(rule.run(context));
     }
@@ -156,11 +151,9 @@ public final class RuleImplementationTest {
         final Context<Object> context = Mockito.mock(Context.class);
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         BDDMockito.given(predicate.apply(context)).willReturn(true);
-
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         Assert.assertTrue(rule.fires(context));
     }
@@ -179,11 +172,9 @@ public final class RuleImplementationTest {
         final Context<Object> context = Mockito.mock(Context.class);
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         BDDMockito.given(predicate.apply(context)).willReturn(false);
-
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         Assert.assertFalse(rule.fires(context));
     }
@@ -201,8 +192,7 @@ public final class RuleImplementationTest {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         Assert.assertThat(rule.getName(), Is.is(RuleImplementationTest.NAME));
     }
@@ -221,8 +211,7 @@ public final class RuleImplementationTest {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         Assert.assertThat(rule.equals(rule), Is.is(true));
     }
@@ -241,10 +230,8 @@ public final class RuleImplementationTest {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule1 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         Assert.assertThat(rule1.equals(rule2), Is.is(true));
         Assert.assertThat(rule2.equals(rule1), Is.is(true));
@@ -264,12 +251,9 @@ public final class RuleImplementationTest {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule1 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
-        final Rule<Context<Object>> rule3 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule3 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         Assert.assertThat(rule1.equals(rule2) && rule2.equals(rule3), Is.is(true));
         Assert.assertThat(rule3.equals(rule1), Is.is(true));
@@ -289,10 +273,8 @@ public final class RuleImplementationTest {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule1 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         final boolean alwaysTheSame = rule1.equals(rule2);
 
@@ -315,8 +297,7 @@ public final class RuleImplementationTest {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         Assert.assertThat(rule.equals(null), Is.is(false));
     }
@@ -335,8 +316,7 @@ public final class RuleImplementationTest {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         Assert.assertThat(rule.equals(""), Is.is(false)); //$NON-NLS-1$
     }
@@ -355,8 +335,7 @@ public final class RuleImplementationTest {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule1 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
         final Rule<Context<Object>> rule2 = rule1;
 
         Assert.assertThat(rule1.equals(rule2), Is.is(true));
@@ -376,9 +355,8 @@ public final class RuleImplementationTest {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule1 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<Context<Object>>("rule2", predicate, conclusion); //$NON-NLS-1$
+        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule2 = new RuleImplementation<>("rule2", predicate, conclusion); //$NON-NLS-1$
 
         Assert.assertThat(rule1.equals(rule2), Is.is(false));
     }
@@ -398,10 +376,10 @@ public final class RuleImplementationTest {
         final Predicate<Context<Object>> predicate2 = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule1 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate1, conclusion);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate2, conclusion);
+        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate1,
+                conclusion);
+        final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate2,
+                conclusion);
 
         Assert.assertThat(rule1.equals(rule2), Is.is(false));
     }
@@ -421,10 +399,10 @@ public final class RuleImplementationTest {
         final Conclusion<Context<Object>> conclusion1 = Mockito.mock(Conclusion.class);
         final Conclusion<Context<Object>> conclusion2 = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule1 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion1);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion2);
+        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate,
+                conclusion1);
+        final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate,
+                conclusion2);
 
         Assert.assertThat(rule1.equals(rule2), Is.is(false));
     }
@@ -443,8 +421,7 @@ public final class RuleImplementationTest {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         final int alwaysTheSame = rule.hashCode();
 
@@ -467,10 +444,8 @@ public final class RuleImplementationTest {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule1 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         Assert.assertThat(rule1.equals(rule2), Is.is(true));
         Assert.assertThat(rule1.hashCode(), Is.is(rule2.hashCode()));
@@ -490,10 +465,8 @@ public final class RuleImplementationTest {
         final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
         final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule1 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<Context<Object>>(RuleImplementationTest.NAME,
-                predicate, conclusion);
+        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
 
         Assert.assertThat(rule1.compareTo(rule2), Is.is(0));
     }

@@ -44,7 +44,7 @@ public class SimpleRuleEngineTest {
     @SuppressWarnings({ "boxing" })
     @Test
     public void shouldNotAnalyzeNullContext() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Set<Rule<Context<Object>>> rules = Mockito.mock(Set.class);
 
         thrown.expect(NullPointerException.class);
@@ -64,7 +64,7 @@ public class SimpleRuleEngineTest {
     @SuppressWarnings({ "boxing" })
     @Test
     public void shouldNotAnalyzeNullRuleSet() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
 
         thrown.expect(NullPointerException.class);
@@ -84,9 +84,9 @@ public class SimpleRuleEngineTest {
     @SuppressWarnings({ "boxing" })
     @Test
     public void shouldReturnFalseForEmptyRuleSet() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
-        final Set<Rule<Context<Object>>> rules = new TreeSet<Rule<Context<Object>>>();
+        final Set<Rule<Context<Object>>> rules = new TreeSet<>();
 
         final boolean fired = engine.analyze(context, rules);
 
@@ -104,11 +104,11 @@ public class SimpleRuleEngineTest {
     @SuppressWarnings({ "boxing" })
     @Test
     public void shouldReturnTrueIfRuleFired() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
         final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.fires(context)).willReturn(true);
-        final Set<Rule<Context<Object>>> rules = new TreeSet<Rule<Context<Object>>>();
+        final Set<Rule<Context<Object>>> rules = new TreeSet<>();
         rules.add(rule);
 
         final boolean fired = engine.analyze(context, rules);
@@ -127,11 +127,11 @@ public class SimpleRuleEngineTest {
     @SuppressWarnings({ "boxing" })
     @Test
     public void shouldReturnFalseIfNoRuleFires() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
         final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.fires(context)).willReturn(false);
-        final Set<Rule<Context<Object>>> rules = new TreeSet<Rule<Context<Object>>>();
+        final Set<Rule<Context<Object>>> rules = new TreeSet<>();
         rules.add(rule);
 
         final boolean fired = engine.analyze(context, rules);
@@ -149,7 +149,7 @@ public class SimpleRuleEngineTest {
      */
     @Test
     public void shouldNotInferWithNullContext() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Set<Rule<Context<Object>>> rules = Mockito.mock(Set.class);
 
         thrown.expect(NullPointerException.class);
@@ -167,7 +167,7 @@ public class SimpleRuleEngineTest {
      */
     @Test
     public void shouldNotInferWithNullRuleSet() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
 
         thrown.expect(NullPointerException.class);
@@ -186,9 +186,9 @@ public class SimpleRuleEngineTest {
 
     @Test
     public void shouldRunWithEmptyRuleSet() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
-        final Set<Rule<Context<Object>>> rules = new TreeSet<Rule<Context<Object>>>();
+        final Set<Rule<Context<Object>>> rules = new TreeSet<>();
 
         engine.infer(context, rules);
     }
@@ -204,11 +204,11 @@ public class SimpleRuleEngineTest {
     @SuppressWarnings({ "boxing" })
     @Test
     public void shouldLoopWithFiringRule() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
         final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.run(context)).willReturn(true).willReturn(false);
-        final Set<Rule<Context<Object>>> rules = new TreeSet<Rule<Context<Object>>>();
+        final Set<Rule<Context<Object>>> rules = new TreeSet<>();
         rules.add(rule);
 
         engine.infer(context, rules);
@@ -225,11 +225,11 @@ public class SimpleRuleEngineTest {
     @SuppressWarnings({ "boxing" })
     @Test
     public void shouldNotLoopWithNotFiringRule() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<Context<Object>>();
+        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
         final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.run(context)).willReturn(false);
-        final Set<Rule<Context<Object>>> rules = new TreeSet<Rule<Context<Object>>>();
+        final Set<Rule<Context<Object>>> rules = new TreeSet<>();
         rules.add(rule);
 
         engine.infer(context, rules);

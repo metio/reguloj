@@ -45,7 +45,7 @@ public final class RuleBuilderImplementationTest {
      */
     @Test
     public void shouldCreateRuleIfAllValuesAreSet() {
-        final RuleBuilder<Context<Object>> builder = new RuleBuilderImplementation<Context<Object>>();
+        final RuleBuilder<Context<Object>> builder = new RuleBuilderImplementation<>();
         builder.called(RuleBuilderImplementationTest.NAME).when(Mockito.mock(Predicate.class));
 
         final Rule<Context<Object>> rule = builder.then(Mockito.mock(Conclusion.class));
@@ -63,7 +63,7 @@ public final class RuleBuilderImplementationTest {
      */
     @Test
     public void shouldNotAcceptNullPredicate() {
-        final RuleBuilder<Context<Object>> builder = new RuleBuilderImplementation<Context<Object>>();
+        final RuleBuilder<Context<Object>> builder = new RuleBuilderImplementation<>();
 
         thrown.expect(NullPointerException.class);
 
@@ -80,7 +80,7 @@ public final class RuleBuilderImplementationTest {
      */
     @Test
     public void shouldNotAcceptNullConclusion() {
-        final RuleBuilder<Context<Object>> builder = new RuleBuilderImplementation<Context<Object>>();
+        final RuleBuilder<Context<Object>> builder = new RuleBuilderImplementation<>();
 
         thrown.expect(NullPointerException.class);
 
@@ -97,7 +97,7 @@ public final class RuleBuilderImplementationTest {
      */
     @Test
     public void shouldNotAcceptNullName() {
-        final RuleBuilder<Context<Object>> builder = new RuleBuilderImplementation<Context<Object>>();
+        final RuleBuilder<Context<Object>> builder = new RuleBuilderImplementation<>();
 
         thrown.expect(NullPointerException.class);
 

@@ -47,21 +47,17 @@ public class CompositeConclusionTest {
     @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
     public void shouldCallAllGivenConclusions() {
-        // given
         final Object target = new Object();
         final Collection<Conclusion<Object>> conclusions = Lists.newArrayList();
         final Conclusion<Object> conclusion1 = Mockito.mock(Conclusion.class);
         BDDMockito.given(conclusion1.apply(target)).willReturn(true);
         final Conclusion<Object> conclusion2 = Mockito.mock(Conclusion.class);
         BDDMockito.given(conclusion2.apply(target)).willReturn(false);
-
         conclusions.add(conclusion1);
         conclusions.add(conclusion2);
 
-        // when
         final Conclusion<Object> composite = new CompositeConclusion<>(conclusions);
 
-        // then
         Assert.assertTrue(composite.apply(target));
     }
 

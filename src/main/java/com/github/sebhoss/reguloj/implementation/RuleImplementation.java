@@ -6,6 +6,9 @@
  */
 package com.github.sebhoss.reguloj.implementation;
 
+import javax.annotation.Nullable;
+
+import com.github.sebhoss.common.annotation.Nullsafe;
 import com.github.sebhoss.reguloj.Conclusion;
 import com.github.sebhoss.reguloj.Context;
 import com.github.sebhoss.reguloj.Rule;
@@ -38,9 +41,9 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
      *            The conclusion of the new rule (<b>may not be <code>null</code></b>).
      */
     RuleImplementation(final String name, final Predicate<CONTEXT> predicate, final Conclusion<CONTEXT> conclusion) {
-        this.name = Preconditions.checkNotNull(name);
-        this.predicate = Preconditions.checkNotNull(predicate);
-        this.conclusion = Preconditions.checkNotNull(conclusion);
+        this.name = Nullsafe.nullsafe(Preconditions.checkNotNull(name));
+        this.predicate = Nullsafe.nullsafe(Preconditions.checkNotNull(predicate));
+        this.conclusion = Nullsafe.nullsafe(Preconditions.checkNotNull(conclusion));
     }
 
     @Override
@@ -68,7 +71,7 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
     }
 
     @Override
-    public boolean equals(final Object object) {
+    public boolean equals(final @Nullable Object object) {
         if (object != null && object instanceof RuleImplementation) {
             final RuleImplementation<?> that = (RuleImplementation<?>) object;
 

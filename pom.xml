@@ -73,6 +73,10 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
+      <groupId>com.github.sebhoss</groupId>
+      <artifactId>common-annotations</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
     </dependency>

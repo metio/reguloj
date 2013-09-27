@@ -6,6 +6,8 @@
  */
 package com.github.sebhoss.reguloj.implementation;
 
+import javax.annotation.Nullable;
+
 import com.github.sebhoss.reguloj.Conclusion;
 import com.github.sebhoss.reguloj.Context;
 import com.github.sebhoss.reguloj.Rule;
@@ -23,18 +25,14 @@ import com.google.common.base.Predicate;
  */
 public final class RuleBuilderImplementation<CONTEXT extends Context<?>> implements RuleBuilder<CONTEXT> {
 
+    @Nullable
     private String              name;
 
+    @Nullable
     private Predicate<CONTEXT>  predicate;
 
+    @Nullable
     private Conclusion<CONTEXT> conclusion;
-
-    /**
-     * Default constructor for this class to make checkstyle happy.
-     */
-    public RuleBuilderImplementation() {
-        super();
-    }
 
     @Override
     public RuleBuilder<CONTEXT> when(final Predicate<CONTEXT> newPredicate) {
@@ -46,6 +44,10 @@ public final class RuleBuilderImplementation<CONTEXT extends Context<?>> impleme
     @Override
     public Rule<CONTEXT> then(final Conclusion<CONTEXT> newConclusion) {
         this.conclusion = Preconditions.checkNotNull(newConclusion);
+
+        Preconditions.checkState(name != null);
+        Preconditions.checkState(predicate != null);
+        Preconditions.checkState(conclusion != null);
 
         return new RuleImplementation<>(this.name, this.predicate, this.conclusion);
     }

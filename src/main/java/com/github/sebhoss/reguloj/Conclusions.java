@@ -9,6 +9,7 @@ package com.github.sebhoss.reguloj;
 import java.util.Collection;
 import java.util.Iterator;
 
+import com.github.sebhoss.common.annotation.Nullsafe;
 import com.github.sebhoss.reguloj.implementation.CompositeConclusion;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
@@ -32,7 +33,7 @@ public final class Conclusions {
         Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(!conclusions.isEmpty());
 
-        return new CompositeConclusion<>(ImmutableList.copyOf(conclusions));
+        return new CompositeConclusion<>(Nullsafe.nullsafe(ImmutableList.copyOf(conclusions)));
     }
 
     /**
@@ -50,7 +51,7 @@ public final class Conclusions {
         Preconditions.checkNotNull(conclusion1);
         Preconditions.checkNotNull(conclusion2);
 
-        return new CompositeConclusion<>(ImmutableList.of(conclusion1, conclusion2));
+        return new CompositeConclusion<>(Nullsafe.nullsafe(ImmutableList.of(conclusion1, conclusion2)));
     }
 
     /**
@@ -66,7 +67,7 @@ public final class Conclusions {
         Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(!Iterables.isEmpty(conclusions));
 
-        return new CompositeConclusion<>(ImmutableList.copyOf(conclusions));
+        return new CompositeConclusion<>(Nullsafe.nullsafe(ImmutableList.copyOf(conclusions)));
     }
 
     /**
@@ -82,7 +83,7 @@ public final class Conclusions {
         Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(conclusions.hasNext());
 
-        return new CompositeConclusion<>(ImmutableList.copyOf(conclusions));
+        return new CompositeConclusion<>(Nullsafe.nullsafe(ImmutableList.copyOf(conclusions)));
     }
 
     private Conclusions() {

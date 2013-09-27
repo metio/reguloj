@@ -7,5 +7,6 @@
 /**
  * This package holds all business rules related implementations.
  */
+@com.github.sebhoss.common.annotation.NotNullByDefault
 package com.github.sebhoss.reguloj.implementation;
 

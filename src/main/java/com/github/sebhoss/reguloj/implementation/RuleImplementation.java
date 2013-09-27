@@ -17,9 +17,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 
 /**
- * <p>
  * Standard implementation of the {@link Rule} interface.
- * </p>
  * 
  * @param <CONTEXT>
  *            The context type.

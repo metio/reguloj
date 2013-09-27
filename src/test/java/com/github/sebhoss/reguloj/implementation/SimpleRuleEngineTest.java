@@ -41,7 +41,7 @@ public class SimpleRuleEngineTest {
      * Ensures that a <code>null</code> context ist not permitted.
      * </p>
      */
-    @SuppressWarnings({ "boxing" })
+    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
     public void shouldNotAnalyzeNullContext() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
@@ -61,7 +61,7 @@ public class SimpleRuleEngineTest {
      * Ensures that a <code>null</code> rule set ist not permitted.
      * </p>
      */
-    @SuppressWarnings({ "boxing" })
+    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
     public void shouldNotAnalyzeNullRuleSet() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
@@ -81,7 +81,7 @@ public class SimpleRuleEngineTest {
      * Ensures that <code>false</code> is returned when passing in an empty set.
      * </p>
      */
-    @SuppressWarnings({ "boxing" })
+    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
     public void shouldReturnFalseForEmptyRuleSet() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
@@ -101,7 +101,7 @@ public class SimpleRuleEngineTest {
      * Ensures that <code>true</code> is returned if any rule can fire.
      * </p>
      */
-    @SuppressWarnings({ "boxing" })
+    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
     public void shouldReturnTrueIfRuleFired() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
@@ -124,7 +124,7 @@ public class SimpleRuleEngineTest {
      * Ensures that <code>false</code> is returned if no rule can fire.
      * </p>
      */
-    @SuppressWarnings({ "boxing" })
+    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
     public void shouldReturnFalseIfNoRuleFires() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
@@ -201,7 +201,7 @@ public class SimpleRuleEngineTest {
      * Ensures that the engine loops if any rule can fire.
      * </p>
      */
-    @SuppressWarnings({ "boxing" })
+    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
     public void shouldLoopWithFiringRule() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
@@ -222,7 +222,7 @@ public class SimpleRuleEngineTest {
      * Ensures that the engine does not loop if no rule can fire.
      * </p>
      */
-    @SuppressWarnings({ "boxing" })
+    @SuppressWarnings(CompilerWarnings.BOXING)
     @Test
     public void shouldNotLoopWithNotFiringRule() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();

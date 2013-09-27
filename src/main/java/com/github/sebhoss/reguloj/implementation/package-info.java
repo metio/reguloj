@@ -6,9 +6,6 @@
  */
 /**
  * This package holds all business rules related implementations.
- *
- * @author  Sebastian Hoß (sebastian.hoss@viadee.de)
- * @since   1.0.0
  */
 package com.github.sebhoss.reguloj.implementation;
 

@@ -6,8 +6,6 @@
  */
 /**
  * This package holds all business rules related definitions.
- *
- * @see     <a href="https://github.com/sebhoss/reguloj">https://github.com/sebhoss/reguloj</a>
  */
 package com.github.sebhoss.reguloj;
 

@@ -13,11 +13,11 @@ import com.github.sebhoss.reguloj.Rule;
 import com.github.sebhoss.reguloj.RuleEngine;
 import com.google.common.base.Preconditions;
 
-
 /**
- * <p>Simple implementation of the {@link RuleEngine} interface which supports rule-chaining.</p>
+ * Simple implementation of the {@link RuleEngine} interface which supports rule-chaining.
  * 
- * @param <CONTEXT>   The context type.
+ * @param <CONTEXT>
+ *            The context type.
  */
 public final class SimpleRuleEngine<CONTEXT extends Context<?>> implements RuleEngine<CONTEXT> {
 
@@ -61,10 +61,10 @@ public final class SimpleRuleEngine<CONTEXT extends Context<?>> implements RuleE
             }
         } while (ruleFired);
     }
-    
+
     private void checkInputs(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
-		Preconditions.checkNotNull(context);
+        Preconditions.checkNotNull(context);
         Preconditions.checkNotNull(rules);
-	}
+    }
 
 }

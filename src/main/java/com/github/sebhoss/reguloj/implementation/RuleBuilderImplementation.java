@@ -13,27 +13,21 @@ import com.github.sebhoss.reguloj.RuleBuilder;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 
-
 /**
- * <p>Standard implementation of the {@link RuleBuilder} interface.</p>
- *
- * @param <CONTEXT>   The context type.
+ * <p>
+ * Standard implementation of the {@link RuleBuilder} interface.
+ * </p>
+ * 
+ * @param <CONTEXT>
+ *            The context type.
  */
 public final class RuleBuilderImplementation<CONTEXT extends Context<?>> implements RuleBuilder<CONTEXT> {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                  ATTRIBUTES                                                 *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-    private String        name;
+    private String              name;
 
     private Predicate<CONTEXT>  predicate;
 
     private Conclusion<CONTEXT> conclusion;
-
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                 CONSTRUCTORS                                                *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     /**
      * Default constructor for this class to make checkstyle happy.
@@ -41,10 +35,6 @@ public final class RuleBuilderImplementation<CONTEXT extends Context<?>> impleme
     public RuleBuilderImplementation() {
         super();
     }
-
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                    METHODS                                                  *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     @Override
     public RuleBuilder<CONTEXT> when(final Predicate<CONTEXT> newPredicate) {

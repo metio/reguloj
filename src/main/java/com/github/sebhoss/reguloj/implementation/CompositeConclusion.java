@@ -11,37 +11,24 @@ import java.util.Collection;
 import com.github.sebhoss.reguloj.Conclusion;
 import com.google.common.base.Preconditions;
 
-
 /**
- * @param <TOPIC>   The topic of the inference process.
+ * @param <TOPIC>
+ *            The topic of the inference process.
  */
 public final class CompositeConclusion<TOPIC> implements Conclusion<TOPIC> {
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                  ATTRIBUTES                                                 *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
     private final Collection<Conclusion<TOPIC>> conclusions;
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                 CONSTRUCTORS                                                *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
     /**
-     * @param conclusions   The encapsulated conclusions to call (<b>may not be <code>null</code> nor empty</b>).
+     * @param conclusions
+     *            The encapsulated conclusions to call (<b>may not be <code>null</code> nor empty</b>).
      */
     public CompositeConclusion(final Collection<Conclusion<TOPIC>> conclusions) {
-        // Check inputs
         Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(!conclusions.isEmpty());
 
-        // Set inputs
         this.conclusions = conclusions;
     }
-
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // *                                                    METHODS                                                  *
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     @Override
     public boolean apply(final TOPIC target) {

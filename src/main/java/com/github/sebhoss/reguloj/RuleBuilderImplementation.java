@@ -11,12 +11,6 @@ import javax.annotation.Nullable;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 
-/**
- * Standard implementation of the {@link RuleBuilder} interface.
- * 
- * @param <CONTEXT>
- *            The context type.
- */
 final class RuleBuilderImplementation<CONTEXT extends Context<?>> implements RuleBuilder<CONTEXT> {
 
     @Nullable

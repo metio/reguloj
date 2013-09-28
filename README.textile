@@ -1,4 +1,5 @@
-h1. reguloj
+h1. reguloj "!https://secure.travis-ci.org/sebhoss/reguloj.png!":http://travis-ci.org/sebhoss/reguloj "!https://www.ohloh.net/p/reguloj/widgets/project_thin_badge.gif!":https://www.ohloh.net/p/reguloj/
+
 
 p. *reguloj* is a small and lightweight Java rule engine. It is suitable for mobile applications running "Android":http://www.android.com/ and/or other restricted environments such as "GWT":http://code.google.com/webtoolkit/.
 

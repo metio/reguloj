@@ -17,7 +17,7 @@ final Rule rule = rule().called(name)
 
 h3. Creating rule engines
 
-p. The @RuleEngines@ utility class offers to build 3 different rule engines:
+p. A rule engine evaluates a set of sets in a specific "context":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Context.java. The @RuleEngines@ utility class offers to build 3 different rule engines:
 
 bc.. // All rules will be evaluated indefinitely until no further rule fires.
 final RuleEngine chained = RuleEngines.chained();
@@ -30,26 +30,24 @@ final RuleEngine firstWins = RuleEngines.firstWins();
 
 p. If custom inference behavior is required, subclass @AbstractRuleEngine@ and implement the infer() method.
 
+h3. Creating an inference context
+
+p. An inference context contains information needed by predicates and/or conclusions. This project supplies a simple implementation of the @Context@ interface called @BaseContext@. Subclass @BaseContext@ in case your rules need extra information. The API acknowledges this by using @<CONTEXT extends Context<?>>@ as type parameter for all methods which expect an @Context@. See item 28 in Effective Java for more details.
+
 h3. Evaluating rules
 
 p. A @Set@ of @Rule@ objects are evaluated by a @RuleEngine@ in a specific @Context@. The following example shows how to do it:
 
 bc. 
-Context<X> context = ...;
-Set<Rule<Context<X>>> rules = ...;
-RuleEngine<Context<X>> engine = ...;
+Context<T> context = ...;
+Set<Rule<Context<T>>> rules = ...;
+RuleEngine<Context<T>> engine = ...;
 
 bc. 
 engine.analyze(context, rules); // true if at least one rule can fired.
 
 bc. 
 engine.infer(context, rules); // perform conclusions of those rules that fired
-
-p. This project provides a simple implementation of the @RuleEngine@ interface and a set of rules can be created with the standard Java library. The @Context@ however may need some more work.
-
-p. In case only the _topic_ of the context is needed, you can call the available interface method directly. However it may be necessary that some sort of contextual information is needed inside predicates and conclusions. The @Context@ is the way to make those informations available. During our internal development, we created an Android specific context which was tailored to our domain and thus provides methods to e.g. get the current GPS coordinates. Since those methods won't work in an environment which does not have access to a GPS sensor (or any other domain specific functionality) we decided to leave those out. The API further acknowledges this by using @<C extends Context<?>>@ as type parameter for all methods which expect an @Context@. See item 28 in Effective Java for more details.
-
-p. This project supplies a simple implementation of the @Context@ interface called @BaseContext@. Subclass @BaseContext@ in case your rules need extra information.
 
 h3. Integration
 

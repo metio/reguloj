@@ -19,9 +19,16 @@ h3. Creating rule engines
 
 p. The @RuleEngines@ utility class offers to build 3 different rule engines:
 
-* *chained* All rules will be evaluated indefinitely until no further rule fires.
-* *limited* All rules will be evaluated, but only a maximum number of _x_ times.
-* *firstWins* Evaluates all rules, stops after the first one that fires.
+bc.. // All rules will be evaluated indefinitely until no further rule fires.
+final RuleEngine chained = RuleEngines.chained();
+
+// All rules will be evaluated, but only a maximum number of 5 times.
+final RuleEngine limited = RuleEngines.limited(5);
+
+// Evaluates all rules, stops after the first one that fires.
+final RuleEngine firstWins = RuleEngines.firstWins();
+
+p. If custom inference behavior is required, subclass @AbstractRuleEngine@ and implement the infer() method.
 
 h3. Evaluating rules
 
@@ -42,7 +49,7 @@ p. This project provides a simple implementation of the @RuleEngine@ interface a
 
 p. In case only the _topic_ of the context is needed, you can call the available interface method directly. However it may be necessary that some sort of contextual information is needed inside predicates and conclusions. The @Context@ is the way to make those informations available. During our internal development, we created an Android specific context which was tailored to our domain and thus provides methods to e.g. get the current GPS coordinates. Since those methods won't work in an environment which does not have access to a GPS sensor (or any other domain specific functionality) we decided to leave those out. The API further acknowledges this by using @<C extends Context<?>>@ as type parameter for all methods which expect an @Context@. See item 28 in Effective Java for more details.
 
-p. This project supplies a simple implementation for the @RuleEngine@ interface, called @SimpleRuleEngine@, which supports rule chaining and a simple implementation of the @Context@ interface called @SimpleContext@. Subclass @SimpleContext@ in case your rules need extra information.
+p. This project supplies a simple implementation of the @Context@ interface called @BaseContext@. Subclass @BaseContext@ in case your rules need extra information.
 
 h3. Integration
 

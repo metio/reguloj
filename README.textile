@@ -15,33 +15,34 @@ final Rule rule = rule().called(name)
                         .when(and(predicate1, predicate2))
                         .then(conclude(conclusion1, conclusion2))
 
-h3. Creating rule engines
-
-p. A rule engine evaluates a set of sets in a specific "context":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Context.java. The @RuleEngines@ utility class offers to build 3 different rule engines:
-
-bc.. // All rules will be evaluated indefinitely until no further rule fires.
-final RuleEngine chained = RuleEngines.chained();
-
-// All rules will be evaluated, but only a maximum number of 5 times.
-final RuleEngine limited = RuleEngines.limited(5);
-
-// Evaluates all rules, stops after the first one that fires.
-final RuleEngine firstWins = RuleEngines.firstWins();
-
-p. If custom inference behavior is required, subclass @AbstractRuleEngine@ and implement the infer() method.
-
 h3. Creating an inference context
 
-p. An inference context contains information needed by predicates and/or conclusions. This project supplies a simple implementation of the @Context@ interface called @BaseContext@. Subclass @BaseContext@ in case your rules need extra information. The API acknowledges this by using @<CONTEXT extends Context<?>>@ as type parameter for all methods which expect an @Context@. See item 28 in Effective Java for more details.
+p. An inference "context":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Context.java contains information needed by predicates and/or conclusions. This project supplies a simple implementation of the @Context@ interface called @BaseContext@. Subclass @BaseContext@ in case your rules need extra information. The API acknowledges this by using @<CONTEXT extends Context<?>>@ as type parameter for all methods which expect an @Context@. See item 28 in Effective Java for more details.
+
+
+h3. Creating rule engines
+
+p. A rule engine evaluates a set of sets in a specific context. The @RuleEngines@ utility class offers to build 3 different rule engines:
+
+bc.. // All rules will be evaluated indefinitely until no further rule fires.
+final RuleEngine<CONTEXT> chained = RuleEngines.chained();
+
+// All rules will be evaluated, but only a maximum number of 5 times.
+final RuleEngine<CONTEXT> limited = RuleEngines.limited(5);
+
+// Evaluates all rules, stops after the first one that fires.
+final RuleEngine<CONTEXT> firstWins = RuleEngines.firstWins();
+
+p. If custom inference behavior is required, subclass @AbstractRuleEngine@ and implement the infer() method.
 
 h3. Evaluating rules
 
 p. A @Set@ of @Rule@ objects are evaluated by a @RuleEngine@ in a specific @Context@. The following example shows how to do it:
 
 bc. 
-Context<T> context = ...;
-Set<Rule<Context<T>>> rules = ...;
-RuleEngine<Context<T>> engine = ...;
+CONTEXT context = ...;
+Set<Rule<CONTEXT>> rules = ...;
+RuleEngine<CONTEXT> engine = ...;
 
 bc. 
 engine.analyze(context, rules); // true if at least one rule can fired.

@@ -11,28 +11,12 @@ import javax.annotation.Nullable;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 
-/**
- * Standard implementation of the {@link Rule} interface.
- * 
- * @param <CONTEXT>
- *            The context type.
- */
 final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTEXT> {
 
     private final String              name;
     private final Predicate<CONTEXT>  predicate;
     private final Conclusion<CONTEXT> conclusion;
 
-    /**
-     * Constructor for a new {@link Rule} implementation.
-     * 
-     * @param name
-     *            The name of the new rule.
-     * @param predicate
-     *            The predicate of the new rule.
-     * @param conclusion
-     *            The conclusion of the new rule.
-     */
     RuleImplementation(final String name, final Predicate<CONTEXT> predicate, final Conclusion<CONTEXT> conclusion) {
         this.name = name;
         this.predicate = predicate;

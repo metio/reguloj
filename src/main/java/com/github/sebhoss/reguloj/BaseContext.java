@@ -6,14 +6,13 @@
  */
 package com.github.sebhoss.reguloj;
 
-
 /**
- * Simple implementation of the {@link Context} interface.
+ * Basic implementation of the {@link Context} interface.
  * 
  * @param <TOPIC>
  *            The topic of the context.
  */
-public class SimpleContext<TOPIC> implements Context<TOPIC> {
+public class BaseContext<TOPIC> implements Context<TOPIC> {
 
     private final TOPIC topic;
 
@@ -21,7 +20,7 @@ public class SimpleContext<TOPIC> implements Context<TOPIC> {
      * @param topic
      *            The topic of this context.
      */
-    public SimpleContext(final TOPIC topic) {
+    public BaseContext(final TOPIC topic) {
         this.topic = topic;
     }
 

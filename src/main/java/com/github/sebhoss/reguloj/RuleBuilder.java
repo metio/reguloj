@@ -11,8 +11,7 @@ import com.google.common.base.Predicate;
 /**
  * <p>
  * Offers an easy to use fluent interface for building new {@link Rule rules}. It follows the builder-pattern described
- * by Joshua Bloch (see <a href="http://java.sun.com/docs/books/effective/">Effective Java, Item 2</a>) and offers 3
- * methods:
+ * by Joshua Bloch (see Effective Java, Item 2) and offers 3 methods:
  * </p>
  * <ul>
  * <li>{@link #called(String) called}: Use this method to name your new rule.</li>

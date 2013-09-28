@@ -46,10 +46,11 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
 
     @Override
     public boolean run(final CONTEXT context) {
+        final CONTEXT nullsafeContext = Nullsafe.nullsafe(Preconditions.checkNotNull(context));
         boolean changed = false;
 
-        if (predicate.apply(Preconditions.checkNotNull(context))) {
-            changed = conclusion.apply(context);
+        if (fires(nullsafeContext)) {
+            changed = conclusion.apply(nullsafeContext);
         }
 
         return changed;

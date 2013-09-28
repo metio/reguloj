@@ -40,9 +40,7 @@ public final class SimpleRuleEngine<CONTEXT extends Context<?>> implements RuleE
             ruleFired = false;
 
             for (final Rule<CONTEXT> rule : rules) {
-                if (rule.run(context)) {
-                    ruleFired = true;
-                }
+                ruleFired |= rule.run(context);
             }
         } while (ruleFired);
     }

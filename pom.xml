@@ -23,7 +23,7 @@
   <!--                               INFORMATIONS                              -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <artifactId>reguloj</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <url>https://github.com/sebhoss/reguloj</url>
   <inceptionYear>2010</inceptionYear>

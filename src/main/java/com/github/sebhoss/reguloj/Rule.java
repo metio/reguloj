@@ -11,10 +11,6 @@ package com.github.sebhoss.reguloj;
  * A {@link Rule} is composed of a name, a premise and a conclusion. Is the premise of a rule fulfilled the conclusion
  * will get implied.
  * </p>
- * <p>
- * Each <code>Rule</code> is required to be {@link Comparable comparable} to other rules so that users of this API can
- * easily create {@link java.util.Set sets} of rules without any duplicate entries.
- * </p>
  * <h1>Caveats</h1>
  * <ul>
  * <li>No Problems known</li>
@@ -56,7 +52,7 @@ package com.github.sebhoss.reguloj;
  * @param <CONTEXT>
  *            The context type.
  */
-public interface Rule<CONTEXT extends Context<?>> extends Comparable<Rule<? extends CONTEXT>> {
+public interface Rule<CONTEXT extends Context<?>> {
 
     /**
      * Runs this rule inside a given context. For that it'll check its premises first and if those are fulfilled, it

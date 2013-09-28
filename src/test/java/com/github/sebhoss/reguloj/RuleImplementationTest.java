@@ -279,17 +279,4 @@ public final class RuleImplementationTest {
         Assert.assertEquals(rule1.hashCode(), rule2.hashCode());
     }
 
-    /**
-     * Ensures that compareTo() is consistent with equals().
-     */
-    @Test
-    public void shoudCompareToOtherRules() {
-        final Predicate<Context<Object>> predicate = Mockito.mock(Predicate.class);
-        final Conclusion<Context<Object>> conclusion = Mockito.mock(Conclusion.class);
-
-        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
-
-        Assert.assertEquals(rule1.compareTo(rule2), 0);
-    }
 }

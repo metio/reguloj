@@ -61,9 +61,4 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
         return false;
     }
 
-    @Override
-    public int compareTo(final Rule<? extends CONTEXT> object) {
-        return name.compareTo(object.getName());
-    }
-
 }

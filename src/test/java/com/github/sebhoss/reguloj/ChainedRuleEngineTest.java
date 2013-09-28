@@ -6,8 +6,8 @@
  */
 package com.github.sebhoss.reguloj;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import com.github.sebhoss.common.annotation.CompilerWarnings;
 
@@ -77,7 +77,7 @@ public class ChainedRuleEngineTest {
     public void shouldReturnFalseForEmptyRuleSet() {
         final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
-        final Set<Rule<Context<Object>>> rules = new TreeSet<>();
+        final Set<Rule<Context<Object>>> rules = new HashSet<>();
 
         final boolean fired = engine.analyze(context, rules);
 
@@ -99,7 +99,7 @@ public class ChainedRuleEngineTest {
         final Context<Object> context = Mockito.mock(Context.class);
         final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.fires(context)).willReturn(true);
-        final Set<Rule<Context<Object>>> rules = new TreeSet<>();
+        final Set<Rule<Context<Object>>> rules = new HashSet<>();
         rules.add(rule);
 
         final boolean fired = engine.analyze(context, rules);
@@ -122,7 +122,7 @@ public class ChainedRuleEngineTest {
         final Context<Object> context = Mockito.mock(Context.class);
         final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.fires(context)).willReturn(false);
-        final Set<Rule<Context<Object>>> rules = new TreeSet<>();
+        final Set<Rule<Context<Object>>> rules = new HashSet<>();
         rules.add(rule);
 
         final boolean fired = engine.analyze(context, rules);
@@ -179,7 +179,7 @@ public class ChainedRuleEngineTest {
     public void shouldRunWithEmptyRuleSet() {
         final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
-        final Set<Rule<Context<Object>>> rules = new TreeSet<>();
+        final Set<Rule<Context<Object>>> rules = new HashSet<>();
 
         engine.infer(context, rules);
     }
@@ -199,7 +199,7 @@ public class ChainedRuleEngineTest {
         final Context<Object> context = Mockito.mock(Context.class);
         final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.run(context)).willReturn(true).willReturn(false);
-        final Set<Rule<Context<Object>>> rules = new TreeSet<>();
+        final Set<Rule<Context<Object>>> rules = new HashSet<>();
         rules.add(rule);
 
         engine.infer(context, rules);
@@ -220,7 +220,7 @@ public class ChainedRuleEngineTest {
         final Context<Object> context = Mockito.mock(Context.class);
         final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.run(context)).willReturn(false);
-        final Set<Rule<Context<Object>>> rules = new TreeSet<>();
+        final Set<Rule<Context<Object>>> rules = new HashSet<>();
         rules.add(rule);
 
         engine.infer(context, rules);

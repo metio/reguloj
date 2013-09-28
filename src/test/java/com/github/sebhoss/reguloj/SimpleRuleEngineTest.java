@@ -10,12 +10,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import com.github.sebhoss.common.annotation.CompilerWarnings;
-import com.github.sebhoss.reguloj.Context;
-import com.github.sebhoss.reguloj.Rule;
-import com.github.sebhoss.reguloj.RuleEngine;
-import com.github.sebhoss.reguloj.SimpleRuleEngine;
 
-import org.hamcrest.core.Is;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -43,7 +38,6 @@ public class SimpleRuleEngineTest {
      * </p>
      */
     @Test
-    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldNotAnalyzeNullContext() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Set<Rule<Context<Object>>> rules = Mockito.mock(Set.class);
@@ -51,7 +45,7 @@ public class SimpleRuleEngineTest {
         thrown.expect(NullPointerException.class);
         final boolean fired = engine.analyze(null, rules);
 
-        Assert.assertThat(fired, Is.is(false));
+        Assert.assertFalse(fired);
     }
 
     /**
@@ -63,7 +57,6 @@ public class SimpleRuleEngineTest {
      * </p>
      */
     @Test
-    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldNotAnalyzeNullRuleSet() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
@@ -71,7 +64,7 @@ public class SimpleRuleEngineTest {
         thrown.expect(NullPointerException.class);
         final boolean fired = engine.analyze(context, null);
 
-        Assert.assertThat(fired, Is.is(false));
+        Assert.assertFalse(fired);
     }
 
     /**
@@ -83,7 +76,6 @@ public class SimpleRuleEngineTest {
      * </p>
      */
     @Test
-    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnFalseForEmptyRuleSet() {
         final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
@@ -91,7 +83,7 @@ public class SimpleRuleEngineTest {
 
         final boolean fired = engine.analyze(context, rules);
 
-        Assert.assertThat(fired, Is.is(false));
+        Assert.assertFalse(fired);
     }
 
     /**
@@ -114,7 +106,7 @@ public class SimpleRuleEngineTest {
 
         final boolean fired = engine.analyze(context, rules);
 
-        Assert.assertThat(fired, Is.is(true));
+        Assert.assertTrue(fired);
     }
 
     /**
@@ -137,7 +129,7 @@ public class SimpleRuleEngineTest {
 
         final boolean fired = engine.analyze(context, rules);
 
-        Assert.assertThat(fired, Is.is(false));
+        Assert.assertFalse(fired);
     }
 
     /**

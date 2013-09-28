@@ -18,12 +18,10 @@ import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
 /**
- * Test cases for the {@link SimpleRuleEngine}.
- * 
- * @see SimpleRuleEngine
+ * Test cases for the ChainedRuleEngine.
  */
 @SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD, CompilerWarnings.UNCHECKED })
-public class SimpleRuleEngineTest {
+public class ChainedRuleEngineTest {
 
     /** Checks expected exception inside single test cases. */
     @org.junit.Rule
@@ -31,7 +29,7 @@ public class SimpleRuleEngineTest {
 
     /**
      * <p>
-     * Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.Context, java.util.Set)}
+     * Test method for ChainedRuleEngine#analyze(Context, Set)
      * </p>
      * <p>
      * Ensures that a <code>null</code> context ist not permitted.
@@ -39,7 +37,7 @@ public class SimpleRuleEngineTest {
      */
     @Test
     public void shouldNotAnalyzeNullContext() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
+        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
         final Set<Rule<Context<Object>>> rules = Mockito.mock(Set.class);
 
         thrown.expect(NullPointerException.class);
@@ -50,7 +48,7 @@ public class SimpleRuleEngineTest {
 
     /**
      * <p>
-     * Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.Context, java.util.Set)}
+     * Test method for ChainedRuleEngine#analyze(Context, Set)
      * </p>
      * <p>
      * Ensures that a <code>null</code> rule set ist not permitted.
@@ -58,7 +56,7 @@ public class SimpleRuleEngineTest {
      */
     @Test
     public void shouldNotAnalyzeNullRuleSet() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
+        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
 
         thrown.expect(NullPointerException.class);
@@ -69,7 +67,7 @@ public class SimpleRuleEngineTest {
 
     /**
      * <p>
-     * Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.Context, java.util.Set)}
+     * Test method for ChainedRuleEngine#analyze(Context, java.util.Set)
      * </p>
      * <p>
      * Ensures that <code>false</code> is returned when passing in an empty set.
@@ -77,7 +75,7 @@ public class SimpleRuleEngineTest {
      */
     @Test
     public void shouldReturnFalseForEmptyRuleSet() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
+        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
         final Set<Rule<Context<Object>>> rules = new TreeSet<>();
 
@@ -88,7 +86,7 @@ public class SimpleRuleEngineTest {
 
     /**
      * <p>
-     * Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.Context, java.util.Set)}
+     * Test method for ChainedRuleEngine#analyze(Context, Set)
      * </p>
      * <p>
      * Ensures that <code>true</code> is returned if any rule can fire.
@@ -97,7 +95,7 @@ public class SimpleRuleEngineTest {
     @Test
     @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnTrueIfRuleFired() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
+        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
         final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.fires(context)).willReturn(true);
@@ -111,7 +109,7 @@ public class SimpleRuleEngineTest {
 
     /**
      * <p>
-     * Test method for {@link SimpleRuleEngine#analyze(com.github.sebhoss.reguloj.Context, java.util.Set)}
+     * Test method for ChainedRuleEngine#analyze(Context, Set)
      * </p>
      * <p>
      * Ensures that <code>false</code> is returned if no rule can fire.
@@ -120,7 +118,7 @@ public class SimpleRuleEngineTest {
     @Test
     @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnFalseIfNoRuleFires() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
+        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
         final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.fires(context)).willReturn(false);
@@ -134,7 +132,7 @@ public class SimpleRuleEngineTest {
 
     /**
      * <p>
-     * Test method for {@link SimpleRuleEngine#infer(Context, Set)}
+     * Test method for ChainedRuleEngine#infer(Context, Set)
      * </p>
      * <p>
      * Ensures that a <code>null</code> context is not permitted
@@ -142,7 +140,7 @@ public class SimpleRuleEngineTest {
      */
     @Test
     public void shouldNotInferWithNullContext() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
+        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
         final Set<Rule<Context<Object>>> rules = Mockito.mock(Set.class);
 
         thrown.expect(NullPointerException.class);
@@ -152,7 +150,7 @@ public class SimpleRuleEngineTest {
 
     /**
      * <p>
-     * Test method for {@link SimpleRuleEngine#infer(Context, Set)}
+     * Test method for ChainedRuleEngine#infer(Context, Set)
      * </p>
      * <p>
      * Ensures that a <code>null</code> rule set is not permitted.
@@ -160,7 +158,7 @@ public class SimpleRuleEngineTest {
      */
     @Test
     public void shouldNotInferWithNullRuleSet() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
+        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
 
         thrown.expect(NullPointerException.class);
@@ -170,7 +168,7 @@ public class SimpleRuleEngineTest {
 
     /**
      * <p>
-     * Test method for {@link SimpleRuleEngine#infer(Context, Set)}
+     * Test method for ChainedRuleEngine#infer(Context, Set)
      * </p>
      * <p>
      * Ensures that the engine can handle an empty rule set.
@@ -179,7 +177,7 @@ public class SimpleRuleEngineTest {
 
     @Test
     public void shouldRunWithEmptyRuleSet() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
+        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
         final Set<Rule<Context<Object>>> rules = new TreeSet<>();
 
@@ -188,7 +186,7 @@ public class SimpleRuleEngineTest {
 
     /**
      * <p>
-     * Test method for {@link SimpleRuleEngine#infer(Context, Set)}
+     * Test method for ChainedRuleEngine#infer(Context, Set)
      * </p>
      * <p>
      * Ensures that the engine loops if any rule can fire.
@@ -197,7 +195,7 @@ public class SimpleRuleEngineTest {
     @Test
     @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldLoopWithFiringRule() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
+        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
         final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.run(context)).willReturn(true).willReturn(false);
@@ -209,7 +207,7 @@ public class SimpleRuleEngineTest {
 
     /**
      * <p>
-     * Test method for {@link SimpleRuleEngine#infer(Context, Set)}
+     * Test method for ChainedRuleEngine#infer(Context, Set)
      * </p>
      * <p>
      * Ensures that the engine does not loop if no rule can fire.
@@ -218,7 +216,7 @@ public class SimpleRuleEngineTest {
     @Test
     @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldNotLoopWithNotFiringRule() {
-        final RuleEngine<Context<Object>> engine = new SimpleRuleEngine<>();
+        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
         final Context<Object> context = Mockito.mock(Context.class);
         final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
         BDDMockito.given(rule.run(context)).willReturn(false);

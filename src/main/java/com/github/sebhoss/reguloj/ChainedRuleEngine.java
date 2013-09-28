@@ -8,24 +8,7 @@ package com.github.sebhoss.reguloj;
 
 import java.util.Set;
 
-/**
- * Simple implementation of the {@link RuleEngine} interface which supports rule-chaining.
- * 
- * @param <CONTEXT>
- *            The context type.
- */
-public final class SimpleRuleEngine<CONTEXT extends Context<?>> implements RuleEngine<CONTEXT> {
-
-    @Override
-    public boolean analyze(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
-        for (final Rule<CONTEXT> rule : rules) {
-            if (rule.fires(context)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
+final class ChainedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     @Override
     public void infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {

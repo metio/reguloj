@@ -5,20 +5,29 @@ package com.github.sebhoss.reguloj;
  * 
  * @see RuleEngine
  */
-public class RuleEngines {
+public final class RuleEngines {
 
     /**
-     * @return A simple rule engine which supports rule chaining.
+     * @return A rule engine which supports rule chaining.
      */
-    public static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> simpleEngine() {
-        return new SimpleRuleEngine<>();
+    public static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> chained() {
+        return new ChainedRuleEngine<>();
     }
 
     /**
-     * @return A builder for custom rule engines.
+     * @return A rule engine which does not support rule chaining.
      */
-    public static <CONTEXT extends Context<?>> RuleEngineBuilder<CONTEXT> custom() {
-        return new RuleEngineBuilderImplementation<>();
+    public static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> unchained() {
+        return new UnchainedRuleEngine<>();
+    }
+
+    /**
+     * @param maximumNumberOfRuns
+     *            The maximum number of runs to perform.
+     * @return A rule engine which does not support rule chaining.
+     */
+    public static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> limited(final int maximumNumberOfRuns) {
+        return new LimitedRuleEngine<>(maximumNumberOfRuns);
     }
 
     private RuleEngines() {

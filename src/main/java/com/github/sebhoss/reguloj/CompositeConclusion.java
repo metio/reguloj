@@ -10,19 +10,11 @@ import java.util.Collection;
 
 import com.google.common.base.Preconditions;
 
-/**
- * @param <TOPIC>
- *            The topic of the inference process.
- */
-public final class CompositeConclusion<TOPIC> implements Conclusion<TOPIC> {
+final class CompositeConclusion<TOPIC> implements Conclusion<TOPIC> {
 
     private final Collection<Conclusion<TOPIC>> conclusions;
 
-    /**
-     * @param conclusions
-     *            The encapsulated conclusions to call (<b>may not be empty</b>).
-     */
-    public CompositeConclusion(final Collection<Conclusion<TOPIC>> conclusions) {
+    CompositeConclusion(final Collection<Conclusion<TOPIC>> conclusions) {
         Preconditions.checkArgument(!conclusions.isEmpty());
 
         this.conclusions = conclusions;

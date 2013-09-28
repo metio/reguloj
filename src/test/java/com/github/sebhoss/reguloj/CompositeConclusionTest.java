@@ -9,8 +9,6 @@ package com.github.sebhoss.reguloj;
 import java.util.Collection;
 
 import com.github.sebhoss.common.annotation.CompilerWarnings;
-import com.github.sebhoss.reguloj.CompositeConclusion;
-import com.github.sebhoss.reguloj.Conclusion;
 import com.google.common.collect.Lists;
 
 import org.junit.Assert;
@@ -20,7 +18,7 @@ import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
 /**
- * Test cases for {@link CompositeConclusion}.
+ * Test cases for CompositeConclusion.
  */
 @SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
 public class CompositeConclusionTest {

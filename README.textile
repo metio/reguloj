@@ -39,15 +39,12 @@ h3. Evaluating rules
 
 p. A @Set@ of @Rule@ objects are evaluated by a @RuleEngine@ in a specific @Context@. The following example shows how to do it:
 
-bc. 
-CONTEXT context = ...;
+bc.. CONTEXT context = ...;
 Set<Rule<CONTEXT>> rules = ...;
 RuleEngine<CONTEXT> engine = ...;
 
-bc. 
 engine.analyze(context, rules); // true if at least one rule can fired.
 
-bc. 
 engine.infer(context, rules); // perform conclusions of those rules that fired
 
 h3. Integration

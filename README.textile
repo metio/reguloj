@@ -15,6 +15,14 @@ final Rule rule = rule().called(name)
                         .when(and(predicate1, predicate2))
                         .then(conclude(conclusion1, conclusion2))
 
+h3. Creating rule engines
+
+p. The @RuleEngines@ utility class offers to build 3 different rule engines:
+
+* *chained* All rules will be evaluated indefinitely until no further rule fires.
+* *limited* All rules will be evaluated, but only a maximum number of _x_ times.
+* *firstWins* Evaluates all rules, stops after the first one that fires.
+
 h3. Evaluating rules
 
 p. A @Set@ of @Rule@ objects are evaluated by a @RuleEngine@ in a specific @Context@. The following example shows how to do it:

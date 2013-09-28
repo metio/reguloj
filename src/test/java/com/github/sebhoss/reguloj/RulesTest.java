@@ -11,8 +11,6 @@ import java.lang.reflect.Constructor;
 import com.github.sebhoss.common.annotation.CompilerWarnings;
 import com.google.common.base.Predicate;
 
-import org.hamcrest.core.Is;
-import org.hamcrest.core.IsNull;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -42,7 +40,7 @@ public final class RulesTest {
 
         builder = Rules.<Context<Object>> rule();
 
-        Assert.assertThat(builder, Is.is(IsNull.notNullValue()));
+        Assert.assertNotNull(builder);
     }
 
     /**
@@ -61,7 +59,7 @@ public final class RulesTest {
 
         final Rule<Context<Object>> rule = builder.then(Mockito.mock(Conclusion.class));
 
-        Assert.assertThat(rule, Is.is(IsNull.notNullValue()));
+        Assert.assertNotNull(rule);
     }
 
     /**
@@ -102,7 +100,7 @@ public final class RulesTest {
         constructor.setAccessible(true);
         final Object instance = constructor.newInstance((Object[]) null);
 
-        Assert.assertThat(instance, Is.is(IsNull.notNullValue()));
+        Assert.assertNotNull(instance);
     }
 
 }

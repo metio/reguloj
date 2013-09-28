@@ -23,7 +23,6 @@ public final class CompositeConclusion<TOPIC> implements Conclusion<TOPIC> {
      *            The encapsulated conclusions to call (<b>may not be empty</b>).
      */
     public CompositeConclusion(final Collection<Conclusion<TOPIC>> conclusions) {
-        Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(!conclusions.isEmpty());
 
         this.conclusions = conclusions;

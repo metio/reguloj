@@ -29,7 +29,6 @@ public final class Conclusions {
      * @return A new conclusion builder.
      */
     public static <T> Conclusion<T> conclude(final Collection<? extends Conclusion<T>> conclusions) {
-        Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(!conclusions.isEmpty());
 
         return new CompositeConclusion<>(Nullsafe.nullsafe(ImmutableList.copyOf(conclusions)));
@@ -47,9 +46,6 @@ public final class Conclusions {
      * @return A new conclusion builder.
      */
     public static <T> Conclusion<T> conclude(final Conclusion<T> conclusion1, final Conclusion<T> conclusion2) {
-        Preconditions.checkNotNull(conclusion1);
-        Preconditions.checkNotNull(conclusion2);
-
         return new CompositeConclusion<>(Nullsafe.nullsafe(ImmutableList.of(conclusion1, conclusion2)));
     }
 
@@ -63,7 +59,6 @@ public final class Conclusions {
      * @return A new conclusion builder.
      */
     public static <T> Conclusion<T> conclude(final Iterable<? extends Conclusion<T>> conclusions) {
-        Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(!Iterables.isEmpty(conclusions));
 
         return new CompositeConclusion<>(Nullsafe.nullsafe(ImmutableList.copyOf(conclusions)));
@@ -79,7 +74,6 @@ public final class Conclusions {
      * @return A new conclusion builder.
      */
     public static <T> Conclusion<T> conclude(final Iterator<? extends Conclusion<T>> conclusions) {
-        Preconditions.checkNotNull(conclusions);
         Preconditions.checkArgument(conclusions.hasNext());
 
         return new CompositeConclusion<>(Nullsafe.nullsafe(ImmutableList.copyOf(conclusions)));

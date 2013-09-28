@@ -30,25 +30,24 @@ final class RuleBuilderImplementation<CONTEXT extends Context<?>> implements Rul
 
     @Override
     public RuleBuilder<CONTEXT> when(final Predicate<CONTEXT> newPredicate) {
-        predicate = Preconditions.checkNotNull(newPredicate);
+        predicate = newPredicate;
 
         return this;
     }
 
     @Override
     public Rule<CONTEXT> then(final Conclusion<CONTEXT> newConclusion) {
-        conclusion = Preconditions.checkNotNull(newConclusion);
+        conclusion = newConclusion;
 
         Preconditions.checkState(name != null);
         Preconditions.checkState(predicate != null);
-        Preconditions.checkState(conclusion != null);
 
         return new RuleImplementation<>(name, predicate, conclusion);
     }
 
     @Override
     public RuleBuilder<CONTEXT> called(final String newName) {
-        name = Preconditions.checkNotNull(newName);
+        name = newName;
 
         return this;
     }

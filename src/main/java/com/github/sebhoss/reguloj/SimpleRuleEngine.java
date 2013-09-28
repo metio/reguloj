@@ -8,8 +8,6 @@ package com.github.sebhoss.reguloj;
 
 import java.util.Set;
 
-import com.google.common.base.Preconditions;
-
 /**
  * Simple implementation of the {@link RuleEngine} interface which supports rule-chaining.
  * 
@@ -20,8 +18,6 @@ public final class SimpleRuleEngine<CONTEXT extends Context<?>> implements RuleE
 
     @Override
     public boolean analyze(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
-        checkInputs(context, rules);
-
         for (final Rule<CONTEXT> rule : rules) {
             if (rule.fires(context)) {
                 return true;
@@ -33,8 +29,6 @@ public final class SimpleRuleEngine<CONTEXT extends Context<?>> implements RuleE
 
     @Override
     public void infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
-        checkInputs(context, rules);
-
         boolean ruleFired;
         do {
             ruleFired = false;
@@ -43,11 +37,6 @@ public final class SimpleRuleEngine<CONTEXT extends Context<?>> implements RuleE
                 ruleFired |= rule.run(context);
             }
         } while (ruleFired);
-    }
-
-    private void checkInputs(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
-        Preconditions.checkNotNull(context);
-        Preconditions.checkNotNull(rules);
     }
 
 }

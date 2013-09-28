@@ -8,9 +8,7 @@ package com.github.sebhoss.reguloj;
 
 import javax.annotation.Nullable;
 
-import com.github.sebhoss.common.annotation.Nullsafe;
 import com.google.common.base.Objects;
-import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 
 /**
@@ -36,18 +34,17 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
      *            The conclusion of the new rule.
      */
     RuleImplementation(final String name, final Predicate<CONTEXT> predicate, final Conclusion<CONTEXT> conclusion) {
-        this.name = Nullsafe.nullsafe(Preconditions.checkNotNull(name));
-        this.predicate = Nullsafe.nullsafe(Preconditions.checkNotNull(predicate));
-        this.conclusion = Nullsafe.nullsafe(Preconditions.checkNotNull(conclusion));
+        this.name = name;
+        this.predicate = predicate;
+        this.conclusion = conclusion;
     }
 
     @Override
     public boolean run(final CONTEXT context) {
-        final CONTEXT nullsafeContext = Nullsafe.nullsafe(Preconditions.checkNotNull(context));
         boolean changed = false;
 
-        if (fires(nullsafeContext)) {
-            changed = conclusion.apply(nullsafeContext);
+        if (fires(context)) {
+            changed = conclusion.apply(context);
         }
 
         return changed;
@@ -55,7 +52,7 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
 
     @Override
     public boolean fires(final CONTEXT context) {
-        return predicate.apply(Preconditions.checkNotNull(context));
+        return predicate.apply(context);
     }
 
     @Override

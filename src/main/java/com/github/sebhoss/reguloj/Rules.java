@@ -6,7 +6,6 @@
  */
 package com.github.sebhoss.reguloj;
 
-import com.github.sebhoss.reguloj.implementation.RuleBuilderImplementation;
 
 /**
  * Utility class which helps creating new {@link Rule rules}.

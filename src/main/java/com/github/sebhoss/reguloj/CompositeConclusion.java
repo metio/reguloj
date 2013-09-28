@@ -4,11 +4,10 @@
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
  */
-package com.github.sebhoss.reguloj.implementation;
+package com.github.sebhoss.reguloj;
 
 import java.util.Collection;
 
-import com.github.sebhoss.reguloj.Conclusion;
 import com.google.common.base.Preconditions;
 
 /**

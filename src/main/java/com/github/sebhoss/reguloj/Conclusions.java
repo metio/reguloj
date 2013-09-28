@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import com.github.sebhoss.common.annotation.Nullsafe;
-import com.github.sebhoss.reguloj.implementation.CompositeConclusion;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;

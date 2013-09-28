@@ -4,13 +4,9 @@
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
  */
-package com.github.sebhoss.reguloj.implementation;
+package com.github.sebhoss.reguloj;
 
 import com.github.sebhoss.common.annotation.CompilerWarnings;
-import com.github.sebhoss.reguloj.Conclusion;
-import com.github.sebhoss.reguloj.Context;
-import com.github.sebhoss.reguloj.Rule;
-import com.github.sebhoss.reguloj.RuleBuilder;
 import com.google.common.base.Predicate;
 
 import org.hamcrest.core.Is;
@@ -21,9 +17,7 @@ import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 
 /**
- * Test cases for the {@link RuleBuilderImplementation}.
- * 
- * @see RuleBuilderImplementation
+ * Test cases for the RuleBuilderImplementation.
  */
 @SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
 public final class RuleBuilderImplementationTest {
@@ -37,7 +31,7 @@ public final class RuleBuilderImplementationTest {
 
     /**
      * <p>
-     * Test method for {@link RuleBuilderImplementation#then(Conclusion)}
+     * Test method for RuleBuilderImplementation#then(Conclusion)
      * </p>
      * <p>
      * Ensures that rules can be created with a valid RuleBuilderImplementation.
@@ -56,7 +50,7 @@ public final class RuleBuilderImplementationTest {
 
     /**
      * <p>
-     * Test method for {@link RuleBuilderImplementation#when(Predicate)}
+     * Test method for RuleBuilderImplementation#when(Predicate)
      * </p>
      * <p>
      * Ensures that no <code>null</code> premise can be used.
@@ -73,7 +67,7 @@ public final class RuleBuilderImplementationTest {
 
     /**
      * <p>
-     * Test method for {@link RuleBuilderImplementation#then(Conclusion)}
+     * Test method for RuleBuilderImplementation#then(Conclusion)
      * </p>
      * <p>
      * Ensures that no <code>null</code> conclusion can be used.
@@ -90,7 +84,7 @@ public final class RuleBuilderImplementationTest {
 
     /**
      * <p>
-     * Test method for {@link RuleBuilderImplementation#called(String)}
+     * Test method for RuleBuilderImplementation#called(String)
      * </p>
      * <p>
      * Ensures that no <code>null</code> string can be used.

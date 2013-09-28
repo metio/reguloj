@@ -19,7 +19,6 @@ h3. Creating an inference context
 
 p. An inference "context":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Context.java contains information needed by predicates and/or conclusions. This project supplies a simple implementation of the @Context@ interface called @BaseContext@. Subclass @BaseContext@ in case your rules need extra information. The API acknowledges this by using @<CONTEXT extends Context<?>>@ as type parameter for all methods which expect an @Context@. See item 28 in Effective Java for more details.
 
-
 h3. Creating rule engines
 
 p. A rule engine evaluates a set of sets in a specific context. The @RuleEngines@ utility class offers to build 3 different rule engines:

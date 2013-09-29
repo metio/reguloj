@@ -7,7 +7,7 @@ h2. Usage
 
 h3. Creating rule engines
 
-p. A rule engine evaluates a set of sets in a specific context. The @RuleEngines@ utility class offers to build 3 different rule engines:
+p. A rule engine uses a specific context to evaluate a set of rules. The @RuleEngines@ utility class offers to build 3 different rule engines:
 
 bc.. // All rules will be evaluated indefinitely until no further rule fires.
 final RuleEngine<CONTEXT> chained = RuleEngines.chained();
@@ -18,7 +18,17 @@ final RuleEngine<CONTEXT> limited = RuleEngines.limited(5);
 // Evaluates all rules, stops after the first one that fires.
 final RuleEngine<CONTEXT> firstWins = RuleEngines.firstWins();
 
-p. If custom inference behavior is required, subclass @AbstractRuleEngine@ and implement the infer() method.
+p. If custom inference behavior is required, subclass @AbstractRuleEngine@ and implement the infer() method. The following code example shows how to work with rule engines:
+
+bc.. CONTEXT context = ...;
+Set<Rule<CONTEXT>> rules = ...;
+RuleEngine<CONTEXT> engine = ...;
+
+// true if at least one rule can fired.
+engine.analyze(context, rules);
+
+// perform conclusions of those rules that fired
+engine.infer(context, rules);
 
 h3. Creating an inference context
 
@@ -40,18 +50,6 @@ rule.fires(context);
 
 // true if the rule changed the state of the given context, e.g. the above conclusion applies.
 rule.run(context);
-
-h3. Evaluating rules
-
-p. A @Set@ of @Rule@ objects are evaluated by a @RuleEngine@ in a specific @Context@. The following example shows how to do it:
-
-bc.. CONTEXT context = ...;
-Set<Rule<CONTEXT>> rules = ...;
-RuleEngine<CONTEXT> engine = ...;
-
-engine.analyze(context, rules); // true if at least one rule can fired.
-
-engine.infer(context, rules); // perform conclusions of those rules that fired
 
 h3. Integration
 

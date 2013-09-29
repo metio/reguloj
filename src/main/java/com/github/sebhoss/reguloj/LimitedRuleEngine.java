@@ -22,7 +22,7 @@ final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEn
     public void infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
         int currentRuns = 0;
 
-        while (FluentIterable.from(rules).anyMatch(Rules.ruleRuns(context))) {
+        while (FluentIterable.from(rules).filter(Rules.ruleRuns(context)).size() > 0) {
             if (++currentRuns > maximumNumberOfRuns) {
                 break;
             }

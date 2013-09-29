@@ -8,6 +8,8 @@ package com.github.sebhoss.reguloj;
 
 import java.util.Set;
 
+import com.google.common.collect.FluentIterable;
+
 /**
  * Abstract rule engine which provides an implementation for the {@link #analyze(Context, Set)} method. Therefore
  * implementors only have to write the {@link #infer(Context, Set)} method.
@@ -19,13 +21,7 @@ public abstract class AbstractRuleEngine<CONTEXT extends Context<?>> implements 
 
     @Override
     public final boolean analyze(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
-        for (final Rule<CONTEXT> rule : rules) {
-            if (rule.fires(context)) {
-                return true;
-            }
-        }
-
-        return false;
+        return FluentIterable.from(rules).anyMatch(Rules.ruleFires(context));
     }
 
 }

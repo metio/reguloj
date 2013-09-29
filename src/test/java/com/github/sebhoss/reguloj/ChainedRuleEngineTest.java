@@ -29,44 +29,6 @@ public class ChainedRuleEngineTest {
 
     /**
      * <p>
-     * Test method for ChainedRuleEngine#analyze(Context, Set)
-     * </p>
-     * <p>
-     * Ensures that a <code>null</code> context ist not permitted.
-     * </p>
-     */
-    @Test
-    public void shouldNotAnalyzeNullContext() {
-        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
-        final Set<Rule<Context<Object>>> rules = Mockito.mock(Set.class);
-
-        thrown.expect(NullPointerException.class);
-        final boolean fired = engine.analyze(null, rules);
-
-        Assert.assertFalse(fired);
-    }
-
-    /**
-     * <p>
-     * Test method for ChainedRuleEngine#analyze(Context, Set)
-     * </p>
-     * <p>
-     * Ensures that a <code>null</code> rule set ist not permitted.
-     * </p>
-     */
-    @Test
-    public void shouldNotAnalyzeNullRuleSet() {
-        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
-        final Context<Object> context = Mockito.mock(Context.class);
-
-        thrown.expect(NullPointerException.class);
-        final boolean fired = engine.analyze(context, null);
-
-        Assert.assertFalse(fired);
-    }
-
-    /**
-     * <p>
      * Test method for ChainedRuleEngine#analyze(Context, java.util.Set)
      * </p>
      * <p>
@@ -128,42 +90,6 @@ public class ChainedRuleEngineTest {
         final boolean fired = engine.analyze(context, rules);
 
         Assert.assertFalse(fired);
-    }
-
-    /**
-     * <p>
-     * Test method for ChainedRuleEngine#infer(Context, Set)
-     * </p>
-     * <p>
-     * Ensures that a <code>null</code> context is not permitted
-     * </p>
-     */
-    @Test
-    public void shouldNotInferWithNullContext() {
-        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
-        final Set<Rule<Context<Object>>> rules = Mockito.mock(Set.class);
-
-        thrown.expect(NullPointerException.class);
-
-        engine.infer(null, rules);
-    }
-
-    /**
-     * <p>
-     * Test method for ChainedRuleEngine#infer(Context, Set)
-     * </p>
-     * <p>
-     * Ensures that a <code>null</code> rule set is not permitted.
-     * </p>
-     */
-    @Test
-    public void shouldNotInferWithNullRuleSet() {
-        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
-        final Context<Object> context = Mockito.mock(Context.class);
-
-        thrown.expect(NullPointerException.class);
-
-        engine.infer(context, null);
     }
 
     /**

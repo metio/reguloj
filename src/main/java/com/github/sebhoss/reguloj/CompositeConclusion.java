@@ -9,6 +9,7 @@ package com.github.sebhoss.reguloj;
 import java.util.Collection;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.FluentIterable;
 
 final class CompositeConclusion<TOPIC> implements Conclusion<TOPIC> {
 
@@ -21,14 +22,8 @@ final class CompositeConclusion<TOPIC> implements Conclusion<TOPIC> {
     }
 
     @Override
-    public boolean apply(final TOPIC target) {
-        boolean contextChanged = false;
-
-        for (final Conclusion<TOPIC> conclusion : conclusions) {
-            contextChanged |= conclusion.apply(target);
-        }
-
-        return contextChanged;
+    public boolean apply(final TOPIC topic) {
+        return FluentIterable.from(conclusions).filter(Conclusions.conlusionApplies(topic)).size() > 0;
     }
 
 }

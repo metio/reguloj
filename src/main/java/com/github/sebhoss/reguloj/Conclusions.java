@@ -11,6 +11,7 @@ import java.util.Iterator;
 
 import com.github.sebhoss.common.annotation.Nullsafe;
 import com.google.common.base.Preconditions;
+import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 
@@ -77,6 +78,15 @@ public final class Conclusions {
         Preconditions.checkArgument(conclusions.hasNext());
 
         return new CompositeConclusion<>(Nullsafe.nullsafe(ImmutableList.copyOf(conclusions)));
+    }
+
+    /**
+     * @param topic
+     *            The topic to check.
+     * @return A predicate that checks whether a conclusion applies in the given topic or not.
+     */
+    public static <TOPIC> Predicate<Conclusion<TOPIC>> conlusionApplies(final TOPIC topic) {
+        return new ConclusionAppliesPredicate<>(topic);
     }
 
     private Conclusions() {

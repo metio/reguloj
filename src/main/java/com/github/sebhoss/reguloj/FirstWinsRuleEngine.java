@@ -10,7 +10,7 @@ import java.util.Set;
 
 import com.google.common.collect.FluentIterable;
 
-class FirstWinsRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
+final class FirstWinsRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     @Override
     public void infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {

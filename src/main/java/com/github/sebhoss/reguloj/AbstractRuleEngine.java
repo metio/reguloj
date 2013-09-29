@@ -8,7 +8,14 @@ package com.github.sebhoss.reguloj;
 
 import java.util.Set;
 
-abstract class AbstractRuleEngine<CONTEXT extends Context<?>> implements RuleEngine<CONTEXT> {
+/**
+ * Abstract rule engine which provides an implementation for the {@link #analyze(Context, Set)} method. Therefore
+ * implementors only have to write the {@link #infer(Context, Set)} method.
+ * 
+ * @param <CONTEXT>
+ *            The context type.
+ */
+public abstract class AbstractRuleEngine<CONTEXT extends Context<?>> implements RuleEngine<CONTEXT> {
 
     @Override
     public final boolean analyze(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {

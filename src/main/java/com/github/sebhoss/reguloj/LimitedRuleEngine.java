@@ -8,6 +8,7 @@ package com.github.sebhoss.reguloj;
 
 import java.util.Set;
 
+import com.google.common.base.Preconditions;
 import com.google.common.collect.FluentIterable;
 
 final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
@@ -15,6 +16,8 @@ final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEn
     private final int maximumNumberOfRuns;
 
     LimitedRuleEngine(final int maximumNumberOfRuns) {
+        Preconditions.checkArgument(maximumNumberOfRuns > 0);
+
         this.maximumNumberOfRuns = maximumNumberOfRuns;
     }
 

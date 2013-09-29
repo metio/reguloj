@@ -6,6 +6,8 @@
  */
 package com.github.sebhoss.reguloj;
 
+import javax.annotation.Nullable;
+
 import com.google.common.base.Predicate;
 
 final class ConclusionAppliesPredicate<TOPIC> implements Predicate<Conclusion<TOPIC>> {
@@ -17,8 +19,8 @@ final class ConclusionAppliesPredicate<TOPIC> implements Predicate<Conclusion<TO
     }
 
     @Override
-    public boolean apply(final Conclusion<TOPIC> conclusion) {
-        return conclusion.apply(topic);
+    public boolean apply(final @Nullable Conclusion<TOPIC> conclusion) {
+        return conclusion != null && conclusion.apply(topic);
     }
 
 }

@@ -8,18 +8,13 @@ package com.github.sebhoss.reguloj;
 
 import java.util.Set;
 
+import com.google.common.collect.FluentIterable;
+
 final class ChainedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     @Override
     public void infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
-        boolean ruleFired;
-        do {
-            ruleFired = false;
-
-            for (final Rule<CONTEXT> rule : rules) {
-                ruleFired |= rule.run(context);
-            }
-        } while (ruleFired);
+        FluentIterable.from(rules).filter(Rules.ruleRuns(context)).cycle();
     }
 
 }

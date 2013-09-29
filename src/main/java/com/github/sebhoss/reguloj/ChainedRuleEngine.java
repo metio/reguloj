@@ -13,8 +13,14 @@ import com.google.common.collect.FluentIterable;
 final class ChainedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     @Override
-    public void infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
-        FluentIterable.from(rules).filter(Rules.ruleRuns(context)).cycle();
+    public boolean infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
+        boolean changeOccured = false;
+
+        while (FluentIterable.from(rules).filter(Rules.ruleRuns(context)).size() > 0) {
+            changeOccured = true;
+        }
+
+        return changeOccured;
     }
 
 }

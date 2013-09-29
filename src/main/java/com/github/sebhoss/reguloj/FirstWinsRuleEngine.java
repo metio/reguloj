@@ -13,8 +13,8 @@ import com.google.common.collect.FluentIterable;
 final class FirstWinsRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     @Override
-    public void infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
-        FluentIterable.from(rules).firstMatch(Rules.ruleRuns(context));
+    public boolean infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
+        return FluentIterable.from(rules).firstMatch(Rules.ruleRuns(context)).isPresent();
     }
 
 }

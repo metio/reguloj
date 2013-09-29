@@ -22,14 +22,19 @@ final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEn
     }
 
     @Override
-    public void infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
-        int currentRuns = 0;
+    public boolean infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
+        boolean changeOccured = false;
 
+        int currentRuns = 0;
         while (FluentIterable.from(rules).filter(Rules.ruleRuns(context)).size() > 0) {
+            changeOccured = true;
+
             if (++currentRuns > maximumNumberOfRuns) {
                 break;
             }
         }
+
+        return changeOccured;
     }
 
 }

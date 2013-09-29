@@ -85,7 +85,8 @@ public interface RuleEngine<CONTEXT extends Context<?>> {
      *            The context to analyze.
      * @param rules
      *            The rules to run.
+     * @return <code>true</code> if any rule did run, otherwise <code>false</code>.
      */
-    void infer(CONTEXT context, Set<Rule<CONTEXT>> rules);
+    boolean infer(CONTEXT context, Set<Rule<CONTEXT>> rules);
 
 }

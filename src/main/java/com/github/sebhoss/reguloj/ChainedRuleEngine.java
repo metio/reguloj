@@ -8,15 +8,13 @@ package com.github.sebhoss.reguloj;
 
 import java.util.Set;
 
-import com.google.common.collect.FluentIterable;
-
 final class ChainedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     @Override
     public boolean infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
         boolean changeOccured = false;
 
-        while (FluentIterable.from(rules).filter(Rules.ruleRuns(context)).size() > 0) {
+        while (performSinglePass(context, rules)) {
             changeOccured = true;
         }
 

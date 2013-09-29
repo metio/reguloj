@@ -24,4 +24,8 @@ public abstract class AbstractRuleEngine<CONTEXT extends Context<?>> implements 
         return FluentIterable.from(rules).anyMatch(Rules.ruleFires(context));
     }
 
+    protected final boolean performSinglePass(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
+        return FluentIterable.from(rules).filter(Rules.ruleRuns(context)).size() > 0;
+    }
+
 }

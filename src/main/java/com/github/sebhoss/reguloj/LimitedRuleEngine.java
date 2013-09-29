@@ -9,7 +9,6 @@ package com.github.sebhoss.reguloj;
 import java.util.Set;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.FluentIterable;
 
 final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
@@ -26,7 +25,7 @@ final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEn
         boolean changeOccured = false;
 
         int currentRuns = 0;
-        while (FluentIterable.from(rules).filter(Rules.ruleRuns(context)).size() > 0) {
+        while (performSinglePass(context, rules)) {
             changeOccured = true;
 
             if (++currentRuns > maximumNumberOfRuns) {

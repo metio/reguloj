@@ -1,13 +1,9 @@
 package com.github.sebhoss.reguloj;
 
-import com.google.common.base.Predicate;
-
-final class RuleFiresPredicate<CONTEXT extends Context<?>> implements Predicate<Rule<CONTEXT>> {
-
-    private final CONTEXT context;
+final class RuleFiresPredicate<CONTEXT extends Context<?>> extends RulePredicate<CONTEXT> {
 
     RuleFiresPredicate(final CONTEXT context) {
-        this.context = context;
+        super(context);
     }
 
     @Override

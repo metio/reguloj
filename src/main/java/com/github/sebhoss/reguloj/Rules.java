@@ -6,7 +6,6 @@
  */
 package com.github.sebhoss.reguloj;
 
-import com.google.common.base.Predicate;
 
 /**
  * Utility class which helps creating new {@link Rule rules}.
@@ -29,7 +28,7 @@ public final class Rules {
      *            The context to check.
      * @return A predicate that checks whether a rule fires in the given context.
      */
-    public static <CONTEXT extends Context<?>> Predicate<Rule<CONTEXT>> ruleFires(final CONTEXT context) {
+    public static <CONTEXT extends Context<?>> RulePredicate<CONTEXT> ruleFires(final CONTEXT context) {
         return new RuleFiresPredicate<>(context);
     }
 
@@ -38,7 +37,7 @@ public final class Rules {
      *            The context to check.
      * @return A predicate that checks whether a rule fires in the given context.
      */
-    public static <CONTEXT extends Context<?>> Predicate<Rule<CONTEXT>> ruleRuns(final CONTEXT context) {
+    public static <CONTEXT extends Context<?>> RulePredicate<CONTEXT> ruleRuns(final CONTEXT context) {
         return new RuleRunsPredicate<>(context);
     }
 

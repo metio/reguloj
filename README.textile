@@ -20,6 +20,10 @@ final RuleEngine<CONTEXT> firstWins = RuleEngines.firstWins();
 
 p. If custom inference behavior is required, subclass @AbstractRuleEngine@ and implement the infer() method.
 
+h3. Creating an inference context
+
+p. An inference "context":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Context.java contains information needed by predicates and/or conclusions. This project supplies a simple implementation of the @Context@ interface called @BaseContext@. Subclass @BaseContext@ in case your rules need extra information. The API acknowledges this by using @<CONTEXT extends Context<?>>@ as type parameter for all methods which expect an @Context@. See item 28 in Effective Java for more details.
+
 h3. Creating rules
 
 p. A "rule":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Rule.java has a (unique) name and runs in a given context. Additionally it can be checked whether a rule fires in a given context.
@@ -36,10 +40,6 @@ rule.fires(context);
 
 // true if the rule changed the state of the given context, e.g. the above conclusion applies.
 rule.run(context);
-
-h3. Creating an inference context
-
-p. An inference "context":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Context.java contains information needed by predicates and/or conclusions. This project supplies a simple implementation of the @Context@ interface called @BaseContext@. Subclass @BaseContext@ in case your rules need extra information. The API acknowledges this by using @<CONTEXT extends Context<?>>@ as type parameter for all methods which expect an @Context@. See item 28 in Effective Java for more details.
 
 h3. Evaluating rules
 

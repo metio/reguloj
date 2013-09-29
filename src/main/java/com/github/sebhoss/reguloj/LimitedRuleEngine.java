@@ -8,6 +8,8 @@ package com.github.sebhoss.reguloj;
 
 import java.util.Set;
 
+import com.google.common.collect.FluentIterable;
+
 final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     private final int maximumNumberOfRuns;
@@ -19,14 +21,12 @@ final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEn
     @Override
     public void infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
         int currentRuns = 0;
-        boolean ruleFired = false;
 
-        do {
-            currentRuns++;
-            for (final Rule<CONTEXT> rule : rules) {
-                ruleFired |= rule.run(context);
+        while (FluentIterable.from(rules).anyMatch(Rules.ruleRuns(context))) {
+            if (++currentRuns > maximumNumberOfRuns) {
+                break;
             }
-        } while (ruleFired && currentRuns <= maximumNumberOfRuns);
+        }
     }
 
 }

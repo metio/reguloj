@@ -27,7 +27,7 @@ Set<Rule<CONTEXT>> rules = ...;
 // true if at least one rule can fired.
 engine.analyze(context, rules);
 
-// perform conclusions of those rules that fired
+// perform conclusions of those rules that fired.
 engine.infer(context, rules);
 
 h3. Creating an inference context
@@ -45,7 +45,7 @@ final Rule<CONTEXT> rule = rule().called(name)
                         .when(and(predicate1, predicate2))
                         .then(conclude(conclusion1, conclusion2))
 
-// true if the rule would fire in the given context, e.g. the above predicate evaluates applies
+// true if the rule would fire in the given context, e.g. the above predicate evaluates applies.
 rule.fires(context);
 
 // true if the rule changed the state of the given context, e.g. the above conclusion applies.

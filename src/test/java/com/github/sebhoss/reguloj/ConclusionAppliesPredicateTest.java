@@ -5,6 +5,7 @@ import com.github.sebhoss.common.annotation.CompilerWarnings;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
 /**
@@ -31,7 +32,7 @@ public class ConclusionAppliesPredicateTest {
      */
     @Test
     public void shouldReturnTrueOnAppliedConclusion() {
-        Mockito.when(conclusion.apply("test")).thenReturn(Boolean.TRUE);
+        BDDMockito.given(conclusion.apply("test")).willReturn(Boolean.TRUE);
 
         final boolean applied = predicate.apply(conclusion);
 
@@ -43,7 +44,7 @@ public class ConclusionAppliesPredicateTest {
      */
     @Test
     public void shouldReturnFalseOnNonAppliedConclusion() {
-        Mockito.when(conclusion.apply("test")).thenReturn(Boolean.FALSE);
+        BDDMockito.given(conclusion.apply("test")).willReturn(Boolean.FALSE);
 
         final boolean applied = predicate.apply(conclusion);
 

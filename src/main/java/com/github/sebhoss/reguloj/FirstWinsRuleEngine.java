@@ -6,14 +6,12 @@
  */
 package com.github.sebhoss.reguloj;
 
-import java.util.Set;
-
 import com.google.common.collect.FluentIterable;
 
 final class FirstWinsRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     @Override
-    public boolean infer(final Set<Rule<CONTEXT>> rules, final CONTEXT context) {
+    public boolean infer(final Iterable<Rule<CONTEXT>> rules, final CONTEXT context) {
         return FluentIterable.from(rules).firstMatch(Rules.ruleRuns(context)).isPresent();
     }
 

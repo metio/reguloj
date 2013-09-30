@@ -6,8 +6,6 @@
  */
 package com.github.sebhoss.reguloj;
 
-import java.util.Set;
-
 import com.google.common.base.Preconditions;
 
 final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
@@ -21,7 +19,7 @@ final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEn
     }
 
     @Override
-    public boolean infer(final Set<Rule<CONTEXT>> rules, final CONTEXT context) {
+    public boolean infer(final Iterable<Rule<CONTEXT>> rules, final CONTEXT context) {
         boolean changeOccured = false;
 
         int currentRuns = 0;

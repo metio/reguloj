@@ -21,7 +21,7 @@ final RuleEngine<CONTEXT> firstWins = RuleEngines.firstWins();
 p. If custom inference behavior is required, subclass @AbstractRuleEngine@ and implement the infer() method. The following code example shows how to work with rule engines:
 
 bc.. RuleEngine<CONTEXT> engine = ...;
-Set<Rule<CONTEXT>> rules = ...;
+Iterable<Rule<CONTEXT>> rules = ...;
 CONTEXT context = ...;
 
 // true if at least one rule can fired.

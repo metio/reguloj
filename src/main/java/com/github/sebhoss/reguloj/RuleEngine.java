@@ -6,7 +6,6 @@
  */
 package com.github.sebhoss.reguloj;
 
-
 /**
  * <p>
  * The {@link RuleEngine} is responsible for logical reasoning. For that it analyzes a given {@link Context context}
@@ -30,11 +29,11 @@ package com.github.sebhoss.reguloj;
  * </p>
  * 
  * <pre>
- * Context&lt;X&gt; context = ...;
- * Set&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
  * RuleEngine&lt;Context&lt;X&gt;&gt; engine = ...;
+ * Iterable&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
+ * Context&lt;X&gt; context = ...;
  * 
- * boolean fired = engine.analyze(context, rules);
+ * boolean fired = engine.analyze(rules, context);
  * </pre>
  * 
  * </li>
@@ -44,11 +43,11 @@ package com.github.sebhoss.reguloj;
  * </p>
  * 
  * <pre>
- * Context&lt;X&gt; context = ...;
- * Set&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
  * RuleEngine&lt;Context&lt;X&gt;&gt; engine = ...;
+ * Iterable&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
+ * Context&lt;X&gt; context = ...;
  * 
- * engine.infer(context, rules);
+ * engine.infer(rules, context);
  * </pre>
  * 
  * </li>

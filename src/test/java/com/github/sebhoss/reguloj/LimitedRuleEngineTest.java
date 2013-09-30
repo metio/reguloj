@@ -14,10 +14,10 @@ import org.mockito.Mockito;
 @SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
 public class LimitedRuleEngineTest {
 
-    private RuleEngine<Context<String>> engine;
-    private Context<String>             context;
-    private Rule<Context<String>>       rule1;
-    private Rule<Context<String>>       rule2;
+    private RuleEngine<Context<Object>> engine;
+    private Context<Object>             context;
+    private Rule<Context<Object>>       rule1;
+    private Rule<Context<Object>>       rule2;
 
     /**
      * Creates rule engine, context and rules.

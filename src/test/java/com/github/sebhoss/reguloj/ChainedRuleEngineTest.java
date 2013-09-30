@@ -10,8 +10,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.github.sebhoss.common.annotation.CompilerWarnings;
+import com.google.common.collect.ImmutableList;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.BDDMockito;
@@ -20,12 +22,26 @@ import org.mockito.Mockito;
 /**
  * Test cases for the ChainedRuleEngine.
  */
-@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD, CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
 public class ChainedRuleEngineTest {
 
     /** Checks expected exception inside single test cases. */
     @org.junit.Rule
-    public ExpectedException thrown = ExpectedException.none();
+    public ExpectedException            thrown = ExpectedException.none();
+
+    private RuleEngine<Context<Object>> engine;
+    private Context<Object>             context;
+    private Rule<Context<Object>>       rule;
+
+    /**
+     * Creates rule engine and context.
+     */
+    @Before
+    public void setup() {
+        engine = new ChainedRuleEngine<>();
+        context = Mockito.mock(Context.class);
+        rule = Mockito.mock(Rule.class);
+    }
 
     /**
      * <p>
@@ -37,8 +53,6 @@ public class ChainedRuleEngineTest {
      */
     @Test
     public void shouldReturnFalseForEmptyRuleSet() {
-        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
-        final Context<Object> context = Mockito.mock(Context.class);
         final Set<Rule<Context<Object>>> rules = new HashSet<>();
 
         final boolean fired = engine.analyze(rules, context);
@@ -55,16 +69,10 @@ public class ChainedRuleEngineTest {
      * </p>
      */
     @Test
-    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnTrueIfRuleFired() {
-        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
-        final Context<Object> context = Mockito.mock(Context.class);
-        final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
-        BDDMockito.given(rule.fires(context)).willReturn(true);
-        final Set<Rule<Context<Object>>> rules = new HashSet<>();
-        rules.add(rule);
+        BDDMockito.given(rule.fires(context)).willReturn(Boolean.TRUE);
 
-        final boolean fired = engine.analyze(rules, context);
+        final boolean fired = engine.analyze(ImmutableList.of(rule), context);
 
         Assert.assertTrue(fired);
     }
@@ -78,16 +86,10 @@ public class ChainedRuleEngineTest {
      * </p>
      */
     @Test
-    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnFalseIfNoRuleFires() {
-        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
-        final Context<Object> context = Mockito.mock(Context.class);
-        final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
-        BDDMockito.given(rule.fires(context)).willReturn(false);
-        final Set<Rule<Context<Object>>> rules = new HashSet<>();
-        rules.add(rule);
+        BDDMockito.given(rule.fires(context)).willReturn(Boolean.FALSE);
 
-        final boolean fired = engine.analyze(rules, context);
+        final boolean fired = engine.analyze(ImmutableList.of(rule), context);
 
         Assert.assertFalse(fired);
     }
@@ -103,8 +105,6 @@ public class ChainedRuleEngineTest {
 
     @Test
     public void shouldRunWithEmptyRuleSet() {
-        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
-        final Context<Object> context = Mockito.mock(Context.class);
         final Set<Rule<Context<Object>>> rules = new HashSet<>();
 
         engine.infer(rules, context);
@@ -119,16 +119,12 @@ public class ChainedRuleEngineTest {
      * </p>
      */
     @Test
-    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldLoopWithFiringRule() {
-        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
-        final Context<Object> context = Mockito.mock(Context.class);
-        final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
-        BDDMockito.given(rule.run(context)).willReturn(true).willReturn(false);
-        final Set<Rule<Context<Object>>> rules = new HashSet<>();
-        rules.add(rule);
+        BDDMockito.given(rule.run(context)).willReturn(Boolean.TRUE).willReturn(Boolean.FALSE);
 
-        engine.infer(rules, context);
+        engine.infer(ImmutableList.of(rule), context);
+
+        Mockito.verify(rule, Mockito.times(2)).run(context);
     }
 
     /**
@@ -140,15 +136,11 @@ public class ChainedRuleEngineTest {
      * </p>
      */
     @Test
-    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldNotLoopWithNotFiringRule() {
-        final RuleEngine<Context<Object>> engine = new ChainedRuleEngine<>();
-        final Context<Object> context = Mockito.mock(Context.class);
-        final Rule<Context<Object>> rule = Mockito.mock(Rule.class);
-        BDDMockito.given(rule.run(context)).willReturn(false);
-        final Set<Rule<Context<Object>>> rules = new HashSet<>();
-        rules.add(rule);
+        BDDMockito.given(rule.run(context)).willReturn(Boolean.FALSE);
 
-        engine.infer(rules, context);
+        engine.infer(ImmutableList.of(rule), context);
+
+        Mockito.verify(rule, Mockito.times(1)).run(context);
     }
 }

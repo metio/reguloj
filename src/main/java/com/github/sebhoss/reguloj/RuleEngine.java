@@ -68,25 +68,25 @@ public interface RuleEngine<CONTEXT extends Context<?>> {
     /**
      * Performs a dry-run with this engine by analyzing a given context based upon a set of rules. It will only check
      * whether any rule would fires inside the given context but does not apply any conclusions. For that call the
-     * {@link RuleEngine#infer(Context, Set) infer}-method.
+     * {@link RuleEngine#infer(Set, Context) infer}-method.
      * 
-     * @param context
-     *            The context to analyze.
      * @param rules
      *            The rules to check.
+     * @param context
+     *            The context to use.
      * @return <code>true</code> if any rule would fire, <code>false</code> otherwise.
      */
-    boolean analyze(CONTEXT context, Set<Rule<CONTEXT>> rules);
+    boolean analyze(Set<Rule<CONTEXT>> rules, CONTEXT context);
 
     /**
      * Launches this engine and lets it analyze and execute a set of rules on a given context.
      * 
-     * @param context
-     *            The context to analyze.
      * @param rules
      *            The rules to run.
+     * @param context
+     *            The context to use.
      * @return <code>true</code> if any rule did run, otherwise <code>false</code>.
      */
-    boolean infer(CONTEXT context, Set<Rule<CONTEXT>> rules);
+    boolean infer(Set<Rule<CONTEXT>> rules, CONTEXT context);
 
 }

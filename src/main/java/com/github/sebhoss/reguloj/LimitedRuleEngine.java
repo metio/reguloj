@@ -21,11 +21,11 @@ final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEn
     }
 
     @Override
-    public boolean infer(final CONTEXT context, final Set<Rule<CONTEXT>> rules) {
+    public boolean infer(final Set<Rule<CONTEXT>> rules, final CONTEXT context) {
         boolean changeOccured = false;
 
         int currentRuns = 0;
-        while (performSinglePass(context, rules)) {
+        while (performSinglePass(rules, context)) {
             changeOccured = true;
 
             if (++currentRuns > maximumNumberOfRuns) {

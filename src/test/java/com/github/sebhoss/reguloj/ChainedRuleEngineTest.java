@@ -41,7 +41,7 @@ public class ChainedRuleEngineTest {
         final Context<Object> context = Mockito.mock(Context.class);
         final Set<Rule<Context<Object>>> rules = new HashSet<>();
 
-        final boolean fired = engine.analyze(context, rules);
+        final boolean fired = engine.analyze(rules, context);
 
         Assert.assertFalse(fired);
     }
@@ -64,7 +64,7 @@ public class ChainedRuleEngineTest {
         final Set<Rule<Context<Object>>> rules = new HashSet<>();
         rules.add(rule);
 
-        final boolean fired = engine.analyze(context, rules);
+        final boolean fired = engine.analyze(rules, context);
 
         Assert.assertTrue(fired);
     }
@@ -87,7 +87,7 @@ public class ChainedRuleEngineTest {
         final Set<Rule<Context<Object>>> rules = new HashSet<>();
         rules.add(rule);
 
-        final boolean fired = engine.analyze(context, rules);
+        final boolean fired = engine.analyze(rules, context);
 
         Assert.assertFalse(fired);
     }
@@ -107,7 +107,7 @@ public class ChainedRuleEngineTest {
         final Context<Object> context = Mockito.mock(Context.class);
         final Set<Rule<Context<Object>>> rules = new HashSet<>();
 
-        engine.infer(context, rules);
+        engine.infer(rules, context);
     }
 
     /**
@@ -128,7 +128,7 @@ public class ChainedRuleEngineTest {
         final Set<Rule<Context<Object>>> rules = new HashSet<>();
         rules.add(rule);
 
-        engine.infer(context, rules);
+        engine.infer(rules, context);
     }
 
     /**
@@ -149,6 +149,6 @@ public class ChainedRuleEngineTest {
         final Set<Rule<Context<Object>>> rules = new HashSet<>();
         rules.add(rule);
 
-        engine.infer(context, rules);
+        engine.infer(rules, context);
     }
 }

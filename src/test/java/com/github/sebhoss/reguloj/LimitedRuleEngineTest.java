@@ -20,7 +20,7 @@ public class LimitedRuleEngineTest {
     private Rule<Context<String>>       rule2;
 
     /**
-     * Creates rule engine and context.
+     * Creates rule engine, context and rules.
      */
     @Before
     public void setup() {

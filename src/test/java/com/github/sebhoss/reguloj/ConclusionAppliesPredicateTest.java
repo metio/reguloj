@@ -40,7 +40,7 @@ public class ConclusionAppliesPredicateTest {
     }
 
     /**
-     * Ensures that a <code>true</code> is returned when the given conclusion applies.
+     * Ensures that a <code>false</code> is returned when the given conclusion does not apply.
      */
     @Test
     public void shouldReturnFalseOnNonAppliedConclusion() {

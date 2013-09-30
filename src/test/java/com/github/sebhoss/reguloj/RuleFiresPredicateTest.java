@@ -15,8 +15,9 @@ import org.mockito.Mockito;
 @SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
 public class RuleFiresPredicateTest {
 
-    private Context<Object>       context;
-    private Rule<Context<Object>> rule;
+    private Context<Object>                  context;
+    private Rule<Context<Object>>            rule;
+    private Predicate<Rule<Context<Object>>> predicate;
 
     /**
      * Creates predicate and conclusion for each test.
@@ -25,6 +26,7 @@ public class RuleFiresPredicateTest {
     public void setup() {
         context = Mockito.mock(Context.class);
         rule = Mockito.mock(Rule.class);
+        predicate = new RuleFiresPredicate<>(context);
     }
 
     /**
@@ -33,7 +35,6 @@ public class RuleFiresPredicateTest {
     @Test
     public void shouldReturnTrueOnFiringRule() {
         BDDMockito.given(rule.fires(context)).willReturn(Boolean.TRUE);
-        final Predicate<Rule<Context<Object>>> predicate = new RuleFiresPredicate<>(context);
 
         final boolean applied = predicate.apply(rule);
 
@@ -46,7 +47,6 @@ public class RuleFiresPredicateTest {
     @Test
     public void shouldReturnFalseOnNonAppliedConclusion() {
         BDDMockito.given(rule.fires(context)).willReturn(Boolean.FALSE);
-        final Predicate<Rule<Context<Object>>> predicate = new RuleFiresPredicate<>(context);
 
         final boolean applied = predicate.apply(rule);
 

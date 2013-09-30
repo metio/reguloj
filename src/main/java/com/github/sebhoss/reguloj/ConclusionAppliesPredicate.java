@@ -8,14 +8,10 @@ package com.github.sebhoss.reguloj;
 
 import javax.annotation.Nullable;
 
-import com.google.common.base.Predicate;
-
-final class ConclusionAppliesPredicate<TOPIC> implements Predicate<Conclusion<TOPIC>> {
-
-    private final TOPIC topic;
+final class ConclusionAppliesPredicate<TOPIC> extends ConclusionPredicate<TOPIC> {
 
     ConclusionAppliesPredicate(final TOPIC topic) {
-        this.topic = topic;
+        super(topic);
     }
 
     @Override

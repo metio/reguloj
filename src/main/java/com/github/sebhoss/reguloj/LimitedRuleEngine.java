@@ -26,7 +26,7 @@ final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEn
         while (performSinglePass(rules, context)) {
             changeOccured = true;
 
-            if (++currentRuns > maximumNumberOfRuns) {
+            if (++currentRuns >= maximumNumberOfRuns) {
                 break;
             }
         }

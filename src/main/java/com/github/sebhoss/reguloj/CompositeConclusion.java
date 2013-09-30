@@ -6,17 +6,16 @@
  */
 package com.github.sebhoss.reguloj;
 
-import java.util.Collection;
-
 import com.google.common.base.Preconditions;
 import com.google.common.collect.FluentIterable;
+import com.google.common.collect.Iterables;
 
 final class CompositeConclusion<TOPIC> implements Conclusion<TOPIC> {
 
-    private final Collection<Conclusion<TOPIC>> conclusions;
+    private final Iterable<Conclusion<TOPIC>> conclusions;
 
-    CompositeConclusion(final Collection<Conclusion<TOPIC>> conclusions) {
-        Preconditions.checkArgument(!conclusions.isEmpty());
+    CompositeConclusion(final Iterable<Conclusion<TOPIC>> conclusions) {
+        Preconditions.checkArgument(!Iterables.isEmpty(conclusions));
 
         this.conclusions = conclusions;
     }

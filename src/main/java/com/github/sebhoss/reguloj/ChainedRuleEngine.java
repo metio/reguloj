@@ -6,7 +6,6 @@
  */
 package com.github.sebhoss.reguloj;
 
-
 final class ChainedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     @Override

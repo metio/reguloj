@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableList;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
 /**
@@ -34,7 +35,7 @@ public class FirstWinsRuleEngineTest {
      */
     @Test
     public void shouldOnlyRunFirstMatchingRule() {
-        Mockito.when(rule1.run(context)).thenReturn(Boolean.TRUE);
+        BDDMockito.given(rule1.run(context)).willReturn(Boolean.TRUE);
 
         engine.infer(ImmutableList.of(rule1, rule2), context);
 
@@ -47,8 +48,8 @@ public class FirstWinsRuleEngineTest {
      */
     @Test
     public void shouldOnlyRunFirstMatchingRuleSecond() {
-        Mockito.when(rule1.run(context)).thenReturn(Boolean.FALSE);
-        Mockito.when(rule2.run(context)).thenReturn(Boolean.TRUE);
+        BDDMockito.given(rule1.run(context)).willReturn(Boolean.FALSE);
+        BDDMockito.given(rule2.run(context)).willReturn(Boolean.TRUE);
 
         engine.infer(ImmutableList.of(rule1, rule2), context);
 

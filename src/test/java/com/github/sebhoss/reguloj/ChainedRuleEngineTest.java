@@ -9,7 +9,7 @@ package com.github.sebhoss.reguloj;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.github.sebhoss.common.annotation.CompilerWarnings;
+import com.github.sebhoss.warnings.CompilerWarnings;
 import com.google.common.collect.ImmutableList;
 
 import org.junit.Assert;
@@ -22,7 +22,7 @@ import org.mockito.Mockito;
 /**
  * Test cases for the ChainedRuleEngine.
  */
-@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.UNCHECKED })
 public class ChainedRuleEngineTest {
 
     /** Checks expected exception inside single test cases. */

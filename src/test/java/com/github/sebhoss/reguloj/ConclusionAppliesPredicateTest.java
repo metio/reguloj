@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.reguloj;
 
-import com.github.sebhoss.common.annotation.CompilerWarnings;
+import com.github.sebhoss.warnings.CompilerWarnings;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,8 +17,7 @@ import org.mockito.Mockito;
 /**
  * Test cases for ConclusionAppliesPredicate.
  */
-@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NLS, CompilerWarnings.NULL,
-        CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NLS, CompilerWarnings.UNCHECKED })
 public class ConclusionAppliesPredicateTest {
 
     private ConclusionPredicate<String> predicate;

@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.reguloj;
 
-import com.github.sebhoss.common.annotation.CompilerWarnings;
+import com.github.sebhoss.warnings.CompilerWarnings;
 import com.google.common.base.Predicate;
 
 import org.junit.Assert;
@@ -18,7 +18,7 @@ import org.mockito.Mockito;
 /**
  * Test cases for RuleFiresPredicate.
  */
-@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.UNCHECKED })
 public class RuleFiresPredicateTest {
 
     private Context<Object>                  context;

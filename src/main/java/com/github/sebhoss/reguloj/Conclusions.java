@@ -9,7 +9,7 @@ package com.github.sebhoss.reguloj;
 import java.util.Collection;
 import java.util.Iterator;
 
-import com.github.sebhoss.common.annotation.Nullsafe;
+import com.github.sebhoss.nullanalysis.Nullsafe;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;

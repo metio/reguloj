@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.reguloj;
 
-import com.github.sebhoss.common.annotation.CompilerWarnings;
+import com.github.sebhoss.warnings.CompilerWarnings;
 import com.google.common.base.Predicate;
 
 import org.hamcrest.core.Is;
@@ -18,7 +18,7 @@ import org.mockito.Mockito;
 /**
  * Test cases for the RuleBuilderImplementation.
  */
-@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD, CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.STATIC_METHOD, CompilerWarnings.UNCHECKED })
 public final class RuleBuilderImplementationTest {
 
     /**

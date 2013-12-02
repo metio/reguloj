@@ -10,7 +10,7 @@ import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.Iterator;
 
-import com.github.sebhoss.common.annotation.CompilerWarnings;
+import com.github.sebhoss.warnings.CompilerWarnings;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
@@ -26,7 +26,7 @@ import org.mockito.Mockito;
  * 
  * @see Conclusions
  */
-@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
+@SuppressWarnings(CompilerWarnings.STATIC_METHOD)
 public final class ConclusionsTest {
 
     /** Checks expected exception inside single test cases. */

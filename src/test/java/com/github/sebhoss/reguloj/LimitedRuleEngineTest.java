@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.reguloj;
 
-import com.github.sebhoss.common.annotation.CompilerWarnings;
+import com.github.sebhoss.warnings.CompilerWarnings;
 import com.google.common.collect.ImmutableList;
 
 import org.junit.Before;
@@ -17,7 +17,7 @@ import org.mockito.Mockito;
 /**
  * Test case for LimitedRuleEngine.
  */
-@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.UNCHECKED })
 public class LimitedRuleEngineTest {
 
     private RuleEngine<Context<Object>> engine;

@@ -8,7 +8,7 @@ package com.github.sebhoss.reguloj;
 
 import java.util.Collection;
 
-import com.github.sebhoss.common.annotation.CompilerWarnings;
+import com.github.sebhoss.warnings.CompilerWarnings;
 import com.google.common.collect.Lists;
 
 import org.junit.Assert;
@@ -20,7 +20,7 @@ import org.mockito.Mockito;
 /**
  * Test cases for CompositeConclusion.
  */
-@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
+@SuppressWarnings(CompilerWarnings.STATIC_METHOD)
 public class CompositeConclusionTest {
 
     /** Checks expected exception inside single test cases. */
@@ -31,7 +31,6 @@ public class CompositeConclusionTest {
      * Ensures that an empty list of conclusions won't be accepted by a CompositeConclusion.
      */
     @Test
-    @SuppressWarnings(CompilerWarnings.UNUSED)
     public void shouldNotAllowEmptyCollection() {
         final Collection<Conclusion<Object>> conclusions = Lists.newArrayList();
 

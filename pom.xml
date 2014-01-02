@@ -81,6 +81,10 @@
       <artifactId>null-analysis</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.github.sebhoss</groupId>
       <artifactId>suppress-warnings</artifactId>
     </dependency>

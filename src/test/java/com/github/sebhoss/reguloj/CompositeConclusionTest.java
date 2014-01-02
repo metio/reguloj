@@ -31,12 +31,13 @@ public class CompositeConclusionTest {
      * Ensures that an empty list of conclusions won't be accepted by a CompositeConclusion.
      */
     @Test
+    @SuppressWarnings(CompilerWarnings.UNUSED)
     public void shouldNotAllowEmptyCollection() {
         final Collection<Conclusion<Object>> conclusions = Lists.newArrayList();
 
         thrown.expect(IllegalArgumentException.class);
 
-        new CompositeConclusion<Object>(conclusions);
+        new CompositeConclusion<>(conclusions);
     }
 
     /**

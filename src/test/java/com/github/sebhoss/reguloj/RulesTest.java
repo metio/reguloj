@@ -20,7 +20,7 @@ import org.mockito.Mockito;
  * 
  * @see Rules
  */
-@SuppressWarnings(CompilerWarnings.STATIC_METHOD)
+@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
 public final class RulesTest {
 
     /** Constant name for all rules inside this test. */

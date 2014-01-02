@@ -26,7 +26,7 @@ import org.mockito.Mockito;
  * 
  * @see Conclusions
  */
-@SuppressWarnings(CompilerWarnings.STATIC_METHOD)
+@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
 public final class ConclusionsTest {
 
     /** Checks expected exception inside single test cases. */

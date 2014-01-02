@@ -22,7 +22,7 @@ import org.mockito.Mockito;
 /**
  * Test cases for the ChainedRuleEngine.
  */
-@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
 public class ChainedRuleEngineTest {
 
     /** Checks expected exception inside single test cases. */

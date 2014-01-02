@@ -18,7 +18,7 @@ import org.mockito.Mockito;
 /**
  * Test cases for the RuleBuilderImplementation.
  */
-@SuppressWarnings({ CompilerWarnings.STATIC_METHOD, CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.STATIC_METHOD, CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
 public final class RuleBuilderImplementationTest {
 
     /**

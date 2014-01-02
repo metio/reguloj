@@ -17,7 +17,7 @@ import org.mockito.Mockito;
 /**
  * Test case for LimitedRuleEngine.
  */
-@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
 public class LimitedRuleEngineTest {
 
     private RuleEngine<Context<Object>> engine;

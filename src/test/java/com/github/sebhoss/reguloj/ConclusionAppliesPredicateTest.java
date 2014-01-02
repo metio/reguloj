@@ -17,7 +17,7 @@ import org.mockito.Mockito;
 /**
  * Test cases for ConclusionAppliesPredicate.
  */
-@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NLS, CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NLS, CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
 public class ConclusionAppliesPredicateTest {
 
     private ConclusionPredicate<String> predicate;

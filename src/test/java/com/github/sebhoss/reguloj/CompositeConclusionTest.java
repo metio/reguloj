@@ -20,7 +20,7 @@ import org.mockito.Mockito;
 /**
  * Test cases for CompositeConclusion.
  */
-@SuppressWarnings(CompilerWarnings.STATIC_METHOD)
+@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
 public class CompositeConclusionTest {
 
     /** Checks expected exception inside single test cases. */

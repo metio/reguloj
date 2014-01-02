@@ -18,7 +18,7 @@ import org.mockito.Mockito;
 /**
  * Test cases for the RuleImplementation.
  */
-@SuppressWarnings(CompilerWarnings.UNCHECKED)
+@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
 public final class RuleImplementationTest {
 
     /** Constant name for all rules inside this test. */

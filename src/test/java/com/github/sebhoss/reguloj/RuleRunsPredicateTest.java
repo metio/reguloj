@@ -18,7 +18,7 @@ import org.mockito.Mockito;
 /**
  * Test cases for RuleRunsPredicate.
  */
-@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
 public class RuleRunsPredicateTest {
 
     private Context<Object>                  context;

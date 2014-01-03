@@ -20,7 +20,8 @@ final RuleEngine<CONTEXT> firstWins = RuleEngines.firstWins();
 
 p. If custom inference behavior is required, subclass @AbstractRuleEngine@ and implement the infer() method. The following code example shows how to work with rule engines:
 
-bc.. RuleEngine<CONTEXT> engine = ...;
+bc.. // setup - more details later
+RuleEngine<CONTEXT> engine = ...;
 Iterable<Rule<CONTEXT>> rules = ...;
 CONTEXT context = ...;
 
@@ -34,7 +35,7 @@ h3. Creating rules
 
 p. A "rule":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Rule.java has a (unique) name and runs in a given context. Additionally it can be checked whether a rule fires in a given context.
 
-p. Either implement the @Rule@ interface yourself and or use the supplied rule implementation and builder. A standard rule is composed of a "predicate"::http://guava-libraries.googlecode.com/svn/trunk/javadoc/com/google/common/base/Predicate.html and a "conclusion":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Conclusion.java. Both interfaces require you to implement only a single method and do not restrict you in any way. Complex rules can be created by grouping or chaining predicates/conclusions together with the help of several utility methods. The following example creates a rule composed of 2 predicates and 2 conclusions while using static imports:
+p. Either implement the @Rule@ interface yourself and or use the supplied rule implementation and builder. A standard rule is composed of a "predicate":http://guava-libraries.googlecode.com/svn/trunk/javadoc/com/google/common/base/Predicate.html and a "conclusion":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Conclusion.java. Both interfaces require you to implement only a single method and do not restrict you in any way. Complex rules can be created by grouping or chaining predicates/conclusions together with the help of several utility methods. The following example creates a rule composed of 2 predicates and 2 conclusions while using static imports:
 
 bc.. 
 final Rule<CONTEXT> rule = rule().called(name)

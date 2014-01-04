@@ -28,7 +28,7 @@
   <url>https://github.com/sebhoss/reguloj</url>
   <inceptionYear>2010</inceptionYear>
   <name>reguloj</name>
-  <description>Lightweight business rule engine for mobile (Android) and embedded (GWT) applications</description>
+  <description>Lightweight business rule engine</description>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                                  SOURCE                                 -->

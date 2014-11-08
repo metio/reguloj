@@ -6,6 +6,8 @@
  */
 package com.github.sebhoss.reguloj;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 /**
  * <p>
  * A {@link Rule} is composed of a name, a premise and a conclusion. Is the premise of a rule fulfilled the conclusion
@@ -21,43 +23,43 @@ package com.github.sebhoss.reguloj;
  * <p>
  * Check whether a rule would fire inside a given context:
  * </p>
- * 
+ *
  * <pre>
  * Context&lt;X&gt; context = ...;
  * Rule&lt;Context&lt;X&gt;&gt; rule = ...;
  * 
  * boolean canFire = rule.fires(context);
  * </pre>
- * 
+ *
  * </li>
  * <li>
  * <p>
  * Check whether a rule inflicted any state change inside a given context:
  * </p>
- * 
+ *
  * <pre>
  * Context&lt;X&gt; context = ...;
  * Rule&lt;Context&lt;X&gt;&gt; rule = ...;
  * 
  * boolean fired = rule.run(context);
  * </pre>
- * 
+ *
  * </li>
  * </ol>
  * <h1>How to help</h1>
  * <ul>
  * <li>Test the interface and write back about errors, bugs and wishes.</li>
  * </ul>
- * 
+ *
  * @param <CONTEXT>
  *            The context type.
  */
-public interface Rule<CONTEXT extends Context<?>> {
+public interface Rule<CONTEXT extends Context<@NonNull ?>> {
 
     /**
      * Runs this rule inside a given context. For that it'll check its premises first and if those are fulfilled, it
      * will run its enclosing conclusion.
-     * 
+     *
      * @param context
      *            The context to use.
      * @return <code>true</code> if this rule did change the state of the given context, <code>false</code> otherwise.
@@ -66,7 +68,7 @@ public interface Rule<CONTEXT extends Context<?>> {
 
     /**
      * Checks whether this rule would fire for a given context.
-     * 
+     *
      * @param context
      *            The context to check.
      * @return <code>true</code> if this rule would fire, <code>false</code> otherwise.

@@ -6,24 +6,29 @@
  */
 package com.github.sebhoss.reguloj;
 
-import javax.annotation.Nullable;
+import java.util.function.Predicate;
 
-import com.google.common.base.Preconditions;
-import com.google.common.base.Predicate;
+import org.eclipse.jdt.annotation.NonNull;
 
-final class RuleBuilderImplementation<CONTEXT extends Context<?>> implements RuleBuilder<CONTEXT> {
+final class RuleBuilderImplementation<CONTEXT extends Context<@NonNull ?>> implements RuleBuilder<@NonNull CONTEXT> {
 
-    @Nullable
+    @SuppressWarnings("null")
     private String              name;
-
-    @Nullable
+    @SuppressWarnings("null")
     private Predicate<CONTEXT>  predicate;
-
-    @Nullable
+    @SuppressWarnings("null")
     private Conclusion<CONTEXT> conclusion;
 
     @Override
-    public RuleBuilder<CONTEXT> when(final Predicate<CONTEXT> newPredicate) {
+    public RuleBuilder<CONTEXT> called(final String newName) {
+        name = newName;
+
+        return this;
+    }
+
+    @Override
+    public @NonNull RuleBuilder<@NonNull CONTEXT> when(
+            final @NonNull Predicate<@NonNull CONTEXT> newPredicate) {
         predicate = newPredicate;
 
         return this;
@@ -31,19 +36,7 @@ final class RuleBuilderImplementation<CONTEXT extends Context<?>> implements Rul
 
     @Override
     public Rule<CONTEXT> then(final Conclusion<CONTEXT> newConclusion) {
-        conclusion = newConclusion;
-
-        Preconditions.checkState(name != null);
-        Preconditions.checkState(predicate != null);
-
-        return new RuleImplementation<>(name, predicate, conclusion);
-    }
-
-    @Override
-    public RuleBuilder<CONTEXT> called(final String newName) {
-        name = newName;
-
-        return this;
+        return new RuleImplementation<@NonNull CONTEXT>(name, predicate, conclusion);
     }
 
 }

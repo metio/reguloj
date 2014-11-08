@@ -6,24 +6,31 @@
  */
 package com.github.sebhoss.reguloj;
 
-import com.google.common.collect.FluentIterable;
+import java.util.function.Predicate;
+import java.util.stream.StreamSupport;
+
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * Abstract rule engine which provides an implementation for the {@link #analyze(Iterable, Context)} method. Therefore
  * implementors only have to write the {@link #infer(Iterable, Context)} method.
- * 
+ *
  * @param <CONTEXT>
  *            The context type.
  */
-public abstract class AbstractRuleEngine<CONTEXT extends Context<?>> implements RuleEngine<CONTEXT> {
+public abstract class AbstractRuleEngine<CONTEXT extends Context<@NonNull ?>> implements RuleEngine<CONTEXT> {
 
     @Override
     public final boolean analyze(final Iterable<Rule<CONTEXT>> rules, final CONTEXT context) {
-        return FluentIterable.from(rules).anyMatch(Rules.ruleFires(context));
+        return anyRuleMatches(rules, Rules.ruleFires(context));
     }
 
     protected final boolean performSinglePass(final Iterable<Rule<CONTEXT>> rules, final CONTEXT context) {
-        return FluentIterable.from(rules).filter(Rules.ruleRuns(context)).size() > 0;
+        return anyRuleMatches(rules, Rules.ruleRuns(context));
+    }
+
+    private boolean anyRuleMatches(final Iterable<Rule<CONTEXT>> rules, final Predicate<Rule<CONTEXT>> predicate) {
+        return StreamSupport.stream(rules.spliterator(), false).anyMatch(predicate);
     }
 
 }

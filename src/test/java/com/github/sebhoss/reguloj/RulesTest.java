@@ -7,20 +7,21 @@
 package com.github.sebhoss.reguloj;
 
 import java.lang.reflect.Constructor;
+import java.util.function.Predicate;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
-import com.google.common.base.Predicate;
 
+import org.eclipse.jdt.annotation.NonNull;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 /**
  * Test cases for the {@link Rules} utility class.
- * 
+ *
  * @see Rules
  */
-@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
+@SuppressWarnings({ CompilerWarnings.STATIC_METHOD })
 public final class RulesTest {
 
     /** Constant name for all rules inside this test. */
@@ -38,7 +39,7 @@ public final class RulesTest {
     public void shouldCreateBuilder() {
         RuleBuilder<Context<Object>> builder;
 
-        builder = Rules.<Context<Object>> rule();
+        builder = Rules.<@NonNull Context<Object>> rule();
 
         Assert.assertNotNull(builder);
     }
@@ -52,9 +53,9 @@ public final class RulesTest {
      * </p>
      */
     @Test
-    @SuppressWarnings(CompilerWarnings.UNCHECKED)
+    @SuppressWarnings({ "null", "unchecked" })
     public void shouldCreateRule() {
-        final RuleBuilder<Context<Object>> builder = Rules.<Context<Object>> rule();
+        final RuleBuilder<Context<Object>> builder = Rules.<@NonNull Context<Object>> rule();
         builder.called(RulesTest.NAME).when(Mockito.mock(Predicate.class));
 
         final Rule<Context<Object>> rule = builder.then(Mockito.mock(Conclusion.class));
@@ -88,7 +89,7 @@ public final class RulesTest {
      * <p>
      * Ensures that the constructor is accessible via reflection.
      * </p>
-     * 
+     *
      * @throws Exception
      *             When no new instance can be created.
      */

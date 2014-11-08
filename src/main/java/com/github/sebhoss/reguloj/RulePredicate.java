@@ -6,9 +6,11 @@
  */
 package com.github.sebhoss.reguloj;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 
-abstract class RulePredicate<CONTEXT extends Context<?>> implements Predicate<Rule<CONTEXT>> {
+import org.eclipse.jdt.annotation.NonNull;
+
+abstract class RulePredicate<CONTEXT extends Context<@NonNull ?>> implements Predicate<@NonNull Rule<CONTEXT>> {
 
     protected final CONTEXT context;
 

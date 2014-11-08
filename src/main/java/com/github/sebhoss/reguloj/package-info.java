@@ -7,6 +7,8 @@
 /**
  * This package holds all business rules related definitions.
  */
-@com.github.sebhoss.nullanalysis.NotNullByDefault
+@NonNullByDefault
 package com.github.sebhoss.reguloj;
+
+import org.eclipse.jdt.annotation.NonNullByDefault;
 

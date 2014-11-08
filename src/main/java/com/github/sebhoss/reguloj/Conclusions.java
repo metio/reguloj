@@ -8,12 +8,11 @@ package com.github.sebhoss.reguloj;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 import com.github.sebhoss.nullanalysis.Nullsafe;
-import com.google.common.base.Preconditions;
-import com.google.common.base.Predicate;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
+
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * Utility class which helps creating new {@link Conclusion conclusions}.
@@ -22,7 +21,7 @@ public final class Conclusions {
 
     /**
      * Creates a new {@link Conclusion} which encapsulates all given conclusions.
-     * 
+     *
      * @param <T>
      *            The topic of the inference process.
      * @param conclusions
@@ -30,14 +29,12 @@ public final class Conclusions {
      * @return A new conclusion builder.
      */
     public static <T> Conclusion<T> conclude(final Collection<? extends Conclusion<T>> conclusions) {
-        Preconditions.checkArgument(!conclusions.isEmpty());
-
         return new CompositeConclusion<>(Nullsafe.nullsafe(ImmutableList.copyOf(conclusions)));
     }
 
     /**
      * Creates a new {@link Conclusion} which encapsulates all given conclusions.
-     * 
+     *
      * @param <T>
      *            The topic of the inference process.
      * @param conclusion1
@@ -52,7 +49,7 @@ public final class Conclusions {
 
     /**
      * Creates a new {@link Conclusion} which encapsulates all given conclusions.
-     * 
+     *
      * @param <T>
      *            The topic of the inference process.
      * @param conclusions
@@ -60,14 +57,12 @@ public final class Conclusions {
      * @return A new conclusion builder.
      */
     public static <T> Conclusion<T> conclude(final Iterable<? extends Conclusion<T>> conclusions) {
-        Preconditions.checkArgument(!Iterables.isEmpty(conclusions));
-
         return new CompositeConclusion<>(Nullsafe.nullsafe(ImmutableList.copyOf(conclusions)));
     }
 
     /**
      * Creates a new {@link Conclusion} which encapsulates all given conclusions.
-     * 
+     *
      * @param <T>
      *            The topic of the inference process.
      * @param conclusions
@@ -75,8 +70,6 @@ public final class Conclusions {
      * @return A new conclusion builder.
      */
     public static <T> Conclusion<T> conclude(final Iterator<? extends Conclusion<T>> conclusions) {
-        Preconditions.checkArgument(conclusions.hasNext());
-
         return new CompositeConclusion<>(Nullsafe.nullsafe(ImmutableList.copyOf(conclusions)));
     }
 
@@ -85,7 +78,7 @@ public final class Conclusions {
      *            The topic to check.
      * @return A predicate that checks whether a conclusion applies in the given topic or not.
      */
-    public static <TOPIC> Predicate<Conclusion<TOPIC>> conlusionApplies(final TOPIC topic) {
+    public static <TOPIC> Predicate<@NonNull Conclusion<@NonNull TOPIC>> conlusionApplies(final TOPIC topic) {
         return new ConclusionAppliesPredicate<>(topic);
     }
 

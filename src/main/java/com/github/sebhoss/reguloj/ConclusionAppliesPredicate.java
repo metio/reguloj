@@ -6,17 +6,17 @@
  */
 package com.github.sebhoss.reguloj;
 
-import javax.annotation.Nullable;
+import org.eclipse.jdt.annotation.NonNull;
 
-final class ConclusionAppliesPredicate<TOPIC> extends ConclusionPredicate<TOPIC> {
+final class ConclusionAppliesPredicate<TOPIC> extends ConclusionPredicate<@NonNull TOPIC> {
 
     ConclusionAppliesPredicate(final TOPIC topic) {
         super(topic);
     }
 
     @Override
-    public boolean apply(final @Nullable Conclusion<TOPIC> conclusion) {
-        return conclusion != null && conclusion.apply(topic);
+    public boolean test(final Conclusion<TOPIC> conclusion) {
+        return conclusion.apply(topic);
     }
 
 }

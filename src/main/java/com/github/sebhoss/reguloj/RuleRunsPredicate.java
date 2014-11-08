@@ -6,17 +6,17 @@
  */
 package com.github.sebhoss.reguloj;
 
-import javax.annotation.Nullable;
+import org.eclipse.jdt.annotation.NonNull;
 
-final class RuleRunsPredicate<CONTEXT extends Context<?>> extends RulePredicate<CONTEXT> {
+final class RuleRunsPredicate<CONTEXT extends Context<@NonNull ?>> extends RulePredicate<@NonNull CONTEXT> {
 
     RuleRunsPredicate(final CONTEXT context) {
         super(context);
     }
 
     @Override
-    public boolean apply(final @Nullable Rule<CONTEXT> rule) {
-        return rule != null && rule.run(context);
+    public boolean test(final Rule<CONTEXT> rule) {
+        return rule.run(context);
     }
 
 }

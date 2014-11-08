@@ -6,9 +6,11 @@
  */
 package com.github.sebhoss.reguloj;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 
-abstract class ConclusionPredicate<TOPIC> implements Predicate<Conclusion<TOPIC>> {
+import org.eclipse.jdt.annotation.NonNull;
+
+abstract class ConclusionPredicate<TOPIC> implements Predicate<@NonNull Conclusion<@NonNull TOPIC>> {
 
     protected final TOPIC topic;
 

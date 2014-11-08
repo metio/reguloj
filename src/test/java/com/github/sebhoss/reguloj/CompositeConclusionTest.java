@@ -6,10 +6,10 @@
  */
 package com.github.sebhoss.reguloj;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
-import com.google.common.collect.Lists;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,11 +33,11 @@ public class CompositeConclusionTest {
     @Test
     @SuppressWarnings(CompilerWarnings.UNUSED)
     public void shouldNotAllowEmptyCollection() {
-        final Collection<Conclusion<Object>> conclusions = Lists.newArrayList();
+        final Iterable<Conclusion<Object>> conclusions = new ArrayList<>();
 
         thrown.expect(IllegalArgumentException.class);
 
-        new CompositeConclusion<>(conclusions);
+        new CompositeConclusion<Object>(conclusions);
     }
 
     /**
@@ -47,7 +47,7 @@ public class CompositeConclusionTest {
     @SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.UNCHECKED })
     public void shouldCallAllGivenConclusions() {
         final Object target = new Object();
-        final Collection<Conclusion<Object>> conclusions = Lists.newArrayList();
+        final Collection<Conclusion<Object>> conclusions = new ArrayList<>();
         final Conclusion<Object> conclusion1 = Mockito.mock(Conclusion.class);
         BDDMockito.given(conclusion1.apply(target)).willReturn(true);
         final Conclusion<Object> conclusion2 = Mockito.mock(Conclusion.class);

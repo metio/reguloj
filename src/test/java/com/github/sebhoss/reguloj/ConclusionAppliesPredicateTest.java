@@ -8,6 +8,7 @@ package com.github.sebhoss.reguloj;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
 
+import org.eclipse.jdt.annotation.NonNull;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,11 +18,11 @@ import org.mockito.Mockito;
 /**
  * Test cases for ConclusionAppliesPredicate.
  */
-@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NLS, CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NLS, CompilerWarnings.UNCHECKED })
 public class ConclusionAppliesPredicateTest {
 
-    private ConclusionPredicate<String> predicate;
-    private Conclusion<String>          conclusion;
+    private ConclusionPredicate<@NonNull String> predicate;
+    private Conclusion<String>                   conclusion;
 
     /**
      * Creates predicate and conclusion for each test.
@@ -39,7 +40,7 @@ public class ConclusionAppliesPredicateTest {
     public void shouldReturnTrueOnAppliedConclusion() {
         BDDMockito.given(conclusion.apply("test")).willReturn(Boolean.TRUE);
 
-        final boolean applied = predicate.apply(conclusion);
+        final boolean applied = predicate.test(conclusion);
 
         Assert.assertTrue(applied);
     }
@@ -51,7 +52,7 @@ public class ConclusionAppliesPredicateTest {
     public void shouldReturnFalseOnNonAppliedConclusion() {
         BDDMockito.given(conclusion.apply("test")).willReturn(Boolean.FALSE);
 
-        final boolean applied = predicate.apply(conclusion);
+        final boolean applied = predicate.test(conclusion);
 
         Assert.assertFalse(applied);
     }

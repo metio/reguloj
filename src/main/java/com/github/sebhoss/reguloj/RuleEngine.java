@@ -6,6 +6,8 @@
  */
 package com.github.sebhoss.reguloj;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 /**
  * <p>
  * The {@link RuleEngine} is responsible for logical reasoning. For that it analyzes a given {@link Context context}
@@ -27,7 +29,7 @@ package com.github.sebhoss.reguloj;
  * <p>
  * Test whether any rule would fire for a given context:
  * </p>
- * 
+ *
  * <pre>
  * RuleEngine&lt;Context&lt;X&gt;&gt; engine = ...;
  * Iterable&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
@@ -35,13 +37,13 @@ package com.github.sebhoss.reguloj;
  * 
  * boolean fired = engine.analyze(rules, context);
  * </pre>
- * 
+ *
  * </li>
  * <li>
  * <p>
  * Launch the engine and fire all valid rules:
  * </p>
- * 
+ *
  * <pre>
  * RuleEngine&lt;Context&lt;X&gt;&gt; engine = ...;
  * Iterable&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
@@ -49,7 +51,7 @@ package com.github.sebhoss.reguloj;
  * 
  * engine.infer(rules, context);
  * </pre>
- * 
+ *
  * </li>
  * </ol>
  * <h1>How to help</h1>
@@ -57,17 +59,17 @@ package com.github.sebhoss.reguloj;
  * <li>Test the interface and write back about errors, bugs and wishes.</li>
  * <li>Evaluate whether something like RETE can be applied to this interface and how it can be done.</li>
  * </ul>
- * 
+ *
  * @param <CONTEXT>
  *            The context type.
  */
-public interface RuleEngine<CONTEXT extends Context<?>> {
+public interface RuleEngine<CONTEXT extends Context<@NonNull ?>> {
 
     /**
      * Performs a dry-run with this engine by analyzing a given context based upon a set of rules. It will only check
      * whether any rule would fires inside the given context but does not apply any conclusions. For that call the
      * {@link RuleEngine#infer(Iterable, Context) infer}-method.
-     * 
+     *
      * @param rules
      *            The rules to check.
      * @param context
@@ -78,7 +80,7 @@ public interface RuleEngine<CONTEXT extends Context<?>> {
 
     /**
      * Launches this engine and lets it analyze and execute a set of rules on a given context.
-     * 
+     *
      * @param rules
      *            The rules to run.
      * @param context

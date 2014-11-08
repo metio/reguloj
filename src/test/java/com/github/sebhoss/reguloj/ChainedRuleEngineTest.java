@@ -10,8 +10,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
-import com.google.common.collect.ImmutableList;
 
+import org.eclipse.jdt.annotation.NonNull;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,16 +22,16 @@ import org.mockito.Mockito;
 /**
  * Test cases for the ChainedRuleEngine.
  */
-@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.UNCHECKED })
 public class ChainedRuleEngineTest {
 
     /** Checks expected exception inside single test cases. */
     @org.junit.Rule
-    public ExpectedException            thrown = ExpectedException.none();
+    public ExpectedException                     thrown = ExpectedException.none();
 
-    private RuleEngine<Context<Object>> engine;
-    private Context<Object>             context;
-    private Rule<Context<Object>>       rule;
+    private RuleEngine<Context<@NonNull Object>> engine;
+    private Context<@NonNull Object>             context;
+    private Rule<Context<@NonNull Object>>       rule;
 
     /**
      * Creates rule engine and context.
@@ -143,4 +143,5 @@ public class ChainedRuleEngineTest {
 
         Mockito.verify(rule, Mockito.times(1)).run(context);
     }
+
 }

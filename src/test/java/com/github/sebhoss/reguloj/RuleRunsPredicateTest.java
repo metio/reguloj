@@ -6,8 +6,9 @@
  */
 package com.github.sebhoss.reguloj;
 
+import java.util.function.Predicate;
+
 import com.github.sebhoss.warnings.CompilerWarnings;
-import com.google.common.base.Predicate;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,7 +19,7 @@ import org.mockito.Mockito;
 /**
  * Test cases for RuleRunsPredicate.
  */
-@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.UNCHECKED })
 public class RuleRunsPredicateTest {
 
     private Context<Object>                  context;
@@ -42,7 +43,7 @@ public class RuleRunsPredicateTest {
     public void shouldReturnTrueOnFiringRule() {
         BDDMockito.given(rule.run(context)).willReturn(Boolean.TRUE);
 
-        final boolean applied = predicate.apply(rule);
+        final boolean applied = predicate.test(rule);
 
         Assert.assertTrue(applied);
     }
@@ -54,7 +55,7 @@ public class RuleRunsPredicateTest {
     public void shouldReturnFalseOnNonAppliedConclusion() {
         BDDMockito.given(rule.run(context)).willReturn(Boolean.FALSE);
 
-        final boolean applied = predicate.apply(rule);
+        final boolean applied = predicate.test(rule);
 
         Assert.assertFalse(applied);
     }

@@ -6,15 +6,13 @@
  */
 package com.github.sebhoss.reguloj;
 
-import com.google.common.base.Preconditions;
+import org.eclipse.jdt.annotation.NonNull;
 
-final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
+final class LimitedRuleEngine<CONTEXT extends Context<@NonNull ?>> extends AbstractRuleEngine<CONTEXT> {
 
     private final int maximumNumberOfRuns;
 
     LimitedRuleEngine(final int maximumNumberOfRuns) {
-        Preconditions.checkArgument(maximumNumberOfRuns > 0);
-
         this.maximumNumberOfRuns = maximumNumberOfRuns;
     }
 

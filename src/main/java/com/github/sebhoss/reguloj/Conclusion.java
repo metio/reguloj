@@ -22,15 +22,16 @@ package com.github.sebhoss.reguloj;
  * <ul>
  * <li>Test the interface and write back about errors, bugs and wishes.</li>
  * </ul>
- * 
+ *
  * @param <TOPIC>
  *            The topic of the inference process.
  */
+@FunctionalInterface
 public interface Conclusion<TOPIC> {
 
     /**
      * Applies the encapsulated action on a given target.
-     * 
+     *
      * @param target
      *            The target itself.
      * @return <code>true</code> if the conclusion did change the state of the target, <code>false</code> otherwise.

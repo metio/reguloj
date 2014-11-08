@@ -8,7 +8,7 @@ package com.github.sebhoss.reguloj;
 
 /**
  * Basic implementation of the {@link Context} interface.
- * 
+ *
  * @param <TOPIC>
  *            The topic of the context.
  */

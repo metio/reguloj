@@ -29,7 +29,7 @@ package com.github.sebhoss.reguloj;
  * <li>Write an abstract implementation for this interface so others will have it easier to implement it themselves.</li>
  * <li>Write an example of how to use an Context.</li>
  * </ul>
- * 
+ *
  * @param <TOPIC>
  *            The topic of the context.
  */

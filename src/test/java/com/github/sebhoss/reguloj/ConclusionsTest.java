@@ -7,12 +7,11 @@
 package com.github.sebhoss.reguloj;
 
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsNull;
@@ -23,32 +22,16 @@ import org.mockito.Mockito;
 
 /**
  * Test cases for the {@link Conclusions} utility class.
- * 
+ *
  * @see Conclusions
  */
-@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.STATIC_METHOD })
+@SuppressWarnings({ CompilerWarnings.STATIC_METHOD })
 public final class ConclusionsTest {
 
     /** Checks expected exception inside single test cases. */
     @org.junit.Rule
+    @SuppressWarnings("null")
     public ExpectedException thrown = ExpectedException.none();
-
-    /**
-     * <p>
-     * Test method for {@link Conclusions#conclude(Collection)}
-     * </p>
-     * <p>
-     * Ensures that passing in a <code>null</code> collection is not allowed.
-     * </p>
-     */
-    @Test
-    public void shouldNotAllowNullCollection() {
-        final Collection<Conclusion<String>> conclusions = null;
-
-        thrown.expect(NullPointerException.class);
-
-        Conclusions.conclude(conclusions);
-    }
 
     /**
      * <p>
@@ -60,7 +43,7 @@ public final class ConclusionsTest {
      */
     @Test
     public void shouldNotAllowEmptyCollection() {
-        final Collection<Conclusion<String>> conclusions = Lists.newArrayList();
+        final Collection<Conclusion<String>> conclusions = new ArrayList<>();
 
         thrown.expect(IllegalArgumentException.class);
 
@@ -78,7 +61,7 @@ public final class ConclusionsTest {
     @SuppressWarnings(CompilerWarnings.UNCHECKED)
     @Test
     public void shouldAcceptCollection() {
-        final Collection<Conclusion<String>> conclusions = Lists.newArrayList();
+        final Collection<Conclusion<String>> conclusions = new ArrayList<>();
         conclusions.add(Mockito.mock(Conclusion.class));
 
         final Conclusion<String> composite = Conclusions.conclude(conclusions);
@@ -91,33 +74,16 @@ public final class ConclusionsTest {
      * Test method for {@link Conclusions#conclude(Iterable)}
      * </p>
      * <p>
-     * Ensures that passing in a <code>null</code> iterable is not allowed.
-     * </p>
-     */
-    @Test
-    public void shouldNotAllowNullIterable() {
-        final Collection<Conclusion<String>> conclusions = null;
-
-        thrown.expect(NullPointerException.class);
-
-        Conclusions.conclude(Iterables.unmodifiableIterable(conclusions));
-    }
-
-    /**
-     * <p>
-     * Test method for {@link Conclusions#conclude(Iterable)}
-     * </p>
-     * <p>
      * Ensures that passing in an empty iterable is not allowed.
      * </p>
      */
     @Test
     public void shouldNotAllowEmptyIterable() {
-        final Collection<Conclusion<String>> conclusions = Lists.newArrayList();
+        final Collection<Conclusion<String>> conclusions = new ArrayList<>();
 
         thrown.expect(IllegalArgumentException.class);
 
-        Conclusions.conclude(Iterables.unmodifiableIterable(conclusions));
+        Conclusions.conclude(conclusions);
     }
 
     /**
@@ -131,29 +97,12 @@ public final class ConclusionsTest {
     @Test
     @SuppressWarnings(CompilerWarnings.UNCHECKED)
     public void shouldAcceptIterable() {
-        final Collection<Conclusion<String>> conclusions = Lists.newArrayList();
+        final Collection<Conclusion<String>> conclusions = new ArrayList<>();
         conclusions.add(Mockito.mock(Conclusion.class));
 
-        final Conclusion<String> composite = Conclusions.conclude(Iterables.unmodifiableIterable(conclusions));
+        final Conclusion<String> composite = Conclusions.conclude(conclusions);
 
         Assert.assertThat(composite, Is.is(IsNull.notNullValue()));
-    }
-
-    /**
-     * <p>
-     * Test method for {@link Conclusions#conclude(Iterator)}
-     * </p>
-     * <p>
-     * Ensures that passing in a <code>null</code> iterator is not allowed.
-     * </p>
-     */
-    @Test
-    public void shouldNotAllowNullIterator() {
-        final Iterator<Conclusion<String>> conclusions = null;
-
-        thrown.expect(NullPointerException.class);
-
-        Conclusions.conclude(conclusions);
     }
 
     /**
@@ -166,7 +115,7 @@ public final class ConclusionsTest {
      */
     @Test
     public void shouldNotAllowEmptyIterator() {
-        final Collection<Conclusion<String>> conclusions = Lists.newArrayList();
+        final Collection<Conclusion<String>> conclusions = new ArrayList<>();
 
         thrown.expect(IllegalArgumentException.class);
 
@@ -184,7 +133,7 @@ public final class ConclusionsTest {
     @Test
     @SuppressWarnings(CompilerWarnings.UNCHECKED)
     public void shouldAcceptIterator() {
-        final Collection<Conclusion<String>> conclusions = Lists.newArrayList();
+        final Collection<Conclusion<String>> conclusions = new ArrayList<>();
         final Conclusion<String> conclusion1 = Mockito.mock(Conclusion.class);
         final Conclusion<String> conclusion2 = Mockito.mock(Conclusion.class);
         conclusions.add(conclusion1);
@@ -216,42 +165,6 @@ public final class ConclusionsTest {
 
     /**
      * <p>
-     * Test method for {@link Conclusions#conclude(Conclusion, Conclusion)}
-     * </p>
-     * <p>
-     * Ensures that the first conclusion is not allowed to be <code>null</code>.
-     * </p>
-     */
-    @Test
-    @SuppressWarnings(CompilerWarnings.UNCHECKED)
-    public void shouldNotAllowNullFirstConclusions() {
-        final Conclusion<String> conclusion = Mockito.mock(Conclusion.class);
-
-        thrown.expect(NullPointerException.class);
-
-        Conclusions.conclude(null, conclusion);
-    }
-
-    /**
-     * <p>
-     * Test method for {@link Conclusions#conclude(Conclusion, Conclusion)}
-     * </p>
-     * <p>
-     * Ensures that the first conclusion is not allowed to be <code>null</code>.
-     * </p>
-     */
-    @Test
-    @SuppressWarnings(CompilerWarnings.UNCHECKED)
-    public void shouldNotAllowNullSecondConclusions() {
-        final Conclusion<String> conclusion = Mockito.mock(Conclusion.class);
-
-        thrown.expect(NullPointerException.class);
-
-        Conclusions.conclude(conclusion, null);
-    }
-
-    /**
-     * <p>
      * Test method for {@link Conclusions Conclusions()}
      * </p>
      * <p>
@@ -276,7 +189,7 @@ public final class ConclusionsTest {
      * <p>
      * Ensures that the constructor is accessible via reflection.
      * </p>
-     * 
+     *
      * @throws Exception
      *             When no new instance can be created.
      */

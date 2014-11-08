@@ -6,12 +6,13 @@
  */
 package com.github.sebhoss.reguloj;
 
-import javax.annotation.Nullable;
+import java.util.Objects;
+import java.util.function.Predicate;
 
-import com.google.common.base.Objects;
-import com.google.common.base.Predicate;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
-final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTEXT> {
+final class RuleImplementation<CONTEXT extends Context<@NonNull ?>> implements Rule<CONTEXT> {
 
     private final String              name;
     private final Predicate<CONTEXT>  predicate;
@@ -36,7 +37,7 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
 
     @Override
     public boolean fires(final CONTEXT context) {
-        return predicate.apply(context);
+        return predicate.test(context);
     }
 
     @Override
@@ -46,7 +47,7 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(name, predicate, conclusion);
+        return Objects.hash(name, predicate, conclusion);
     }
 
     @Override
@@ -54,8 +55,8 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
         if (object != null && object instanceof RuleImplementation) {
             final RuleImplementation<?> that = (RuleImplementation<?>) object;
 
-            return Objects.equal(name, that.name) && Objects.equal(predicate, that.predicate)
-                    && Objects.equal(conclusion, that.conclusion);
+            return Objects.equals(name, that.name) && Objects.equals(predicate, that.predicate)
+                    && Objects.equals(conclusion, that.conclusion);
         }
 
         return false;

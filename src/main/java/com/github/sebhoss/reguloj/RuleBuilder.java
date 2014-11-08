@@ -6,7 +6,9 @@
  */
 package com.github.sebhoss.reguloj;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
+
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * <p>
@@ -36,7 +38,7 @@ import com.google.common.base.Predicate;
  * <p>
  * Rule creation with name, predicate and conclusion:
  * </p>
- * 
+ *
  * <pre>
  * String name = "...";
  * Predicate predicate = ...;
@@ -46,22 +48,22 @@ import com.google.common.base.Predicate;
  *               .when(<em>predicate</em>)
  *               .then(<em>conclusion</em>)
  * </pre>
- * 
+ *
  * </li>
  * </ol>
  * <h1>How to help</h1>
  * <ul>
  * <li>Test the interface and write back about errors, bugs and wishes.</li>
  * </ul>
- * 
+ *
  * @param <CONTEXT>
  *            The context type.
  */
-public interface RuleBuilder<CONTEXT extends Context<?>> {
+public interface RuleBuilder<@NonNull CONTEXT extends Context<@NonNull ?>> {
 
     /**
      * Sets the predicate for the new rule.
-     * 
+     *
      * @param predicate
      *            The predicate to set.
      * @return The current rule builder.
@@ -70,7 +72,7 @@ public interface RuleBuilder<CONTEXT extends Context<?>> {
 
     /**
      * Sets the conclusion for the new rule.
-     * 
+     *
      * @param conclusion
      *            The conclusion to set.
      * @return The current rule builder.
@@ -79,7 +81,7 @@ public interface RuleBuilder<CONTEXT extends Context<?>> {
 
     /**
      * Sets the name of the new rule.
-     * 
+     *
      * @param name
      *            The name to set.
      * @return The current rule builder.

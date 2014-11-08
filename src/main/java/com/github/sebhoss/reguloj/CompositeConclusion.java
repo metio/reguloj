@@ -6,23 +6,22 @@
  */
 package com.github.sebhoss.reguloj;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.FluentIterable;
-import com.google.common.collect.Iterables;
-
 final class CompositeConclusion<TOPIC> implements Conclusion<TOPIC> {
 
-    private final Iterable<Conclusion<TOPIC>> conclusions;
+    // private final Iterable<Conclusion<TOPIC>> conclusions;
 
+    /**
+     * @param conclusions
+     */
     CompositeConclusion(final Iterable<Conclusion<TOPIC>> conclusions) {
-        Preconditions.checkArgument(!Iterables.isEmpty(conclusions));
-
-        this.conclusions = conclusions;
+        // this.conclusions = conclusions;
     }
 
     @Override
     public boolean apply(final TOPIC topic) {
-        return FluentIterable.from(conclusions).filter(Conclusions.conlusionApplies(topic)).size() > 0;
+        return false;
+        // TODO: replace FluentIterable with Java 8 stream API
+        // return FluentIterable.from(conclusions).filter(Conclusions.conlusionApplies(topic)).size() > 0;
     }
 
 }

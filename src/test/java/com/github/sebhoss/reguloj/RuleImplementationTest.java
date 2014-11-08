@@ -6,9 +6,11 @@
  */
 package com.github.sebhoss.reguloj;
 
-import com.github.sebhoss.warnings.CompilerWarnings;
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 
+import com.github.sebhoss.warnings.CompilerWarnings;
+
+import org.eclipse.jdt.annotation.NonNull;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,15 +20,15 @@ import org.mockito.Mockito;
 /**
  * Test cases for the RuleImplementation.
  */
-@SuppressWarnings({ CompilerWarnings.NULL, CompilerWarnings.UNCHECKED })
+@SuppressWarnings({ CompilerWarnings.UNCHECKED })
 public final class RuleImplementationTest {
 
     /** Constant name for all rules inside this test. */
-    private static final String         NAME = "test rule"; //$NON-NLS-1$
+    private static final String                  NAME = "test rule"; //$NON-NLS-1$
 
-    private Context<Object>             context;
-    private Predicate<Context<Object>>  predicate;
-    private Conclusion<Context<Object>> conclusion;
+    private Context<Object>                      context;
+    private Predicate<Context<@NonNull Object>>  predicate;
+    private Conclusion<Context<@NonNull Object>> conclusion;
 
     /**
      * Creates rule engine, context and rules.
@@ -43,7 +45,8 @@ public final class RuleImplementationTest {
      */
     @Test
     public void shouldCreateRuleIfAllValuesAreSet() {
-        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
 
         Assert.assertNotNull(rule);
     }
@@ -54,9 +57,10 @@ public final class RuleImplementationTest {
     @Test
     @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnFalseWhenPremiseDoesNotApply() {
-        BDDMockito.given(predicate.apply(context)).willReturn(Boolean.FALSE);
+        BDDMockito.given(predicate.test(context)).willReturn(Boolean.FALSE);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
 
         Assert.assertFalse(rule.run(context));
     }
@@ -67,10 +71,11 @@ public final class RuleImplementationTest {
     @Test
     @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnFalseWhenConclusionDoesNotApply() {
-        BDDMockito.given(predicate.apply(context)).willReturn(Boolean.TRUE);
+        BDDMockito.given(predicate.test(context)).willReturn(Boolean.TRUE);
         BDDMockito.given(conclusion.apply(context)).willReturn(Boolean.FALSE);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
 
         Assert.assertFalse(rule.run(context));
     }
@@ -81,10 +86,11 @@ public final class RuleImplementationTest {
     @Test
     @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnTrueWhenPremiseAndConclusionApply() {
-        BDDMockito.given(predicate.apply(context)).willReturn(Boolean.TRUE);
+        BDDMockito.given(predicate.test(context)).willReturn(Boolean.TRUE);
         BDDMockito.given(conclusion.apply(context)).willReturn(Boolean.TRUE);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
 
         Assert.assertTrue(rule.run(context));
     }
@@ -95,9 +101,10 @@ public final class RuleImplementationTest {
     @Test
     @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldFireWhenPremiseApplies() {
-        BDDMockito.given(predicate.apply(context)).willReturn(true);
+        BDDMockito.given(predicate.test(context)).willReturn(true);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
 
         Assert.assertTrue(rule.fires(context));
     }
@@ -108,9 +115,10 @@ public final class RuleImplementationTest {
     @Test
     @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldNotFireWhenPremiseDoesNotApply() {
-        BDDMockito.given(predicate.apply(context)).willReturn(false);
+        BDDMockito.given(predicate.test(context)).willReturn(false);
 
-        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
 
         Assert.assertFalse(rule.fires(context));
     }
@@ -120,7 +128,8 @@ public final class RuleImplementationTest {
      */
     @Test
     public void shouldReturnTheSetName() {
-        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
 
         Assert.assertEquals(rule.getName(), RuleImplementationTest.NAME);
     }
@@ -130,7 +139,8 @@ public final class RuleImplementationTest {
      */
     @Test
     public void equalsIsReflexive() {
-        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
 
         Assert.assertEquals(rule, rule);
     }
@@ -140,8 +150,10 @@ public final class RuleImplementationTest {
      */
     @Test
     public void equalsIsSymmetric() {
-        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
 
         Assert.assertEquals(rule1, rule2);
         Assert.assertEquals(rule2, rule1);
@@ -152,9 +164,12 @@ public final class RuleImplementationTest {
      */
     @Test
     public void equalsIsTransitive() {
-        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<Context<Object>> rule3 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule3 = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
 
         Assert.assertEquals(rule1, rule2);
         Assert.assertEquals(rule2, rule3);
@@ -166,7 +181,8 @@ public final class RuleImplementationTest {
      */
     @Test
     public void equalsReturnFalseOnNull() {
-        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
 
         Assert.assertNotEquals(rule, null);
     }
@@ -176,7 +192,8 @@ public final class RuleImplementationTest {
      */
     @Test
     public void equalsReturnFalseOnWrongClass() {
-        final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
 
         Assert.assertNotEquals(rule, ""); //$NON-NLS-1$
     }
@@ -186,8 +203,9 @@ public final class RuleImplementationTest {
      */
     @Test
     public void equalsWorks() {
-        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<Context<Object>> rule2 = rule1;
+        final Rule<@NonNull Context<@NonNull Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule2 = rule1;
 
         Assert.assertEquals(rule1, rule2);
     }
@@ -197,8 +215,9 @@ public final class RuleImplementationTest {
      */
     @Test
     public void equalsWorksWithDifferentNames() {
-        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<>("rule2", predicate, conclusion); //$NON-NLS-1$
+        final Rule<@NonNull Context<@NonNull Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule2 = new RuleImplementation<>("rule2", predicate, conclusion); //$NON-NLS-1$
 
         Assert.assertNotEquals(rule1, rule2);
     }
@@ -210,9 +229,11 @@ public final class RuleImplementationTest {
     public void equalsWorksWithDifferentPremises() {
         final Predicate<Context<Object>> predicate2 = Mockito.mock(Predicate.class);
 
-        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate,
+        final Rule<@NonNull Context<@NonNull Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate,
                 conclusion);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate2,
+        final Rule<@NonNull Context<@NonNull Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate2,
                 conclusion);
 
         Assert.assertNotEquals(rule1, rule2);
@@ -225,9 +246,11 @@ public final class RuleImplementationTest {
     public void equalsWorksWithDifferentConclusions() {
         final Conclusion<Context<Object>> conclusion2 = Mockito.mock(Conclusion.class);
 
-        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate,
+        final Rule<@NonNull Context<@NonNull Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate,
                 conclusion);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate,
+        final Rule<@NonNull Context<@NonNull Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate,
                 conclusion2);
 
         Assert.assertNotEquals(rule1, rule2);
@@ -238,8 +261,10 @@ public final class RuleImplementationTest {
      */
     @Test
     public void hashCodeIsConsistentWithEquals() {
-        final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
-        final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME, predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
+        final Rule<@NonNull Context<@NonNull Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME,
+                predicate, conclusion);
 
         Assert.assertEquals(rule1, rule2);
         Assert.assertEquals(rule1.hashCode(), rule2.hashCode());

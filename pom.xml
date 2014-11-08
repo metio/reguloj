@@ -44,7 +44,7 @@
   <!--                                PROPERTIES                               -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <properties>
-    <version.bom>2.0.6</version.bom>
+    <version.bom>3.0.0</version.bom>
   </properties>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -53,21 +53,21 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.github.sebhoss</groupId>
+        <groupId>com.github.sebhoss.bom</groupId>
         <artifactId>sebhoss-bom</artifactId>
         <version>${version.bom}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>com.github.sebhoss</groupId>
+        <groupId>com.github.sebhoss.bom</groupId>
         <artifactId>java-bom</artifactId>
         <version>${version.bom}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>com.github.sebhoss</groupId>
+        <groupId>com.github.sebhoss.bom</groupId>
         <artifactId>testing-bom</artifactId>
         <version>${version.bom}</version>
         <type>pom</type>
@@ -105,7 +105,6 @@
     <dependency>
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest-core</artifactId>
-      <version>1.3</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

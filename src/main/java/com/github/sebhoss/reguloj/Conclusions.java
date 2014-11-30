@@ -11,8 +11,7 @@ import java.util.Iterator;
 import java.util.function.Predicate;
 
 import com.github.sebhoss.nullanalysis.Nullsafe;
-
-import org.eclipse.jdt.annotation.NonNull;
+import com.google.common.collect.ImmutableList;
 
 /**
  * Utility class which helps creating new {@link Conclusion conclusions}.
@@ -78,7 +77,7 @@ public final class Conclusions {
      *            The topic to check.
      * @return A predicate that checks whether a conclusion applies in the given topic or not.
      */
-    public static <TOPIC> Predicate<@NonNull Conclusion<@NonNull TOPIC>> conlusionApplies(final TOPIC topic) {
+    public static <TOPIC> Predicate<Conclusion<TOPIC>> conlusionApplies(final TOPIC topic) {
         return new ConclusionAppliesPredicate<>(topic);
     }
 

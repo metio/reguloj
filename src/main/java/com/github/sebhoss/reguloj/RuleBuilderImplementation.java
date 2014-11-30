@@ -8,15 +8,10 @@ package com.github.sebhoss.reguloj;
 
 import java.util.function.Predicate;
 
-import org.eclipse.jdt.annotation.NonNull;
+final class RuleBuilderImplementation<CONTEXT extends Context<?>> implements RuleBuilder<CONTEXT> {
 
-final class RuleBuilderImplementation<CONTEXT extends Context<@NonNull ?>> implements RuleBuilder<@NonNull CONTEXT> {
-
-    @SuppressWarnings("null")
     private String              name;
-    @SuppressWarnings("null")
     private Predicate<CONTEXT>  predicate;
-    @SuppressWarnings("null")
     private Conclusion<CONTEXT> conclusion;
 
     @Override
@@ -27,8 +22,8 @@ final class RuleBuilderImplementation<CONTEXT extends Context<@NonNull ?>> imple
     }
 
     @Override
-    public @NonNull RuleBuilder<@NonNull CONTEXT> when(
-            final @NonNull Predicate<@NonNull CONTEXT> newPredicate) {
+    public RuleBuilder<CONTEXT> when(
+            final Predicate<CONTEXT> newPredicate) {
         predicate = newPredicate;
 
         return this;
@@ -36,7 +31,7 @@ final class RuleBuilderImplementation<CONTEXT extends Context<@NonNull ?>> imple
 
     @Override
     public Rule<CONTEXT> then(final Conclusion<CONTEXT> newConclusion) {
-        return new RuleImplementation<@NonNull CONTEXT>(name, predicate, conclusion);
+        return new RuleImplementation<>(name, predicate, conclusion);
     }
 
 }

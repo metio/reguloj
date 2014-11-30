@@ -8,9 +8,7 @@ package com.github.sebhoss.reguloj;
 
 import java.util.stream.StreamSupport;
 
-import org.eclipse.jdt.annotation.NonNull;
-
-final class FirstWinsRuleEngine<CONTEXT extends Context<@NonNull ?>> extends AbstractRuleEngine<CONTEXT> {
+final class FirstWinsRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     @Override
     public boolean infer(final Iterable<Rule<CONTEXT>> rules, final CONTEXT context) {

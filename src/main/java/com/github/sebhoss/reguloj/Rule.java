@@ -6,7 +6,6 @@
  */
 package com.github.sebhoss.reguloj;
 
-import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * <p>
@@ -27,7 +26,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <pre>
  * Context&lt;X&gt; context = ...;
  * Rule&lt;Context&lt;X&gt;&gt; rule = ...;
- * 
+ *
  * boolean canFire = rule.fires(context);
  * </pre>
  *
@@ -40,7 +39,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <pre>
  * Context&lt;X&gt; context = ...;
  * Rule&lt;Context&lt;X&gt;&gt; rule = ...;
- * 
+ *
  * boolean fired = rule.run(context);
  * </pre>
  *
@@ -54,7 +53,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @param <CONTEXT>
  *            The context type.
  */
-public interface Rule<CONTEXT extends Context<@NonNull ?>> {
+public interface Rule<CONTEXT extends Context<?>> {
 
     /**
      * Runs this rule inside a given context. For that it'll check its premises first and if those are fulfilled, it

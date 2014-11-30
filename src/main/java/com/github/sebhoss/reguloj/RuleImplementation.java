@@ -9,10 +9,9 @@ package com.github.sebhoss.reguloj;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-final class RuleImplementation<CONTEXT extends Context<@NonNull ?>> implements Rule<CONTEXT> {
+final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTEXT> {
 
     private final String              name;
     private final Predicate<CONTEXT>  predicate;

@@ -6,9 +6,8 @@
  */
 package com.github.sebhoss.reguloj;
 
-import org.eclipse.jdt.annotation.NonNull;
 
-final class ConclusionAppliesPredicate<TOPIC> extends ConclusionPredicate<@NonNull TOPIC> {
+final class ConclusionAppliesPredicate<TOPIC> extends ConclusionPredicate<TOPIC> {
 
     ConclusionAppliesPredicate(final TOPIC topic) {
         super(topic);

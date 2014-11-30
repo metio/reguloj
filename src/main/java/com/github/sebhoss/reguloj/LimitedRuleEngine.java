@@ -6,9 +6,7 @@
  */
 package com.github.sebhoss.reguloj;
 
-import org.eclipse.jdt.annotation.NonNull;
-
-final class LimitedRuleEngine<CONTEXT extends Context<@NonNull ?>> extends AbstractRuleEngine<CONTEXT> {
+final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     private final int maximumNumberOfRuns;
 

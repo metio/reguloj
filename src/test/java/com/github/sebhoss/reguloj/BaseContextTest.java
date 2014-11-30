@@ -22,7 +22,7 @@ public class BaseContextTest {
      */
     @Test
     public void shouldReturnGivenTopic() {
-        final Context<Object> context = new BaseContext<Object>("test");
+        final Context<Object> context = new BaseContext<>("test");
 
         final Object topic = context.getTopic();
 

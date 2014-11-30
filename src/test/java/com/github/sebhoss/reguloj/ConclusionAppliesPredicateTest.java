@@ -8,7 +8,6 @@ package com.github.sebhoss.reguloj;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,8 +20,8 @@ import org.mockito.Mockito;
 @SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.NLS, CompilerWarnings.UNCHECKED })
 public class ConclusionAppliesPredicateTest {
 
-    private ConclusionPredicate<@NonNull String> predicate;
-    private Conclusion<String>                   conclusion;
+    private ConclusionPredicate<String> predicate;
+    private Conclusion<String>          conclusion;
 
     /**
      * Creates predicate and conclusion for each test.

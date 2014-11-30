@@ -7,6 +7,7 @@
 package com.github.sebhoss.reguloj;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
+import com.google.common.collect.ImmutableList;
 
 import org.junit.Before;
 import org.junit.Test;

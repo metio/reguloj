@@ -9,8 +9,6 @@ package com.github.sebhoss.reguloj;
 import java.util.function.Predicate;
 import java.util.stream.StreamSupport;
 
-import org.eclipse.jdt.annotation.NonNull;
-
 /**
  * Abstract rule engine which provides an implementation for the {@link #analyze(Iterable, Context)} method. Therefore
  * implementors only have to write the {@link #infer(Iterable, Context)} method.
@@ -18,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @param <CONTEXT>
  *            The context type.
  */
-public abstract class AbstractRuleEngine<CONTEXT extends Context<@NonNull ?>> implements RuleEngine<CONTEXT> {
+public abstract class AbstractRuleEngine<CONTEXT extends Context<?>> implements RuleEngine<CONTEXT> {
 
     @Override
     public final boolean analyze(final Iterable<Rule<CONTEXT>> rules, final CONTEXT context) {

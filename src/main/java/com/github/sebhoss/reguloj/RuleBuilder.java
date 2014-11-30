@@ -8,8 +8,6 @@ package com.github.sebhoss.reguloj;
 
 import java.util.function.Predicate;
 
-import org.eclipse.jdt.annotation.NonNull;
-
 /**
  * <p>
  * Offers an easy to use fluent interface for building new {@link Rule rules}. It follows the builder-pattern described
@@ -59,7 +57,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @param <CONTEXT>
  *            The context type.
  */
-public interface RuleBuilder<@NonNull CONTEXT extends Context<@NonNull ?>> {
+public interface RuleBuilder<CONTEXT extends Context<?>> {
 
     /**
      * Sets the predicate for the new rule.

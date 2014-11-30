@@ -6,9 +6,7 @@
  */
 package com.github.sebhoss.reguloj;
 
-import org.eclipse.jdt.annotation.NonNull;
-
-final class RuleFiresPredicate<CONTEXT extends Context<@NonNull ?>> extends RulePredicate<CONTEXT> {
+final class RuleFiresPredicate<CONTEXT extends Context<?>> extends RulePredicate<CONTEXT> {
 
     RuleFiresPredicate(final CONTEXT context) {
         super(context);

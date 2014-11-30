@@ -30,7 +30,6 @@ public final class ConclusionsTest {
 
     /** Checks expected exception inside single test cases. */
     @org.junit.Rule
-    @SuppressWarnings("null")
     public ExpectedException thrown = ExpectedException.none();
 
     /**

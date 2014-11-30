@@ -10,7 +10,6 @@ import java.util.function.Predicate;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsNull;
 import org.junit.Assert;
@@ -33,7 +32,7 @@ public final class RuleBuilderImplementationTest {
      */
     @Test
     public void shouldCreateRuleIfAllValuesAreSet() {
-        final RuleBuilder<Context<@NonNull Object>> builder = new RuleBuilderImplementation<>();
+        final RuleBuilder<Context<Object>> builder = new RuleBuilderImplementation<>();
         builder.called("test rule").when(Mockito.mock(Predicate.class)); //$NON-NLS-1$
 
         final Rule<Context<Object>> rule = builder.then(Mockito.mock(Conclusion.class));

@@ -8,9 +8,7 @@ package com.github.sebhoss.reguloj;
 
 import java.util.function.Predicate;
 
-import org.eclipse.jdt.annotation.NonNull;
-
-abstract class RulePredicate<CONTEXT extends Context<@NonNull ?>> implements Predicate<@NonNull Rule<CONTEXT>> {
+abstract class RulePredicate<CONTEXT extends Context<?>> implements Predicate<Rule<CONTEXT>> {
 
     protected final CONTEXT context;
 

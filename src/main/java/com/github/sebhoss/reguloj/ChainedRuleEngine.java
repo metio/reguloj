@@ -6,9 +6,8 @@
  */
 package com.github.sebhoss.reguloj;
 
-import org.eclipse.jdt.annotation.NonNull;
 
-final class ChainedRuleEngine<CONTEXT extends Context<@NonNull ?>> extends AbstractRuleEngine<CONTEXT> {
+final class ChainedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     @Override
     public boolean infer(final Iterable<Rule<CONTEXT>> rules, final CONTEXT context) {

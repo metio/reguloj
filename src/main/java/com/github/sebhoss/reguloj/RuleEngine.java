@@ -6,7 +6,6 @@
  */
 package com.github.sebhoss.reguloj;
 
-import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * <p>
@@ -34,7 +33,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * RuleEngine&lt;Context&lt;X&gt;&gt; engine = ...;
  * Iterable&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
  * Context&lt;X&gt; context = ...;
- * 
+ *
  * boolean fired = engine.analyze(rules, context);
  * </pre>
  *
@@ -48,7 +47,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * RuleEngine&lt;Context&lt;X&gt;&gt; engine = ...;
  * Iterable&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
  * Context&lt;X&gt; context = ...;
- * 
+ *
  * engine.infer(rules, context);
  * </pre>
  *
@@ -63,7 +62,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @param <CONTEXT>
  *            The context type.
  */
-public interface RuleEngine<CONTEXT extends Context<@NonNull ?>> {
+public interface RuleEngine<CONTEXT extends Context<?>> {
 
     /**
      * Performs a dry-run with this engine by analyzing a given context based upon a set of rules. It will only check

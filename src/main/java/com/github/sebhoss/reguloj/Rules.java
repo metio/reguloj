@@ -8,8 +8,6 @@ package com.github.sebhoss.reguloj;
 
 import java.util.function.Predicate;
 
-import org.eclipse.jdt.annotation.NonNull;
-
 /**
  * Utility class which helps creating new {@link Rule rules}.
  *
@@ -22,7 +20,7 @@ public final class Rules {
      *
      * @return A new rule builder.
      */
-    public static <CONTEXT extends Context<@NonNull ?>> RuleBuilder<CONTEXT> rule() {
+    public static <CONTEXT extends Context<?>> RuleBuilder<CONTEXT> rule() {
         return new RuleBuilderImplementation<>();
     }
 
@@ -31,7 +29,7 @@ public final class Rules {
      *            The context to check.
      * @return A predicate that checks whether a rule fires in the given context.
      */
-    public static <CONTEXT extends Context<@NonNull ?>> Predicate<@NonNull Rule<CONTEXT>> ruleFires(
+    public static <CONTEXT extends Context<?>> Predicate<Rule<CONTEXT>> ruleFires(
             final CONTEXT context) {
         return new RuleFiresPredicate<>(context);
     }
@@ -41,7 +39,7 @@ public final class Rules {
      *            The context to check.
      * @return A predicate that checks whether a rule fires in the given context.
      */
-    public static <CONTEXT extends Context<@NonNull ?>> Predicate<@NonNull Rule<CONTEXT>> ruleRuns(final CONTEXT context) {
+    public static <CONTEXT extends Context<?>> Predicate<Rule<CONTEXT>> ruleRuns(final CONTEXT context) {
         return new RuleRunsPredicate<>(context);
     }
 

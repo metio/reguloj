@@ -53,9 +53,9 @@ public final class RulesTest {
      * </p>
      */
     @Test
-    @SuppressWarnings({ "null", "unchecked" })
+    @SuppressWarnings({ "unchecked" })
     public void shouldCreateRule() {
-        final RuleBuilder<Context<Object>> builder = Rules.<@NonNull Context<Object>> rule();
+        final RuleBuilder<Context<Object>> builder = Rules.<Context<Object>> rule();
         builder.called(RulesTest.NAME).when(Mockito.mock(Predicate.class));
 
         final Rule<Context<Object>> rule = builder.then(Mockito.mock(Conclusion.class));

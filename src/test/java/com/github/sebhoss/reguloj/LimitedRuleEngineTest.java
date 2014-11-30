@@ -7,8 +7,8 @@
 package com.github.sebhoss.reguloj;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
+import com.google.common.collect.ImmutableList;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.BDDMockito;
@@ -20,17 +20,14 @@ import org.mockito.Mockito;
 @SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.UNCHECKED })
 public class LimitedRuleEngineTest {
 
-    @SuppressWarnings("null")
-    @NonNull
-    private RuleEngine<@NonNull Context<@NonNull ?>> engine;
-    private Context<@NonNull Object>                 context;
-    private Rule<@NonNull Context<@NonNull Object>>  rule1;
-    private Rule<@NonNull Context<@NonNull Object>>  rule2;
+    private RuleEngine<Context<Object>> engine;
+    private Context<Object>             context;
+    private Rule<Context<Object>>       rule1;
+    private Rule<Context<Object>>       rule2;
 
     /**
      * Creates rule engine, context and rules.
      */
-    @SuppressWarnings("null")
     @Before
     public void setup() {
         engine = new LimitedRuleEngine<>(2);

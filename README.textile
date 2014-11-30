@@ -76,7 +76,7 @@ p. Replace @${version.reguloj}@ with the "latest release":http://search.maven.or
 h3. Requirements
 
 |_. Java Version |_. 1.X.Y |_. 2.X.Y |_. 3.X.Y |
-| Java 8 | | ✓ | ✓ |
+| Java 8 | ✓ | ✓ | ✓ |
 | Java 7 | ✓ | ✓ | |
 | Java 6 | ✓ | | |
 

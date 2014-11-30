@@ -22,7 +22,7 @@ p. If custom inference behavior is required, subclass @AbstractRuleEngine@ and i
 
 bc.. // setup - more details later
 RuleEngine<CONTEXT> engine = ...;
-Iterable<Rule<CONTEXT>> rules = ...;
+Collection<Rule<CONTEXT>> rules = ...;
 CONTEXT context = ...;
 
 // true if at least one rule can fired.
@@ -77,7 +77,7 @@ h3. Requirements
 
 |_. Java Version |_. 1.X.Y |_. 2.X.Y |_. 3.X.Y |
 | Java 8 | | ✓ | ✓ |
-| Java 7 | ✓ | | |
+| Java 7 | ✓ | ✓ | |
 | Java 6 | ✓ | | |
 
 h2. Development

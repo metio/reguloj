@@ -6,18 +6,15 @@
  */
 package com.github.sebhoss.reguloj;
 
+import java.util.Collection;
 
 final class ChainedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     @Override
-    public boolean infer(final Iterable<Rule<CONTEXT>> rules, final CONTEXT context) {
-        boolean changeOccured = false;
-
-        while (performSinglePass(rules, context)) {
-            changeOccured = true;
+    public void infer(final Collection<Rule<CONTEXT>> rules, final CONTEXT context) {
+        while (analyze(rules, context)) {
+            performSinglePass(rules, context);
         }
-
-        return changeOccured;
     }
 
 }

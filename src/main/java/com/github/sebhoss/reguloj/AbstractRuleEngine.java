@@ -6,11 +6,11 @@
  */
 package com.github.sebhoss.reguloj;
 
-import com.google.common.collect.FluentIterable;
+import java.util.Collection;
 
 /**
- * Abstract rule engine which provides an implementation for the {@link #analyze(Iterable, Context)} method. Therefore
- * implementors only have to write the {@link #infer(Iterable, Context)} method.
+ * Abstract rule engine which provides an implementation for the {@link #analyze(Collection, Context)} method. Therefore
+ * implementors only have to write the {@link #infer(Collection, Context)} method.
  *
  * @param <CONTEXT>
  *            The context type.
@@ -18,12 +18,12 @@ import com.google.common.collect.FluentIterable;
 public abstract class AbstractRuleEngine<CONTEXT extends Context<?>> implements RuleEngine<CONTEXT> {
 
     @Override
-    public final boolean analyze(final Iterable<Rule<CONTEXT>> rules, final CONTEXT context) {
-        return FluentIterable.from(rules).anyMatch(rule -> rule.fires(context));
+    public final boolean analyze(final Collection<Rule<CONTEXT>> rules, final CONTEXT context) {
+        return rules.stream().anyMatch(rule -> rule.fires(context));
     }
 
-    protected final boolean performSinglePass(final Iterable<Rule<CONTEXT>> rules, final CONTEXT context) {
-        return FluentIterable.from(rules).filter(rule -> rule.run(context)).size() > 0;
+    protected final void performSinglePass(final Collection<Rule<CONTEXT>> rules, final CONTEXT context) {
+        rules.stream().forEachOrdered(rule -> rule.run(context));
     }
 
 }

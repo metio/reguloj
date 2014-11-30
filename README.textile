@@ -1,7 +1,7 @@
 h1. reguloj "!https://secure.travis-ci.org/sebhoss/reguloj.png!":http://travis-ci.org/sebhoss/reguloj "!https://www.ohloh.net/p/reguloj/widgets/project_thin_badge.gif!":https://www.ohloh.net/p/reguloj/
 
 
-p. *reguloj* is a small and lightweight Java rule engine. It is suitable for mobile applications running "Android":http://www.android.com/ and/or other restricted environments such as "GWT":http://www.gwtproject.org/.
+p. *reguloj* is a small and lightweight Java rule engine.
 
 h2. Usage
 
@@ -35,7 +35,7 @@ h3. Creating rules
 
 p. A "rule":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Rule.java has a (unique) name and runs in a given context. Additionally it can be checked whether a rule fires in a given context.
 
-p. Either implement the @Rule@ interface yourself and or use the supplied rule implementation and builder. A standard rule is composed of a "predicate":https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html and a "consumer":https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html. Both interfaces require you to implement only a single method and do not restrict you in any way. Complex rules can be created by grouping or chaining predicates/consumers together with the help of several utility methods. The following example creates a rule composed of 2 predicates and 2 consumers while using static imports:
+p. Either implement the @Rule@ interface yourself and or use the supplied rule implementation and builder. A standard rule is composed of a "predicate":https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html and a "consumer":https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html. Both interfaces require you to implement only a single method and do not restrict you in any way. Complex rules can be created by grouping or chaining predicates/consumers together with the help of several utility methods. The following example creates a rule composed of 2 predicates and 2 consumers:
 
 bc.. 
 final Rule<CONTEXT> rule = Rules.rule().called(name)
@@ -45,7 +45,7 @@ final Rule<CONTEXT> rule = Rules.rule().called(name)
 // true if the rule would fire in the given context, e.g. the above predicate is true.
 rule.fires(context);
 
-// true if the rule changed the state of the given context, e.g. the above conclusion applies.
+// runs (applies) the rule in the given context
 rule.run(context);
 
 p. Using Java 8 lambdas is possible as well:

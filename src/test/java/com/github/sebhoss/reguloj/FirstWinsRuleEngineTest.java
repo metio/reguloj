@@ -41,10 +41,12 @@ public class FirstWinsRuleEngineTest {
      */
     @Test
     public void shouldOnlyRunFirstMatchingRule() {
-        BDDMockito.given(rule1.run(context)).willReturn(Boolean.TRUE);
+        BDDMockito.given(rule1.fires(context)).willReturn(Boolean.TRUE);
+        BDDMockito.given(rule2.fires(context)).willReturn(Boolean.FALSE);
 
         engine.infer(ImmutableList.of(rule1, rule2), context);
 
+        Mockito.verify(rule1, Mockito.times(1)).fires(context);
         Mockito.verify(rule1, Mockito.times(1)).run(context);
         Mockito.verifyZeroInteractions(rule2);
     }
@@ -54,12 +56,14 @@ public class FirstWinsRuleEngineTest {
      */
     @Test
     public void shouldOnlyRunFirstMatchingRuleSecond() {
-        BDDMockito.given(rule1.run(context)).willReturn(Boolean.FALSE);
-        BDDMockito.given(rule2.run(context)).willReturn(Boolean.TRUE);
+        BDDMockito.given(rule1.fires(context)).willReturn(Boolean.FALSE);
+        BDDMockito.given(rule2.fires(context)).willReturn(Boolean.TRUE);
 
         engine.infer(ImmutableList.of(rule1, rule2), context);
 
-        Mockito.verify(rule1, Mockito.times(1)).run(context);
+        Mockito.verify(rule1, Mockito.times(1)).fires(context);
+        Mockito.verify(rule1, Mockito.times(0)).run(context);
+        Mockito.verify(rule2, Mockito.times(1)).fires(context);
         Mockito.verify(rule2, Mockito.times(1)).run(context);
     }
 

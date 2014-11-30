@@ -120,11 +120,12 @@ public class ChainedRuleEngineTest {
      */
     @Test
     public void shouldLoopWithFiringRule() {
-        BDDMockito.given(rule.run(context)).willReturn(Boolean.TRUE).willReturn(Boolean.FALSE);
+        BDDMockito.given(rule.fires(context)).willReturn(Boolean.TRUE).willReturn(Boolean.FALSE);
 
         engine.infer(ImmutableList.of(rule), context);
 
-        Mockito.verify(rule, Mockito.times(2)).run(context);
+        Mockito.verify(rule, Mockito.times(2)).fires(context);
+        Mockito.verify(rule, Mockito.times(1)).run(context);
     }
 
     /**
@@ -137,11 +138,12 @@ public class ChainedRuleEngineTest {
      */
     @Test
     public void shouldNotLoopWithNotFiringRule() {
-        BDDMockito.given(rule.run(context)).willReturn(Boolean.FALSE);
+        BDDMockito.given(rule.fires(context)).willReturn(Boolean.FALSE);
 
         engine.infer(ImmutableList.of(rule), context);
 
-        Mockito.verify(rule, Mockito.times(1)).run(context);
+        Mockito.verify(rule, Mockito.times(1)).fires(context);
+        Mockito.verify(rule, Mockito.times(0)).run(context);
     }
 
 }

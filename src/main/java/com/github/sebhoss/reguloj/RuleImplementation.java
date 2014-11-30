@@ -23,15 +23,10 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
     }
 
     @Override
-    public boolean run(final CONTEXT context) {
-        boolean changed = false;
-
+    public void run(final CONTEXT context) {
         if (fires(context)) {
-            changed = true;
             consumer.accept(context);
         }
-
-        return changed;
     }
 
     @Override

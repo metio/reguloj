@@ -62,7 +62,7 @@ public final class RuleImplementationTest {
         final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
                 predicate, consumer);
 
-        Assert.assertFalse(rule.run(context));
+        Assert.assertFalse(rule.fires(context));
     }
 
     /**

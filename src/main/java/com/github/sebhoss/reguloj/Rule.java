@@ -24,21 +24,21 @@ package com.github.sebhoss.reguloj;
  * <pre>
  * Context&lt;X&gt; context = ...;
  * Rule&lt;Context&lt;X&gt;&gt; rule = ...;
- * 
+ *
  * boolean canFire = rule.fires(context);
  * </pre>
  *
  * </li>
  * <li>
  * <p>
- * Check whether a rule inflicted any state change inside a given context:
+ * Run a rule inside a given context:
  * </p>
  *
  * <pre>
  * Context&lt;X&gt; context = ...;
  * Rule&lt;Context&lt;X&gt;&gt; rule = ...;
- * 
- * boolean fired = rule.run(context);
+ *
+ * rule.run(context);
  * </pre>
  *
  * </li>
@@ -54,14 +54,12 @@ package com.github.sebhoss.reguloj;
 public interface Rule<CONTEXT extends Context<?>> {
 
     /**
-     * Runs this rule inside a given context. For that it'll check its premises first and if those are fulfilled, it
-     * will run its enclosing conclusion.
+     * Runs this rule inside a given context.
      *
      * @param context
      *            The context to use.
-     * @return <code>true</code> if this rule did change the state of the given context, <code>false</code> otherwise.
      */
-    boolean run(CONTEXT context);
+    void run(CONTEXT context);
 
     /**
      * Checks whether this rule would fire for a given context.

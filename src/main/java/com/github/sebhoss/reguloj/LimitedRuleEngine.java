@@ -6,6 +6,8 @@
  */
 package com.github.sebhoss.reguloj;
 
+import java.util.Collection;
+
 final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     private final int maximumNumberOfRuns;
@@ -15,19 +17,15 @@ final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEn
     }
 
     @Override
-    public boolean infer(final Iterable<Rule<CONTEXT>> rules, final CONTEXT context) {
-        boolean changeOccured = false;
-
+    public void infer(final Collection<Rule<CONTEXT>> rules, final CONTEXT context) {
         int currentRuns = 0;
-        while (performSinglePass(rules, context)) {
-            changeOccured = true;
+        while (analyze(rules, context)) {
+            performSinglePass(rules, context);
 
             if (++currentRuns >= maximumNumberOfRuns) {
                 break;
             }
         }
-
-        return changeOccured;
     }
 
 }

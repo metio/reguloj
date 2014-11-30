@@ -6,6 +6,7 @@
  */
 package com.github.sebhoss.reguloj;
 
+import java.util.Collection;
 
 /**
  * <p>
@@ -31,7 +32,7 @@ package com.github.sebhoss.reguloj;
  *
  * <pre>
  * RuleEngine&lt;Context&lt;X&gt;&gt; engine = ...;
- * Iterable&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
+ * Collection&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
  * Context&lt;X&gt; context = ...;
  *
  * boolean fired = engine.analyze(rules, context);
@@ -45,7 +46,7 @@ package com.github.sebhoss.reguloj;
  *
  * <pre>
  * RuleEngine&lt;Context&lt;X&gt;&gt; engine = ...;
- * Iterable&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
+ * Collection&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
  * Context&lt;X&gt; context = ...;
  *
  * engine.infer(rules, context);
@@ -67,7 +68,7 @@ public interface RuleEngine<CONTEXT extends Context<?>> {
     /**
      * Performs a dry-run with this engine by analyzing a given context based upon a set of rules. It will only check
      * whether any rule would fires inside the given context but does not apply any conclusions. For that call the
-     * {@link RuleEngine#infer(Iterable, Context) infer}-method.
+     * {@link RuleEngine#infer(Collection, Context) infer}-method.
      *
      * @param rules
      *            The rules to check.
@@ -75,7 +76,7 @@ public interface RuleEngine<CONTEXT extends Context<?>> {
      *            The context to use.
      * @return <code>true</code> if any rule would fire, <code>false</code> otherwise.
      */
-    boolean analyze(Iterable<Rule<CONTEXT>> rules, CONTEXT context);
+    boolean analyze(Collection<Rule<CONTEXT>> rules, CONTEXT context);
 
     /**
      * Launches this engine and lets it analyze and execute a set of rules on a given context.
@@ -84,8 +85,7 @@ public interface RuleEngine<CONTEXT extends Context<?>> {
      *            The rules to run.
      * @param context
      *            The context to use.
-     * @return <code>true</code> if any rule did run, otherwise <code>false</code>.
      */
-    boolean infer(Iterable<Rule<CONTEXT>> rules, CONTEXT context);
+    void infer(Collection<Rule<CONTEXT>> rules, CONTEXT context);
 
 }

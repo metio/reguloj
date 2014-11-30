@@ -41,8 +41,8 @@ public class LimitedRuleEngineTest {
      */
     @Test
     public void shouldRunTwoTimesWithMatchingRules() {
-        BDDMockito.given(rule1.run(context)).willReturn(Boolean.TRUE);
-        BDDMockito.given(rule2.run(context)).willReturn(Boolean.TRUE);
+        BDDMockito.given(rule1.fires(context)).willReturn(Boolean.TRUE);
+        BDDMockito.given(rule2.fires(context)).willReturn(Boolean.TRUE);
 
         engine.infer(ImmutableList.of(rule1, rule2), context);
 
@@ -55,13 +55,13 @@ public class LimitedRuleEngineTest {
      */
     @Test
     public void shouldRunOnceWithNonMatchingRules() {
-        BDDMockito.given(rule1.run(context)).willReturn(Boolean.FALSE);
-        BDDMockito.given(rule2.run(context)).willReturn(Boolean.FALSE);
+        BDDMockito.given(rule1.fires(context)).willReturn(Boolean.FALSE);
+        BDDMockito.given(rule2.fires(context)).willReturn(Boolean.FALSE);
 
         engine.infer(ImmutableList.of(rule1, rule2), context);
 
-        Mockito.verify(rule1, Mockito.times(1)).run(context);
-        Mockito.verify(rule2, Mockito.times(1)).run(context);
+        Mockito.verify(rule1, Mockito.times(1)).fires(context);
+        Mockito.verify(rule2, Mockito.times(1)).fires(context);
     }
 
 }

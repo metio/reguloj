@@ -5,7 +5,7 @@
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
  */
 /**
- * This package holds all business rules related definitions.
+ * reguloj is a light-weight business rule engine
  */
 package com.github.sebhoss.reguloj;
 

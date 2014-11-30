@@ -35,12 +35,12 @@ h3. Creating rules
 
 p. A "rule":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Rule.java has a (unique) name and runs in a given context. Additionally it can be checked whether a rule fires in a given context.
 
-p. Either implement the @Rule@ interface yourself and or use the supplied rule implementation and builder. A standard rule is composed of a "predicate":http://guava-libraries.googlecode.com/svn/trunk/javadoc/com/google/common/base/Predicate.html and a "conclusion":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Conclusion.java. Both interfaces require you to implement only a single method and do not restrict you in any way. Complex rules can be created by grouping or chaining predicates/conclusions together with the help of several utility methods. The following example creates a rule composed of 2 predicates and 2 conclusions while using static imports:
+p. Either implement the @Rule@ interface yourself and or use the supplied rule implementation and builder. A standard rule is composed of a "predicate":https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html and a "consumer":https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html. Both interfaces require you to implement only a single method and do not restrict you in any way. Complex rules can be created by grouping or chaining predicates/consumers together with the help of several utility methods. The following example creates a rule composed of 2 predicates and 2 consumers while using static imports:
 
 bc.. 
-final Rule<CONTEXT> rule = rule().called(name)
-                        .when(and(predicate1, predicate2))
-                        .then(conclude(conclusion1, conclusion2))
+final Rule<CONTEXT> rule = Rules.rule().called(name)
+                        .when(predicate1.and(predicate2))
+                        .then(consumer1.andThen(consumer2));
 
 // true if the rule would fire in the given context, e.g. the above predicate is true.
 rule.fires(context);
@@ -51,14 +51,14 @@ rule.run(context);
 p. Using Java 8 lambdas is possible as well:
 
 bc. 
-final Rule<CONTEXT> rule = rule().called(name)
+final Rule<CONTEXT> rule = Rules.rule().called(name)
                         .when(context -> context.check())
                         .then(context -> context.action())
 
 
 h3. Creating an inference context
 
-p. An inference "context":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Context.java contains information needed by predicates and/or conclusions. This project supplies a simple implementation of the @Context@ interface called @BaseContext@. Subclass @BaseContext@ in case your rules need extra information. The API acknowledges this by using @<CONTEXT extends Context<?>>@ as type parameter for all methods which expect an @Context@. See item 28 in Effective Java for more details.
+p. An inference "context":https://github.com/sebhoss/reguloj/blob/master/src/main/java/com/github/sebhoss/reguloj/Context.java contains information needed by predicates and/or consumers. This project supplies a simple implementation of the @Context@ interface called @BaseContext@. Subclass @BaseContext@ in case your rules need extra information. The API acknowledges this by using @<CONTEXT extends Context<?>>@ as type parameter for all methods which expect an @Context@. See item 28 in Effective Java for more details.
 
 h3. Integration
 
@@ -72,6 +72,13 @@ bc.
 </dependency>
 
 p. Replace @${version.reguloj}@ with the "latest release":http://search.maven.org/#search%7Cga%7C1%7Cg%3Acom.github.sebhoss%20a%3Areguloj
+
+h3. Requirements
+
+|_. Java Version |_. 1.X.Y |_. 2.X.Y |_. 3.X.Y |
+| Java 8 | | ✓ | ✓ |
+| Java 7 | ✓ | | |
+| Java 6 | ✓ | | |
 
 h2. Development
 

@@ -12,7 +12,6 @@ import java.util.function.Predicate;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -40,7 +39,7 @@ public final class RulesTest {
     public void shouldCreateBuilder() {
         RuleBuilder<Context<Object>> builder;
 
-        builder = Rules.<@NonNull Context<Object>> rule();
+        builder = Rules.<Context<Object>> rule();
 
         Assert.assertNotNull(builder);
     }

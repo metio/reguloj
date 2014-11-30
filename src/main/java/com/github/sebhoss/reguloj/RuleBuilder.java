@@ -23,29 +23,28 @@ import java.util.function.Predicate;
  * <ul>
  * <li>Methods like {@link RuleBuilder#when(Predicate) when} or {@link RuleBuilder#then(Consumer) then} can be called
  * multiple times but implementations of this API should only honor the last call. All previous calls (and their
- * parameters) should be dismissed. If you want to create complex predicates and/or conclusions you'll have to construct
- * them beforehand and use the newly created complex predicate/conclusion as an input for the <em>when</em>- or
+ * parameters) should be dismissed. If you want to create complex predicates and/or consumers you'll have to construct
+ * them beforehand and use the newly created complex predicate/consumers as an input for the <em>when</em>- or
  * <em>then</em>-clause.</li>
  * <li>As noted in the {@link RuleBuilder#then(Consumer) then}-method documentation, you are not allowed to use
- * <code>null</code> as an valid input. So in the rare case that you want to have a rule without any conclusion you have
- * to create and supply some sort of <em>no-action</em> conclusion which does nothing except not being <code>null</code>
- * </li>
+ * <code>null</code> as an valid input. So in the rare case that you want to have a rule without any consumer you have
+ * to create and supply some sort of <em>no-action</em> consumer which does nothing except not being <code>null</code></li>
  * </ul>
  * <h1>Examples</h1>
  * <ol>
  * <li>
  * <p>
- * Rule creation with name, predicate and conclusion:
+ * Rule creation with name, predicate and consumer:
  * </p>
  *
  * <pre>
  * String name = "...";
  * Predicate predicate = ...;
- * Conclusion conclusion = ...;
+ * Consumer consumer = ...;
  * Rule rule = Rules.rule()
  *               .called(<em>name</em>)
  *               .when(<em>predicate</em>)
- *               .then(<em>conclusion</em>)
+ *               .then(<em>consumer</em>)
  * </pre>
  *
  * </li>

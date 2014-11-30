@@ -6,11 +6,9 @@
  */
 package com.github.sebhoss.reguloj;
 
-
 /**
  * <p>
- * A {@link Rule} is composed of a name, a premise and a conclusion. Is the premise of a rule fulfilled the conclusion
- * will get implied.
+ * A {@link Rule} is something that can run inside or together with a given context.
  * </p>
  * <h1>Caveats</h1>
  * <ul>
@@ -26,7 +24,7 @@ package com.github.sebhoss.reguloj;
  * <pre>
  * Context&lt;X&gt; context = ...;
  * Rule&lt;Context&lt;X&gt;&gt; rule = ...;
- *
+ * 
  * boolean canFire = rule.fires(context);
  * </pre>
  *
@@ -39,7 +37,7 @@ package com.github.sebhoss.reguloj;
  * <pre>
  * Context&lt;X&gt; context = ...;
  * Rule&lt;Context&lt;X&gt;&gt; rule = ...;
- *
+ * 
  * boolean fired = rule.run(context);
  * </pre>
  *

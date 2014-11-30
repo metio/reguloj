@@ -6,7 +6,6 @@
  */
 package com.github.sebhoss.reguloj;
 
-
 /**
  * Utility class which helps creating new {@link RuleEngine rule engines}.
  *
@@ -15,6 +14,8 @@ package com.github.sebhoss.reguloj;
 public final class RuleEngines {
 
     /**
+     * @param <CONTEXT>
+     *            The context type of the new rule engine
      * @return A rule engine which supports rule chaining.
      */
     public static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> chained() {
@@ -24,6 +25,8 @@ public final class RuleEngines {
     /**
      * @param maximumNumberOfRuns
      *            The maximum number of runs to perform.
+     * @param <CONTEXT>
+     *            The context type of the new rule engine.
      * @return A rule engine which does not support rule chaining.
      */
     public static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> limited(final int maximumNumberOfRuns) {
@@ -31,6 +34,8 @@ public final class RuleEngines {
     }
 
     /**
+     * @param <CONTEXT>
+     *            The context type of the new rule engine.
      * @return A rule engine which evaluates all rules until the first rule that fires.
      */
     public static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> firstWins() {

@@ -6,13 +6,13 @@
  */
 package com.github.sebhoss.reguloj;
 
-import java.util.stream.StreamSupport;
+import com.google.common.collect.FluentIterable;
 
 final class FirstWinsRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     @Override
     public boolean infer(final Iterable<Rule<CONTEXT>> rules, final CONTEXT context) {
-        return StreamSupport.stream(rules.spliterator(), false).filter(Rules.ruleRuns(context)).findFirst().isPresent();
+        return FluentIterable.from(rules).firstMatch(rule -> rule.run(context)).isPresent();
     }
 
 }

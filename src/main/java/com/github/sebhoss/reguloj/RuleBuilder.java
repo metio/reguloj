@@ -6,6 +6,7 @@
  */
 package com.github.sebhoss.reguloj;
 
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
@@ -16,16 +17,16 @@ import java.util.function.Predicate;
  * <ul>
  * <li>{@link #called(String) called}: Use this method to name your new rule.</li>
  * <li>{@link #when(Predicate) when}: Use this method to specify the predicate for your new rule.</li>
- * <li>{@link #then(Conclusion) then}: Use this method to specify the conclusion for your new rule.</li>
+ * <li>{@link #then(Consumer) then}: Use this method to specify the conclusion for your new rule.</li>
  * </ul>
  * <h1>Caveats</h1>
  * <ul>
- * <li>Methods like {@link RuleBuilder#when(Predicate) when} or {@link RuleBuilder#then(Conclusion) then} can be called
+ * <li>Methods like {@link RuleBuilder#when(Predicate) when} or {@link RuleBuilder#then(Consumer) then} can be called
  * multiple times but implementations of this API should only honor the last call. All previous calls (and their
  * parameters) should be dismissed. If you want to create complex predicates and/or conclusions you'll have to construct
  * them beforehand and use the newly created complex predicate/conclusion as an input for the <em>when</em>- or
  * <em>then</em>-clause.</li>
- * <li>As noted in the {@link RuleBuilder#then(Conclusion) then}-method documentation, you are not allowed to use
+ * <li>As noted in the {@link RuleBuilder#then(Consumer) then}-method documentation, you are not allowed to use
  * <code>null</code> as an valid input. So in the rare case that you want to have a rule without any conclusion you have
  * to create and supply some sort of <em>no-action</em> conclusion which does nothing except not being <code>null</code>
  * </li>
@@ -75,7 +76,7 @@ public interface RuleBuilder<CONTEXT extends Context<?>> {
      *            The conclusion to set.
      * @return The current rule builder.
      */
-    Rule<CONTEXT> then(Conclusion<CONTEXT> conclusion);
+    Rule<CONTEXT> then(Consumer<CONTEXT> conclusion);
 
     /**
      * Sets the name of the new rule.

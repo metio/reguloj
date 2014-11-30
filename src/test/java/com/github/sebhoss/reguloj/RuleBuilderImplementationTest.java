@@ -6,6 +6,7 @@
  */
 package com.github.sebhoss.reguloj;
 
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
@@ -35,7 +36,7 @@ public final class RuleBuilderImplementationTest {
         final RuleBuilder<Context<Object>> builder = new RuleBuilderImplementation<>();
         builder.called("test rule").when(Mockito.mock(Predicate.class)); //$NON-NLS-1$
 
-        final Rule<Context<Object>> rule = builder.then(Mockito.mock(Conclusion.class));
+        final Rule<Context<Object>> rule = builder.then(Mockito.mock(Consumer.class));
 
         Assert.assertThat(rule, Is.is(IsNull.notNullValue()));
     }

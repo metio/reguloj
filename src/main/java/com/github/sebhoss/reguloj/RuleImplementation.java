@@ -7,20 +7,21 @@
 package com.github.sebhoss.reguloj;
 
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import org.eclipse.jdt.annotation.Nullable;
 
 final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTEXT> {
 
-    private final String              name;
-    private final Predicate<CONTEXT>  predicate;
-    private final Conclusion<CONTEXT> conclusion;
+    private final String             name;
+    private final Predicate<CONTEXT> predicate;
+    private final Consumer<CONTEXT>  consumer;
 
-    RuleImplementation(final String name, final Predicate<CONTEXT> predicate, final Conclusion<CONTEXT> conclusion) {
+    RuleImplementation(final String name, final Predicate<CONTEXT> predicate, final Consumer<CONTEXT> consumer) {
         this.name = name;
         this.predicate = predicate;
-        this.conclusion = conclusion;
+        this.consumer = consumer;
     }
 
     @Override
@@ -28,7 +29,8 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
         boolean changed = false;
 
         if (fires(context)) {
-            changed = conclusion.apply(context);
+            changed = true;
+            consumer.accept(context);
         }
 
         return changed;
@@ -46,7 +48,7 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, predicate, conclusion);
+        return Objects.hash(name, predicate, consumer);
     }
 
     @Override
@@ -55,7 +57,7 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
             final RuleImplementation<?> that = (RuleImplementation<?>) object;
 
             return Objects.equals(name, that.name) && Objects.equals(predicate, that.predicate)
-                    && Objects.equals(conclusion, that.conclusion);
+                    && Objects.equals(consumer, that.consumer);
         }
 
         return false;

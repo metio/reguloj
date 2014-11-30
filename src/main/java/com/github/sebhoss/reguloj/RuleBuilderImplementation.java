@@ -6,13 +6,13 @@
  */
 package com.github.sebhoss.reguloj;
 
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 final class RuleBuilderImplementation<CONTEXT extends Context<?>> implements RuleBuilder<CONTEXT> {
 
-    private String              name;
-    private Predicate<CONTEXT>  predicate;
-    private Conclusion<CONTEXT> conclusion;
+    private String             name;
+    private Predicate<CONTEXT> predicate;
 
     @Override
     public RuleBuilder<CONTEXT> called(final String newName) {
@@ -30,8 +30,8 @@ final class RuleBuilderImplementation<CONTEXT extends Context<?>> implements Rul
     }
 
     @Override
-    public Rule<CONTEXT> then(final Conclusion<CONTEXT> newConclusion) {
-        return new RuleImplementation<>(name, predicate, conclusion);
+    public Rule<CONTEXT> then(final Consumer<CONTEXT> consumer) {
+        return new RuleImplementation<>(name, predicate, consumer);
     }
 
 }

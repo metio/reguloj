@@ -7,6 +7,7 @@
 package com.github.sebhoss.reguloj;
 
 import java.lang.reflect.Constructor;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
@@ -58,7 +59,7 @@ public final class RulesTest {
         final RuleBuilder<Context<Object>> builder = Rules.<Context<Object>> rule();
         builder.called(RulesTest.NAME).when(Mockito.mock(Predicate.class));
 
-        final Rule<Context<Object>> rule = builder.then(Mockito.mock(Conclusion.class));
+        final Rule<Context<Object>> rule = builder.then(Mockito.mock(Consumer.class));
 
         Assert.assertNotNull(rule);
     }

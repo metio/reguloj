@@ -10,8 +10,6 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import org.eclipse.jdt.annotation.Nullable;
-
 final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTEXT> {
 
     private final String             name;
@@ -52,7 +50,7 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
     }
 
     @Override
-    public boolean equals(final @Nullable Object object) {
+    public boolean equals(final Object object) {
         if (object != null && object instanceof RuleImplementation) {
             final RuleImplementation<?> that = (RuleImplementation<?>) object;
 

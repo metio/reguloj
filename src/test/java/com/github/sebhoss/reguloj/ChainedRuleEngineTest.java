@@ -11,8 +11,8 @@ import java.util.Set;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
 import com.google.common.collect.ImmutableList;
+import com.google.common.truth.Truth;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -57,7 +57,7 @@ public class ChainedRuleEngineTest {
 
         final boolean fired = engine.analyze(rules, context);
 
-        Assert.assertFalse(fired);
+        Truth.assertThat(fired).isFalse();
     }
 
     /**
@@ -74,7 +74,7 @@ public class ChainedRuleEngineTest {
 
         final boolean fired = engine.analyze(ImmutableList.of(rule), context);
 
-        Assert.assertTrue(fired);
+        Truth.assertThat(fired).isTrue();
     }
 
     /**
@@ -91,7 +91,7 @@ public class ChainedRuleEngineTest {
 
         final boolean fired = engine.analyze(ImmutableList.of(rule), context);
 
-        Assert.assertFalse(fired);
+        Truth.assertThat(fired).isFalse();
     }
 
     /**
@@ -102,7 +102,6 @@ public class ChainedRuleEngineTest {
      * Ensures that the engine can handle an empty rule set.
      * </p>
      */
-
     @Test
     public void shouldRunWithEmptyRuleSet() {
         final Set<Rule<Context<Object>>> rules = new HashSet<>();

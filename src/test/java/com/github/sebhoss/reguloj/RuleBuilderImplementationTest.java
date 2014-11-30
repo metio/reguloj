@@ -10,10 +10,8 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
+import com.google.common.truth.Truth;
 
-import org.hamcrest.core.Is;
-import org.hamcrest.core.IsNull;
-import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -38,7 +36,7 @@ public final class RuleBuilderImplementationTest {
 
         final Rule<Context<Object>> rule = builder.then(Mockito.mock(Consumer.class));
 
-        Assert.assertThat(rule, Is.is(IsNull.notNullValue()));
+        Truth.assertThat(rule).isNotNull();
     }
 
 }

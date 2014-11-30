@@ -10,8 +10,8 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
+import com.google.common.truth.Truth;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.BDDMockito;
@@ -48,7 +48,7 @@ public final class RuleImplementationTest {
         final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
                 predicate, consumer);
 
-        Assert.assertNotNull(rule);
+        Truth.assertThat(rule).isNotNull();
     }
 
     /**
@@ -62,7 +62,7 @@ public final class RuleImplementationTest {
         final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
                 predicate, consumer);
 
-        Assert.assertFalse(rule.fires(context));
+        Truth.assertThat(rule.fires(context)).isFalse();
     }
 
     /**
@@ -76,7 +76,7 @@ public final class RuleImplementationTest {
         final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
                 predicate, consumer);
 
-        Assert.assertTrue(rule.fires(context));
+        Truth.assertThat(rule.fires(context)).isTrue();
     }
 
     /**
@@ -87,7 +87,7 @@ public final class RuleImplementationTest {
         final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
                 predicate, consumer);
 
-        Assert.assertEquals(rule.getName(), RuleImplementationTest.NAME);
+        Truth.assertThat(rule.getName()).isEqualTo(RuleImplementationTest.NAME);
     }
 
     /**
@@ -98,7 +98,7 @@ public final class RuleImplementationTest {
         final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
                 predicate, consumer);
 
-        Assert.assertEquals(rule, rule);
+        Truth.assertThat(rule).isEqualTo(rule);
     }
 
     /**
@@ -111,8 +111,8 @@ public final class RuleImplementationTest {
         final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME,
                 predicate, consumer);
 
-        Assert.assertEquals(rule1, rule2);
-        Assert.assertEquals(rule2, rule1);
+        Truth.assertThat(rule1).isEqualTo(rule2);
+        Truth.assertThat(rule2).isEqualTo(rule1);
     }
 
     /**
@@ -127,9 +127,9 @@ public final class RuleImplementationTest {
         final Rule<Context<Object>> rule3 = new RuleImplementation<>(RuleImplementationTest.NAME,
                 predicate, consumer);
 
-        Assert.assertEquals(rule1, rule2);
-        Assert.assertEquals(rule2, rule3);
-        Assert.assertEquals(rule3, rule1);
+        Truth.assertThat(rule1).isEqualTo(rule2);
+        Truth.assertThat(rule2).isEqualTo(rule3);
+        Truth.assertThat(rule3).isEqualTo(rule1);
     }
 
     /**
@@ -140,7 +140,7 @@ public final class RuleImplementationTest {
         final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
                 predicate, consumer);
 
-        Assert.assertNotEquals(rule, null);
+        Truth.assertThat(rule).isNotEqualTo(null);
     }
 
     /**
@@ -151,7 +151,7 @@ public final class RuleImplementationTest {
         final Rule<Context<Object>> rule = new RuleImplementation<>(RuleImplementationTest.NAME,
                 predicate, consumer);
 
-        Assert.assertNotEquals(rule, ""); //$NON-NLS-1$
+        Truth.assertThat(rule).isNotEqualTo(""); //$NON-NLS-1$
     }
 
     /**
@@ -163,7 +163,7 @@ public final class RuleImplementationTest {
                 predicate, consumer);
         final Rule<Context<Object>> rule2 = rule1;
 
-        Assert.assertEquals(rule1, rule2);
+        Truth.assertThat(rule1).isEqualTo(rule2);
     }
 
     /**
@@ -175,7 +175,7 @@ public final class RuleImplementationTest {
                 predicate, consumer);
         final Rule<Context<Object>> rule2 = new RuleImplementation<>("rule2", predicate, consumer); //$NON-NLS-1$
 
-        Assert.assertNotEquals(rule1, rule2);
+        Truth.assertThat(rule1).isNotEqualTo(rule2);
     }
 
     /**
@@ -192,7 +192,7 @@ public final class RuleImplementationTest {
                 predicate2,
                 consumer);
 
-        Assert.assertNotEquals(rule1, rule2);
+        Truth.assertThat(rule1).isNotEqualTo(rule2);
     }
 
     /**
@@ -209,12 +209,13 @@ public final class RuleImplementationTest {
                 predicate,
                 consumer2);
 
-        Assert.assertNotEquals(rule1, rule2);
+        Truth.assertThat(rule1).isNotEqualTo(rule2);
     }
 
     /**
      * Ensures that hashCode() is consistent with equals().
      */
+    @SuppressWarnings("boxing")
     @Test
     public void hashCodeIsConsistentWithEquals() {
         final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME,
@@ -222,8 +223,8 @@ public final class RuleImplementationTest {
         final Rule<Context<Object>> rule2 = new RuleImplementation<>(RuleImplementationTest.NAME,
                 predicate, consumer);
 
-        Assert.assertEquals(rule1, rule2);
-        Assert.assertEquals(rule1.hashCode(), rule2.hashCode());
+        Truth.assertThat(rule1).isEqualTo(rule2);
+        Truth.assertThat(rule1.hashCode()).isEqualTo(rule2.hashCode());
     }
 
 }

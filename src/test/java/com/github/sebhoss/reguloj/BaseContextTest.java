@@ -7,8 +7,8 @@
 package com.github.sebhoss.reguloj;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
+import com.google.common.truth.Truth;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -26,7 +26,7 @@ public class BaseContextTest {
 
         final Object topic = context.getTopic();
 
-        Assert.assertEquals("test", topic);
+        Truth.assertThat(topic).isEqualTo("test");
     }
 
 }

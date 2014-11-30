@@ -11,6 +11,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
+import com.google.common.truth.Truth;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -41,7 +42,7 @@ public final class RulesTest {
 
         builder = Rules.<Context<Object>> rule();
 
-        Assert.assertNotNull(builder);
+        Truth.assertThat(builder).isNotNull();
     }
 
     /**
@@ -53,14 +54,14 @@ public final class RulesTest {
      * </p>
      */
     @Test
-    @SuppressWarnings({ "unchecked" })
+    @SuppressWarnings("unchecked")
     public void shouldCreateRule() {
         final RuleBuilder<Context<Object>> builder = Rules.<Context<Object>> rule();
         builder.called(RulesTest.NAME).when(Mockito.mock(Predicate.class));
 
         final Rule<Context<Object>> rule = builder.then(Mockito.mock(Consumer.class));
 
-        Assert.assertNotNull(rule);
+        Truth.assertThat(rule).isNotNull();
     }
 
     /**
@@ -72,13 +73,14 @@ public final class RulesTest {
      * </p>
      */
     @Test
+    @SuppressWarnings("boxing")
     public void shouldNotBeInvocable() {
         final Class<?> clazz = Rules.class;
 
         final Constructor<?>[] constructors = clazz.getDeclaredConstructors();
 
         for (final Constructor<?> constructor : constructors) {
-            Assert.assertFalse(constructor.isAccessible());
+            Truth.assertThat(constructor.isAccessible()).isFalse();
         }
     }
 

@@ -1,5 +1,6 @@
-h1. reguloj "!https://secure.travis-ci.org/sebhoss/reguloj.png!":http://travis-ci.org/sebhoss/reguloj "!https://www.ohloh.net/p/reguloj/widgets/project_thin_badge.gif!":https://www.ohloh.net/p/reguloj/
+h1. reguloj
 
+h2. "!https://www.ohloh.net/p/reguloj/widgets/project_thin_badge.gif!":https://www.ohloh.net/p/reguloj/ "!https://img.shields.io/maven-central/v/com.github.sebhoss/reguloj.svg?style=flat-square!":https://maven-badges.herokuapp.com/maven-central/com.github.sebhoss/reguloj "!https://img.shields.io/travis/sebhoss/reguloj/master.svg?style=flat-square!":http://travis-ci.org/sebhoss/reguloj "!https://img.shields.io/coveralls/sebhoss/reguloj/master.svg?style=flat-square!":https://coveralls.io/r/sebhoss/reguloj
 
 p. *reguloj* is a small and lightweight Java rule engine.
 

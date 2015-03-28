@@ -16,7 +16,7 @@
   <parent>
     <groupId>com.github.sebhoss</groupId>
     <artifactId>java-parent</artifactId>
-    <version>1.0.10</version>
+    <version>1.0.11</version>
   </parent>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -25,7 +25,6 @@
   <artifactId>reguloj</artifactId>
   <version>3.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <url>https://github.com/sebhoss/reguloj</url>
   <inceptionYear>2010</inceptionYear>
   <name>reguloj</name>
   <description>Lightweight business rule engine</description>
@@ -44,7 +43,9 @@
   <!--                                PROPERTIES                               -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <properties>
-    <version.bom>3.0.1</version.bom>
+    <version.bom>3.0.4</version.bom>
+
+    <coverage>0.0</coverage>
   </properties>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

@@ -1,0 +1,6 @@
+build:
+  image: maven:3.3.3-jdk-8
+  volumes:
+   - .:/code
+  working_dir: /code
+  command: mvn clean verify

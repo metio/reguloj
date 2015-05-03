@@ -6,13 +6,16 @@
  */
 package com.github.sebhoss.reguloj;
 
-
 /**
  * Utility class which helps creating new {@link Rule rules}.
  *
  * @see Rule
  */
 public final class Rules {
+
+    private Rules() {
+        // do nothing
+    }
 
     /**
      * Creates a new {@link RuleBuilder} which offers an easy to use DSL for creating new {@link Rule rules}.
@@ -21,10 +24,6 @@ public final class Rules {
      */
     public static <CONTEXT extends Context<?>> RuleBuilder<CONTEXT> rule() {
         return new RuleBuilderImplementation<>();
-    }
-
-    private Rules() {
-        // do nothing
     }
 
 }

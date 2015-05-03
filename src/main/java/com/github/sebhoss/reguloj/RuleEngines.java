@@ -13,6 +13,10 @@ package com.github.sebhoss.reguloj;
  */
 public final class RuleEngines {
 
+    private RuleEngines() {
+        // do nothing
+    }
+
     /**
      * @param <CONTEXT>
      *            The context type of the new rule engine
@@ -40,10 +44,6 @@ public final class RuleEngines {
      */
     public static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> firstWins() {
         return new FirstWinsRuleEngine<>();
-    }
-
-    private RuleEngines() {
-        // do nothing
     }
 
 }

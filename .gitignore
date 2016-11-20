@@ -5,3 +5,4 @@
 .pmd
 .pmdruleset.xml
 /target
+.ansible-git-*

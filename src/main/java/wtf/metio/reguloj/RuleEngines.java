@@ -1,9 +1,3 @@
-/*
- * Copyright © 2010 Sebastian Hoß <mail@shoss.de>
- * This work is free. You can redistribute it and/or modify it under the
- * terms of the Do What The Fuck You Want To Public License, Version 2,
- * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
- */
 package wtf.metio.reguloj;
 
 /**
@@ -18,8 +12,7 @@ public final class RuleEngines {
     }
 
     /**
-     * @param <CONTEXT>
-     *            The context type of the new rule engine
+     * @param <CONTEXT> The context type of the new rule engine
      * @return A rule engine which supports rule chaining.
      */
     public static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> chained() {
@@ -27,10 +20,8 @@ public final class RuleEngines {
     }
 
     /**
-     * @param maximumNumberOfRuns
-     *            The maximum number of runs to perform.
-     * @param <CONTEXT>
-     *            The context type of the new rule engine.
+     * @param maximumNumberOfRuns The maximum number of runs to perform.
+     * @param <CONTEXT>           The context type of the new rule engine.
      * @return A rule engine which does not support rule chaining.
      */
     public static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> limited(final int maximumNumberOfRuns) {
@@ -38,8 +29,7 @@ public final class RuleEngines {
     }
 
     /**
-     * @param <CONTEXT>
-     *            The context type of the new rule engine.
+     * @param <CONTEXT> The context type of the new rule engine.
      * @return A rule engine which evaluates all rules until the first rule that fires.
      */
     public static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> firstWins() {

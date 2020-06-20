@@ -1,14 +1,6 @@
-/*
- * Copyright © 2010 Sebastian Hoß <mail@shoss.de>
- * This work is free. You can redistribute it and/or modify it under the
- * terms of the Do What The Fuck You Want To Public License, Version 2,
- * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
- */
 package wtf.metio.reguloj;
 
-import com.github.sebhoss.warnings.CompilerWarnings;
 import com.google.common.collect.ImmutableList;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.BDDMockito;
@@ -17,13 +9,12 @@ import org.mockito.Mockito;
 /**
  * Test case for LimitedRuleEngine.
  */
-@SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.UNCHECKED })
 public class LimitedRuleEngineTest {
 
     private RuleEngine<Context<Object>> engine;
-    private Context<Object>             context;
-    private Rule<Context<Object>>       rule1;
-    private Rule<Context<Object>>       rule2;
+    private Context<Object> context;
+    private Rule<Context<Object>> rule1;
+    private Rule<Context<Object>> rule2;
 
     /**
      * Creates rule engine, context and rules.

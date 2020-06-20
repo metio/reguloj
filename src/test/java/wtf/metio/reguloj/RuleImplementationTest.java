@@ -1,34 +1,27 @@
-/*
- * Copyright © 2010 Sebastian Hoß <mail@shoss.de>
- * This work is free. You can redistribute it and/or modify it under the
- * terms of the Do What The Fuck You Want To Public License, Version 2,
- * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
- */
 package wtf.metio.reguloj;
 
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-
-import com.github.sebhoss.warnings.CompilerWarnings;
 import com.google.common.truth.Truth;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
 /**
  * Test cases for the RuleImplementation.
  */
-@SuppressWarnings({ CompilerWarnings.UNCHECKED })
 public final class RuleImplementationTest {
 
-    /** Constant name for all rules inside this test. */
-    private static final String        NAME = "test rule"; //$NON-NLS-1$
+    /**
+     * Constant name for all rules inside this test.
+     */
+    private static final String NAME = "test rule"; //$NON-NLS-1$
 
-    private Context<Object>            context;
+    private Context<Object> context;
     private Predicate<Context<Object>> predicate;
-    private Consumer<Context<Object>>  consumer;
+    private Consumer<Context<Object>> consumer;
 
     /**
      * Creates rule engine, context and rules.
@@ -55,7 +48,6 @@ public final class RuleImplementationTest {
      * Ensures that <code>false</code> is returned if the predicate does not apply.
      */
     @Test
-    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldReturnFalseWhenPremiseDoesNotApply() {
         BDDMockito.given(predicate.test(context)).willReturn(Boolean.FALSE);
 
@@ -69,7 +61,6 @@ public final class RuleImplementationTest {
      * Ensures that <code>true</code> is returned if the predicate does apply.
      */
     @Test
-    @SuppressWarnings(CompilerWarnings.BOXING)
     public void shouldFireWhenPremiseApplies() {
         BDDMockito.given(predicate.test(context)).willReturn(Boolean.TRUE);
 
@@ -215,7 +206,6 @@ public final class RuleImplementationTest {
     /**
      * Ensures that hashCode() is consistent with equals().
      */
-    @SuppressWarnings("boxing")
     @Test
     public void hashCodeIsConsistentWithEquals() {
         final Rule<Context<Object>> rule1 = new RuleImplementation<>(RuleImplementationTest.NAME,

@@ -1,0 +1,2 @@
+module wtf.metio.reguloj {
+}

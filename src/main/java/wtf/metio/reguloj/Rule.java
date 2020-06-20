@@ -1,9 +1,3 @@
-/*
- * Copyright © 2010 Sebastian Hoß <mail@shoss.de>
- * This work is free. You can redistribute it and/or modify it under the
- * terms of the Do What The Fuck You Want To Public License, Version 2,
- * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
- */
 package wtf.metio.reguloj;
 
 /**
@@ -48,24 +42,21 @@ package wtf.metio.reguloj;
  * <li>Test the interface and write back about errors, bugs and wishes.</li>
  * </ul>
  *
- * @param <CONTEXT>
- *            The context type.
+ * @param <CONTEXT> The context type.
  */
 public interface Rule<CONTEXT extends Context<?>> {
 
     /**
      * Runs this rule inside a given context.
      *
-     * @param context
-     *            The context to use.
+     * @param context The context to use.
      */
     void run(CONTEXT context);
 
     /**
      * Checks whether this rule would fire for a given context.
      *
-     * @param context
-     *            The context to check.
+     * @param context The context to check.
      * @return <code>true</code> if this rule would fire, <code>false</code> otherwise.
      */
     boolean fires(CONTEXT context);

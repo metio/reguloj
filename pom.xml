@@ -6,9 +6,9 @@
   <!--                                  PARENT                                 -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <parent>
-    <groupId>com.github.sebhoss</groupId>
-    <artifactId>java-parent</artifactId>
-    <version>1.0.11</version>
+    <groupId>wtf.metio.maven.parents</groupId>
+    <artifactId>maven-parents-java-prototype</artifactId>
+    <version>2020.06.19-001743</version>
   </parent>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -16,37 +16,54 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <groupId>wtf.metio.reguloj</groupId>
   <artifactId>reguloj</artifactId>
-  <version>4.0.0-SNAPSHOT</version>
+  <version>9999.99.99-SNAPSHOT</version>
   <packaging>jar</packaging>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                               INFORMATIONS                              -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!-- https://maven.apache.org/pom.html#More_Project_Information -->
   <inceptionYear>2010</inceptionYear>
   <name>reguloj</name>
   <description>Lightweight business rule engine</description>
+  <url>https://reguloj.projects.metio.wtf/</url>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                                  SOURCE                                 -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <scm>
-    <connection>scm:git:git://github.com/metio/reguloj.git</connection>
+    <connection>scm:git:git@github.com:metio/reguloj.git</connection>
     <developerConnection>scm:git:git@github.com:metio/reguloj.git</developerConnection>
-    <tag>master</tag>
-    <url>${project.url}</url>
+    <tag>HEAD</tag>
+    <url>https://github.com/metio/reguloj</url>
   </scm>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                                PROPERTIES                               -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <properties>
+    <version.jdk>14</version.jdk>
+    <project.build.outputTimestamp>${project.inceptionYear}</project.build.outputTimestamp>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>maven-build-process</id>
+      <name>GitHub maven-build-process Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/metio/maven-build-process</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                               DEPENDENCIES                              -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <dependencies>
-    <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <scope>test</scope>
-    </dependency>
   </dependencies>
 
 </project>

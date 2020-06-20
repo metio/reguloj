@@ -1,9 +1,3 @@
-/*
- * Copyright © 2010 Sebastian Hoß <mail@shoss.de>
- * This work is free. You can redistribute it and/or modify it under the
- * terms of the Do What The Fuck You Want To Public License, Version 2,
- * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
- */
 package wtf.metio.reguloj;
 
 /**
@@ -30,8 +24,7 @@ package wtf.metio.reguloj;
  * <li>Write an example of how to use an Context.</li>
  * </ul>
  *
- * @param <TOPIC>
- *            The topic of the context.
+ * @param <TOPIC> The topic of the context.
  */
 public interface Context<TOPIC> {
 

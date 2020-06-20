@@ -1,9 +1,3 @@
-/*
- * Copyright © 2010 Sebastian Hoß <mail@shoss.de>
- * This work is free. You can redistribute it and/or modify it under the
- * terms of the Do What The Fuck You Want To Public License, Version 2,
- * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
- */
 package wtf.metio.reguloj;
 
 import java.util.function.Consumer;
@@ -54,16 +48,14 @@ import java.util.function.Predicate;
  * <li>Test the interface and write back about errors, bugs and wishes.</li>
  * </ul>
  *
- * @param <CONTEXT>
- *            The context type.
+ * @param <CONTEXT> The context type.
  */
 public interface RuleBuilder<CONTEXT extends Context<?>> {
 
     /**
      * Sets the predicate for the new rule.
      *
-     * @param predicate
-     *            The predicate to set.
+     * @param predicate The predicate to set.
      * @return The current rule builder.
      */
     RuleBuilder<CONTEXT> when(Predicate<CONTEXT> predicate);
@@ -71,8 +63,7 @@ public interface RuleBuilder<CONTEXT extends Context<?>> {
     /**
      * Sets the conclusion for the new rule.
      *
-     * @param conclusion
-     *            The conclusion to set.
+     * @param conclusion The conclusion to set.
      * @return The current rule builder.
      */
     Rule<CONTEXT> then(Consumer<CONTEXT> conclusion);
@@ -80,8 +71,7 @@ public interface RuleBuilder<CONTEXT extends Context<?>> {
     /**
      * Sets the name of the new rule.
      *
-     * @param name
-     *            The name to set.
+     * @param name The name to set.
      * @return The current rule builder.
      */
     RuleBuilder<CONTEXT> called(String name);

@@ -1,9 +1,3 @@
-/*
- * Copyright © 2010 Sebastian Hoß <mail@shoss.de>
- * This work is free. You can redistribute it and/or modify it under the
- * terms of the Do What The Fuck You Want To Public License, Version 2,
- * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
- */
 package wtf.metio.reguloj;
 
 import java.util.Collection;
@@ -60,8 +54,7 @@ import java.util.Collection;
  * <li>Evaluate whether something like RETE can be applied to this interface and how it can be done.</li>
  * </ul>
  *
- * @param <CONTEXT>
- *            The context type.
+ * @param <CONTEXT> The context type.
  */
 public interface RuleEngine<CONTEXT extends Context<?>> {
 
@@ -70,10 +63,8 @@ public interface RuleEngine<CONTEXT extends Context<?>> {
      * whether any rule would fires inside the given context but does not apply any conclusions. For that call the
      * {@link RuleEngine#infer(Collection, Context) infer}-method.
      *
-     * @param rules
-     *            The rules to check.
-     * @param context
-     *            The context to use.
+     * @param rules   The rules to check.
+     * @param context The context to use.
      * @return <code>true</code> if any rule would fire, <code>false</code> otherwise.
      */
     boolean analyze(Collection<Rule<CONTEXT>> rules, CONTEXT context);
@@ -81,10 +72,8 @@ public interface RuleEngine<CONTEXT extends Context<?>> {
     /**
      * Launches this engine and lets it analyze and execute a set of rules on a given context.
      *
-     * @param rules
-     *            The rules to run.
-     * @param context
-     *            The context to use.
+     * @param rules   The rules to run.
+     * @param context The context to use.
      */
     void infer(Collection<Rule<CONTEXT>> rules, CONTEXT context);
 

@@ -1,32 +1,15 @@
-/*
- * Copyright © 2010 Sebastian Hoß <mail@shoss.de>
- * This work is free. You can redistribute it and/or modify it under the
- * terms of the Do What The Fuck You Want To Public License, Version 2,
- * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
- */
 package wtf.metio.reguloj;
 
-import com.github.sebhoss.warnings.CompilerWarnings;
-import com.google.common.truth.Truth;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+final class BaseContextTest {
 
-/**
- * Test cases for {@link BaseContext}.
- */
-@SuppressWarnings({ CompilerWarnings.NLS, CompilerWarnings.STATIC_METHOD })
-public class BaseContextTest {
-
-    /**
-     * Ensures that the given topic is returned.
-     */
     @Test
-    public void shouldReturnGivenTopic() {
-        final Context<Object> context = new BaseContext<>("test");
-
-        final Object topic = context.getTopic();
-
-        Truth.assertThat(topic).isEqualTo("test");
+    void shouldReturnGivenTopic() {
+        final var context = new BaseContext<>("test");
+        final var topic = context.getTopic();
+        Assertions.assertEquals("test", topic);
     }
 
 }

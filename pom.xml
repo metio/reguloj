@@ -1,12 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-    Copyright © 2010 Sebastian Hoß <mail@shoss.de>
-    This work is free. You can redistribute it and/or modify it under the
-    terms of the Do What The Fuck You Want To Public License, Version 2,
-    as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
-
--->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
@@ -22,8 +14,9 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                               INFORMATIONS                              -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <groupId>wtf.metio.reguloj</groupId>
   <artifactId>reguloj</artifactId>
-  <version>3.0.1-SNAPSHOT</version>
+  <version>4.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <inceptionYear>2010</inceptionYear>
   <name>reguloj</name>
@@ -33,8 +26,8 @@
   <!--                                  SOURCE                                 -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <scm>
-    <connection>scm:git:git://github.com/sebhoss/reguloj.git</connection>
-    <developerConnection>scm:git:git@github.com:sebhoss/reguloj.git</developerConnection>
+    <connection>scm:git:git://github.com/metio/reguloj.git</connection>
+    <developerConnection>scm:git:git@github.com:metio/reguloj.git</developerConnection>
     <tag>master</tag>
     <url>${project.url}</url>
   </scm>
@@ -43,85 +36,17 @@
   <!--                                PROPERTIES                               -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <properties>
-    <version.bom>3.0.4</version.bom>
-
-    <coverage>0.0</coverage>
   </properties>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                               DEPENDENCIES                              -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.github.sebhoss.bom</groupId>
-        <artifactId>sebhoss-bom</artifactId>
-        <version>${version.bom}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.github.sebhoss.bom</groupId>
-        <artifactId>java-bom</artifactId>
-        <version>${version.bom}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.github.sebhoss.bom</groupId>
-        <artifactId>testing-bom</artifactId>
-        <version>${version.bom}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
   <dependencies>
-    <dependency>
-      <groupId>com.github.sebhoss</groupId>
-      <artifactId>suppress-warnings</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <scope>test</scope>
-    </dependency>
     <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
         <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.truth</groupId>
-      <artifactId>truth</artifactId>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                                   BUILD                                 -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <configuration>
-          <!--
-            Ignore common annotations because @SuppressWarnings is not retained
-            in byte code. There the plugin detects a false positive.
-           -->
-          <usedDependencies>
-            <usedDependency>com.github.sebhoss:suppress-warnings</usedDependency>
-          </usedDependencies>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>

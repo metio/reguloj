@@ -11,3 +11,4 @@ In case `reguloj` is not what you are looking for, try these projects:
 - [dvare](https://github.com/dvare/dvare-rules)
 - [ruli](https://github.com/mediavrog/ruli)
 - [MintRules](https://github.com/augusto/MintRules)
+- [Jare](https://github.com/uwegeercken/jare)

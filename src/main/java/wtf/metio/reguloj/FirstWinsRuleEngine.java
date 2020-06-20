@@ -4,7 +4,7 @@
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
  */
-package com.github.sebhoss.reguloj;
+package wtf.metio.reguloj;
 
 import java.util.Collection;
 

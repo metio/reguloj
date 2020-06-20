@@ -4,7 +4,7 @@
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
  */
-package com.github.sebhoss.reguloj;
+package wtf.metio.reguloj;
 
 import com.github.sebhoss.warnings.CompilerWarnings;
 import com.google.common.collect.ImmutableList;
@@ -15,10 +15,10 @@ import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
 /**
- * Test case for LimitedRuleEngine.
+ * Test case for FirstWinsRuleEngine.
  */
 @SuppressWarnings({ CompilerWarnings.BOXING, CompilerWarnings.UNCHECKED })
-public class LimitedRuleEngineTest {
+public class FirstWinsRuleEngineTest {
 
     private RuleEngine<Context<Object>> engine;
     private Context<Object>             context;
@@ -30,38 +30,41 @@ public class LimitedRuleEngineTest {
      */
     @Before
     public void setup() {
-        engine = new LimitedRuleEngine<>(2);
+        engine = new FirstWinsRuleEngine<>();
         context = Mockito.mock(Context.class);
         rule1 = Mockito.mock(Rule.class);
         rule2 = Mockito.mock(Rule.class);
     }
 
     /**
-     * Ensures that rules will be called a maximum of two times (as specified in {@link #setup()} with matching rules.
+     * Ensures that only the first matching rule will be run.
      */
     @Test
-    public void shouldRunTwoTimesWithMatchingRules() {
+    public void shouldOnlyRunFirstMatchingRule() {
         BDDMockito.given(rule1.fires(context)).willReturn(Boolean.TRUE);
-        BDDMockito.given(rule2.fires(context)).willReturn(Boolean.TRUE);
-
-        engine.infer(ImmutableList.of(rule1, rule2), context);
-
-        Mockito.verify(rule1, Mockito.times(2)).run(context);
-        Mockito.verify(rule2, Mockito.times(2)).run(context);
-    }
-
-    /**
-     * Ensures that all rules will be only called once, if there are no matching rules.
-     */
-    @Test
-    public void shouldRunOnceWithNonMatchingRules() {
-        BDDMockito.given(rule1.fires(context)).willReturn(Boolean.FALSE);
         BDDMockito.given(rule2.fires(context)).willReturn(Boolean.FALSE);
 
         engine.infer(ImmutableList.of(rule1, rule2), context);
 
         Mockito.verify(rule1, Mockito.times(1)).fires(context);
+        Mockito.verify(rule1, Mockito.times(1)).run(context);
+        Mockito.verifyZeroInteractions(rule2);
+    }
+
+    /**
+     * Ensures that the second rule will be run, if the first one did not.
+     */
+    @Test
+    public void shouldOnlyRunFirstMatchingRuleSecond() {
+        BDDMockito.given(rule1.fires(context)).willReturn(Boolean.FALSE);
+        BDDMockito.given(rule2.fires(context)).willReturn(Boolean.TRUE);
+
+        engine.infer(ImmutableList.of(rule1, rule2), context);
+
+        Mockito.verify(rule1, Mockito.times(1)).fires(context);
+        Mockito.verify(rule1, Mockito.times(0)).run(context);
         Mockito.verify(rule2, Mockito.times(1)).fires(context);
+        Mockito.verify(rule2, Mockito.times(1)).run(context);
     }
 
 }

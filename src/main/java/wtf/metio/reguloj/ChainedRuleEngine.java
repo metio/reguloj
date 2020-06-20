@@ -4,27 +4,16 @@
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
  */
-package com.github.sebhoss.reguloj;
+package wtf.metio.reguloj;
 
 import java.util.Collection;
 
-final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
-
-    private final int maximumNumberOfRuns;
-
-    LimitedRuleEngine(final int maximumNumberOfRuns) {
-        this.maximumNumberOfRuns = maximumNumberOfRuns;
-    }
+final class ChainedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
     @Override
     public void infer(final Collection<Rule<CONTEXT>> rules, final CONTEXT context) {
-        int currentRuns = 0;
         while (analyze(rules, context)) {
             performSinglePass(rules, context);
-
-            if (++currentRuns >= maximumNumberOfRuns) {
-                break;
-            }
         }
     }
 

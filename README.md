@@ -14,6 +14,7 @@ In case `reguloj` is not what you are looking for, try these projects:
 - [ruli](https://github.com/mediavrog/ruli)
 - [MintRules](https://github.com/augusto/MintRules)
 - [Jare](https://github.com/uwegeercken/jare)
+- [tuProlog](http://alice.unibo.it/xwiki/bin/view/Tuprolog/)
 
 ## License
 

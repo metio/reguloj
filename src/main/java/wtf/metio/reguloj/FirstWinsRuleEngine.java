@@ -6,7 +6,10 @@ final class FirstWinsRuleEngine<CONTEXT extends Context<?>> extends AbstractRule
 
     @Override
     public void infer(final Collection<Rule<CONTEXT>> rules, final CONTEXT context) {
-        rules.stream().filter(rule -> rule.fires(context)).limit(1).forEach(rule -> rule.run(context));
+        rules.stream()
+                .filter(rule -> rule.fires(context))
+                .findFirst()
+                .ifPresent(rule -> rule.run(context));
     }
 
 }

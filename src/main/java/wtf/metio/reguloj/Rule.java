@@ -46,6 +46,10 @@ package wtf.metio.reguloj;
  */
 public interface Rule<CONTEXT extends Context<?>> {
 
+    static <CONTEXT extends Context<?>> RuleBuilder<CONTEXT> builder() {
+        return new RuleBuilderImplementation<>();
+    }
+
     /**
      * Runs this rule inside a given context.
      *

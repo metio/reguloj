@@ -20,6 +20,7 @@ In case `reguloj` is not what you are looking for, try these projects:
 - [n-cube](https://github.com/jdereg/n-cube)
 - [RuleBook](https://github.com/deliveredtechnologies/rulebook)
 - [OpenL Tablets](http://openl-tablets.org/)
+- [JSR 94](https://jcp.org/en/jsr/detail?id=94)
 
 ## License
 

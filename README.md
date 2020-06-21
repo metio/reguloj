@@ -15,6 +15,11 @@ In case `reguloj` is not what you are looking for, try these projects:
 - [MintRules](https://github.com/augusto/MintRules)
 - [Jare](https://github.com/uwegeercken/jare)
 - [tuProlog](http://alice.unibo.it/xwiki/bin/view/Tuprolog/)
+- [drools](https://www.drools.org/)
+- [Easy Rules](https://github.com/j-easy/easy-rules)
+- [n-cube](https://github.com/jdereg/n-cube)
+- [RuleBook](https://github.com/deliveredtechnologies/rulebook)
+- [OpenL Tablets](http://openl-tablets.org/)
 
 ## License
 

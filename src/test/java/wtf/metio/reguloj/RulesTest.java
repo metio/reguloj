@@ -2,6 +2,7 @@ package wtf.metio.reguloj;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.lang.reflect.Constructor;
 import java.util.function.Consumer;
@@ -18,34 +19,28 @@ final class RulesTest {
 
     @Test
     void shouldCreateRule() {
-        final RuleBuilder<Context<Object>> builder = Rules.<Context<Object>>rule();
+        final var builder = Rules.<Context<Object>>rule();
         builder.called(RulesTest.NAME).when(Mockito.mock(Predicate.class));
-
-        final Rule<Context<Object>> rule = builder.then(Mockito.mock(Consumer.class));
-
-        Truth.assertThat(rule).isNotNull();
+        final var rule = builder.then(Mockito.mock(Consumer.class));
+        Assertions.assertNotNull(rule);
     }
 
     @Test
     void shouldNotBeInvocable() {
-        final Class<?> clazz = Rules.class;
-
-        final Constructor<?>[] constructors = clazz.getDeclaredConstructors();
-
+        final var clazz = Rules.class;
+        final var constructors = clazz.getDeclaredConstructors();
         for (final Constructor<?> constructor : constructors) {
-            Truth.assertThat(constructor).isFalse();
+            Assertions.assertFalse(constructor.canAccess(this));
         }
     }
 
     @Test
     void shouldBeInvocableViaReflection() throws Exception {
-        final Class<?> clazz = Rules.class;
-        final Constructor<?> constructor = clazz.getDeclaredConstructors()[0];
-
+        final var clazz = Rules.class;
+        final var constructor = clazz.getDeclaredConstructors()[0];
         constructor.setAccessible(true);
-        final Object instance = constructor.newInstance((Object[]) null);
-
-        Assert.assertNotNull(instance);
+        final var instance = constructor.newInstance((Object[]) null);
+        Assertions.assertNotNull(instance);
     }
 
 }

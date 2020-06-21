@@ -1,10 +1,15 @@
 package wtf.metio.reguloj;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.*;
 
 final class ChainedRuleEngineTest {
 
@@ -15,33 +20,29 @@ final class ChainedRuleEngineTest {
     @BeforeEach
     void setup() {
         engine = new ChainedRuleEngine<>();
-        context = Mockito.mock(Context.class);
-        rule = Mockito.mock(Rule.class);
+        context = mock(Context.class);
+        rule = mock(Rule.class);
     }
 
     @Test
     void shouldReturnFalseForEmptyRuleSet() {
-        final Set<Rule<Context<Object>>> rules = new HashSet<>();
+        final var rules = new HashSet<Rule<Context<Object>>>();
         final boolean fired = engine.analyze(rules, context);
-        Truth.assertThat(fired).isFalse();
+        Assertions.assertFalse(fired);
     }
 
     @Test
     void shouldReturnTrueIfRuleFired() {
-        BDDMockito.given(rule.fires(context)).willReturn(Boolean.TRUE);
-
-        final boolean fired = engine.analyze(ImmutableList.of(rule), context);
-
-        Truth.assertThat(fired).isTrue();
+        given(rule.fires(context)).willReturn(Boolean.TRUE);
+        final boolean fired = engine.analyze(List.of(rule), context);
+        Assertions.assertTrue(fired);
     }
 
     @Test
     void shouldReturnFalseIfNoRuleFires() {
-        BDDMockito.given(rule.fires(context)).willReturn(Boolean.FALSE);
-
-        final boolean fired = engine.analyze(ImmutableList.of(rule), context);
-
-        Truth.assertThat(fired).isFalse();
+        given(rule.fires(context)).willReturn(Boolean.FALSE);
+        final boolean fired = engine.analyze(List.of(rule), context);
+        Assertions.assertFalse(fired);
     }
 
     @Test
@@ -52,22 +53,18 @@ final class ChainedRuleEngineTest {
 
     @Test
     void shouldLoopWithFiringRule() {
-        BDDMockito.given(rule.fires(context)).willReturn(Boolean.TRUE).willReturn(Boolean.FALSE);
-
-        engine.infer(ImmutableList.of(rule), context);
-
-        Mockito.verify(rule, Mockito.times(2)).fires(context);
-        Mockito.verify(rule, Mockito.times(1)).run(context);
+        given(rule.fires(context)).willReturn(Boolean.TRUE).willReturn(Boolean.FALSE);
+        engine.infer(List.of(rule), context);
+        verify(rule, times(2)).fires(context);
+        verify(rule, times(1)).run(context);
     }
 
     @Test
     void shouldNotLoopWithNotFiringRule() {
-        BDDMockito.given(rule.fires(context)).willReturn(Boolean.FALSE);
-
-        engine.infer(ImmutableList.of(rule), context);
-
-        Mockito.verify(rule, Mockito.times(1)).fires(context);
-        Mockito.verify(rule, Mockito.times(0)).run(context);
+        given(rule.fires(context)).willReturn(Boolean.FALSE);
+        engine.infer(List.of(rule), context);
+        verify(rule, times(1)).fires(context);
+        verify(rule, times(0)).run(context);
     }
 
 }

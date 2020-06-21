@@ -3,6 +3,11 @@ package wtf.metio.reguloj;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.*;
+
 final class FirstWinsRuleEngineTest {
 
     private RuleEngine<Context<Object>> engine;
@@ -13,34 +18,34 @@ final class FirstWinsRuleEngineTest {
     @BeforeEach
     void setup() {
         engine = new FirstWinsRuleEngine<>();
-        context = Mockito.mock(Context.class);
-        rule1 = Mockito.mock(Rule.class);
-        rule2 = Mockito.mock(Rule.class);
+        context = mock(Context.class);
+        rule1 = mock(Rule.class);
+        rule2 = mock(Rule.class);
     }
 
     @Test
     void shouldOnlyRunFirstMatchingRule() {
-        BDDMockito.given(rule1.fires(context)).willReturn(Boolean.TRUE);
-        BDDMockito.given(rule2.fires(context)).willReturn(Boolean.FALSE);
+        given(rule1.fires(context)).willReturn(Boolean.TRUE);
+        given(rule2.fires(context)).willReturn(Boolean.FALSE);
 
-        engine.infer(ImmutableList.of(rule1, rule2), context);
+        engine.infer(List.of(rule1, rule2), context);
 
-        Mockito.verify(rule1, Mockito.times(1)).fires(context);
-        Mockito.verify(rule1, Mockito.times(1)).run(context);
-        Mockito.verifyZeroInteractions(rule2);
+        verify(rule1, times(1)).fires(context);
+        verify(rule1, times(1)).run(context);
+        verifyNoMoreInteractions(rule2);
     }
 
     @Test
     void shouldOnlyRunFirstMatchingRuleSecond() {
-        BDDMockito.given(rule1.fires(context)).willReturn(Boolean.FALSE);
-        BDDMockito.given(rule2.fires(context)).willReturn(Boolean.TRUE);
+        given(rule1.fires(context)).willReturn(Boolean.FALSE);
+        given(rule2.fires(context)).willReturn(Boolean.TRUE);
 
-        engine.infer(ImmutableList.of(rule1, rule2), context);
+        engine.infer(List.of(rule1, rule2), context);
 
-        Mockito.verify(rule1, Mockito.times(1)).fires(context);
-        Mockito.verify(rule1, Mockito.times(0)).run(context);
-        Mockito.verify(rule2, Mockito.times(1)).fires(context);
-        Mockito.verify(rule2, Mockito.times(1)).run(context);
+        verify(rule1, times(1)).fires(context);
+        verify(rule1, times(0)).run(context);
+        verify(rule2, times(1)).fires(context);
+        verify(rule2, times(1)).run(context);
     }
 
 }

@@ -77,13 +77,13 @@ final class RuleImplementationTest {
     @Test
     void equalsReturnFalseOnNull() {
         final var rule = new RuleImplementation<>(NAME, predicate, consumer);
-        Assertions.assertEquals(null, rule);
+        Assertions.assertNotEquals(null, rule);
     }
 
     @Test
     void equalsReturnFalseOnWrongClass() {
         final var rule = new RuleImplementation<>(NAME, predicate, consumer);
-        Assertions.assertEquals("", rule);
+        Assertions.assertNotEquals("", rule);
     }
 
     @Test

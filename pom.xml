@@ -8,7 +8,7 @@
   <parent>
     <groupId>wtf.metio.maven.parents</groupId>
     <artifactId>maven-parents-java-prototype</artifactId>
-    <version>2020.06.19-001743</version>
+    <version>2020.07.03-002234</version>
   </parent>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -71,5 +71,17 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <configuration>
+          <argLine>--add-opens wtf.metio.reguloj/wtf.metio.reguloj=ALL-UNNAMED</argLine>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

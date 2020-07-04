@@ -13,7 +13,7 @@ final class RuleTest {
 
     @Test
     void shouldCreateBuilder() {
-        Assertions.assertNotNull(Rules.rule());
+        Assertions.assertNotNull(Rule.builder());
     }
 
     @Test

@@ -1,0 +1,94 @@
+name: Release
+on:
+  schedule:
+    - cron:  '10 3 * * SUN'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # SonarQube: Disabling shallow clone is recommended for improving relevancy of reporting
+          # Hugo: Fetch all history for .GitInfo and .Lastmod
+          fetch-depth: 0
+      - name: Set up JDK 14
+        uses: actions/setup-java@v1
+        with:
+          java-version: 14
+      - uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Create Release Version
+        id: release
+        run: echo "::set-output name=version::$(date +'%Y.%m.%d-%H%M%S')"
+      - name: Count commits in last week
+        id: commits
+        run: echo "::set-output name=count::$(git rev-list --count HEAD --since='last Sunday')"
+      - name: Set release version
+        run: mvn --batch-mode --settings $GITHUB_WORKSPACE/build/settings.xml versions:set -DnewVersion=${{steps.release.outputs.version}} -DgenerateBackupPoms=false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verify Project
+        run: mvn --batch-mode --settings $GITHUB_WORKSPACE/build/settings.xml verify
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Publish to GitHub Packages Apache Maven
+        if: steps.commits.outputs.count > 0
+        run: mvn --batch-mode deploy -DskipTests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Release
+        if: steps.commits.outputs.count > 0
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{steps.release.outputs.version}}
+          release_name: Release ${{steps.release.outputs.version}}
+          draft: false
+          prerelease: false
+          body: |
+            Automated release, see [commits](https://github.com/metio/reguloj/commits/${{ steps.release.outputs.version }}) for changes.
+
+            Include this project as a dependency:
+            ```xml
+            <dependency>
+              <groupId>wtf.metio.reguloj</groupId>
+              <artifactId>reguloj</artifactId>
+              <version>${{steps.release.outputs.version}}</version>
+            </dependency>
+            ```
+            `reguloj` is currently not available in Maven Central, thus you have to pull it from [GitHub Packages](https://github.com/metio/reguloj/packages).
+      - name: Send Mail
+        if: steps.commits.outputs.count > 0
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: ${{ secrets.MAIL_SERVER }}
+          server_port: ${{ secrets.MAIL_PORT }}
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: reguloj release ${{ steps.release.outputs.version }}
+          body: See https://github.com/metio/reguloj/releases/tag/${{ steps.release.outputs.version }} for details.
+          to: reguloj@metio.groups.io
+          from: ${{ secrets.MAIL_SENDER }}
+      - name: Publish Toot
+        if: steps.commits.outputs.count > 0
+        uses: rzr/fediverse-action@master
+        with:
+          access-token: ${{ secrets.MASTODON_TOKEN }}
+          message: "#reguloj version ${{ steps.release.outputs.version }} published! https://github.com/metio/reguloj/releases/tag/${{ steps.release.outputs.version }} #metio #java"
+          host: ${{ secrets.MASTODON_SERVER }}
+      - uses: BjornLuG/release-for-reddit-action@v1
+        if: steps.commits.outputs.count > 0
+        with:
+          username: ${{ secrets.REDDIT_USERNAME }}
+          password: ${{ secrets.REDDIT_PASSWORD }}
+          app-id: ${{ secrets.REDDIT_APP_ID }}
+          app-secret: ${{ secrets.REDDIT_APP_SECRET }}
+          subreddit: ${{ secrets.REDDIT_SUBREDDIT }}
+          url: https://github.com/metio/reguloj/releases/tag/${{ steps.release.outputs.version }}

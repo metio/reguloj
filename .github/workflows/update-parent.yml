@@ -1,0 +1,36 @@
+name: Update Parent
+on:
+  schedule:
+    - cron:  '15 1 * * SAT'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 14
+        uses: actions/setup-java@v1
+        with:
+          java-version: 14
+      - uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Update parent
+        run: mvn --batch-mode --settings $GITHUB_WORKSPACE/build/settings.xml versions:update-parent -DgenerateBackupPoms=false
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update parent to latest version
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          title: 'Update parent to latest version'
+          body: |
+            `mvn --batch-mode --update-snapshots versions:update-parent -DgenerateBackupPoms=false`
+          labels: enhancement
+          assignees: sebhoss
+          draft: false
+          branch: update-parent

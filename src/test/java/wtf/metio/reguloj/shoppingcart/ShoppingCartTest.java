@@ -26,7 +26,7 @@ class ShoppingCartTest {
                 .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
         final var reducedPrice = Rule.<Cart>builder()
                 .called("multiple purchases get reduced price")
-                .when(ShoppingCartTest::hasMultipleProducts)
+                .when(cart -> cart.topic().size() > 1)
                 .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 50)));
         prices = new ArrayList<>();
         rules = List.of(reducedPrice, standardPrice);
@@ -63,10 +63,6 @@ class ShoppingCartTest {
                 () -> Assertions.assertEquals(1, cart.prices().size()),
                 () -> Assertions.assertEquals(50, cart.prices().get(0).price())
         );
-    }
-
-    private static boolean hasMultipleProducts(final Cart cart) {
-        return cart.topic().size() > 1;
     }
 
 }

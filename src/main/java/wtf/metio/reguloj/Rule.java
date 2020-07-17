@@ -4,11 +4,7 @@ package wtf.metio.reguloj;
  * <p>
  * A {@link Rule} is something that can run inside or together with a given context.
  * </p>
- * <h1>Caveats</h1>
- * <ul>
- * <li>No Problems known</li>
- * </ul>
- * <h1>Examples</h1>
+ * <h2>Examples</h2>
  * <ol>
  * <li>
  * <p>
@@ -27,25 +23,23 @@ package wtf.metio.reguloj;
  * <p>
  * Run a rule inside a given context:
  * </p>
- *
  * <pre>
  * Context&lt;X&gt; context = ...;
  * Rule&lt;Context&lt;X&gt;&gt; rule = ...;
  *
  * rule.run(context);
  * </pre>
- *
  * </li>
  * </ol>
- * <h1>How to help</h1>
- * <ul>
- * <li>Test the interface and write back about errors, bugs and wishes.</li>
- * </ul>
  *
  * @param <CONTEXT> The context type.
  */
 public interface Rule<CONTEXT extends Context<?>> {
 
+    /**
+     * @param <CONTEXT> The context type.
+     * @return A new builder to construct rules.
+     */
     static <CONTEXT extends Context<?>> RuleBuilder<CONTEXT> builder() {
         return new RuleBuilderImplementation<>();
     }
@@ -68,6 +62,6 @@ public interface Rule<CONTEXT extends Context<?>> {
     /**
      * @return The human readable name of this rule.
      */
-    String getName();
+    String name();
 
 }

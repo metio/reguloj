@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 /**
  * <p>
- * Offers an easy to use fluent interface for building new {@link Rule rules}. It follows the builder-pattern described
+ * Fluent interface for building new {@link Rule rules}. It follows the builder-pattern described
  * by Joshua Bloch (see Effective Java, Item 2) and offers 3 methods:
  * </p>
  * <ul>
@@ -13,7 +13,7 @@ import java.util.function.Predicate;
  * <li>{@link #when(Predicate) when}: Use this method to specify the predicate for your new rule.</li>
  * <li>{@link #then(Consumer) then}: Use this method to specify the conclusion for your new rule.</li>
  * </ul>
- * <h1>Caveats</h1>
+ * <h2>Caveats</h2>
  * <ul>
  * <li>Methods like {@link RuleBuilder#when(Predicate) when} or {@link RuleBuilder#then(Consumer) then} can be called
  * multiple times but implementations of this API should only honor the last call. All previous calls (and their
@@ -24,13 +24,12 @@ import java.util.function.Predicate;
  * <code>null</code> as an valid input. So in the rare case that you want to have a rule without any consumer you have
  * to create and supply some sort of <em>no-action</em> consumer which does nothing except not being <code>null</code></li>
  * </ul>
- * <h1>Examples</h1>
+ * <h2>Examples</h2>
  * <ol>
  * <li>
  * <p>
  * Rule creation with name, predicate and consumer:
  * </p>
- *
  * <pre>
  * String name = "...";
  * Predicate predicate = ...;
@@ -40,13 +39,8 @@ import java.util.function.Predicate;
  *               .when(<em>predicate</em>)
  *               .then(<em>consumer</em>)
  * </pre>
- *
  * </li>
  * </ol>
- * <h1>How to help</h1>
- * <ul>
- * <li>Test the interface and write back about errors, bugs and wishes.</li>
- * </ul>
  *
  * @param <CONTEXT> The context type.
  */

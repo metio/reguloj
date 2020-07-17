@@ -47,7 +47,7 @@ final class RuleImplementationTest {
     @Test
     void shouldReturnTheSetName() {
         final var rule = new RuleImplementation<>(NAME, predicate, consumer);
-        Assertions.assertEquals(NAME, rule.getName());
+        Assertions.assertEquals(NAME, rule.name());
     }
 
     @Test

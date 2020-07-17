@@ -29,7 +29,7 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return name;
     }
 

@@ -1,6 +1,6 @@
 package wtf.metio.reguloj;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,42 +8,36 @@ import java.util.List;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
-final class FirstWinsRuleEngineTest {
+final class FirstWinsRuleEngineTest extends RuleEngineTCK {
 
-    private RuleEngine<Context<Object>> engine;
-    private Context<Object> context;
-    private Rule<Context<Object>> rule1;
-    private Rule<Context<Object>> rule2;
-
-    @BeforeEach
-    void setup() {
-        engine = new FirstWinsRuleEngine<>();
-        context = mock(Context.class);
-        rule1 = mock(Rule.class);
-        rule2 = mock(Rule.class);
+    @Override
+    protected RuleEngine<Context<Object>> createRuleEngine() {
+        return new FirstWinsRuleEngine<>();
     }
 
     @Test
+    @DisplayName("run only first matching rule")
     void shouldOnlyRunFirstMatchingRule() {
-        given(rule1.fires(context)).willReturn(Boolean.TRUE);
+        given(rule.fires(context)).willReturn(Boolean.TRUE);
         given(rule2.fires(context)).willReturn(Boolean.FALSE);
 
-        engine.infer(List.of(rule1, rule2), context);
+        engine.infer(List.of(rule, rule2), context);
 
-        verify(rule1, times(1)).fires(context);
-        verify(rule1, times(1)).run(context);
+        verify(rule, times(1)).fires(context);
+        verify(rule, times(1)).run(context);
         verifyNoMoreInteractions(rule2);
     }
 
     @Test
+    @DisplayName("skip rules that are not firing")
     void shouldOnlyRunFirstMatchingRuleSecond() {
-        given(rule1.fires(context)).willReturn(Boolean.FALSE);
+        given(rule.fires(context)).willReturn(Boolean.FALSE);
         given(rule2.fires(context)).willReturn(Boolean.TRUE);
 
-        engine.infer(List.of(rule1, rule2), context);
+        engine.infer(List.of(rule, rule2), context);
 
-        verify(rule1, times(1)).fires(context);
-        verify(rule1, times(0)).run(context);
+        verify(rule, times(1)).fires(context);
+        verify(rule, times(0)).run(context);
         verify(rule2, times(1)).fires(context);
         verify(rule2, times(1)).run(context);
     }

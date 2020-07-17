@@ -1,5 +1,5 @@
 /**
- * reguloj is a light-weight business rule engine
+ * reguloj is a lightweight business rule engine
  */
 package wtf.metio.reguloj;
 

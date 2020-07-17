@@ -12,12 +12,12 @@ import java.util.Collection;
  * means that users of this interface will have to hold on to their set of rules somewhere else. You can optimize this
  * set of rules by removing unnecessary elements or combining elements that are known to always fire together.
  * </p>
- * <h1>Caveats</h1>
+ * <h2>Caveats</h2>
  * <ul>
  * <li>The current API design forces every user to call an instance of this engine explicitly and supply both the
  * context and a set of rules. This may be inefficient for large sets of rules or overly complex context types.</li>
  * </ul>
- * <h1>Examples</h1>
+ * <h2>Examples</h2>
  * <ol>
  * <li>
  * <p>
@@ -37,7 +37,6 @@ import java.util.Collection;
  * <p>
  * Launch the engine and fire all valid rules:
  * </p>
- *
  * <pre>
  * RuleEngine&lt;Context&lt;X&gt;&gt; engine = ...;
  * Collection&lt;Rule&lt;Context&lt;X&gt;&gt;&gt; rules = ...;
@@ -45,23 +44,42 @@ import java.util.Collection;
  *
  * engine.infer(rules, context);
  * </pre>
- *
  * </li>
  * </ol>
- * <h1>How to help</h1>
- * <ul>
- * <li>Test the interface and write back about errors, bugs and wishes.</li>
- * <li>Evaluate whether something like RETE can be applied to this interface and how it can be done.</li>
- * </ul>
  *
  * @param <CONTEXT> The context type.
  */
 public interface RuleEngine<CONTEXT extends Context<?>> {
 
     /**
-     * Performs a dry-run with this engine by analyzing a given context based upon a set of rules. It will only check
-     * whether any rule would fires inside the given context but does not apply any conclusions. For that call the
-     * {@link RuleEngine#infer(Collection, Context) infer}-method.
+     * @param <CONTEXT> The context type of the new rule engine
+     * @return A rule engine which supports rule chaining.
+     */
+    static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> chained() {
+        return new ChainedRuleEngine<>();
+    }
+
+    /**
+     * @param maximumNumberOfRuns The maximum number of runs to perform.
+     * @param <CONTEXT>           The context type of the new rule engine.
+     * @return A rule engine which does not support rule chaining.
+     */
+    static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> limited(final int maximumNumberOfRuns) {
+        return new LimitedRuleEngine<>(maximumNumberOfRuns);
+    }
+
+    /**
+     * @param <CONTEXT> The context type of the new rule engine.
+     * @return A rule engine which evaluates all rules until the first rule that fires.
+     */
+    static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> firstWins() {
+        return new FirstWinsRuleEngine<>();
+    }
+
+    /**
+     * Performs a dry-run with this engine by analyzing a given context with a collection of rules. It will only check
+     * whether any rule would fire inside the given context but does not infer anything. Call the
+     * {@link RuleEngine#infer(Collection, Context) infer}-method in order to do that.
      *
      * @param rules   The rules to check.
      * @param context The context to use.

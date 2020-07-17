@@ -23,7 +23,7 @@ jobs:
             ${{ runner.os }}-maven-
       - name: Create Release Version
         id: release
-        run: echo "::set-output name=version::$(date +'%Y.%m.%d-%H%M%S')"
+        run: echo "::set-output name=version::$(date +'%Y.%-m.%-d-%-H%M%S')"
       - name: Count commits in last week
         id: commits
         run: echo "::set-output name=count::$(git rev-list --count HEAD --since='last Sunday')"

@@ -10,19 +10,8 @@ import java.util.function.Predicate;
  * </p>
  * <ul>
  * <li>{@link #called(String) called}: Use this method to name your new rule.</li>
- * <li>{@link #when(Predicate) when}: Use this method to specify the predicate for your new rule.</li>
- * <li>{@link #then(Consumer) then}: Use this method to specify the conclusion for your new rule.</li>
- * </ul>
- * <h2>Caveats</h2>
- * <ul>
- * <li>Methods like {@link RuleBuilder#when(Predicate) when} or {@link RuleBuilder#then(Consumer) then} can be called
- * multiple times but implementations of this API should only honor the last call. All previous calls (and their
- * parameters) should be dismissed. If you want to create complex predicates and/or consumers you'll have to construct
- * them beforehand and use the newly created complex predicate/consumers as an input for the <em>when</em>- or
- * <em>then</em>-clause.</li>
- * <li>As noted in the {@link RuleBuilder#then(Consumer) then}-method documentation, you are not allowed to use
- * <code>null</code> as an valid input. So in the rare case that you want to have a rule without any consumer you have
- * to create and supply some sort of <em>no-action</em> consumer which does nothing except not being <code>null</code></li>
+ * <li>{@link #when(Predicate) when}: Use this method to specify the {@link Predicate} for your new rule.</li>
+ * <li>{@link #then(Consumer) then}: Use this method to specify the {@link Consumer} for your new rule.</li>
  * </ul>
  * <h2>Examples</h2>
  * <ol>
@@ -34,7 +23,7 @@ import java.util.function.Predicate;
  * String name = "...";
  * Predicate predicate = ...;
  * Consumer consumer = ...;
- * Rule rule = Rules.rule()
+ * Rule rule = Rule.builder()
  *               .called(<em>name</em>)
  *               .when(<em>predicate</em>)
  *               .then(<em>consumer</em>)
@@ -43,11 +32,15 @@ import java.util.function.Predicate;
  * </ol>
  *
  * @param <CONTEXT> The context type.
+ * @see Rule
+ * @see Context
+ * @see Predicate
+ * @see Consumer
  */
 public interface RuleBuilder<CONTEXT extends Context<?>> {
 
     /**
-     * Sets the predicate for the new rule.
+     * Sets the {@link Predicate} for the new rule.
      *
      * @param predicate The predicate to set.
      * @return The current rule builder.
@@ -55,12 +48,12 @@ public interface RuleBuilder<CONTEXT extends Context<?>> {
     RuleBuilder<CONTEXT> when(Predicate<CONTEXT> predicate);
 
     /**
-     * Sets the conclusion for the new rule.
+     * Sets the {@link Consumer} for the new rule.
      *
-     * @param conclusion The conclusion to set.
+     * @param consumer The consumer to set.
      * @return The current rule builder.
      */
-    Rule<CONTEXT> then(Consumer<CONTEXT> conclusion);
+    Rule<CONTEXT> then(Consumer<CONTEXT> consumer);
 
     /**
      * Sets the name of the new rule.

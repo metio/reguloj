@@ -109,7 +109,7 @@ final class RuleImplementationTest {
     }
 
     @Test
-    void equalsWorksWithDifferentConclusions() {
+    void equalsWorksWithDifferentConsumer() {
         final var consumer2 = Mockito.mock(Consumer.class);
         final var rule1 = new RuleImplementation<>(NAME, predicate, consumer);
         final var rule2 = new RuleImplementation<>(NAME, predicate, consumer2);

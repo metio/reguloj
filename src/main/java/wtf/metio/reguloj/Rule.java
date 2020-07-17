@@ -2,7 +2,8 @@ package wtf.metio.reguloj;
 
 /**
  * <p>
- * A {@link Rule} is something that can run inside or together with a given context.
+ * A {@link Rule} combines {@link java.util.function.Predicate} and {@link java.util.function.Consumer} interfaces and
+ * can be evaluated with a {@link RuleEngine} using a {@link Context}.
  * </p>
  * <h2>Examples</h2>
  * <ol>
@@ -33,6 +34,10 @@ package wtf.metio.reguloj;
  * </ol>
  *
  * @param <CONTEXT> The context type.
+ * @see RuleEngine
+ * @see Context
+ * @see java.util.function.Predicate
+ * @see java.util.function.Consumer
  */
 public interface Rule<CONTEXT extends Context<?>> {
 

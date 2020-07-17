@@ -5,18 +5,14 @@ import java.util.Collection;
 /**
  * <p>
  * The {@link RuleEngine} is responsible for logical reasoning. For that it analyzes a given {@link Context context}
- * based upon a set of {@link Rule rules}.
+ * based upon a collection of {@link Rule rules}.
  * </p>
  * <p>
- * Both the context and the set of rules have to be supplied with each invocation of any of the available methods. This
- * means that users of this interface will have to hold on to their set of rules somewhere else. You can optimize this
- * set of rules by removing unnecessary elements or combining elements that are known to always fire together.
+ * Both the context and the collection of rules have to be supplied with each invocation of any of the available methods.
+ * This means that users of this interface will have to hold on to their collection of rules somewhere else. You can
+ * optimize this collection of rules by removing unnecessary elements or combining elements that are known to always
+ * fire together.
  * </p>
- * <h2>Caveats</h2>
- * <ul>
- * <li>The current API design forces every user to call an instance of this engine explicitly and supply both the
- * context and a set of rules. This may be inefficient for large sets of rules or overly complex context types.</li>
- * </ul>
  * <h2>Examples</h2>
  * <ol>
  * <li>

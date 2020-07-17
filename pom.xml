@@ -61,6 +61,23 @@
   </repositories>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                          DISTRIBUTION MANAGEMENT                        -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!-- https://maven.apache.org/pom.html#Distribution_Management -->
+  <distributionManagement>
+    <site>
+      <id>metio</id>
+      <name>official website</name>
+      <url>https://reguloj.projects.metio.wtf</url>
+    </site>
+    <repository>
+      <id>github</id>
+      <name>GitHub reguloj Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/metio/reguloj</url>
+    </repository>
+  </distributionManagement>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                               DEPENDENCIES                              -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <dependencies>

@@ -107,6 +107,7 @@
           <argLine>
             --enable-preview
             --add-opens wtf.metio.reguloj/wtf.metio.reguloj=ALL-UNNAMED
+            --add-opens wtf.metio.reguloj/wtf.metio.reguloj.shoppingcart=ALL-UNNAMED
           </argLine>
         </configuration>
       </plugin>

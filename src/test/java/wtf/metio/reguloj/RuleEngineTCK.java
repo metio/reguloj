@@ -5,11 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
 abstract class RuleEngineTCK {
 
@@ -31,7 +30,7 @@ abstract class RuleEngineTCK {
     @Test
     @DisplayName("does not fire for empty rules collection")
     final void shouldReturnFalseForEmptyRuleCollection() {
-        final var rules = Collections.<Rule<Context<Object>>>emptyList();
+        final var rules = List.<Rule<Context<Object>>>of();
         final boolean fired = engine.analyze(rules, context);
         Assertions.assertFalse(fired);
     }
@@ -55,7 +54,7 @@ abstract class RuleEngineTCK {
     @Test
     @DisplayName("can infer with empty rule collection")
     final void shouldRunWithEmptyRuleSet() {
-        final var rules = Collections.<Rule<Context<Object>>>emptyList();
+        final var rules = List.<Rule<Context<Object>>>of();
         engine.infer(rules, context);
     }
 

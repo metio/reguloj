@@ -1,7 +1,7 @@
 name: Release
 on:
   schedule:
-    - cron:  '10 3 * * SAT'
+    - cron:  '10 3 * * SUN'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,10 +11,10 @@ jobs:
           # SonarQube: Disabling shallow clone is recommended for improving relevancy of reporting
           # Hugo: Fetch all history for .GitInfo and .Lastmod
           fetch-depth: 0
-      - name: Set up JDK 14
+      - name: Set up JDK 15
         uses: actions/setup-java@v1
         with:
-          java-version: 14
+          java-version: 15
       - uses: actions/cache@v1
         with:
           path: ~/.m2/repository

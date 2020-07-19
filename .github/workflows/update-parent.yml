@@ -1,7 +1,7 @@
 name: Update Parent
 on:
   schedule:
-    - cron:  '15 1 * * SAT'
+    - cron:  '55 2 * * SAT'
 jobs:
   build:
     runs-on: ubuntu-latest

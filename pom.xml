@@ -46,20 +46,6 @@
     <project.build.outputTimestamp>${project.inceptionYear}</project.build.outputTimestamp>
   </properties>
 
-  <repositories>
-    <repository>
-      <id>maven-build-process</id>
-      <name>GitHub maven-build-process Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/metio/maven-build-process</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                          DISTRIBUTION MANAGEMENT                        -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -70,11 +56,10 @@
       <name>official website</name>
       <url>https://reguloj.projects.metio.wtf</url>
     </site>
-    <repository>
-      <id>github</id>
-      <name>GitHub reguloj Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/metio/reguloj</url>
-    </repository>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
   </distributionManagement>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

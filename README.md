@@ -34,6 +34,8 @@ engine.analyze(rules, context);
 engine.infer(rules, context);
 ```
 
+Note that the order of the collection dictates the evaluation order of your rules - if order does matter, use `List` rather than `Set`.
+
 ### Creating rules
 
 A [rule](https://github.com/metio/reguloj/blob/main/src/main/java/wtf/metio/reguloj/Rule.java) has a (unique) name and runs in a given context. Additionally, it can be checked whether a rule fires in a given context.
@@ -63,6 +65,10 @@ Rule<CONTEXT> rule = Rule.called(name)
 ### Creating an inference context
 
 An inference [context](https://github.com/metio/reguloj/blob/main/src/main/java/wtf/metio/reguloj/Context.java) contains information needed by predicates and/or consumers. This project supplies a simple implementation of the Context interface called `SimpleContext` which just wraps a given topic. The `BaseContext` abstract class can be used to create subclasses in case your rules need extra information. The API acknowledges this by using <CONTEXT extends Context<?>> as type parameter for all methods which expect a Context, thus allowing all context implementations to be used. See item 28 in Effective Java for more details.
+
+```java
+CONTEXT context = Context.of("some object");
+```
 
 ### Integration
 

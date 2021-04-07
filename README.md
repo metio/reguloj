@@ -82,7 +82,9 @@ CONTEXT context = Context.of("some object");
 
 ```kotlin
 dependencies {
-    implementation("wtf.metio.reguloj:reguloj:${version.reguloj}")
+    implementation("wtf.metio.reguloj:reguloj:${version.reguloj}") {
+        because("we want to use a lightweight rule engine")
+    }
 }
 ```
 

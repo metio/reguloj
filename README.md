@@ -116,6 +116,7 @@ In case `reguloj` is not what you are looking for, try these projects:
 - [OpenL Tablets](http://openl-tablets.org/)
 - [JSR 94](https://jcp.org/en/jsr/detail?id=94)
 - [rules](https://github.com/rlangbehn/rules)
+- [jeasy](https://www.jeasy.org/)
 
 ## License
 

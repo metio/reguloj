@@ -64,7 +64,7 @@ Rule<CONTEXT> rule = Rule.called(name)
 
 ### Creating an inference context
 
-An inference [context](https://github.com/metio/reguloj/blob/main/src/main/java/wtf/metio/reguloj/Context.java) contains information needed by predicates and/or consumers. This project supplies a simple implementation of the Context interface called `SimpleContext` which just wraps a given topic. The `BaseContext` abstract class can be used to create subclasses in case your rules need extra information. The API acknowledges this by using `<CONTEXT extends Context<?>>` as type parameter for all methods which expect a Context, thus allowing all context implementations to be used. See item 28 in Effective Java for more details.
+An inference [context](https://github.com/metio/reguloj/blob/main/src/main/java/wtf/metio/reguloj/Context.java) contains information needed by predicates and/or consumers. This project supplies a simple implementation of the Context interface called `SimpleContext` which just wraps a given topic. The `AbstractContext` class can be used to create subclasses in case your rules need extra information. The API acknowledges this by using `<CONTEXT extends Context<?>>` as type parameter for all methods which expect a Context, thus allowing all context implementations to be used. See item 28 in Effective Java for more details.
 
 ```java
 CONTEXT context = Context.of("some object");

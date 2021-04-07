@@ -13,12 +13,12 @@ final class RuleTest {
 
     @Test
     void shouldCreateBuilder() {
-        Assertions.assertNotNull(Rule.builder());
+        Assertions.assertNotNull(Rule.called("test"));
     }
 
     @Test
     void shouldCreateRule() {
-        final var builder = Rule.<Context<Object>>builder();
+        final var builder = Rule.<Context<Object>>called("test");
         builder.called(NAME).when(Mockito.mock(Predicate.class));
         final var rule = builder.then(Mockito.mock(Consumer.class));
         Assertions.assertNotNull(rule);

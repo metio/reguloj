@@ -45,8 +45,8 @@ public interface Rule<CONTEXT extends Context<?>> {
    * @param <CONTEXT> The context type.
    * @return A new builder to construct rules.
    */
-  static <CONTEXT extends Context<?>> RuleBuilder<CONTEXT> builder() {
-    return new RuleBuilderImplementation<>();
+  static <CONTEXT extends Context<?>> RuleBuilder<CONTEXT> called(final String name) {
+    return new RuleBuilderImplementation<CONTEXT>().called(name);
   }
 
   /**

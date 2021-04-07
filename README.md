@@ -41,8 +41,7 @@ A [rule](https://github.com/metio/reguloj/blob/main/src/main/java/wtf/metio/regu
 Either implement the `Rule` interface yourself and or use the supplied rule implementation and builder. A standard rule is composed of a `java.util.function.Predicate` and `java.util.function.Consumer`. Both interfaces require you to implement only a single method and do not restrict you in any way. Complex rules can be created by grouping or chaining predicates/consumers together with the help of several utility methods. The following example creates a rule composed of 2 predicates and 2 consumers:
 
 ```java
-Rule<CONTEXT> rule = Rule.builder()
-                .called(name)
+Rule<CONTEXT> rule = Rule..called(name)
                 .when(predicate1.and(predicate2))
                 .then(consumer1.andThen(consumer2));
 
@@ -56,8 +55,7 @@ rule.run(context);
 Using Java 8 lambdas is possible as well:
 
 ```java
-Rule<CONTEXT> rule = Rules.builder()
-                .called(name)
+Rule<CONTEXT> rule = Rule.called(name)
                 .when(context -> context.check())
                 .then(context -> context.action())
 ```

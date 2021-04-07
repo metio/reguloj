@@ -20,12 +20,10 @@ class ShoppingCartTest {
 
     @BeforeEach
     void setUp() {
-        final var standardPrice = Rule.<Cart>builder()
-                .called("single purchase uses standard price")
+        final var standardPrice = Rule.<Cart>called("single purchase uses standard price")
                 .when(cart -> true)
                 .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
-        final var reducedPrice = Rule.<Cart>builder()
-                .called("multiple purchases get reduced price")
+        final var reducedPrice = Rule.<Cart>called("multiple purchases get reduced price")
                 .when(cart -> cart.topic().size() > 1)
                 .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 50)));
         prices = new ArrayList<>();

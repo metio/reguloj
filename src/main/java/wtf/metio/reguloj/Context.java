@@ -11,18 +11,18 @@ package wtf.metio.reguloj;
  */
 public interface Context<TOPIC> {
 
-    /**
-     * @param topic   The topic value of the context.
-     * @param <TOPIC> The topic type of the context.
-     * @return A new context with the given value.
-     */
-    static <TOPIC> Context<TOPIC> of(final TOPIC topic) {
-        return new ContextRecord<>(topic);
-    }
+  /**
+   * @param topic   The topic value of the context.
+   * @param <TOPIC> The topic type of the context.
+   * @return A new context with the given value.
+   */
+  static <TOPIC> Context<TOPIC> of(final TOPIC topic) {
+    return new ContextRecord<>(topic);
+  }
 
-    /**
-     * @return The topic of this inference context.
-     */
-    TOPIC topic();
+  /**
+   * @return The topic of this inference context.
+   */
+  TOPIC topic();
 
 }

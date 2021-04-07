@@ -41,32 +41,32 @@ package wtf.metio.reguloj;
  */
 public interface Rule<CONTEXT extends Context<?>> {
 
-    /**
-     * @param <CONTEXT> The context type.
-     * @return A new builder to construct rules.
-     */
-    static <CONTEXT extends Context<?>> RuleBuilder<CONTEXT> builder() {
-        return new RuleBuilderImplementation<>();
-    }
+  /**
+   * @param <CONTEXT> The context type.
+   * @return A new builder to construct rules.
+   */
+  static <CONTEXT extends Context<?>> RuleBuilder<CONTEXT> builder() {
+    return new RuleBuilderImplementation<>();
+  }
 
-    /**
-     * Runs this rule inside a given context.
-     *
-     * @param context The context to use.
-     */
-    void run(CONTEXT context);
+  /**
+   * Runs this rule inside a given context.
+   *
+   * @param context The context to use.
+   */
+  void run(CONTEXT context);
 
-    /**
-     * Checks whether this rule would fire for a given context.
-     *
-     * @param context The context to check.
-     * @return <code>true</code> if this rule would fire, <code>false</code> otherwise.
-     */
-    boolean fires(CONTEXT context);
+  /**
+   * Checks whether this rule would fire for a given context.
+   *
+   * @param context The context to check.
+   * @return <code>true</code> if this rule would fire, <code>false</code> otherwise.
+   */
+  boolean fires(CONTEXT context);
 
-    /**
-     * @return The human readable name of this rule.
-     */
-    String name();
+  /**
+   * @return The human readable name of this rule.
+   */
+  String name();
 
 }

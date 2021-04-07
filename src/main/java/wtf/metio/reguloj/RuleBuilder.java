@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 /**
  * <p>
- * Fluent interface for building new {@link Rule rules}. It follows the builder-pattern described
- * by Joshua Bloch (see Effective Java, Item 2) and offers 3 methods:
+ * Fluent interface for building new {@link Rule rules}. It follows the builder-pattern described by Joshua Bloch (see
+ * Effective Java, Item 2) and offers 3 methods:
  * </p>
  * <ul>
  * <li>{@link #called(String) called}: Use this method to name your new rule.</li>
@@ -39,28 +39,28 @@ import java.util.function.Predicate;
  */
 public interface RuleBuilder<CONTEXT extends Context<?>> {
 
-    /**
-     * Sets the {@link Predicate} for the new rule.
-     *
-     * @param predicate The predicate to set.
-     * @return The current rule builder.
-     */
-    RuleBuilder<CONTEXT> when(Predicate<CONTEXT> predicate);
+  /**
+   * Sets the {@link Predicate} for the new rule.
+   *
+   * @param predicate The predicate to set.
+   * @return The current rule builder.
+   */
+  RuleBuilder<CONTEXT> when(Predicate<CONTEXT> predicate);
 
-    /**
-     * Sets the {@link Consumer} for the new rule.
-     *
-     * @param consumer The consumer to set.
-     * @return The current rule builder.
-     */
-    Rule<CONTEXT> then(Consumer<CONTEXT> consumer);
+  /**
+   * Sets the {@link Consumer} for the new rule.
+   *
+   * @param consumer The consumer to set.
+   * @return The current rule builder.
+   */
+  Rule<CONTEXT> then(Consumer<CONTEXT> consumer);
 
-    /**
-     * Sets the name of the new rule.
-     *
-     * @param name The name to set.
-     * @return The current rule builder.
-     */
-    RuleBuilder<CONTEXT> called(String name);
+  /**
+   * Sets the name of the new rule.
+   *
+   * @param name The name to set.
+   * @return The current rule builder.
+   */
+  RuleBuilder<CONTEXT> called(String name);
 
 }

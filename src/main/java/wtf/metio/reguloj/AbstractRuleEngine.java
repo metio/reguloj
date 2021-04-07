@@ -10,9 +10,9 @@ import java.util.Collection;
  */
 public abstract class AbstractRuleEngine<CONTEXT extends Context<?>> implements RuleEngine<CONTEXT> {
 
-    @Override
-    public final boolean analyze(final Collection<Rule<CONTEXT>> rules, final CONTEXT context) {
-        return rules.stream().anyMatch(rule -> rule.fires(context));
-    }
+  @Override
+  public final boolean analyze(final Collection<Rule<CONTEXT>> rules, final CONTEXT context) {
+    return rules.stream().anyMatch(rule -> rule.fires(context));
+  }
 
 }

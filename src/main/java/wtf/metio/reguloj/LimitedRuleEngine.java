@@ -2,6 +2,12 @@ package wtf.metio.reguloj;
 
 import java.util.Collection;
 
+/**
+ * Limits the total number of runs to a user supplied maximum.
+ *
+ * @param <CONTEXT> The type of the context.
+ * @see ChainedRuleEngine
+ */
 final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
   private final int maximumNumberOfRuns;

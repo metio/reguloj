@@ -58,7 +58,7 @@ public interface RuleEngine<CONTEXT extends Context<?>> {
   /**
    * @param maximumNumberOfRuns The maximum number of runs to perform.
    * @param <CONTEXT>           The context type of the new rule engine.
-   * @return A rule engine which does not support rule chaining.
+   * @return A rule engine which supports rule chaining up until maximumNumberOfRuns.
    */
   static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> limited(final int maximumNumberOfRuns) {
     return new LimitedRuleEngine<>(maximumNumberOfRuns);

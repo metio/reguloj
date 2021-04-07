@@ -8,6 +8,7 @@ package wtf.metio.reguloj;
  */
 public abstract class BaseContext<TOPIC> implements Context<TOPIC> {
 
+  /** The topic for this context. */
   protected final TOPIC topic;
 
   /**

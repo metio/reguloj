@@ -10,6 +10,13 @@ import java.util.Collection;
  */
 public abstract class AbstractRuleEngine<CONTEXT extends Context<?>> implements RuleEngine<CONTEXT> {
 
+  /**
+   * Checks whether a single rule fires for the given context.
+   *
+   * @param rules   The rules to check.
+   * @param context The context to use.
+   * @return true if any rule fired, false otherwise.
+   */
   @Override
   public final boolean analyze(final Collection<Rule<CONTEXT>> rules, final CONTEXT context) {
     return rules.stream().anyMatch(rule -> rule.fires(context));

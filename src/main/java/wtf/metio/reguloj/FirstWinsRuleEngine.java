@@ -2,6 +2,11 @@ package wtf.metio.reguloj;
 
 import java.util.Collection;
 
+/**
+ * Runs the first rule that fires.
+ *
+ * @param <CONTEXT> The type of the context.
+ */
 final class FirstWinsRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 
   @Override

@@ -3,6 +3,11 @@ package wtf.metio.reguloj;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+/**
+ * Plain implementation of the {@link RuleBuilder} interface.
+ *
+ * @param <CONTEXT> The type of the context.
+ */
 final class RuleBuilderImplementation<CONTEXT extends Context<?>> implements RuleBuilder<CONTEXT> {
 
   private String name;

@@ -42,7 +42,7 @@
   <!--                                PROPERTIES                               -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <properties>
-    <version.jdk>15</version.jdk>
+    <version.jdk>16</version.jdk>
     <project.build.outputTimestamp>${project.inceptionYear}</project.build.outputTimestamp>
   </properties>
 

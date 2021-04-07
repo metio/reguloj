@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
- *
+ * Implementation of the {@link Rule} interface.
  *
  * @param <CONTEXT>
  */

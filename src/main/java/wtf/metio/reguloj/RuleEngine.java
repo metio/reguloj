@@ -44,6 +44,8 @@ import java.util.Collection;
  * </ol>
  *
  * @param <CONTEXT> The context type.
+ * @see Rule
+ * @see Context
  */
 public interface RuleEngine<CONTEXT extends Context<?>> {
 
@@ -75,7 +77,8 @@ public interface RuleEngine<CONTEXT extends Context<?>> {
   /**
    * Performs a dry-run with this engine by analyzing a given context with a collection of rules. It will only check
    * whether any rule would fire inside the given context but does not infer anything. Call the {@link
-   * RuleEngine#infer(Collection, Context) infer}-method in order to do that.
+   * RuleEngine#infer(Collection, Context) infer}-method in order to do that. This method will call {@link
+   * Rule#fires(Context)} for each given rule using the given context.
    *
    * @param rules   The rules to check.
    * @param context The context to use.
@@ -84,7 +87,8 @@ public interface RuleEngine<CONTEXT extends Context<?>> {
   boolean analyze(Collection<Rule<CONTEXT>> rules, CONTEXT context);
 
   /**
-   * Launches this engine and lets it analyze and execute a set of rules on a given context.
+   * Launches this engine and lets it analyze and execute a set of rules on a given context. This method will call
+   * {@link Rule#run(Context)} for each given rule using the given context.
    *
    * @param rules   The rules to run.
    * @param context The context to use.

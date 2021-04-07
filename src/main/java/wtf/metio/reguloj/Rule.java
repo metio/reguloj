@@ -50,11 +50,9 @@ public interface Rule<CONTEXT extends Context<?>> {
   }
 
   /**
-   * Runs this rule inside a given context.
-   *
-   * @param context The context to use.
+   * @return The human readable name of this rule.
    */
-  void run(CONTEXT context);
+  String name();
 
   /**
    * Checks whether this rule would fire for a given context.
@@ -65,8 +63,10 @@ public interface Rule<CONTEXT extends Context<?>> {
   boolean fires(CONTEXT context);
 
   /**
-   * @return The human readable name of this rule.
+   * Runs this rule inside a given context.
+   *
+   * @param context The context to use.
    */
-  String name();
+  void run(CONTEXT context);
 
 }

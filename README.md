@@ -19,7 +19,7 @@ RuleEngine<CONTEXT> limited = RuleEngine.limited(5);
 RuleEngine<CONTEXT> firstWins = RuleEngine.firstWins();
 ```
 
-If custom inference behavior is required, subclass `AbstractRuleEngine` and implement the `infer()` method. The following code example shows how to work with rule engines:
+All provided rule engines are thread-safe and can be used as often as you like. If custom inference behavior is required, subclass `AbstractRuleEngine` and implement the `infer()` method. The following code example shows how to work with rule engines:
 
 ```java
 // setup - more details later
@@ -34,11 +34,11 @@ engine.analyze(rules, context);
 engine.infer(rules, context);
 ```
 
-Note that the order of the collection dictates the evaluation order of your rules - if order does matter, use `List` rather than `Set`.
+Note that the order of the collection dictates the evaluation order of your rules - if order does matter, use `List` rather than `Set` as a `Collection` implementation.
 
 ### Creating rules
 
-A [rule](https://github.com/metio/reguloj/blob/main/src/main/java/wtf/metio/reguloj/Rule.java) has a (unique) name and runs in a given context. Additionally, it can be checked whether a rule fires in a given context.
+A [rule](https://github.com/metio/reguloj/blob/main/src/main/java/wtf/metio/reguloj/Rule.java) has a name and runs in a given context. Additionally, it can be checked whether a rule fires in a given context.
 
 Either implement the `Rule` interface yourself and or use the supplied rule implementation and builder. A standard rule is composed of a `java.util.function.Predicate` and `java.util.function.Consumer`. Both interfaces require you to implement only a single method and do not restrict you in any way. Complex rules can be created by grouping or chaining predicates/consumers together with the help of several utility methods. The following example creates a rule composed of 2 predicates and 2 consumers:
 

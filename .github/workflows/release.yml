@@ -57,7 +57,6 @@ jobs:
               <version>${{steps.release.outputs.version}}</version>
             </dependency>
             ```
-            `reguloj` is currently not available in Maven Central, thus you have to pull it from [GitHub Packages](https://github.com/metio/reguloj/packages).
       - name: Send Mail
         if: steps.commits.outputs.count > 0
         uses: dawidd6/action-send-mail@v2

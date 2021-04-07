@@ -12,6 +12,8 @@ package wtf.metio.reguloj;
 public interface Context<TOPIC> {
 
   /**
+   * Creates an immutable context that just contains the given topic.
+   *
    * @param topic   The topic value of the context.
    * @param <TOPIC> The topic type of the context.
    * @return A new context with the given value.

@@ -19,9 +19,9 @@ final class ChainedRuleEngineTest extends RuleEngineTCK {
     @Test
     @DisplayName("loop as long as rules are firing")
     void shouldLoopWithFiringRule() {
-        given(rule.fires(context)).willReturn(Boolean.TRUE).willReturn(Boolean.TRUE).willReturn(Boolean.FALSE);
+        given(rule.fires(context)).willReturn(Boolean.TRUE).willReturn(Boolean.FALSE);
         engine.infer(List.of(rule), context);
-        verify(rule, times(3)).fires(context);
+        verify(rule, times(2)).fires(context);
         verify(rule, times(1)).run(context);
     }
 

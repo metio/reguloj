@@ -63,7 +63,8 @@ public interface Rule<CONTEXT extends Context<?>> {
   boolean fires(CONTEXT context);
 
   /**
-   * Runs this rule inside a given context.
+   * Runs this rule inside a given context. A rule should only run iff {@link #fires(Context)} returns
+   * <code>true</code>.
    *
    * @param context The context to use.
    */

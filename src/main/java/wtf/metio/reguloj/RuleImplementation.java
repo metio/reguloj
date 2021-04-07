@@ -3,6 +3,11 @@ package wtf.metio.reguloj;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+/**
+ *
+ *
+ * @param <CONTEXT>
+ */
 final record RuleImplementation<CONTEXT extends Context<?>>(
     String name,
     Predicate<CONTEXT> predicate,

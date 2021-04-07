@@ -2,7 +2,7 @@ package wtf.metio.reguloj;
 
 /**
  * Basic implementation of the {@link Context} interface. Use this class in case you want to extend your context beyond
- * its topic. Otherwise use {@link ContextRecord} to just pass along your topic.
+ * its topic. Otherwise use {@link SimpleContext} to just pass along your topic.
  *
  * @param <TOPIC> The topic of the context.
  */

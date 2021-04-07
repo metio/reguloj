@@ -17,7 +17,7 @@ public interface Context<TOPIC> {
    * @return A new context with the given value.
    */
   static <TOPIC> Context<TOPIC> of(final TOPIC topic) {
-    return new ContextRecord<>(topic);
+    return new SimpleContext<>(topic);
   }
 
   /**

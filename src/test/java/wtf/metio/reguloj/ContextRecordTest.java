@@ -9,7 +9,7 @@ class ContextRecordTest {
     @Test
     void shouldHaveTopic() {
         // given
-        final var context = new ContextRecord<>("test");
+        final var context = new SimpleContext<>("test");
 
         // when
         final var topic = context.topic();

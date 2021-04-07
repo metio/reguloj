@@ -40,13 +40,10 @@ final class RuleImplementation<CONTEXT extends Context<?>> implements Rule<CONTE
 
     @Override
     public boolean equals(final Object object) {
-        if (object instanceof RuleImplementation) {
-            final RuleImplementation<?> that = (RuleImplementation<?>) object;
-
-            return Objects.equals(name, that.name) && Objects.equals(predicate, that.predicate)
-                    && Objects.equals(consumer, that.consumer);
-        }
-        return false;
+        return object instanceof RuleImplementation<?> that
+            && Objects.equals(name, that.name)
+            && Objects.equals(predicate, that.predicate)
+            && Objects.equals(consumer, that.consumer);
     }
 
 }

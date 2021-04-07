@@ -53,7 +53,7 @@ public interface Rule<CONTEXT extends Context<?>> {
    * @return A new builder to construct rules.
    */
   static <CONTEXT extends Context<?>> RuleBuilder<CONTEXT> called(final String name) {
-    return new RuleBuilderImplementation<CONTEXT>().called(name);
+    return new FluentRuleBuilder<CONTEXT>().called(name);
   }
 
   /**

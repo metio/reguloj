@@ -15,7 +15,7 @@ import java.util.function.Predicate;
  *
  * @param <CONTEXT> The type of the context.
  */
-final class RuleBuilderImplementation<CONTEXT extends Context<?>> implements RuleBuilder<CONTEXT> {
+final class FluentRuleBuilder<CONTEXT extends Context<?>> implements RuleBuilder<CONTEXT> {
 
   private String name;
   private Predicate<CONTEXT> predicate;
@@ -34,7 +34,7 @@ final class RuleBuilderImplementation<CONTEXT extends Context<?>> implements Rul
 
   @Override
   public Rule<CONTEXT> then(final Consumer<CONTEXT> consumer) {
-    return new RuleImplementation<>(name, predicate, consumer);
+    return new JavaUtilFunctionRule<>(name, predicate, consumer);
   }
 
 }

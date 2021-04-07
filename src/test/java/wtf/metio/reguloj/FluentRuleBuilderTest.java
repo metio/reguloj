@@ -14,11 +14,11 @@ import org.mockito.Mockito;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-final class RuleBuilderImplementationTest {
+final class FluentRuleBuilderTest {
 
     @Test
     void shouldCreateRuleIfAllValuesAreSet() {
-        final var builder = new RuleBuilderImplementation<Context<Object>>();
+        final var builder = new FluentRuleBuilder<Context<Object>>();
         builder.called("test rule").when(Mockito.mock(Predicate.class));
         final var rule = builder.then(Mockito.mock(Consumer.class));
         Assertions.assertNotNull(rule);

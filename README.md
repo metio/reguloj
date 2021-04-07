@@ -62,6 +62,8 @@ Rule<CONTEXT> rule = Rule.called(name)
                 .then(context -> context.action())
 ```
 
+Note that custom implementations of the `Rule` interface don't necessary have to use the `java.util.function` package and are free to choose their implementation looks like.
+
 ### Creating an inference context
 
 An inference [context](https://github.com/metio/reguloj/blob/main/src/main/java/wtf/metio/reguloj/Context.java) contains information needed by predicates and/or consumers. This project supplies a simple implementation of the Context interface called `SimpleContext` which just wraps a given topic. The `AbstractContext` class can be used to create subclasses in case your rules need extra information. The API acknowledges this by using `<CONTEXT extends Context<?>>` as type parameter for all methods which expect a Context, thus allowing all context implementations to be used. See item 28 in Effective Java for more details.

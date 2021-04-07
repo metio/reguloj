@@ -16,7 +16,7 @@ import org.mockito.Mockito;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-final class RuleImplementationTest {
+final class JavaUtilFunctionRuleTest {
 
     private static final String NAME = "test rule";
 
@@ -33,49 +33,49 @@ final class RuleImplementationTest {
 
     @Test
     void shouldCreateRuleIfAllValuesAreSet() {
-        final var rule = new RuleImplementation<>(NAME, predicate, consumer);
+        final var rule = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
         Assertions.assertNotNull(rule);
     }
 
     @Test
     void shouldReturnFalseWhenPremiseDoesNotApply() {
         BDDMockito.given(predicate.test(context)).willReturn(Boolean.FALSE);
-        final var rule = new RuleImplementation<>(NAME, predicate, consumer);
+        final var rule = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
         Assertions.assertFalse(rule.fires(context));
     }
 
     @Test
     void shouldFireWhenPremiseApplies() {
         BDDMockito.given(predicate.test(context)).willReturn(Boolean.TRUE);
-        final var rule = new RuleImplementation<>(NAME, predicate, consumer);
+        final var rule = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
         Assertions.assertTrue(rule.fires(context));
     }
 
     @Test
     void shouldReturnTheSetName() {
-        final var rule = new RuleImplementation<>(NAME, predicate, consumer);
+        final var rule = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
         Assertions.assertEquals(NAME, rule.name());
     }
 
     @Test
     void equalsIsReflexive() {
-        final var rule = new RuleImplementation<>(NAME, predicate, consumer);
+        final var rule = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
         Assertions.assertEquals(rule, rule);
     }
 
     @Test
     void equalsIsSymmetric() {
-        final var rule1 = new RuleImplementation<>(NAME, predicate, consumer);
-        final var rule2 = new RuleImplementation<>(NAME, predicate, consumer);
+        final var rule1 = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
+        final var rule2 = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
         Assertions.assertEquals(rule1, rule2);
         Assertions.assertEquals(rule2, rule1);
     }
 
     @Test
     void equalsIsTransitive() {
-        final var rule1 = new RuleImplementation<>(NAME, predicate, consumer);
-        final var rule2 = new RuleImplementation<>(NAME, predicate, consumer);
-        final var rule3 = new RuleImplementation<>(NAME, predicate, consumer);
+        final var rule1 = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
+        final var rule2 = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
+        final var rule3 = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
         Assertions.assertEquals(rule1, rule2);
         Assertions.assertEquals(rule2, rule3);
         Assertions.assertEquals(rule3, rule1);
@@ -83,50 +83,50 @@ final class RuleImplementationTest {
 
     @Test
     void equalsReturnFalseOnNull() {
-        final var rule = new RuleImplementation<>(NAME, predicate, consumer);
+        final var rule = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
         Assertions.assertNotEquals(null, rule);
     }
 
     @Test
     void equalsReturnFalseOnWrongClass() {
-        final var rule = new RuleImplementation<>(NAME, predicate, consumer);
+        final var rule = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
         Assertions.assertNotEquals("", rule);
     }
 
     @Test
     void equalsWorks() {
-        final var rule1 = new RuleImplementation<>(NAME, predicate, consumer);
+        final var rule1 = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
         final var rule2 = rule1;
         Assertions.assertEquals(rule1, rule2);
     }
 
     @Test
     void equalsWorksWithDifferentNames() {
-        final var rule1 = new RuleImplementation<>(NAME, predicate, consumer);
-        final var rule2 = new RuleImplementation<>("rule2", predicate, consumer); //$NON-NLS-1$
+        final var rule1 = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
+        final var rule2 = new JavaUtilFunctionRule<>("rule2", predicate, consumer); //$NON-NLS-1$
         Assertions.assertNotEquals(rule1, rule2);
     }
 
     @Test
     void equalsWorksWithDifferentPremises() {
         final var predicate2 = Mockito.mock(Predicate.class);
-        final var rule1 = new RuleImplementation<>(NAME, predicate, consumer);
-        final var rule2 = new RuleImplementation<>(NAME, predicate2, consumer);
+        final var rule1 = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
+        final var rule2 = new JavaUtilFunctionRule<>(NAME, predicate2, consumer);
         Assertions.assertNotEquals(rule1, rule2);
     }
 
     @Test
     void equalsWorksWithDifferentConsumer() {
         final var consumer2 = Mockito.mock(Consumer.class);
-        final var rule1 = new RuleImplementation<>(NAME, predicate, consumer);
-        final var rule2 = new RuleImplementation<>(NAME, predicate, consumer2);
+        final var rule1 = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
+        final var rule2 = new JavaUtilFunctionRule<>(NAME, predicate, consumer2);
         Assertions.assertNotEquals(rule1, rule2);
     }
 
     @Test
     void hashCodeIsConsistentWithEquals() {
-        final var rule1 = new RuleImplementation<>(NAME, predicate, consumer);
-        final var rule2 = new RuleImplementation<>(NAME, predicate, consumer);
+        final var rule1 = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
+        final var rule2 = new JavaUtilFunctionRule<>(NAME, predicate, consumer);
         Assertions.assertEquals(rule1, rule2);
         Assertions.assertEquals(rule1.hashCode(), rule2.hashCode());
     }

@@ -11,11 +11,11 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
- * Implementation of the {@link Rule} interface.
+ * Implementation of the {@link Rule} interface that uses the java.util.function package.
  *
  * @param <CONTEXT>
  */
-final record RuleImplementation<CONTEXT extends Context<?>>(
+final record JavaUtilFunctionRule<CONTEXT extends Context<?>>(
     String name,
     Predicate<CONTEXT> predicate,
     Consumer<CONTEXT> consumer) implements Rule<CONTEXT> {

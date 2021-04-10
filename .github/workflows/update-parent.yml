@@ -30,7 +30,7 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           title: 'Update parent to latest version'
           body: |
-            `mvn --batch-mode --update-snapshots versions:update-parent -DgenerateBackupPoms=false`
+            `mvn --batch-mode versions:update-parent -DgenerateBackupPoms=false`
           labels: enhancement
           assignees: sebhoss
           draft: false

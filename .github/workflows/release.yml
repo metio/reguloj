@@ -12,6 +12,9 @@ jobs:
         with:
           java-version: 16
           distribution: 'adopt'
+          server-id: ossrh
+          server-username: MAVEN_CENTRAL_USERNAME
+          server-password: MAVEN_CENTRAL_TOKEN
       - uses: actions/cache@v2.1.4
         with:
           path: ~/.m2/repository

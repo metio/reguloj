@@ -7,15 +7,15 @@
 
 package wtf.metio.reguloj;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.Test;
 
 class ContextTest {
 
-    @Test
-    void of() {
-        assertNotNull(Context.of("test"));
-    }
+  @Test
+  void of() {
+    assertNotNull(Context.of("test"));
+  }
 
 }

@@ -7,22 +7,22 @@
 
 package wtf.metio.reguloj;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class ContextRecordTest {
 
-    @Test
-    void shouldHaveTopic() {
-        // given
-        final var context = new SimpleContext<>("test");
+  @Test
+  void shouldHaveTopic() {
+    // given
+    final var context = new SimpleContext<>("test");
 
-        // when
-        final var topic = context.topic();
+    // when
+    final var topic = context.topic();
 
-        // then
-        assertEquals("test", topic);
-    }
+    // then
+    assertEquals("test", topic);
+  }
 
 }

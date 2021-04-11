@@ -42,6 +42,7 @@ package wtf.metio.reguloj;
  *
  * @param <CONTEXT> The context type.
  * @see RuleEngine
+ * @see RuleBuilder
  * @see Context
  */
 public interface Rule<CONTEXT extends Context<?>> {

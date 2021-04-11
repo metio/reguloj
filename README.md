@@ -62,7 +62,7 @@ Rule<CONTEXT> rule = Rule.called(name)
                 .then(context -> context.action())
 ```
 
-Note that custom implementations of the `Rule` interface don't necessary have to use the `java.util.function` package and are free to choose their implementation looks like.
+Note that custom implementations of the `Rule` interface don't necessary have to use the `java.util.function` package and are free to choose how their implementation looks like.
 
 ### Creating an inference context
 

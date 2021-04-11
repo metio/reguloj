@@ -14,6 +14,7 @@ import java.util.Collection;
  *
  * @param <CONTEXT> The type of the context.
  * @see ChainedRuleEngine
+ * @see FirstWinsRuleEngine
  */
 final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 

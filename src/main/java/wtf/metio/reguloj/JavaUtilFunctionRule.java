@@ -14,6 +14,8 @@ import java.util.function.Predicate;
  * Implementation of the {@link Rule} interface that uses the java.util.function package.
  *
  * @param <CONTEXT> The type of the context.
+ * @see java.util.function.Predicate
+ * @see java.util.function.Consumer
  */
 final record JavaUtilFunctionRule<CONTEXT extends Context<?>>(
     String name,

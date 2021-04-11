@@ -43,8 +43,18 @@ import java.util.function.Predicate;
  * @see Context
  * @see Predicate
  * @see Consumer
+ * @see java.util.function.Predicate
+ * @see java.util.function.Consumer
  */
 public interface RuleBuilder<CONTEXT extends Context<?>> {
+
+  /**
+   * Sets the name of the new rule.
+   *
+   * @param name The name to set.
+   * @return The current rule builder.
+   */
+  RuleBuilder<CONTEXT> called(String name);
 
   /**
    * Sets the {@link Predicate} for the new rule.
@@ -61,13 +71,5 @@ public interface RuleBuilder<CONTEXT extends Context<?>> {
    * @return The current rule builder.
    */
   Rule<CONTEXT> then(Consumer<CONTEXT> consumer);
-
-  /**
-   * Sets the name of the new rule.
-   *
-   * @param name The name to set.
-   * @return The current rule builder.
-   */
-  RuleBuilder<CONTEXT> called(String name);
 
 }

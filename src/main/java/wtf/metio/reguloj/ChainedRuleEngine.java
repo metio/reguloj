@@ -13,6 +13,8 @@ import java.util.Collection;
  * Chained rule engine that repeatedly runs all rules until no rule fires anymore.
  *
  * @param <CONTEXT>
+ * @see FirstWinsRuleEngine
+ * @see LimitedRuleEngine
  */
 final class ChainedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEngine<CONTEXT> {
 

@@ -75,5 +75,5 @@ jobs:
         with:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-          message: "release ${{ needs.prepare.outputs.release_version }} published - see https://github.com/metio/reguloj/releases/tag/${{ needs.prepare.outputs.release_version }} for details"
+          message: "release [${{ steps.release.outputs.version }}](https://github.com/metio/reguloj/releases/tag/${{ steps.release.outputs.version }}) published"
           server: "matrix.org"

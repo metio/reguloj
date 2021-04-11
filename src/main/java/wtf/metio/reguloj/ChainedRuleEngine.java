@@ -12,7 +12,7 @@ import java.util.Collection;
 /**
  * Chained rule engine that repeatedly runs all rules until no rule fires anymore.
  *
- * @param <CONTEXT>
+ * @param <CONTEXT> The type of the context.
  * @see FirstWinsRuleEngine
  * @see LimitedRuleEngine
  */

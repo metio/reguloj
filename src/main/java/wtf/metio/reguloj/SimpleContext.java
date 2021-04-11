@@ -13,4 +13,5 @@ package wtf.metio.reguloj;
  * @param <TOPIC> The type of the topic.
  */
 record SimpleContext<TOPIC>(TOPIC topic) implements Context<TOPIC> {
+
 }

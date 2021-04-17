@@ -2,6 +2,8 @@ name: Perform Release
 on:
   schedule:
     - cron:  '35 7 * * TUE'
+env:
+  JAVA: 16
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,7 +12,7 @@ jobs:
       - name: Set up JDK 16
         uses: actions/setup-java@v2
         with:
-          java-version: 16
+          java-version: ${{ env.JAVA }}
           distribution: 'adopt'
           server-id: ossrh
           server-username: MAVEN_CENTRAL_USERNAME
@@ -28,7 +30,7 @@ jobs:
         id: commits
         run: echo "::set-output name=count::$(git rev-list --count HEAD --since='last Tuesday')"
       - name: Set release version
-        run: mvn --batch-mode versions:set -DnewVersion=${{steps.release.outputs.version}} -DgenerateBackupPoms=false
+        run: mvn --batch-mode versions:set -DnewVersion=${{ steps.release.outputs.version }} -DgenerateBackupPoms=false
       - id: gpg
         name: GPG Key
         run: echo "${{ secrets.GPG_SECRET_KEY_BASE64 }}" | base64 --decode > $GITHUB_WORKSPACE/signing.key.asc
@@ -45,31 +47,31 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{steps.release.outputs.version}}
-          release_name: Release ${{steps.release.outputs.version}}
+          tag_name: ${{ steps.release.outputs.version }}
+          release_name: Release ${{ steps.release.outputs.version }}
           draft: false
           prerelease: false
           body: |
-            Automated release, see [commits](https://github.com/metio/reguloj/commits/${{ steps.release.outputs.version }}) for changes.
+            Automated release, see [commits](https://github.com/metio/reguloj/commits/${{ steps.release.outputs.version }}) for changes. **Requires at least Java ${{ env.JAVA }}**.
 
             Include this project as a Maven dependency:
             ```xml
             <dependency>
               <groupId>wtf.metio.reguloj</groupId>
               <artifactId>reguloj</artifactId>
-              <version>${{steps.release.outputs.version}}</version>
+              <version>${{ steps.release.outputs.version }}</version>
             </dependency>
             ```
 
             Or like this in case you are using Gradle (Kotlin):
             ```kotlin
             dependencies {
-                implementation("wtf.metio.reguloj:reguloj:${{steps.release.outputs.version}}") {
+                implementation("wtf.metio.reguloj:reguloj:${{ steps.release.outputs.version }}") {
                     because("we want to use a lightweight rule engine")
                 }
             }
 
-            Take a look the [information](https://search.maven.org/artifact/wtf.metio.reguloj/reguloj/${{steps.release.outputs.version}}/jar) available at Maven Central for other build tools.
+            Take a look the [information](https://search.maven.org/artifact/wtf.metio.reguloj/reguloj/${{ steps.release.outputs.version }}/jar) available at Maven Central for other build tools.
             ```
       - name: Send Mail
         if: steps.commits.outputs.count > 0

@@ -145,7 +145,7 @@ Assertions.assertEquals(150, multiProductCart.prices().get(0).price())
 ### Using RuleEngine#limited
 
 ```java
-RuleEngine<Cart> ruleEngine = RuleEngine.limited();
+RuleEngine<Cart> ruleEngine = RuleEngine.limited(1);
 ```
 
 While using a limited `RuleEngine`, our `Rules`s could look like this:

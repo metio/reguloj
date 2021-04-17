@@ -72,7 +72,147 @@ An inference [context](https://github.com/metio/reguloj/blob/main/src/main/java/
 CONTEXT context = Context.of("some object");
 ```
 
-### Integration
+## Example Use Case
+
+The [wtf.metio.regoluj.shoppingcart](https://github.com/metio/reguloj/tree/main/src/test/java/wtf/metio/reguloj/shoppingcart) package contains [tests](https://github.com/metio/reguloj/blob/main/src/test/java/wtf/metio/reguloj/shoppingcart/ShoppingCartTest.java) for an example use case revolving around shopping carts, products, and their prices. It works as follows:
+
+We have a custom `Context` implementation in the form of [wtf.metio.regoluj.shoppingcart.Cart](https://github.com/metio/reguloj/blob/main/src/test/java/wtf/metio/reguloj/shoppingcart/Cart.java) that holds a list of products, and a matching list of prices for those products. The list of products is its main topic. Various `Rules` are used to calculate the price per product in the shopping cart. Written as a `record`, the `Cart` could look like this:
+
+```java
+public record Cart(List<Product> topic, List<Price> prices) implements Context<List<Product>> {
+
+}
+```
+
+As you can see, one of the `record` parameters must be named `topic` and use the type of the context in order to correctly implement the method contract of `Context`. Similar, a `Product` and `Price` could look like this:
+
+```java
+public record Product(String name) {
+
+}
+
+public record Price(Product product, int price) {
+
+}
+```
+
+The initial state of a card contains just the products without any previously calculated prices in this example:
+
+```java
+final Cart singleProductCart = new Cart(List.of(TEST_PRODUCT), new ArrayList<>());
+final Cart multiProductCart = new Cart(List.of(TEST_PRODUCT, TEST_PRODUCT), new ArrayList<>());
+```
+
+The constant `TEST_PRODUCT` is just some example data that represents objects of your actual business domain: `Product TEST_PRODUCT = new Product("xPhone 37");`. 
+
+### Using RuleEngine#firstWins
+
+```java
+RuleEngine<Cart> ruleEngine = RuleEngine.firstWins();
+```
+
+While using a first-wins `RuleEngine`, our `Rules`s could look like this:
+
+```java
+final var standardPrice = Rule.<Cart>called("single purchase uses standard price")
+    .when(cart -> true) // always fires thus can be used as a fallback
+    .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
+final var reducedPrice = Rule.<Cart>called("multiple purchases get reduced price")
+    .when(cart -> cart.topic().size() > 1) // only fires for multiple products
+    .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
+```
+
+As you can see, we kept the implementation of the rules rather simple, in order to keep the example focused on the `reguloj` related classes. In a real world project, you don't want to specify a constant price for a single product, but rather use some database lookup or similar technique to calculate prices more dynamically. Since we need both a `Context` and a `Collection` of rules, we combine the above into a `List` with:
+
+```java
+Collection<Rule<Cart>> rules = List.of(reducedPrice, standardPrice);
+```
+
+The order is important here - we first test if we can apply the reduced priced, and only apply the full price as a fallback. In order to infer a price for our shopping carts, combine `Rules` and `Context` (carts) using the previously built `RuleEngine` as the following example shows:
+
+```java
+ruleEngine.infer(rules, singleProductCart);
+ruleEngine.infer(rules, multiProductCart);
+```
+
+Since the above rules will only ever add one price, we can check whether everything works as expected like this:
+
+```java
+Assertions.assertEquals(100, singleProductCart.prices().get(0).price())
+Assertions.assertEquals(150, multiProductCart.prices().get(0).price())
+```
+
+### Using RuleEngine#limited
+
+```java
+RuleEngine<Cart> ruleEngine = RuleEngine.limited();
+```
+
+While using a limited `RuleEngine`, our `Rules`s could look like this:
+
+```java
+final var standardPrice = Rule.<Cart>called("single purchase uses standard price")
+    .when(cart -> cart.topic().size() == 1) // fires for single products
+    .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
+final var reducedPrice = Rule.<Cart>called("multiple purchases get reduced price")
+    .when(cart -> cart.topic().size() > 1) // fires for multiple products
+    .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
+```
+
+The difference here is that the first rule only fires for carts that contain a single product (remember the topic of a cart is a list of products) since a limited `RuleEngine` will try ever rule a limited number of times and thus it won't stop after some rule fired as in the first example. Note that this implementation would have worked in the first example as well, however the first example would not work with a limited `RuleEngine`. The implementation for the second rule is exactly the same as the first example.
+
+```java
+Collection<Rule<Cart>> rules = Set.of(standardPrice, reducedPrice);
+```
+
+Since the order in which rules are fired does not matter, we can use a `Set` rather than  `List`. In case you are planning on creating rules dynamically based on some external data, like XML, YAML, a database, or your neighbours dog, make sure to be a specific as possible in your predicates in order to make your rules as widely usable as possible.
+
+```java
+ruleEngine.infer(rules, singleProductCart);
+ruleEngine.infer(rules, multiProductCart);
+
+Assertions.assertEquals(100, singleProductCart.prices().get(0).price())
+Assertions.assertEquals(150, multiProductCart.prices().get(0).price())
+```
+
+Running the inference process is exactly the same no matter which `RuleEngine` you picked or how you `Rule`s are implemented.
+
+### Using RuleEngine#chained
+
+```java
+RuleEngine<Cart> ruleEngine = RuleEngine.chained();
+```
+
+While using a chained `RuleEngine`, our `Rules`s could look like this:
+
+```java
+final var standardPrice = Rule.<Cart>called("single purchase uses standard price")
+    .when(cart -> cart.topic().size() == 1 && cart.prices().size() == 0)
+    .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
+final var reducedPrice = Rule.<Cart>called("multiple purchases get reduced price")
+    .when(cart -> cart.topic().size() > 1 && cart.prices().size() == 0)
+    .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
+```
+
+Since chained `RuleEngine`s will run all `Rule`s as often as they fire, we need an extra terminal condition to stop re-firing our rules. Since we are only calculating the price of a single product, we can always stop firing our `Rule`s in case there is already a price in our cart.
+
+```java
+Collection<Rule<Cart>> rules = Set.of(standardPrice, reducedPrice);
+```
+
+Again, the order of our rules do not matter, thus we are using a `Set`.
+
+```java
+ruleEngine.infer(rules, singleProductCart);
+ruleEngine.infer(rules, multiProductCart);
+
+Assertions.assertEquals(100, singleProductCart.prices().get(0).price())
+Assertions.assertEquals(150, multiProductCart.prices().get(0).price())
+```
+
+Getting a final price for our carts is exatly the same again.
+
+## Integration
 
 ```xml
 <dependency>
@@ -92,7 +232,7 @@ dependencies {
 
 Replace `${version.reguloj}` with the [latest release](http://search.maven.org/#search%7Cga%7C1%7Cg%3Awtf.metio.reguloj%20a%3Areguloj).
 
-### Requirements
+## Requirements
 
 | regoluj    | Java |
 |------------|------|

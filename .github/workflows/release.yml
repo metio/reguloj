@@ -68,6 +68,8 @@ jobs:
                     because("we want to use a lightweight rule engine")
                 }
             }
+
+            Take a look the [information](https://search.maven.org/artifact/wtf.metio.reguloj/reguloj/${{steps.release.outputs.version}}/jar) available at Maven Central for other build tools.
             ```
       - name: Send Mail
         if: steps.commits.outputs.count > 0

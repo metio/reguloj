@@ -52,13 +52,22 @@ jobs:
           body: |
             Automated release, see [commits](https://github.com/metio/reguloj/commits/${{ steps.release.outputs.version }}) for changes.
 
-            Include this project as a dependency:
+            Include this project as a Maven dependency:
             ```xml
             <dependency>
               <groupId>wtf.metio.reguloj</groupId>
               <artifactId>reguloj</artifactId>
               <version>${{steps.release.outputs.version}}</version>
             </dependency>
+            ```
+
+            Or like this in case you are using Gradle (Kotlin):
+            ```kotlin
+            dependencies {
+                implementation("wtf.metio.reguloj:reguloj:${{steps.release.outputs.version}}") {
+                    because("we want to use a lightweight rule engine")
+                }
+            }
             ```
       - name: Send Mail
         if: steps.commits.outputs.count > 0

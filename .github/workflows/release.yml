@@ -17,7 +17,7 @@ jobs:
           server-id: ossrh
           server-username: MAVEN_CENTRAL_USERNAME
           server-password: MAVEN_CENTRAL_TOKEN
-      - uses: actions/cache@v2.1.7
+      - uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   ~ This file is part of reguloj. It is subject to the license terms in the LICENSE file found in the top-level
-  ~ directory of this distribution and at http://creativecommons.org/publicdomain/zero/1.0/. No part of reguloj,
+  ~ directory of this distribution and at https://creativecommons.org/publicdomain/zero/1.0/. No part of reguloj,
   ~ including this file, may be copied, modified, propagated, or distributed except according to the terms contained
   ~ in the LICENSE file.
   -->
@@ -33,7 +33,7 @@
   <inceptionYear>2010</inceptionYear>
   <name>reguloj</name>
   <description>Lightweight business rule engine</description>
-  <url>https://reguloj.projects.metio.wtf/</url>
+  <url>https://github.com/metio/reguloj/</url>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                                  SOURCE                                 -->
@@ -49,7 +49,7 @@
   <!--                                PROPERTIES                               -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <properties>
-    <version.jdk>16</version.jdk>
+    <version.jdk>17</version.jdk>
     <project.build.outputTimestamp>${project.inceptionYear}</project.build.outputTimestamp>
   </properties>
 
@@ -61,7 +61,7 @@
     <site>
       <id>metio</id>
       <name>official website</name>
-      <url>https://reguloj.projects.metio.wtf</url>
+      <url>https://github.com/metio/reguloj</url>
     </site>
     <snapshotRepository>
       <id>ossrh</id>
@@ -87,10 +87,8 @@
     <plugins>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M5</version>
         <configuration>
           <argLine>
-            --enable-preview
             --add-opens wtf.metio.reguloj/wtf.metio.reguloj=ALL-UNNAMED
             --add-opens wtf.metio.reguloj/wtf.metio.reguloj.shoppingcart=ALL-UNNAMED
           </argLine>

@@ -40,26 +40,3 @@ install: ##@hacking Install all artifacts into local repository
 .PHONY: verify
 verify: ##@hacking Verify all modules
 	mvn verify
-
-.PHONY: site
-site: ##@hacking Build website
-	hugo --minify --i18n-warnings --path-warnings --source docs
-
-.PHONY: site-serve
-site-serve: ##@hacking Build and watch website
-	hugo server --minify --i18n-warnings --path-warnings --source docs --watch
-
-.PHONY: build-env
-build-env: ##@hacking Open a new shell in a predefined build environment
-	ilo @build/shell
-
-.PHONY: build-once
-build-once: ##@hacking Build the entire project once in a predefined build environment
-	ilo @build/once
-
-.PHONY: sign-waiver
-sign-waiver: ##@contributing Sign the WAIVER
-	minisign -Sm AUTHORS/WAIVER
-	mv AUTHORS/WAIVER.minisig AUTHORS/WAIVER.${USERNAME}.minisig
-	git add AUTHORS/WAIVER.${USERNAME}.minisign
-	git commit -m 'sign waiver' --gpg-sign

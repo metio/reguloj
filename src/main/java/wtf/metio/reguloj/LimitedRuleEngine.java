@@ -1,6 +1,6 @@
 /*
  * This file is part of reguloj. It is subject to the license terms in the LICENSE file found in the top-level
- * directory of this distribution and at http://creativecommons.org/publicdomain/zero/1.0/. No part of reguloj,
+ * directory of this distribution and at https://creativecommons.org/publicdomain/zero/1.0/. No part of reguloj,
  * including this file, may be copied, modified, propagated, or distributed except according to the terms contained
  * in the LICENSE file.
  */
@@ -27,12 +27,8 @@ final class LimitedRuleEngine<CONTEXT extends Context<?>> extends AbstractRuleEn
   @Override
   public void infer(final Collection<Rule<CONTEXT>> rules, final CONTEXT context) {
     int currentRuns = 0;
-    while (analyze(rules, context)) {
+    while (currentRuns++ < maximumNumberOfRuns && analyze(rules, context)) {
       rules.forEach(rule -> rule.run(context));
-
-      if (++currentRuns >= maximumNumberOfRuns) {
-        break;
-      }
     }
   }
 

@@ -57,7 +57,7 @@ jobs:
           draft: false
           prerelease: false
           body: |
-            Automated release, see [commits](https://github.com/metio/reguloj/commits/${{ steps.release.outputs.version }}) for changes. **Requires at least Java ${{ env.JAVA }}**.
+            Automated release, see [commits](https://github.com/metio/reguloj/commits/${{ steps.release.outputs.version }}) for changes. **Requires at least Java ${{ env.JAVA_VERSION }}**.
 
             Include this project as a Maven dependency:
             ```xml

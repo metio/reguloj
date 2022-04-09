@@ -1,17 +1,24 @@
 name: Update Parent
 on:
   schedule:
-    - cron:  "0 1 11 * *"
+    - cron:  0 1 11 * *
+env:
+  JAVA_VERSION: 17
+  JAVA_PACKAGE: jdk
+  JAVA_ARCH: x64
+  JAVA_DISTRO: temurin
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 16
+      - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: 16
-          distribution: 'adopt'
+          java-version: ${{ env.JAVA_VERSION }}
+          java-package: ${{ env.JAVA_PACKAGE }}
+          architecture: ${{ env.JAVA_ARCH }}
+          distribution: ${{ env.JAVA_DISTRO }}
       - uses: actions/cache@v3
         with:
           path: ~/.m2/repository
@@ -28,7 +35,7 @@ jobs:
           commit-message: Update parent to latest version
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          title: 'Update parent to latest version'
+          title: Update parent to latest version
           body: |
             `mvn --batch-mode versions:update-parent -DgenerateBackupPoms=false`
           labels: enhancement

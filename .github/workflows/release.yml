@@ -1,19 +1,24 @@
 name: Perform Release
 on:
   schedule:
-    - cron:  '35 7 * * TUE'
+    - cron:  35 7 * * TUE
 env:
-  JAVA: 16
+  JAVA_VERSION: 17
+  JAVA_PACKAGE: jdk
+  JAVA_ARCH: x64
+  JAVA_DISTRO: temurin
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 16
+      - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: ${{ env.JAVA }}
-          distribution: 'adopt'
+          java-version: ${{ env.JAVA_VERSION }}
+          java-package: ${{ env.JAVA_PACKAGE }}
+          architecture: ${{ env.JAVA_ARCH }}
+          distribution: ${{ env.JAVA_DISTRO }}
           server-id: ossrh
           server-username: MAVEN_CENTRAL_USERNAME
           server-password: MAVEN_CENTRAL_TOKEN
@@ -28,7 +33,7 @@ jobs:
         run: echo "::set-output name=version::$(date +'%Y.%-m.%-d')"
       - name: Count commits in last week
         id: commits
-        run: echo "::set-output name=count::$(git rev-list --count HEAD --since='last Tuesday')"
+        run: echo "::set-output name=count::$(git rev-list --count HEAD --since='last Tuesday' -- src/main/java)"
       - name: Set release version
         run: mvn --batch-mode versions:set -DnewVersion=${{ steps.release.outputs.version }} -DgenerateBackupPoms=false
       - id: gpg
@@ -48,7 +53,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.release.outputs.version }}
-          release_name: Release ${{ steps.release.outputs.version }}
+          release_name: ${{ steps.release.outputs.version }}
           draft: false
           prerelease: false
           body: |
@@ -91,4 +96,4 @@ jobs:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
           message: "release [${{ steps.release.outputs.version }}](https://github.com/metio/reguloj/releases/tag/${{ steps.release.outputs.version }}) published"
-          server: "matrix.org"
+          server: matrix.org

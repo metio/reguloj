@@ -9,7 +9,7 @@ The `main` branch always contains the latest public stable release.
 
 ## Issue Management
 
-We are using the issue tracker over at [GitHub](https://github.com/metio/ilo/issues/) to track issues.
+We are using the issue tracker over at [GitHub](https://github.com/metio/reguloj/issues/) to track issues.
 
 ## Building the Project
 

@@ -1,6 +1,6 @@
 # Security Policy
 
-`ilo` is using a continuous delivery mode and therefore only supports the latest released version.
+`reguloj` is using a continuous delivery mode and therefore only supports the latest released version.
 
 ## Reporting a Vulnerability
 

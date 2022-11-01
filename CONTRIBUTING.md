@@ -1,24 +1,36 @@
+<!--
+SPDX-FileCopyrightText: The reguloj Authors
+SPDX-License-Identifier: 0BSD
+ -->
+
 # Contributor Guide
 
-Thank you so much for improving `reguloj`!
-Without a healthy community, any open source project is doomed.
+Thank you so much for helping out! This project uses a [DCO](https://developercertificate.org/) to verify that each change is legally acceptable. Its text is as follows:
 
-## Git Branching Model
+```
+By making a contribution to this project, I certify that:
 
-The `main` branch always contains the latest public stable release.
+(a) The contribution was created in whole or in part by me and I
+    have the right to submit it under the open source license
+    indicated in the file; or
 
-## Issue Management
+(b) The contribution is based upon previous work that, to the best
+    of my knowledge, is covered under an appropriate open source
+    license and I have the right under that license to submit that
+    work with modifications, whether created in whole or in part
+    by me, under the same open source license (unless I am
+    permitted to submit under a different license), as indicated
+    in the file; or
 
-We are using the issue tracker over at [GitHub](https://github.com/metio/reguloj/issues/) to track issues.
+(c) The contribution was provided directly to me by some other
+    person who certified (a), (b) or (c) and I have not modified
+    it.
 
-## Building the Project
-
-Execute the following to build the project locally:
-
-```shell
-$ mvn verify
+(d) I understand and agree that this project and the contribution
+    are public and that a record of the contribution (including all
+    personal information I submit with it, including my sign-off) is
+    maintained indefinitely and may be redistributed consistent with
+    this project or the open source license(s) involved.
 ```
 
-## Release Process
-
-The release process is highly automated. It checks every week for changes in the `src/main/java` folder and creates a new timestamped release in case there were any changes.
+In order to sign this DCO, simply use `git commit --signoff` while working on this project.

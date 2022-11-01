@@ -1,10 +1,7 @@
 /*
- * This file is part of reguloj. It is subject to the license terms in the LICENSE file found in the top-level
- * directory of this distribution and at https://creativecommons.org/publicdomain/zero/1.0/. No part of reguloj,
- * including this file, may be copied, modified, propagated, or distributed except according to the terms contained
- * in the LICENSE file.
+ * SPDX-FileCopyrightText: The reguloj Authors
+ * SPDX-License-Identifier: 0BSD
  */
-
 package wtf.metio.reguloj;
 
 import java.util.function.Consumer;
@@ -48,28 +45,28 @@ import java.util.function.Predicate;
  */
 public interface RuleBuilder<CONTEXT extends Context<?>> {
 
-  /**
-   * Sets the name of the new rule.
-   *
-   * @param name The name to set.
-   * @return The current rule builder.
-   */
-  RuleBuilder<CONTEXT> called(String name);
+    /**
+     * Sets the name of the new rule.
+     *
+     * @param name The name to set.
+     * @return The current rule builder.
+     */
+    RuleBuilder<CONTEXT> called(String name);
 
-  /**
-   * Sets the {@link Predicate} for the new rule.
-   *
-   * @param predicate The predicate to set.
-   * @return The current rule builder.
-   */
-  RuleBuilder<CONTEXT> when(Predicate<CONTEXT> predicate);
+    /**
+     * Sets the {@link Predicate} for the new rule.
+     *
+     * @param predicate The predicate to set.
+     * @return The current rule builder.
+     */
+    RuleBuilder<CONTEXT> when(Predicate<CONTEXT> predicate);
 
-  /**
-   * Sets the {@link Consumer} for the new rule.
-   *
-   * @param consumer The consumer to set.
-   * @return The current rule builder.
-   */
-  Rule<CONTEXT> then(Consumer<CONTEXT> consumer);
+    /**
+     * Sets the {@link Consumer} for the new rule.
+     *
+     * @param consumer The consumer to set.
+     * @return The current rule builder.
+     */
+    Rule<CONTEXT> then(Consumer<CONTEXT> consumer);
 
 }

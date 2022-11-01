@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: The reguloj Authors
+# SPDX-License-Identifier: 0BSD
+
+cff-version: 1.2.0
+title: reguloj
+message: If you use this software, please cite it as below.
+type: software
+authors:
+- family-names: Hoß
+  given-names: Sebastian
+  email: seb@hoß.de
+url: https://github.com/metio/reguloj
+license: 0BSD
+keywords:
+  - business
+  - engine
+  - java
+  - make
+  - maven
+  - rule

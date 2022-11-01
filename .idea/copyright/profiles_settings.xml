@@ -3,5 +3,8 @@
     <module2copyright>
       <element module="Project Files" copyright="reguloj" />
     </module2copyright>
+    <LanguageOptions name="JAVA">
+      <option name="addBlankBefore" value="true" />
+    </LanguageOptions>
   </settings>
 </component>

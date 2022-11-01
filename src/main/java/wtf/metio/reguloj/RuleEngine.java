@@ -1,10 +1,7 @@
 /*
- * This file is part of reguloj. It is subject to the license terms in the LICENSE file found in the top-level
- * directory of this distribution and at https://creativecommons.org/publicdomain/zero/1.0/. No part of reguloj,
- * including this file, may be copied, modified, propagated, or distributed except according to the terms contained
- * in the LICENSE file.
+ * SPDX-FileCopyrightText: The reguloj Authors
+ * SPDX-License-Identifier: 0BSD
  */
-
 package wtf.metio.reguloj;
 
 import java.util.Collection;
@@ -56,50 +53,50 @@ import java.util.Collection;
  */
 public interface RuleEngine<CONTEXT extends Context<?>> {
 
-  /**
-   * @param <CONTEXT> The context type of the new rule engine
-   * @return A rule engine which supports rule chaining.
-   */
-  static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> chained() {
-    return new ChainedRuleEngine<>();
-  }
+    /**
+     * @param <CONTEXT> The context type of the new rule engine
+     * @return A rule engine which supports rule chaining.
+     */
+    static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> chained() {
+        return new ChainedRuleEngine<>();
+    }
 
-  /**
-   * @param maximumNumberOfRuns The maximum number of runs to perform.
-   * @param <CONTEXT>           The context type of the new rule engine.
-   * @return A rule engine which supports rule chaining up until maximumNumberOfRuns.
-   */
-  static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> limited(final int maximumNumberOfRuns) {
-    return new LimitedRuleEngine<>(maximumNumberOfRuns);
-  }
+    /**
+     * @param maximumNumberOfRuns The maximum number of runs to perform.
+     * @param <CONTEXT>           The context type of the new rule engine.
+     * @return A rule engine which supports rule chaining up until maximumNumberOfRuns.
+     */
+    static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> limited(final int maximumNumberOfRuns) {
+        return new LimitedRuleEngine<>(maximumNumberOfRuns);
+    }
 
-  /**
-   * @param <CONTEXT> The context type of the new rule engine.
-   * @return A rule engine which evaluates all rules until the first rule that fires.
-   */
-  static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> firstWins() {
-    return new FirstWinsRuleEngine<>();
-  }
+    /**
+     * @param <CONTEXT> The context type of the new rule engine.
+     * @return A rule engine which evaluates all rules until the first rule that fires.
+     */
+    static <CONTEXT extends Context<?>> RuleEngine<CONTEXT> firstWins() {
+        return new FirstWinsRuleEngine<>();
+    }
 
-  /**
-   * Performs a dry-run with this engine by analyzing a given context with a collection of rules. It will only check
-   * whether any rule would fire inside the given context but does not infer anything. Call the {@link
-   * RuleEngine#infer(Collection, Context) infer}-method in order to do that. This method will call {@link
-   * Rule#fires(Context)} for each given rule using the given context.
-   *
-   * @param rules   The rules to check.
-   * @param context The context to use.
-   * @return <code>true</code> if any rule would fire, <code>false</code> otherwise.
-   */
-  boolean analyze(Collection<Rule<CONTEXT>> rules, CONTEXT context);
+    /**
+     * Performs a dry-run with this engine by analyzing a given context with a collection of rules. It will only check
+     * whether any rule would fire inside the given context but does not infer anything. Call the {@link
+     * RuleEngine#infer(Collection, Context) infer}-method in order to do that. This method will call {@link
+     * Rule#fires(Context)} for each given rule using the given context.
+     *
+     * @param rules   The rules to check.
+     * @param context The context to use.
+     * @return <code>true</code> if any rule would fire, <code>false</code> otherwise.
+     */
+    boolean analyze(Collection<Rule<CONTEXT>> rules, CONTEXT context);
 
-  /**
-   * Launches this engine and lets it analyze and execute a set of rules on a given context. This method will call
-   * {@link Rule#run(Context)} for each given rule using the given context.
-   *
-   * @param rules   The rules to run.
-   * @param context The context to use.
-   */
-  void infer(Collection<Rule<CONTEXT>> rules, CONTEXT context);
+    /**
+     * Launches this engine and lets it analyze and execute a set of rules on a given context. This method will call
+     * {@link Rule#run(Context)} for each given rule using the given context.
+     *
+     * @param rules   The rules to run.
+     * @param context The context to use.
+     */
+    void infer(Collection<Rule<CONTEXT>> rules, CONTEXT context);
 
 }

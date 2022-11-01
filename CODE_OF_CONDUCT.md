@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: The reguloj Authors
+SPDX-License-Identifier: 0BSD
+ -->
+
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge

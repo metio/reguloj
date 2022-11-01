@@ -1,82 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ This file is part of reguloj. It is subject to the license terms in the LICENSE file found in the top-level
-  ~ directory of this distribution and at https://creativecommons.org/publicdomain/zero/1.0/. No part of reguloj,
-  ~ including this file, may be copied, modified, propagated, or distributed except according to the terms contained
-  ~ in the LICENSE file.
+  ~ SPDX-FileCopyrightText: The reguloj Authors
+  ~ SPDX-License-Identifier: 0BSD
   -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--                                  PARENT                                 -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <parent>
+        <groupId>wtf.metio.maven.parents</groupId>
+        <artifactId>maven-parents-java-prototype</artifactId>
+        <version>2022.10.28</version>
+    </parent>
 
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                                  PARENT                                 -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <parent>
-    <groupId>wtf.metio.maven.parents</groupId>
-    <artifactId>maven-parents-java-prototype</artifactId>
-    <version>2022.10.7</version>
-  </parent>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--                               INFORMATIONS                              -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <groupId>wtf.metio.reguloj</groupId>
+    <artifactId>reguloj</artifactId>
+    <version>9999.99.99-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                               INFORMATIONS                              -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <groupId>wtf.metio.reguloj</groupId>
-  <artifactId>reguloj</artifactId>
-  <version>9999.99.99-SNAPSHOT</version>
-  <packaging>jar</packaging>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--                               INFORMATIONS                              -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- https://maven.apache.org/pom.html#More_Project_Information -->
+    <inceptionYear>2010</inceptionYear>
+    <name>reguloj</name>
+    <description>Lightweight business rule engine</description>
+    <url>https://github.com/metio/reguloj/</url>
 
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                               INFORMATIONS                              -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!-- https://maven.apache.org/pom.html#More_Project_Information -->
-  <inceptionYear>2010</inceptionYear>
-  <name>reguloj</name>
-  <description>Lightweight business rule engine</description>
-  <url>https://github.com/metio/reguloj/</url>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--                                 LICENSE                                 -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- https://maven.apache.org/pom.html#licenses -->
+    <licenses>
+        <license>
+            <name>BSD Zero Clause License</name>
+            <url>https://spdx.org/licenses/0BSD.html</url>
+            <distribution>repo</distribution>
+            <comments>https://spdx.org/licenses/0BSD.html</comments>
+        </license>
+    </licenses>
 
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                                  SOURCE                                 -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <scm>
-    <connection>scm:git:git@github.com:metio/reguloj.git</connection>
-    <developerConnection>scm:git:git@github.com:metio/reguloj.git</developerConnection>
-    <tag>HEAD</tag>
-    <url>https://github.com/metio/reguloj</url>
-  </scm>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--                                  SOURCE                                 -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <scm>
+        <connection>scm:git:git@github.com:metio/reguloj.git</connection>
+        <developerConnection>scm:git:git@github.com:metio/reguloj.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/metio/reguloj</url>
+    </scm>
 
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                                PROPERTIES                               -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <properties>
-    <version.jdk>17</version.jdk>
-  </properties>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--                                PROPERTIES                               -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <properties>
+        <version.jdk>${javaVersion}</version.jdk>
+    </properties>
 
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                          DISTRIBUTION MANAGEMENT                        -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!-- https://maven.apache.org/pom.html#Distribution_Management -->
-  <distributionManagement>
-    <site>
-      <id>metio</id>
-      <name>official website</name>
-      <url>https://github.com/metio/reguloj</url>
-    </site>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--                          DISTRIBUTION MANAGEMENT                        -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- https://maven.apache.org/pom.html#Distribution_Management -->
+    <distributionManagement>
+        <site>
+            <id>metio</id>
+            <name>official website</name>
+            <url>https://github.com/metio/reguloj</url>
+        </site>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                               DEPENDENCIES                              -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <dependencies>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--                               DEPENDENCIES                              -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <dependencies>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>

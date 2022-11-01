@@ -1,22 +1,22 @@
+# SPDX-FileCopyrightText: The reguloj Authors
+# SPDX-License-Identifier: 0BSD
+
 name: CodeQL
 on:
   push:
     branches: [ main ]
-    paths:
-      - src/**
   pull_request:
     branches: [ main ]
   schedule:
-    - cron: 44 20 * * 6
-env:
-  JAVA_VERSION: 17
-  JAVA_PACKAGE: jdk
-  JAVA_ARCH: x64
-  JAVA_DISTRO: temurin
+    - cron: 42 3 * * 2
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
     strategy:
       fail-fast: false
       matrix:
@@ -27,11 +27,12 @@ jobs:
     - name: Set up Java
       uses: actions/setup-java@v3
       with:
-        java-version: ${{ env.JAVA_VERSION }}
-        java-package: ${{ env.JAVA_PACKAGE }}
-        architecture: ${{ env.JAVA_ARCH }}
-        distribution: ${{ env.JAVA_DISTRO }}
-    - uses: actions/cache@v3
+        java-version: 17
+        java-package: jdk
+        architecture: x64
+        distribution: temurin
+    - name: Cache Maven Artifacts
+      uses: actions/cache@v3
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}

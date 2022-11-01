@@ -1,7 +1,7 @@
 <component name="CopyrightManager">
   <copyright>
-    <option name="keyword" value="This file is part of reguloj" />
-    <option name="notice" value="This file is part of reguloj. It is subject to the license terms in the LICENSE file found in the top-level&#10;directory of this distribution and at https://creativecommons.org/publicdomain/zero/1.0/. No part of reguloj,&#10;including this file, may be copied, modified, propagated, or distributed except according to the terms contained&#10;in the LICENSE file." />
+    <option name="keyword" value="SPDX-FileCopyrightText" />
+    <option name="notice" value="SPDX-FileCopyrightText: The reguloj Authors&#10;SPDX-License-Identifier: 0BSD" />
     <option name="myName" value="reguloj" />
   </copyright>
 </component>

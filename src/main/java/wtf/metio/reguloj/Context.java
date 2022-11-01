@@ -1,10 +1,7 @@
 /*
- * This file is part of reguloj. It is subject to the license terms in the LICENSE file found in the top-level
- * directory of this distribution and at https://creativecommons.org/publicdomain/zero/1.0/. No part of reguloj,
- * including this file, may be copied, modified, propagated, or distributed except according to the terms contained
- * in the LICENSE file.
+ * SPDX-FileCopyrightText: The reguloj Authors
+ * SPDX-License-Identifier: 0BSD
  */
-
 package wtf.metio.reguloj;
 
 /**
@@ -18,20 +15,20 @@ package wtf.metio.reguloj;
  */
 public interface Context<TOPIC> {
 
-  /**
-   * Creates an immutable context that just contains the given topic.
-   *
-   * @param topic   The topic value of the context.
-   * @param <TOPIC> The topic type of the context.
-   * @return A new context with the given value.
-   */
-  static <TOPIC> Context<TOPIC> of(final TOPIC topic) {
-    return new SimpleContext<>(topic);
-  }
+    /**
+     * Creates an immutable context that just contains the given topic.
+     *
+     * @param topic   The topic value of the context.
+     * @param <TOPIC> The topic type of the context.
+     * @return A new context with the given value.
+     */
+    static <TOPIC> Context<TOPIC> of(final TOPIC topic) {
+        return new SimpleContext<>(topic);
+    }
 
-  /**
-   * @return The topic of this inference context.
-   */
-  TOPIC topic();
+    /**
+     * @return The topic of this inference context.
+     */
+    TOPIC topic();
 
 }

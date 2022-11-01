@@ -1,0 +1,8 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: reguloj
+Upstream-Contact: Sebastian Hoß <seb@hoß.de>
+Source: https://github.com/metio/reguloj
+
+Files: .idea/*
+Copyright: The reguloj Authors
+License: 0BSD

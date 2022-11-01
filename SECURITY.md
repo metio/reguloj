@@ -1,6 +1,11 @@
+<!--
+SPDX-FileCopyrightText: The reguloj Authors
+SPDX-License-Identifier: 0BSD
+ -->
+
 # Security Policy
 
-`reguloj` is using a continuous delivery mode and therefore only supports the latest released version.
+This project is using a continuous delivery mode and therefore only supports the latest released version.
 
 ## Reporting a Vulnerability
 

@@ -50,7 +50,6 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <properties>
     <version.jdk>17</version.jdk>
-    <project.build.outputTimestamp>${project.inceptionYear}</project.build.outputTimestamp>
   </properties>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -79,22 +78,5 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                                   BUILD                                 -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <argLine>
-            --add-opens wtf.metio.reguloj/wtf.metio.reguloj=ALL-UNNAMED
-            --add-opens wtf.metio.reguloj/wtf.metio.reguloj.shoppingcart=ALL-UNNAMED
-          </argLine>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>

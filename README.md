@@ -1,4 +1,4 @@
-# reguloj [![Chat](https://img.shields.io/badge/matrix-%23reguloj:matrix.org-brightgreen.svg?style=social&label=Matrix)](https://matrix.to/#reguloj:matrix.org) [![Mailing List](https://img.shields.io/badge/email-reguloj%40metio.groups.io%20-brightgreen.svg?style=social&label=Mail)](https://metio.groups.io/g/reguloj/topics)
+# reguloj
 
 `reguloj` is a small and lightweight Java rule engine.
 
@@ -210,7 +210,7 @@ Assertions.assertEquals(100, singleProductCart.prices().get(0).price())
 Assertions.assertEquals(150, multiProductCart.prices().get(0).price())
 ```
 
-Getting a final price for our carts is exatly the same again.
+Getting a final price for our carts is exactly the same again.
 
 ## Integration
 

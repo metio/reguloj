@@ -2,6 +2,7 @@ name: Perform Release
 on:
   schedule:
     - cron:  35 7 * * TUE
+  workflow_dispatch:
 env:
   JAVA_VERSION: 17
   JAVA_PACKAGE: jdk
@@ -30,21 +31,32 @@ jobs:
             ${{ runner.os }}-maven-
       - name: Create Release Version
         id: release
-        run: echo "::set-output name=version::$(date +'%Y.%-m.%-d')"
+        run: echo "version=$(date +'%Y.%-m.%-d')" >> $GITHUB_OUTPUT
+      - name: Build Timestamp
+        id: timestamp
+        run: echo "iso8601=$(date --utc --iso-8601=seconds)" >> $GITHUB_OUTPUT
       - name: Count commits in last week
         id: commits
-        run: echo "::set-output name=count::$(git rev-list --count HEAD --since='last Tuesday' -- src/main/java)"
+        run: echo "count=$(git rev-list --count HEAD --since='last Tuesday' -- src/main/java)" >> $GITHUB_OUTPUT
       - name: Set release version
-        run: mvn --batch-mode versions:set -DnewVersion=${{ steps.release.outputs.version }} -DgenerateBackupPoms=false
+        run: mvn --batch-mode --define newVersion=${{ steps.release.outputs.version }} --define generateBackupPoms=false versions:set
       - id: gpg
         name: GPG Key
         run: echo "${{ secrets.GPG_SECRET_KEY_BASE64 }}" | base64 --decode > $GITHUB_WORKSPACE/signing.key.asc
       - name: Publish to Maven Central
         if: steps.commits.outputs.count > 0
-        run: MAVEN_OPTS="--add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED" mvn --batch-mode --activate-profiles release verify deploy -Dpgp.secretkey=keyfile:$GITHUB_WORKSPACE/signing.key.asc -Dpgp.passphrase=literal:${{ secrets.GPG_SECRET_KEY_PASSWORD }}
+        run: |
+           mvn \
+            --batch-mode \
+            --activate-profiles release \
+            --define pgp.secretkey=keyfile:$GITHUB_WORKSPACE/signing.key.asc \
+            --define pgp.passphrase=literal:${{ secrets.GPG_SECRET_KEY_PASSWORD }} \
+            --define project.build.outputTimestamp=${{ steps.timestamp.outputs.iso8601 }} \
+            verify deploy
         env:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+          MAVEN_OPTS: "--add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED"
       - name: Create Release
         if: steps.commits.outputs.count > 0
         id: create_release
@@ -95,5 +107,5 @@ jobs:
         with:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-          message: "release [${{ steps.release.outputs.version }}](https://github.com/metio/reguloj/releases/tag/${{ steps.release.outputs.version }}) published"
+          message: "reguloj: version [${{ steps.release.outputs.version }}](https://github.com/metio/reguloj/releases/tag/${{ steps.release.outputs.version }}) published"
           server: matrix.org

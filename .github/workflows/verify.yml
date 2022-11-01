@@ -14,7 +14,7 @@ env:
   JAVA_ARCH: x64
   JAVA_DISTRO: temurin
 jobs:
-  build:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

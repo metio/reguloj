@@ -26,7 +26,8 @@ jobs:
             ${{ runner.os }}-maven-
       - name: Update Parent
         run: mvn --batch-mode --define generateBackupPoms=false versions:update-parent
-      - name: Create Pull Request
+      - id: cpr
+        name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.PAT }}

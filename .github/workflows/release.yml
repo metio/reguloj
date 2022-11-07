@@ -43,14 +43,14 @@ jobs:
         run: echo "${{ secrets.GPG_SECRET_KEY_BASE64 }}" | base64 --decode > $GITHUB_WORKSPACE/signing.key.asc
       - name: Publish to Maven Central
         if: steps.commits.outputs.count > 0
-        run: |
-           mvn \
-            --batch-mode \
-            --activate-profiles release \
-            --define pgp.secretkey=keyfile:$GITHUB_WORKSPACE/signing.key.asc \
-            --define pgp.passphrase=literal:${{ secrets.GPG_SECRET_KEY_PASSWORD }} \
-            --define project.build.outputTimestamp=${{ steps.timestamp.outputs.iso8601 }} \
-            verify deploy
+        run: >
+          mvn
+          --batch-mode
+          --activate-profiles release
+          --define pgp.secretkey=keyfile:$GITHUB_WORKSPACE/signing.key.asc
+          --define pgp.passphrase=literal:${{ secrets.GPG_SECRET_KEY_PASSWORD }}
+          --define project.build.outputTimestamp=${{ steps.timestamp.outputs.iso8601 }}
+          verify deploy
         env:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
@@ -58,17 +58,16 @@ jobs:
       - name: Create Release
         if: steps.commits.outputs.count > 0
         id: create_release
-        uses: actions/create-release@v1.1.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ steps.release.outputs.version }}
-          release_name: ${{ steps.release.outputs.version }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.release.outputs.version }}
+          name: ${{ steps.release.outputs.version }}
+          commit: ${{ github.sha }}
           draft: false
           prerelease: false
+          generateReleaseNotes: true
           body: |
-            Automated release, see [commits](https://github.com/metio/reguloj/commits/${{ steps.release.outputs.version }}) for changes. **Requires at least Java ${{ env.JAVA_VERSION }}**.
-
             Include this project as a Maven dependency:
             ```xml
             <dependency>
@@ -97,7 +96,7 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: reguloj release ${{ steps.release.outputs.version }}
           body: See https://github.com/metio/reguloj/releases/tag/${{ steps.release.outputs.version }} for details.
-          to: reguloj@metio.groups.io
+          to: announcements@metio.groups.io
           from: ${{ secrets.MAIL_SENDER }}
       - id: matrix
         name: Send Matrix Message
@@ -105,5 +104,5 @@ jobs:
         with:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-          message: "reguloj: version [${{ steps.release.outputs.version }}](https://github.com/metio/reguloj/releases/tag/${{ steps.release.outputs.version }}) published"
+          message: ${{ github.event.repository.name }} version [${{ steps.release.outputs.version }}](${{ steps.create_release.outputs.url }}) published
           server: matrix.org

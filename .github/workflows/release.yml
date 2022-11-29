@@ -37,9 +37,11 @@ jobs:
         id: commits
         run: echo "count=$(git rev-list --count HEAD --since='last Tuesday' -- src/main/java)" >> $GITHUB_OUTPUT
       - name: Set release version
+        if: steps.commits.outputs.count > 0
         run: mvn --batch-mode --define newVersion=${{ steps.release.outputs.version }} --define generateBackupPoms=false versions:set
       - id: gpg
         name: GPG Key
+        if: steps.commits.outputs.count > 0
         run: echo "${{ secrets.GPG_SECRET_KEY_BASE64 }}" | base64 --decode > $GITHUB_WORKSPACE/signing.key.asc
       - name: Publish to Maven Central
         if: steps.commits.outputs.count > 0
@@ -100,6 +102,7 @@ jobs:
           from: ${{ secrets.MAIL_SENDER }}
       - id: matrix
         name: Send Matrix Message
+        if: steps.commits.outputs.count > 0
         uses: s3krit/matrix-message-action@v0.0.3
         with:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}

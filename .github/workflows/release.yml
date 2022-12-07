@@ -1,94 +1,88 @@
 # SPDX-FileCopyrightText: The reguloj Authors
 # SPDX-License-Identifier: 0BSD
 
-name: Perform Release
+name: Automated Release
 on:
   schedule:
-    - cron:  35 7 * * TUE
+    - cron: 35 5 * * THU
   workflow_dispatch:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          java-package: jdk
-          architecture: x64
-          distribution: temurin
-          server-id: ossrh
-          server-username: MAVEN_CENTRAL_USERNAME
-          server-password: MAVEN_CENTRAL_TOKEN
-      - uses: actions/cache@v3
+      - id: checkout
+        name: Clone Git Repository
+        uses: actions/checkout@v3
+      - id: commits
+        name: Count Commits
+        run: echo "count=$(git rev-list --count HEAD --since='1 week ago')" >> $GITHUB_OUTPUT
+      - id: release
+        name: Create Release Version
+        if: steps.commits.outputs.count > 0
+        run: echo "version=$(date +'%Y.%-m.%-d')" >> $GITHUB_OUTPUT
+      - id: sha
+        name: Last Commit
+        if: steps.commits.outputs.count > 0
+        run: echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+      - id: timestamp
+        name: Build Timestamp
+        if: steps.commits.outputs.count > 0
+        run: echo "iso8601=$(date --utc --iso-8601=seconds)" >> $GITHUB_OUTPUT
+      - id: setup-java
+        uses: ./.github/actions/managed-maven
+        if: steps.commits.outputs.count > 0
+      - id: cache
+        name: Cache Dependencies
+        if: steps.commits.outputs.count > 0
+        uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-      - name: Create Release Version
-        id: release
-        run: echo "version=$(date +'%Y.%-m.%-d')" >> $GITHUB_OUTPUT
-      - name: Build Timestamp
-        id: timestamp
-        run: echo "iso8601=$(date --utc --iso-8601=seconds)" >> $GITHUB_OUTPUT
-      - name: Count commits in last week
-        id: commits
-        run: echo "count=$(git rev-list --count HEAD --since='last Tuesday' -- src/main/java)" >> $GITHUB_OUTPUT
-      - name: Set release version
-        if: steps.commits.outputs.count > 0
-        run: mvn --batch-mode --define newVersion=${{ steps.release.outputs.version }} --define generateBackupPoms=false versions:set
       - id: gpg
         name: GPG Key
         if: steps.commits.outputs.count > 0
-        run: echo "${{ secrets.GPG_SECRET_KEY_BASE64 }}" | base64 --decode > $GITHUB_WORKSPACE/signing.key.asc
-      - name: Publish to Maven Central
+        uses: timheuer/base64-to-file@v1.2
+        with:
+          fileName: signing.key.asc
+          fileDir: ${{ github.workspace }}
+          encodedString: ${{ secrets.GPG_SECRET_KEY_BASE64 }}
+      - id: pom-version
+        name: Set Release Version
         if: steps.commits.outputs.count > 0
-        run: >
-          mvn
-          --batch-mode
-          --activate-profiles release
-          --define pgp.secretkey=keyfile:$GITHUB_WORKSPACE/signing.key.asc
-          --define pgp.passphrase=literal:${{ secrets.GPG_SECRET_KEY_PASSWORD }}
-          --define project.build.outputTimestamp=${{ steps.timestamp.outputs.iso8601 }}
-          verify deploy
+        run: mvn --batch-mode --define newVersion=${{ steps.release.outputs.version }} --define generateBackupPoms=false versions:set
+      - id: deploy-maven
+        name: Deploy Maven Artifact
+        if: steps.commits.outputs.count > 0
+        run: |
+          mvn \
+            --batch-mode \
+            --activate-profiles release \
+            --define scmTag=${{ steps.sha.outputs.sha }} \
+            --define pgp.secretkey=keyfile:${{ steps.gpg.outputs.filePath }} \
+            --define pgp.passphrase=literal:${{ secrets.GPG_SECRET_KEY_PASSWORD }} \
+            --define project.build.outputTimestamp=${{ steps.timestamp.outputs.iso8601 }} \
+            deploy
         env:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
           MAVEN_OPTS: "--add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED"
-      - name: Create Release
+      - id: create_release
+        name: Create Release
         if: steps.commits.outputs.count > 0
-        id: create_release
-        uses: ncipollo/release-action@v1
+        uses: softprops/action-gh-release@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.release.outputs.version }}
+          tag_name: ${{ steps.release.outputs.version }}
           name: ${{ steps.release.outputs.version }}
-          commit: ${{ github.sha }}
+          token: $${{ secrets.GITHUB_TOKEN }}
           draft: false
           prerelease: false
-          generateReleaseNotes: true
-          body: |
-            Include this project as a Maven dependency:
-            ```xml
-            <dependency>
-              <groupId>wtf.metio.reguloj</groupId>
-              <artifactId>reguloj</artifactId>
-              <version>${{ steps.release.outputs.version }}</version>
-            </dependency>
-            ```
-
-            Or like this in case you are using Gradle (Kotlin):
-            ```kotlin
-            dependencies {
-                implementation("wtf.metio.reguloj:reguloj:${{ steps.release.outputs.version }}") {
-                    because("we want to use a lightweight rule engine")
-                }
-            }
-            ```
-            Take a look the [information](https://search.maven.org/artifact/wtf.metio.reguloj/reguloj/${{ steps.release.outputs.version }}/jar) available at Maven Central for other build tools.
-      - name: Send Mail
+          generate_release_notes: true
+      - id: mail
+        name: Send Mail
         if: steps.commits.outputs.count > 0
         uses: dawidd6/action-send-mail@v3.7.1
         with:
@@ -96,9 +90,9 @@ jobs:
           server_port: ${{ secrets.MAIL_PORT }}
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: reguloj release ${{ steps.release.outputs.version }}
-          body: See https://github.com/metio/reguloj/releases/tag/${{ steps.release.outputs.version }} for details.
-          to: announcements@metio.groups.io
+          subject: ${{ github.event.repository.name }} version ${{ steps.release.outputs.version }} published
+          body: See ${{ steps.create_release.outputs.url }} for details.
+          to: ${{ secrets.MAIL_RECIPIENT }}
           from: ${{ secrets.MAIL_SENDER }}
       - id: matrix
         name: Send Matrix Message
@@ -107,5 +101,5 @@ jobs:
         with:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-          message: ${{ github.event.repository.name }} version [${{ steps.release.outputs.version }}](${{ steps.create_release.outputs.html_url }}) published
-          server: matrix.org
+          message: ${{ github.event.repository.name }} version [${{ steps.release.outputs.version }}](${{ steps.create_release.outputs.url }}) published
+          server: ${{ secrets.MATRIX_SERVER }}

@@ -284,3 +284,4 @@ PERFORMANCE OF THIS SOFTWARE.
 
 - https://github.com/metio/reguloj
 - https://gitlab.com/metio.wtf/reguloj
+- https://codeberg.org/metio.wtf/reguloj

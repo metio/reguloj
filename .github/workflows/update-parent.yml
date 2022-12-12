@@ -11,13 +11,7 @@ jobs:
     steps:
       - name: Clone Git Repository
         uses: actions/checkout@v3
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          java-package: jdk
-          architecture: x64
-          distribution: temurin
+      - uses: ./.github/actions/managed-java
       - uses: actions/cache@v3
         with:
           path: ~/.m2/repository

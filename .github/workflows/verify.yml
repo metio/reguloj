@@ -5,29 +5,15 @@ name: Verify Commits
 on:
   pull_request:
     branches: [ main ]
-    paths:
-      - .github/workflows/verify.yml
-      - pom.xml
-      - src/**
   push:
     branches: [ main ]
-    paths:
-      - .github/workflows/verify.yml
-      - pom.xml
-      - src/**
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Git Repository
         uses: actions/checkout@v3
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          java-package: jdk
-          architecture: x64
-          distribution: temurin
+      - uses: ./.github/actions/managed-java
       - name: Cache Dependencies
         uses: actions/cache@v3
         with:

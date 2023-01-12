@@ -18,12 +18,6 @@ final class FluentRuleBuilder<CONTEXT extends Context<?>> implements RuleBuilder
     private Predicate<CONTEXT> predicate;
 
     @Override
-    public RuleBuilder<CONTEXT> called(final String newName) {
-        name = newName;
-        return this;
-    }
-
-    @Override
     public RuleBuilder<CONTEXT> when(final Predicate<CONTEXT> newPredicate) {
         predicate = newPredicate;
         return this;
@@ -31,7 +25,7 @@ final class FluentRuleBuilder<CONTEXT extends Context<?>> implements RuleBuilder
 
     @Override
     public Rule<CONTEXT> then(final Consumer<CONTEXT> consumer) {
-        return new JavaUtilFunctionRule<>(name, predicate, consumer);
+        return new JavaUtilFunctionRule<>(predicate, consumer);
     }
 
 }

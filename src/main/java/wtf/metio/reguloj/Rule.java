@@ -4,6 +4,9 @@
  */
 package wtf.metio.reguloj;
 
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
 /**
  * <p>
  * A {@link Rule} combines {@link java.util.function.Predicate} and {@link java.util.function.Consumer} interfaces and
@@ -45,17 +48,24 @@ package wtf.metio.reguloj;
 public interface Rule<CONTEXT extends Context<?>> {
 
     /**
+     * Start building a new Rule by specifying a Predicate.
+     *
      * @param <CONTEXT> The context type.
      * @return A new builder to construct rules.
      */
-    static <CONTEXT extends Context<?>> RuleBuilder<CONTEXT> called(final String name) {
-        return new FluentRuleBuilder<CONTEXT>().called(name);
+    static <CONTEXT extends Context<?>> RuleBuilder<CONTEXT> when(final Predicate<CONTEXT> predicate) {
+        return new FluentRuleBuilder<CONTEXT>().when(predicate);
     }
 
     /**
-     * @return The human readable name of this rule.
+     * Create a new Rule that always fires/runs and calls the given Consumer.
+     *
+     * @param <CONTEXT> The context type.
+     * @return A new builder to construct rules.
      */
-    String name();
+    static <CONTEXT extends Context<?>> Rule<CONTEXT> always(final Consumer<CONTEXT> consumer) {
+        return new FluentRuleBuilder<CONTEXT>().when(c -> true).then(consumer);
+    }
 
     /**
      * Checks whether this rule would fire for a given context.

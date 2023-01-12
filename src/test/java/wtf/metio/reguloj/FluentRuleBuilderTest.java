@@ -15,9 +15,9 @@ final class FluentRuleBuilderTest {
 
     @Test
     void shouldCreateRuleIfAllValuesAreSet() {
-        final var builder = new FluentRuleBuilder<Context<Object>>();
-        builder.called("test rule").when(Mockito.mock(Predicate.class));
-        final var rule = builder.then(Mockito.mock(Consumer.class));
+        final var rule = new FluentRuleBuilder<Context<Object>>()
+                .when(Mockito.mock(Predicate.class))
+                .then(Mockito.mock(Consumer.class));
         Assertions.assertNotNull(rule);
     }
 

@@ -13,7 +13,6 @@ import java.util.function.Predicate;
  * Effective Java, Item 2) and offers 3 methods:
  * </p>
  * <ul>
- * <li>{@link #called(String) called}: Use this method to name your new rule.</li>
  * <li>{@link #when(Predicate) when}: Use this method to specify the {@link Predicate} for your new rule.</li>
  * <li>{@link #then(Consumer) then}: Use this method to specify the {@link Consumer} for your new rule.</li>
  * </ul>
@@ -24,11 +23,9 @@ import java.util.function.Predicate;
  * Rule creation with name, predicate and consumer:
  * </p>
  * <pre>
- * String name = "...";
  * Predicate predicate = ...;
  * Consumer consumer = ...;
  * Rule rule = Rule.builder()
- *               .called(<em>name</em>)
  *               .when(<em>predicate</em>)
  *               .then(<em>consumer</em>)
  * </pre>
@@ -44,14 +41,6 @@ import java.util.function.Predicate;
  * @see java.util.function.Consumer
  */
 public interface RuleBuilder<CONTEXT extends Context<?>> {
-
-    /**
-     * Sets the name of the new rule.
-     *
-     * @param name The name to set.
-     * @return The current rule builder.
-     */
-    RuleBuilder<CONTEXT> called(String name);
 
     /**
      * Sets the {@link Predicate} for the new rule.

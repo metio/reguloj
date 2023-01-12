@@ -6,7 +6,7 @@ package wtf.metio.reguloj;
 
 /**
  * Abstract implementation of the {@link Context} interface. Use this class in case you want to extend your context
- * beyond its topic. Otherwise use {@link SimpleContext} to just pass along your topic. Note that this class is only
+ * beyond its topic. Otherwise, use {@link SimpleContext} to just pass along your topic. Note that this class is only
  * marked as abstract (and called like that) because users who just want to pass along a topic should use {@link
  * SimpleContext}.
  *

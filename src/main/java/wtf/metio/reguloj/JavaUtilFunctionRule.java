@@ -15,7 +15,6 @@ import java.util.function.Predicate;
  * @see java.util.function.Consumer
  */
 record JavaUtilFunctionRule<CONTEXT extends Context<?>>(
-        String name,
         Predicate<CONTEXT> predicate,
         Consumer<CONTEXT> consumer) implements Rule<CONTEXT> {
 

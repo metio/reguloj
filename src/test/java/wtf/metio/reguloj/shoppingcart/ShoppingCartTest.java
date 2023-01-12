@@ -26,11 +26,8 @@ class ShoppingCartTest {
 
         @BeforeEach
         void setUp() {
-            final var standardPrice = Rule.<Cart>called("single purchase uses standard price")
-                    .when(cart -> true) // always fires thus can be used as a fallback
-                    .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
-            final var reducedPrice = Rule.<Cart>called("multiple purchases get reduced price")
-                    .when(cart -> cart.topic().size() > 1) // only fires for multiple products
+            final var standardPrice = Rule.<Cart>always(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
+            final var reducedPrice = Rule.<Cart>when(cart -> cart.topic().size() > 1) // only fires for multiple products
                     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
             // the order is important here, so we use a List
             rules = List.of(reducedPrice, standardPrice);
@@ -73,11 +70,9 @@ class ShoppingCartTest {
 
         @BeforeEach
         void setUp() {
-            final var standardPrice = Rule.<Cart>called("single purchase uses standard price")
-                    .when(cart -> cart.topic().size() == 1) // fires for single products
+            final var standardPrice = Rule.<Cart>when(cart -> cart.topic().size() == 1) // fires for single products
                     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
-            final var reducedPrice = Rule.<Cart>called("multiple purchases get reduced price")
-                    .when(cart -> cart.topic().size() > 1) // fires for multiple products
+            final var reducedPrice = Rule.<Cart>when(cart -> cart.topic().size() > 1) // fires for multiple products
                     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
             // the order is no longer important
             rules = Set.of(standardPrice, reducedPrice);
@@ -120,13 +115,11 @@ class ShoppingCartTest {
 
         @BeforeEach
         void setUp() {
-            final var standardPrice = Rule.<Cart>called("single purchase uses standard price")
-                    // we need an extra terminal operation to avoid an infinite loop
-                    .when(cart -> cart.topic().size() == 1 && cart.prices().size() == 0)
+            // we need an extra terminal operation to avoid an infinite loop
+            final var standardPrice = Rule.when((Cart cart) -> cart.topic().size() == 1 && cart.prices().size() == 0)
                     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
-            final var reducedPrice = Rule.<Cart>called("multiple purchases get reduced price")
-                    // we need an extra terminal operation to avoid an infinite loop
-                    .when(cart -> cart.topic().size() > 1 && cart.prices().size() == 0)
+            // we need an extra terminal operation to avoid an infinite loop
+            final var reducedPrice = Rule.<Cart>when(cart -> cart.topic().size() > 1 && cart.prices().size() == 0)
                     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
             // the order is no longer important
             rules = Set.of(standardPrice, reducedPrice);

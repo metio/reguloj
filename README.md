@@ -130,11 +130,11 @@ RuleEngine<Cart> ruleEngine = RuleEngine.firstWins();
 While using a first-wins `RuleEngine`, our `Rules`s could look like this:
 
 ```java
-final var standardPrice = Rule.<Cart>called("single purchase uses standard price")
-    .when(cart -> true) // always fires thus can be used as a fallback
+final var standardPrice = Rule
+    .when((Cart cart) -> true) // always fires thus can be used as a fallback
     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
-final var reducedPrice = Rule.<Cart>called("multiple purchases get reduced price")
-    .when(cart -> cart.topic().size() > 1) // only fires for multiple products
+final var reducedPrice = Rule
+    .when((Cart cart) -> cart.topic().size() > 1) // only fires for multiple products
     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
 ```
 
@@ -167,11 +167,11 @@ RuleEngine<Cart> ruleEngine = RuleEngine.limited(1);
 While using a limited `RuleEngine`, our `Rules`s could look like this:
 
 ```java
-final var standardPrice = Rule.<Cart>called("single purchase uses standard price")
-    .when(cart -> cart.topic().size() == 1) // fires for single products
+final var standardPrice = Rule
+    .when((Cart cart) -> cart.topic().size() == 1) // fires for single products
     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
-final var reducedPrice = Rule.<Cart>called("multiple purchases get reduced price")
-    .when(cart -> cart.topic().size() > 1) // fires for multiple products
+final var reducedPrice = Rule
+    .when((Cart cart) -> cart.topic().size() > 1) // fires for multiple products
     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
 ```
 
@@ -202,11 +202,11 @@ RuleEngine<Cart> ruleEngine = RuleEngine.chained();
 While using a chained `RuleEngine`, our `Rules`s could look like this:
 
 ```java
-final var standardPrice = Rule.<Cart>called("single purchase uses standard price")
-    .when(cart -> cart.topic().size() == 1 && cart.prices().size() == 0)
+final var standardPrice = Rule
+    .when((Cart cart) -> cart.topic().size() == 1 && cart.prices().size() == 0)
     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
-final var reducedPrice = Rule.<Cart>called("multiple purchases get reduced price")
-    .when(cart -> cart.topic().size() > 1 && cart.prices().size() == 0)
+final var reducedPrice = Rule
+    .when((Cart cart) -> cart.topic().size() > 1 && cart.prices().size() == 0)
     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
 ```
 

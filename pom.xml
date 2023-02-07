@@ -13,7 +13,7 @@
     <parent>
         <groupId>wtf.metio.maven.parents</groupId>
         <artifactId>maven-parents-java-prototype</artifactId>
-        <version>2022.12.30</version>
+        <version>2023.2.3</version>
     </parent>
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

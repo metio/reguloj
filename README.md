@@ -43,13 +43,12 @@ Note that the order of the collection dictates the evaluation order of your rule
 
 ### Creating rules
 
-A [rule](https://github.com/metio/reguloj/blob/main/src/main/java/wtf/metio/reguloj/Rule.java) has a name and runs in a given context. Additionally, it can be checked whether a rule fires in a given context.
+A [rule](https://github.com/metio/reguloj/blob/main/src/main/java/wtf/metio/reguloj/Rule.java) runs in a given context. Additionally, it can be checked whether a rule fires in a given context.
 
 Either implement the `Rule` interface yourself and or use the supplied rule implementation and builder. A standard rule is composed of a `java.util.function.Predicate` and `java.util.function.Consumer`. Both interfaces require you to implement only a single method and do not restrict you in any way. Complex rules can be created by grouping or chaining predicates/consumers together with the help of several utility methods. The following example creates a rule composed of 2 predicates and 2 consumers:
 
 ```java
-Rule<CONTEXT> rule = Rule.called(name)
-                .when(predicate1.and(predicate2))
+Rule<CONTEXT> rule = Rule.when(predicate1.and(predicate2))
                 .then(consumer1.andThen(consumer2));
 
 // true if the rule would fire in the given context, e.g. the above predicate is true.
@@ -59,12 +58,24 @@ rule.fires(context);
 rule.run(context);
 ```
 
-Using Java 8 lambdas is possible as well:
+Using Java 8 lambdas is possible as well, however be aware that some additional type information is required in this case:
 
 ```java
-Rule<CONTEXT> rule = Rule.called(name)
-                .when(context -> context.check())
+Rule<CONTEXT> rule = Rule.<CONTEXT>when(context -> context.check())
                 .then(context -> context.action())
+
+Rule<CONTEXT> rule = Rule.when((CONTEXT context) -> context.check())
+                .then(context -> context.action())
+```
+
+In case you want to create a `Rule` that always fires/runs, use the following shortcut:
+
+```java
+// using predefined consumer
+Rule<CONTEXT> rule = Rule.always(consumer1.andThen(consumer2));
+
+// using lambda
+Rule<CONTEXT> rule = Rule.always((CONTEXT context) -> context.action())
 ```
 
 Note that custom implementations of the `Rule` interface don't necessary have to use the `java.util.function` package and are free to choose how their implementation looks like.
@@ -108,7 +119,7 @@ final Cart singleProductCart = new Cart(List.of(TEST_PRODUCT), new ArrayList<>()
 final Cart multiProductCart = new Cart(List.of(TEST_PRODUCT, TEST_PRODUCT), new ArrayList<>());
 ```
 
-The constant `TEST_PRODUCT` is just some example data that represents objects of your actual business domain: `Product TEST_PRODUCT = new Product("xPhone 37");`. 
+The constant `TEST_PRODUCT` is just some example data that represents objects of your actual business domain: `Product TEST_PRODUCT = new Product("xPhone 37");`.
 
 ### Using RuleEngine#firstWins
 
@@ -119,11 +130,11 @@ RuleEngine<Cart> ruleEngine = RuleEngine.firstWins();
 While using a first-wins `RuleEngine`, our `Rules`s could look like this:
 
 ```java
-final var standardPrice = Rule.<Cart>called("single purchase uses standard price")
-    .when(cart -> true) // always fires thus can be used as a fallback
+final var standardPrice = Rule
+    .when((Cart cart) -> true) // always fires thus can be used as a fallback
     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
-final var reducedPrice = Rule.<Cart>called("multiple purchases get reduced price")
-    .when(cart -> cart.topic().size() > 1) // only fires for multiple products
+final var reducedPrice = Rule
+    .when((Cart cart) -> cart.topic().size() > 1) // only fires for multiple products
     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
 ```
 
@@ -156,11 +167,11 @@ RuleEngine<Cart> ruleEngine = RuleEngine.limited(1);
 While using a limited `RuleEngine`, our `Rules`s could look like this:
 
 ```java
-final var standardPrice = Rule.<Cart>called("single purchase uses standard price")
-    .when(cart -> cart.topic().size() == 1) // fires for single products
+final var standardPrice = Rule
+    .when((Cart cart) -> cart.topic().size() == 1) // fires for single products
     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
-final var reducedPrice = Rule.<Cart>called("multiple purchases get reduced price")
-    .when(cart -> cart.topic().size() > 1) // fires for multiple products
+final var reducedPrice = Rule
+    .when((Cart cart) -> cart.topic().size() > 1) // fires for multiple products
     .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
 ```
 
@@ -191,12 +202,12 @@ RuleEngine<Cart> ruleEngine = RuleEngine.chained();
 While using a chained `RuleEngine`, our `Rules`s could look like this:
 
 ```java
-final var standardPrice = Rule.<Cart>called("single purchase uses standard price")
-    .when(cart -> cart.topic().size() == 1 && cart.prices().size() == 0)
-    .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
-final var reducedPrice = Rule.<Cart>called("multiple purchases get reduced price")
-    .when(cart -> cart.topic().size() > 1 && cart.prices().size() == 0)
-    .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
+final var standardPrice = Rule
+        .when((Cart cart) -> cart.topic().size() == 1 && cart.prices().size() == 0)
+        .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
+final var reducedPrice = Rule
+        .when((Cart cart) -> cart.topic().size() > 1 && cart.prices().size() == 0)
+        .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
 ```
 
 Since chained `RuleEngine`s will run all `Rule`s as often as they fire, we need an extra terminal condition to stop re-firing our rules. Since we are only calculating the price of a single product, we can always stop firing our `Rule`s in case there is already a price in our cart.

@@ -119,7 +119,7 @@ final Cart singleProductCart = new Cart(List.of(TEST_PRODUCT), new ArrayList<>()
 final Cart multiProductCart = new Cart(List.of(TEST_PRODUCT, TEST_PRODUCT), new ArrayList<>());
 ```
 
-The constant `TEST_PRODUCT` is just some example data that represents objects of your actual business domain: `Product TEST_PRODUCT = new Product("xPhone 37");`. 
+The constant `TEST_PRODUCT` is just some example data that represents objects of your actual business domain: `Product TEST_PRODUCT = new Product("xPhone 37");`.
 
 ### Using RuleEngine#firstWins
 
@@ -203,11 +203,11 @@ While using a chained `RuleEngine`, our `Rules`s could look like this:
 
 ```java
 final var standardPrice = Rule
-    .when((Cart cart) -> cart.topic().size() == 1 && cart.prices().size() == 0)
-    .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
+        .when((Cart cart) -> cart.topic().size() == 1 && cart.prices().size() == 0)
+        .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 100)));
 final var reducedPrice = Rule
-    .when((Cart cart) -> cart.topic().size() > 1 && cart.prices().size() == 0)
-    .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
+        .when((Cart cart) -> cart.topic().size() > 1 && cart.prices().size() == 0)
+        .then(cart -> cart.prices().add(new Price(TEST_PRODUCT, 75 * cart.topic().size())));
 ```
 
 Since chained `RuleEngine`s will run all `Rule`s as often as they fire, we need an extra terminal condition to stop re-firing our rules. Since we are only calculating the price of a single product, we can always stop firing our `Rule`s in case there is already a price in our cart.

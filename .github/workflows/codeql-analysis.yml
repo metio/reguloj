@@ -20,13 +20,7 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-    - name: Set up Java
-      uses: actions/setup-java@v3
-      with:
-        java-version: 17
-        java-package: jdk
-        architecture: x64
-        distribution: temurin
+    - uses: ./.github/actions/managed-java
     - name: Cache Maven Artifacts
       uses: actions/cache@v3
       with:

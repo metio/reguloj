@@ -22,7 +22,7 @@ jobs:
         run: mvn --batch-mode --define generateBackupPoms=false versions:update-parent
       - id: cpr
         name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.PAT }}
           commit-message: Update parent to latest version

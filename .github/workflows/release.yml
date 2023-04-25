@@ -84,7 +84,7 @@ jobs:
       - id: mail
         name: Send Mail
         if: steps.commits.outputs.count > 0
-        uses: dawidd6/action-send-mail@v3.7.1
+        uses: dawidd6/action-send-mail@v3.7.2
         with:
           server_address: ${{ secrets.MAIL_SERVER }}
           server_port: ${{ secrets.MAIL_PORT }}

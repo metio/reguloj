@@ -13,3 +13,4 @@ runs:
         java-package: jdk
         architecture: x64
         distribution: temurin
+        cache: maven

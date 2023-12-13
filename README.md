@@ -246,7 +246,7 @@ dependencies {
 }
 ```
 
-Replace `${version.reguloj}` with the [latest release](http://search.maven.org/#search%7Cga%7C1%7Cg%3Awtf.metio.reguloj%20a%3Areguloj).
+Replace `${version.reguloj}` with the [latest release](https://central.sonatype.com/artifact/wtf.metio.reguloj/reguloj).
 
 ## Requirements
 
@@ -290,10 +290,3 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ```
-
-## Mirrors
-
-- https://github.com/metio/reguloj
-- https://gitlab.com/metio.wtf/reguloj
-- https://codeberg.org/metio.wtf/reguloj
-- https://bitbucket.org/metio-wtf/reguloj

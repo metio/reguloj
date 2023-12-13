@@ -13,6 +13,7 @@ runs:
         java-package: jdk
         architecture: x64
         distribution: temurin
+        cache: maven
         server-id: ossrh
         server-username: MAVEN_CENTRAL_USERNAME
         server-password: MAVEN_CENTRAL_TOKEN

@@ -11,9 +11,9 @@
     <!--                                  PARENT                                 -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <parent>
-        <groupId>wtf.metio.maven.parents</groupId>
-        <artifactId>maven-parents-java-prototype</artifactId>
-        <version>2024.1.12</version>
+        <groupId>wtf.metio.maven</groupId>
+        <artifactId>maven-parent</artifactId>
+        <version>2026.10.1071200</version>
     </parent>
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -60,29 +60,56 @@
     <!--                                PROPERTIES                               -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <properties>
-        <version.jdk>${javaVersion}</version.jdk>
+        <jacoco.skip>true</jacoco.skip>
+        <pit.skip>true</pit.skip>
+        <pmd.skip>true</pmd.skip>
+        <failBuildOnDuplicates>false</failBuildOnDuplicates>
+        <failBuildOnDependencyVersionProblem>false</failBuildOnDependencyVersionProblem>
+        <failBuildOnDependencyProblem>false</failBuildOnDependencyProblem>
     </properties>
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <!--                          DISTRIBUTION MANAGEMENT                        -->
+    <!--                            DEPENDENCY MANAGEMENT                        -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <!-- https://maven.apache.org/pom.html#Distribution_Management -->
-    <distributionManagement>
-        <site>
-            <id>metio</id>
-            <name>official website</name>
-            <url>https://github.com/metio/reguloj</url>
-        </site>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
+    <!-- https://maven.apache.org/pom.html#Dependency_Management -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jspecify</groupId>
+                <artifactId>jspecify</artifactId>
+                <version>0.3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.10.1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-bom</artifactId>
+                <version>5.8.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!--                               DEPENDENCIES                              -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.jspecify</groupId>
             <artifactId>jspecify</artifactId>

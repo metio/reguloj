@@ -1,16 +1,49 @@
 # SPDX-FileCopyrightText: The reguloj Authors
 # SPDX-License-Identifier: 0BSD
 
-name: Verify Commits
+name: Verify
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
+
+permissions:
+  contents: read
+
 jobs:
-  verify:
+  maven:
+    name: Maven
+    uses: metio/ci/.github/workflows/maven.yml@033a5108141e6ad5a42fe4c793641043f6d57b0e # main
+  reuse:
+    name: reuse
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - name: Clone Git Repository
-        uses: actions/checkout@v4
-      - uses: ./.github/actions/managed-java
-      - name: Build with Maven
-        run: mvn --batch-mode verify
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: fsfe/reuse-action@676e2d560c9a403aa252096d99fcab3e1132b0f5 # v6
+  github-actions:
+    name: github-actions
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: reviewdog/action-actionlint@48e36f54d8da326b83ab061aee2cc5e01b5ca46f # v1
+        with:
+          fail_on_error: true
+          filter_mode: nofilter
+  verify:
+    name: Verify
+    needs: [maven, reuse, github-actions]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify every job succeeded or skipped
+        env:
+          NEEDS: ${{ toJSON(needs) }}
+        run: |
+          bad=$(echo "$NEEDS" | jq -r 'to_entries[] | select(.value.result != "success" and .value.result != "skipped") | "\(.key)=\(.value.result)"')
+          [ -z "$bad" ] || { echo "::error::$bad"; exit 1; }

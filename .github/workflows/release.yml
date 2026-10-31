@@ -1,107 +1,23 @@
 # SPDX-FileCopyrightText: The reguloj Authors
 # SPDX-License-Identifier: 0BSD
 
-name: Automated Release
+name: Release
 on:
   schedule:
-    - cron: 35 5 3 * *
+    - cron: 23 4 3 * *
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - id: checkout
-        name: Clone Git Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - id: last_release
-        name: Fetch last release info
-        run: echo "tag=$(gh release view --json tagName --jq '.tagName')" >> $GITHUB_OUTPUT
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - id: commits
-        name: Count Commits
-        run: echo "count=$(git rev-list --count ${{ steps.last_release.outputs.tag }}..HEAD -- src/main/java pom.xml)" >> $GITHUB_OUTPUT
-      - id: quota
-        name: Check Maven Central quota
-        if: steps.commits.outputs.count > 0
-        uses: metio/ci/central-quota@4e1bc9f3d854998e07b63b20a49dd60e652c0d32 # 2026.10.30204559
-      - id: release
-        name: Create Release Version
-        if: steps.commits.outputs.count > 0 && steps.quota.outputs.available == 'true'
-        run: echo "version=$(date +'%Y.%-m.%-d')" >> $GITHUB_OUTPUT
-      - id: sha
-        name: Last Commit
-        if: steps.commits.outputs.count > 0 && steps.quota.outputs.available == 'true'
-        run: echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
-      - id: timestamp
-        name: Build Timestamp
-        if: steps.commits.outputs.count > 0 && steps.quota.outputs.available == 'true'
-        run: echo "iso8601=$(date --utc --iso-8601=seconds)" >> $GITHUB_OUTPUT
-      - id: setup-java
-        uses: ./.github/actions/managed-maven
-        if: steps.commits.outputs.count > 0 && steps.quota.outputs.available == 'true'
-      - id: gpg
-        name: GPG Key
-        if: steps.commits.outputs.count > 0 && steps.quota.outputs.available == 'true'
-        uses: timheuer/base64-to-file@v1
-        with:
-          fileName: signing.key.asc
-          fileDir: ${{ github.workspace }}
-          encodedString: ${{ secrets.GPG_SECRET_KEY_BASE64 }}
-      - id: pom-version
-        name: Set Release Version
-        if: steps.commits.outputs.count > 0 && steps.quota.outputs.available == 'true'
-        run: mvn --batch-mode --define newVersion=${{ steps.release.outputs.version }} --define generateBackupPoms=false versions:set
-      - id: deploy-maven
-        name: Deploy Maven Artifact
-        if: steps.commits.outputs.count > 0 && steps.quota.outputs.available == 'true'
-        run: >
-          mvn
-          --batch-mode
-          --activate-profiles release
-          --define scmTag=${{ steps.sha.outputs.sha }}
-          --define pgp.secretkey=keyfile:${{ steps.gpg.outputs.filePath }}
-          --define pgp.passphrase=literal:${{ secrets.GPG_SECRET_KEY_PASSWORD }}
-          --define project.build.outputTimestamp=${{ steps.timestamp.outputs.iso8601 }}
-          deploy
-        env:
-          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-          MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
-          MAVEN_OPTS: "--add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED"
-      - id: create_release
-        name: Create Release
-        if: steps.commits.outputs.count > 0 && steps.quota.outputs.available == 'true'
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ steps.release.outputs.version }}
-          name: ${{ steps.release.outputs.version }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          draft: false
-          prerelease: false
-          generate_release_notes: true
-      - id: mail
-        name: Send Mail
-        if: steps.commits.outputs.count > 0 && steps.quota.outputs.available == 'true'
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: ${{ secrets.MAIL_SERVER }}
-          server_port: ${{ secrets.MAIL_PORT }}
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          subject: ${{ github.event.repository.name }} version ${{ steps.release.outputs.version }} published
-          body: See ${{ steps.create_release.outputs.url }} for details.
-          to: ${{ secrets.MAIL_RECIPIENT }}
-          from: ${{ secrets.MAIL_SENDER }}
-      - id: matrix
-        name: Send Matrix Message
-        if: steps.commits.outputs.count > 0 && steps.quota.outputs.available == 'true'
-        uses: s3krit/matrix-message-action@v0.0.3
-        with:
-          room_id: ${{ secrets.MATRIX_ROOM_ID }}
-          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-          message: ${{ github.event.repository.name }} version [${{ steps.release.outputs.version }}](${{ steps.create_release.outputs.url }}) published
-          server: ${{ secrets.MATRIX_SERVER }}
+  release:
+    name: Release
+    uses: metio/ci/.github/workflows/maven-central-release.yml@033a5108141e6ad5a42fe4c793641043f6d57b0e # main
+    with:
+      paths: src/main/java pom.xml
+    secrets: inherit

@@ -4,7 +4,7 @@
 name: Release
 on:
   schedule:
-    - cron: 23 4 3 * *
+    - cron: 58 20 17 * *
   workflow_dispatch:
 
 permissions:

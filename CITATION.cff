@@ -9,7 +9,7 @@ authors:
 - family-names: Hoß
   given-names: Sebastian
   email: seb@hoß.de
-url: https://github.com/metio/reguloj
+url: https://github.com/metio/reguloj/
 license: 0BSD
 keywords:
   - business
@@ -18,3 +18,4 @@ keywords:
   - make
   - maven
   - rule
+  - rule-engine

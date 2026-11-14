@@ -17,7 +17,7 @@ concurrency:
 jobs:
   release:
     name: Release
-    uses: metio/ci/.github/workflows/maven-central-release.yml@6e8776dc59abdfffa793903f100e89f1aacb9c2e # 2026.11.2023135
+    uses: metio/ci/.github/workflows/maven-central-release.yml@00adafd0fe1924f57325d9dd264d5d731fb099ad # 2026.11.4082509
     with:
       paths: src/main/java pom.xml
     secrets:

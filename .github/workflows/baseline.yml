@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   checks:
-    uses: metio/ci/.github/workflows/baseline.yml@6e8776dc59abdfffa793903f100e89f1aacb9c2e # 2026.11.2023135
+    uses: metio/ci/.github/workflows/baseline.yml@d1d58ce5b2b4dbac322bedd78203810def514bcc # 2026.11.15184511
   baseline:
     name: Baseline
     needs: [checks]
